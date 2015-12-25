@@ -6,7 +6,7 @@
 import Foundation
 
 public class Json {
-    public func toObject(data:NSData) throws -> AnyObject {
+    public static func toObject(data:NSData) throws -> AnyObject {
         do {
             return try NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers)
         } catch let error as NSError{
@@ -14,11 +14,51 @@ public class Json {
         }
     }
 
-    public func toDictionary(data:NSData) throws -> Dictionary<String, AnyObject> {
+    public static func toDictionary(data:NSData) throws -> Dictionary<String, AnyObject> {
         if let result = try toObject(data) as? [String:AnyObject] {
             return result;
         } else {
             throw IOError.JsonParseError(error: nil, description: "Not a dictionary");
         }
+    }
+
+    public static func getInt(jsonDict:Dictionary<String, AnyObject>, _ key:String) -> Int? {
+        if let value = jsonDict[key] {
+            if let str = value as? String {
+                return Int(str)
+            } else if let number = value as? NSNumber {
+                return number.integerValue
+            }
+        }
+
+        return nil
+    }
+
+    public static func getString(jsonDict:Dictionary<String, AnyObject>, _ key:String) -> String? {
+        if let value = jsonDict[key] {
+            if let str = value as? String {
+                return str
+            } else if let number = value as? NSNumber {
+                return String(number)
+            }
+        }
+
+        return nil
+    }
+
+    public static func getBool(jsonDict:Dictionary<String, AnyObject>, _ key:String) -> Bool {
+        if let value = jsonDict[key] {
+            if let str = value as? String {
+                return str == "true"
+            } else if let number = value as? NSNumber {
+                return number.integerValue == 1
+            }
+        }
+
+        return false
+    }
+
+    public static func getArray(jsonDict:Dictionary<String, AnyObject>, _ key:String) -> [AnyObject]? {
+        return jsonDict[key] as? Array<AnyObject>
     }
 }

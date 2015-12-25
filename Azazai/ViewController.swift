@@ -13,11 +13,17 @@ import SwiftUtils
 class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        Network.getStringFromUrl("http://azazai.com/api/getEventsList?offset=0&limit=2", complete: {
-            (response:String?, error:IOError?) in
-            let info = response ?? error!.description
-            Alerts.showOkAlert(info)
-            print(info)
+        Network.getJsonArrayFromUrl(
+        "http://azazai.com/api/getEventsList?offset=0&limit=2",
+                key: "events",
+                complete: {
+            (response:[[String:AnyObject]]?, error:IOError?) in
+            if let error = error {
+                Alerts.showOkAlert(error.description)
+            } else {
+                var events = Event.toEventsArray(response!)
+                Alerts.showOkAlert(String(events[0].name))
+            }
         })
     }
 

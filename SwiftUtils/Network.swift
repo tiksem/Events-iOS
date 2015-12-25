@@ -45,4 +45,66 @@ public class Network {
             complete(nil, IOError.InvalidUrl)
         }
     }
+
+    public static func getJsonDictFromUrl(url:String,
+                                          runCallbackOnMainThread:Bool = true,
+                                          complete:([String: AnyObject]?, IOError?) -> Void) {
+        getDataFromUrl(url) {
+            (data, error) in
+            if let err = error {
+                complete(nil, error)
+            } else {
+                func handle() {
+                    do {
+                        let dict = try Json.toDictionary(data!)
+                        complete(dict, nil)
+                    } catch let err as IOError {
+                        complete(nil, err)
+                    } catch {
+                        assert(false)
+                    }
+                }
+
+                if runCallbackOnMainThread {
+                    Threading.runOnMainThread(handle)
+                } else {
+                    handle()
+                }
+            }
+        }
+    }
+
+    public static func getJsonArrayFromUrl(url:String, key:String,
+                                          runCallbackOnMainThread:Bool = true,
+                                          complete:([[String : AnyObject]]?, IOError?) -> Void) {
+        getJsonDictFromUrl(url, runCallbackOnMainThread: runCallbackOnMainThread) {
+            (dict, error) in
+            if let error = error {
+                complete(nil, error)
+                return;
+            }
+
+            func onParseError() {
+                complete(nil, IOError.JsonParseError(error: nil, description: "Item by " + key + " " +
+                        "key is not an array of json objects"))
+            }
+
+            if let value = Json.getArray(dict!, key) {
+                if let value = try? value.map({
+                    (item:AnyObject) -> [String:AnyObject] in
+                    if let item = item as? [String:AnyObject] {
+                        return item
+                    }
+
+                    throw Errors.Void
+                }) {
+                    complete(value, nil)
+                } else {
+                    onParseError()
+                }
+            } else {
+                onParseError()
+            }
+        }
+    }
 }
