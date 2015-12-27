@@ -18,14 +18,14 @@ struct Event {
     var isSubscribed:Bool = false
 
     init(_ map:Dictionary<String, AnyObject>) {
-        id = Json.getInt(map, "id")!
-        name = Json.getString(map, "name")!
-        description = Json.getString(map, "description")!
-        userId = Json.getInt(map, "userId")!
-        address = Json.getString(map, "address")!
-        peopleNumber = Json.getInt(map, "peopleNumber")!
-        subscribersCount = Json.getInt(map, "subscribersCount")!
-        date = Json.getInt(map, "date")!
+        id = Json.getInt(map, "id") ?? 0
+        name = Json.getString(map, "name") ?? ""
+        description = Json.getString(map, "description") ?? ""
+        userId = Json.getInt(map, "userId") ?? 0
+        address = Json.getString(map, "address") ?? ""
+        peopleNumber = Json.getInt(map, "peopleNumber") ?? 0
+        subscribersCount = Json.getInt(map, "subscribersCount") ?? 0
+        date = Json.getInt(map, "date") ?? 0
     }
 
     public static func toEventsArray(array:[[String:AnyObject]]) -> [Event] {

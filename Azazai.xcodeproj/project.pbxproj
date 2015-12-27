@@ -29,7 +29,6 @@
 		2E6E65441C2DA7A7004B2860 /* Threading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1062853DF25D7985866D0969 /* Threading.swift */; };
 		2E6E65451C2DA7A7004B2860 /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106284947B4D79E6BEB481DA /* Alerts.swift */; };
 		2E6E65461C2DA7A7004B2860 /* Json.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10628A015FC5E87C112B92E0 /* Json.swift */; };
-		2EA9A87D1C2E01C200AAD89B /* Arrays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106288571D427D893C82A1C8 /* Arrays.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,7 +74,6 @@
 		1062863DCAE17FDF00AA30AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
 		10628680337E7DD4D0A9988F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
 		1062881622458FB3CD7F9CDF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
-		106288571D427D893C82A1C8 /* Arrays.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Arrays.swift; sourceTree = "<group>"; };
 		106288E9C23B456030785C08 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		106288FD94EAE39634F6C11C /* AzazaiUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AzazaiUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		106289354099CD0EA6F57F4F /* IOError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IOError.swift; sourceTree = "<group>"; };
@@ -171,7 +169,6 @@
 				1062853DF25D7985866D0969 /* Threading.swift */,
 				106284947B4D79E6BEB481DA /* Alerts.swift */,
 				10628A015FC5E87C112B92E0 /* Json.swift */,
-				106288571D427D893C82A1C8 /* Arrays.swift */,
 				10628F71CCF2243E5A7B4DA2 /* Errors.swift */,
 			);
 			path = SwiftUtils;
@@ -431,7 +428,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E6E65431C2DA7A7004B2860 /* IOError.swift in Sources */,
-				2EA9A87D1C2E01C200AAD89B /* Arrays.swift in Sources */,
 				2E6E65461C2DA7A7004B2860 /* Json.swift in Sources */,
 				2E6E65441C2DA7A7004B2860 /* Threading.swift in Sources */,
 				2E6E65451C2DA7A7004B2860 /* Alerts.swift in Sources */,
