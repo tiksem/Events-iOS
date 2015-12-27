@@ -37,6 +37,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
 
         eventsListView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        eventsListView.tableFooterView = UIView(frame: CGRect.zero)
     }
 
     override func didReceiveMemoryWarning() {

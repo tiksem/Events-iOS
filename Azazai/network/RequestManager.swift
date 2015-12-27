@@ -9,7 +9,7 @@ import SwiftUtils
 class RequestManager {
     func getEvents(callback:([Event]?, IOError?) -> Void) {
         Network.getJsonArrayFromUrl(
-        "http://azazai.com/api/getEventsList?offset=0&limit=2",
+        "http://azazai.com/api/getEventsList?offset=0&limit=20",
                 key: "events",
                 complete: {
                     (response, error) in
