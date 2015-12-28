@@ -12,6 +12,7 @@ import SwiftUtils
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var eventsListView: UITableView!
+
     let requestManager:RequestManager
     var events:[Event] = []
 
@@ -54,6 +55,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let event = events[indexPath.row]
         cell.eventName?.text = event.name
         cell.eventDescription?.text = event.description
+        cell.peopleNumber?.text = String(event.subscribersCount) + "/" + String(event.peopleNumber)
         return cell
     }
 
