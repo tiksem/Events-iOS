@@ -16,6 +16,7 @@
 		1062851535DF8C7E217B627B /* AzazaiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106289BDBA0D444158B662BB /* AzazaiTests.swift */; };
 		10628544ABA26438EA2E4802 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 10628F8DAA9F4386197EE280 /* Info.plist */; };
 		1062880B81174905BCAAED4C /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10628F71CCF2243E5A7B4DA2 /* Errors.swift */; };
+		106288CEEC957BE252A6E621 /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106285F64BF5C28376998927 /* EventCell.swift */; };
 		106289FB42AA4D24D1BED3F3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10628A7EAF6181C8E6B8FAE0 /* LaunchScreen.storyboard */; };
 		10628A02ACEC0E12DADB0004 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 106288381776A764A2C18CCC /* Main.storyboard */; };
 		10628A7548C8099E781AE53D /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 10628680337E7DD4D0A9988F /* Info.plist */; };
@@ -72,6 +73,7 @@
 		1062853DF25D7985866D0969 /* Threading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Threading.swift; sourceTree = "<group>"; };
 		106285443E83EC6BEB9625E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
 		106285F58DD238610C403D73 /* SwiftUtils.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftUtils.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		106285F64BF5C28376998927 /* EventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
 		1062863DCAE17FDF00AA30AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
 		10628680337E7DD4D0A9988F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
 		1062881622458FB3CD7F9CDF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
@@ -176,6 +178,14 @@
 			path = SwiftUtils;
 			sourceTree = "<group>";
 		};
+		1062881861DED367041A5E87 /* ui */ = {
+			isa = PBXGroup;
+			children = (
+				106285F64BF5C28376998927 /* EventCell.swift */,
+			);
+			path = ui;
+			sourceTree = "<group>";
+		};
 		106289D93CA776EE1A346922 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -200,6 +210,7 @@
 				10628E33CBA135E48BD9FE77 /* data */,
 				106280DC441D7C7300AC9446 /* network */,
 				2EAFB8251C30502A00B6A7F4 /* EventCell.xib */,
+				1062881861DED367041A5E87 /* ui */,
 			);
 			path = Azazai;
 			sourceTree = "<group>";
@@ -456,6 +467,7 @@
 				10628E526C7394B97B7F9254 /* ViewController.swift in Sources */,
 				106280C7E962AAB3BBD37561 /* Event.swift in Sources */,
 				10628EA943570F45C8A8B229 /* RequestManager.swift in Sources */,
+				106288CEEC957BE252A6E621 /* EventCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

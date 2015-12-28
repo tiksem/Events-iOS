@@ -36,7 +36,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             self.eventsListView.reloadData()
         }
 
-        eventsListView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        //eventsListView.registerClass(EventCell.self, forCellReuseIdentifier: "EventCell")
         eventsListView.tableFooterView = UIView(frame: CGRect.zero)
     }
 
@@ -50,8 +50,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("Cell") as! UITableViewCell!
-        cell.textLabel?.text = events[indexPath.row].name
+        let cell = tableView.dequeueReusableCellWithIdentifier("EventCell") as! EventCell!
+        let event = events[indexPath.row]
+        cell.eventName?.text = event.name
+        cell.eventDescription?.text = event.description
         return cell
     }
 
