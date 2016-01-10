@@ -6,7 +6,7 @@
 import Foundation
 import SwiftUtils
 
-class RequestManager {
+class RequestManagerTemplate {
     private var cancelers:CancelerSet
 
     init() {
@@ -17,7 +17,7 @@ class RequestManager {
                                complete:([String: AnyObject]?, IOError?) -> Void,
                                onCancelled:(() -> Void)? = nil) {
         var canceler = Canceler()
-        Network.getJsonDictFromUrl(url, canceler: canceler, complete: complete)
+        Network.getJsonDictFromUrl(url, complete: complete, canceler: canceler)
         cancelers.add(canceler, onCancelled: onCancelled)
     }
 
@@ -33,12 +33,14 @@ class RequestManager {
         return Network.getJsonLazyList(url, key: key,
                 limit: limit, factory: factory, args: args,
                 offsetKey: offsetKey, limitKey: limitKey)
-    }
-    
-    func getEventsList() -> LazyList<Event, IOError> {
-        return getLazyList("http://azazai.com/api/getEventsList", key: "events", limit: 10, factory: {
-            return Event.toEventsArray($0)
+    }/*helpers*/
+    /*lazyList*/
+    func __methodName__() -> LazyList<__ParamName__, IOError> {
+        return getLazyList(__url__, key: __key__, limit: __limit__, factory: {
+            return __ParamName__.to__ParamName__sArray($0)
         })
     }
-    
+    /*}*/
+    /*helpersEnd*/
+    /*BODY*/
 }

@@ -9,4 +9,14 @@ public struct Threading {
     public static func runOnMainThread(callback:() -> Void) {
         dispatch_async(dispatch_get_main_queue(), callback)
     }
+
+    public static func runOnMainThreadIfNotCancelled(canceller:Canceler?, _ callback:() -> Void) {
+        runOnMainThread {
+            if canceller?.isCancelled ?? false {
+                return
+            }
+
+            callback()
+        }
+    }
 }

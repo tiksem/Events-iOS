@@ -1,0 +1,11 @@
+{
+  "baseUrl": "http://azazai.com/api/",
+  "requests": [
+    {
+      "method": "getEventsList",
+      "limit": 10,
+      "return": "LazyList<Event>",
+      "key": "events"
+    }
+  ]
+}

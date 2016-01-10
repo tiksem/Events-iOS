@@ -9,8 +9,9 @@ public class Network {
     public static func getStringFromUrl(url:String,
                                         encoding:UInt = NSUTF8StringEncoding,
                                         runCallbackOnMainThread:Bool = true,
+                                        canceler: Canceler? = nil,
                                         complete:(String?, IOError?) -> Void) {
-        getDataFromUrl(url) {
+        getDataFromUrl(url, canceler: canceler) {
             (data, error) in
             func handleResponse() {
                 if let data = data {
@@ -24,14 +25,14 @@ public class Network {
                 }
             }
             if runCallbackOnMainThread {
-                Threading.runOnMainThread(handleResponse)
+                Threading.runOnMainThreadIfNotCancelled(canceler, handleResponse)
             } else {
                 handleResponse()
             }
         }
     }
 
-    public static func getDataFromUrl(url:String, complete:(NSData?, IOError?) -> Void) {
+    public static func getDataFromUrl(url:String, canceler: Canceler? = nil, complete:(NSData?, IOError?) -> Void) {
         if let url = NSURL(string: url) {
             let task = NSURLSession.sharedSession().dataTaskWithURL(url) {(data, response, error) in
                 if let data = data {
@@ -41,20 +42,24 @@ public class Network {
                 }
             }
             task.resume()
+
+            if let canceler = canceler {
+                canceler.body = task.cancel
+            }
         } else {
             complete(nil, IOError.InvalidUrl)
         }
     }
 
     public static func getJsonDictFromUrl(url:String,
-                                          runCallbackOnMainThread:Bool = true,
+                                          runCallbackOnMainThread:Bool = true, canceler: Canceler? = nil,
                                           complete:([String: AnyObject]?, IOError?) -> Void) {
-        getDataFromUrl(url) {
+        getDataFromUrl(url, canceler: canceler) {
             (data, error) in
-            if let err = error {
-                complete(nil, error)
-            } else {
-                func handle() {
+            func handle() {
+                if let err = error {
+                    complete(nil, err)
+                } else {
                     do {
                         let dict = try Json.toDictionary(data!)
                         complete(dict, nil)
@@ -64,20 +69,20 @@ public class Network {
                         assert(false)
                     }
                 }
+            }
 
-                if runCallbackOnMainThread {
-                    Threading.runOnMainThread(handle)
-                } else {
-                    handle()
-                }
+            if runCallbackOnMainThread {
+                Threading.runOnMainThreadIfNotCancelled(canceler, handle)
+            } else {
+                handle()
             }
         }
     }
 
     public static func getJsonArrayFromUrl(url:String, key:String,
-                                          runCallbackOnMainThread:Bool = true,
+                                          runCallbackOnMainThread:Bool = true, canceler: Canceler? = nil,
                                           complete:([[String : AnyObject]]?, IOError?) -> Void) {
-        getJsonDictFromUrl(url, runCallbackOnMainThread: runCallbackOnMainThread) {
+        getJsonDictFromUrl(url, canceler: canceler, runCallbackOnMainThread: runCallbackOnMainThread) {
             (dict, error) in
             if let error = error {
                 complete(nil, error)
@@ -106,5 +111,55 @@ public class Network {
                 onParseError()
             }
         }
+    }
+
+    public static func toQueryString(dict:[String:CustomStringConvertible]) -> String {
+        let parameterArray = try! dict.map { (key, value) -> String in
+            let percentEscapedKey = key.stringByAddingPercentEncodingForURLQueryValue()!
+            let percentEscapedValue = value.description.stringByAddingPercentEncodingForURLQueryValue()!
+            return "\(percentEscapedKey)=\(percentEscapedValue)"
+        }
+
+        return parameterArray.joinWithSeparator("&")
+    }
+
+    public static func getUrl(base:String, params:[String:CustomStringConvertible]?) -> String {
+        if let args = params {
+            if !args.isEmpty {
+                let concatChar = base.containsString("?") ? "&" : "?"
+                var queryString = toQueryString(args)
+                return base + concatChar + queryString
+            }
+        }
+
+        return base
+    }
+
+    public static func getJsonLazyList<T>(url:String,
+                                          key:String,
+                                          limit:Int = 10,
+                                          factory: ([[String:AnyObject]]) -> [T],
+                                          var args: [String: CustomStringConvertible] = [:],
+                                          offsetKey:String = "offset",
+                                          limitKey:String = "limit",
+                                          canceler: Canceler? = nil) -> LazyList<T, IOError> {
+        args[limitKey] = limit
+
+        let result = LazyList<T, IOError>(getNextPageData: {
+            (onSuccess, onError, pageNumber) in
+            let offset = pageNumber * limit
+            args[offsetKey] = offset
+            let finalUrl = getUrl(url, params: args)
+            getJsonArrayFromUrl(finalUrl, key: key, canceler: canceler, complete: {
+                (array, error) in
+                if let array = array {
+                    onSuccess(factory(array))
+                } else {
+                    onError(error!)
+                }
+            })
+        })
+
+        return result
     }
 }
