@@ -6,6 +6,23 @@
       "limit": 10,
       "return": "LazyList<Event>",
       "key": "events"
+    },
+    {
+      "method": "getTopComments",
+      "url": "getCommentsList?offset=0",
+      "args": [
+        {
+          "name": "limit",
+          "argName": "maxCount",
+          "type": "Int"
+        },
+        {
+          "name": "eventId",
+          "type": "Int"
+        }
+      ],
+      "return": "[Event]",
+      "key": "events"
     }
   ]
 }

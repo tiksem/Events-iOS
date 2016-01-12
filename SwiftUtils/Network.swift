@@ -52,9 +52,12 @@ public class Network {
     }
 
     public static func getJsonDictFromUrl(url:String,
-                                          runCallbackOnMainThread:Bool = true, canceler: Canceler? = nil,
+                                          runCallbackOnMainThread:Bool = true,
+                                          canceler: Canceler? = nil,
+                                          args: [String: CustomStringConvertible]? = nil,
                                           complete:([String: AnyObject]?, IOError?) -> Void) {
-        getDataFromUrl(url, canceler: canceler) {
+        let finalUrl = getUrl(url, params: args)
+        getDataFromUrl(finalUrl, canceler: canceler) {
             (data, error) in
             func handle() {
                 if let err = error {
@@ -79,10 +82,13 @@ public class Network {
         }
     }
 
-    public static func getJsonArrayFromUrl(url:String, key:String,
-                                          runCallbackOnMainThread:Bool = true, canceler: Canceler? = nil,
-                                          complete:([[String : AnyObject]]?, IOError?) -> Void) {
-        getJsonDictFromUrl(url, canceler: canceler, runCallbackOnMainThread: runCallbackOnMainThread) {
+    public static func getJsonArrayFromUrl(url:String,
+                                           key:String,
+                                           runCallbackOnMainThread:Bool = true,
+                                           canceler: Canceler? = nil,
+                                           args: [String: CustomStringConvertible]? = nil,
+                                           complete:([[String : AnyObject]]?, IOError?) -> Void) {
+        getJsonDictFromUrl(url, canceler: canceler, runCallbackOnMainThread: runCallbackOnMainThread, args: args) {
             (dict, error) in
             if let error = error {
                 complete(nil, error)

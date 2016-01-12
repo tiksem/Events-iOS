@@ -21,6 +21,16 @@ class RequestManagerTemplate {
         cancelers.add(canceler, onCancelled: onCancelled)
     }
 
+    private func getJsonArray(url:String,
+                              key:String,
+                              args: [String: CustomStringConvertible]? = nil,
+                              complete:([[String: AnyObject]]?, IOError?) -> Void,
+                              onCancelled:(() -> Void)? = nil) {
+        var canceler = Canceler()
+        Network.getJsonArrayFromUrl(url, key: key, canceler: canceler, complete: complete)
+        cancelers.add(canceler, onCancelled: onCancelled)
+    }
+
     private func getLazyList<T>(url:String,
                                 key:String,
                                 limit:Int = 10,
@@ -41,6 +51,18 @@ class RequestManagerTemplate {
         })
     }
     /*}*/
+
+    /*array*/
+    func __methodName__(__args__,
+                        complete:([__ParamName__]?, IOError?) -> Void,
+                        onCancelled:(() -> Void)? = nil) {
+        let args = __request_args__
+        getJsonArray(__url__, key: __key__, args: args, complete: {
+            complete(__ParamName__.to__ParamName__sArray($0), $1)
+        }, onCancelled: onCancelled);
+    }
+    /*}*/
+
     /*helpersEnd*/
     /*BODY*/
 }
