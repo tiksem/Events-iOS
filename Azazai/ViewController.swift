@@ -32,6 +32,7 @@ class ViewController: UIViewController {
                 list: events,
                 displayItem: displayEvent,
                 displayNullItem: displayNull,
+                onItemSelected: onEventSelected,
                 tableView: eventsListView);
 
         //eventsListView.registerClass(EventCell.self, forCellReuseIdentifier: "EventCell")
@@ -51,5 +52,16 @@ class ViewController: UIViewController {
 
     func displayNull(cell:EventCell) {
         cell.eventDescription?.text = "Please, wait..."
+    }
+
+    func onEventSelected(event:Event, position:Int) {
+        requestManager.getTopComments(event.id, maxCount: 4) {
+            if let comments = $0 {
+                let message = comments.map { $0.text }.joinWithSeparator("\n")
+                Alerts.showOkAlert(message)
+            } else {
+                Alerts.showOkAlert($1!.description)
+            }
+        }
     }
 }

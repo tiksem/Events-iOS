@@ -1,6 +1,7 @@
 import json
 import re
 import sys
+from collections import OrderedDict
 
 _4_spaces = "    "
 _8_spaces = _4_spaces * 2
@@ -66,8 +67,8 @@ def generate_lazy_list_method(request, type_name):
 
 def generate_array_method(request, typeName):
     template = generate_base(request, typeName, "/*array*/", "/*}*/")
-    func_args = {}
-    request_args = {}
+    func_args = OrderedDict()
+    request_args = OrderedDict()
     args = request["args"]
     for arg in args:
         name = arg["name"]
@@ -76,7 +77,7 @@ def generate_array_method(request, typeName):
         request_args[name] = argName
     func_args_str = ", ".join([key + ":" + value for key, value in func_args.items()])
     template = template.replace("__args__", func_args_str)
-    items = [_12_spaces + key + ": " + value for key, value in request_args.items()]
+    items = [_12_spaces + quote(key) + ": " + value for key, value in request_args.items()]
     request_args_str = "[\n" + (",\n".join(items)) + "\n" + _8_spaces + "]"
     template = template.replace("__request_args__", request_args_str)
     return template
@@ -99,7 +100,7 @@ input = input.replace("class RequestManagerTemplate", "class RequestManager")
 
 print(body)
 
-# output.seek(0)
-# output.write(input)
-# output.truncate()
-# output.close()
+output.seek(0)
+output.write(input)
+output.truncate()
+output.close()

@@ -17,13 +17,6 @@ struct Event {
     let date:Int
     var isSubscribed:Bool = false
 
-
-    public static func toEventsArray(array:[[String:AnyObject]]) -> [Event] {
-        return try! array.map {
-            return Event($0)
-        }
-    }
-
     public static func toEventsArray(array:[[String:AnyObject]]?) -> [Event]? {
         return try! array?.map {
             return Event($0)

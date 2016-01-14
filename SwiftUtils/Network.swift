@@ -57,6 +57,7 @@ public class Network {
                                           args: [String: CustomStringConvertible]? = nil,
                                           complete:([String: AnyObject]?, IOError?) -> Void) {
         let finalUrl = getUrl(url, params: args)
+        print("finalUrl = \(finalUrl)")
         getDataFromUrl(finalUrl, canceler: canceler) {
             (data, error) in
             func handle() {

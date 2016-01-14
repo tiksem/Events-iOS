@@ -51,8 +51,9 @@ public class LazyList<T, Error : ErrorType> : RandomAccessable {
 
         getNextPageData({
             self.loadNextPageExecuted = false
-            self.items += $0
             self.pageNumber++
+            self.allDataLoaded = $0.isEmpty
+            self.items += $0
             self.onNewPageLoaded?($0)
         }, {
             self.onError?($0)

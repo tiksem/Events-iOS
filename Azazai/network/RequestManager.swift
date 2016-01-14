@@ -21,6 +21,16 @@ class RequestManager {
         cancelers.add(canceler, onCancelled: onCancelled)
     }
 
+    private func getJsonArray(url:String,
+                              key:String,
+                              args: [String: CustomStringConvertible]? = nil,
+                              complete:([[String: AnyObject]]?, IOError?) -> Void,
+                              onCancelled:(() -> Void)? = nil) {
+        var canceler = Canceler()
+        Network.getJsonArrayFromUrl(url, key: key, canceler: canceler, args: args, complete: complete)
+        cancelers.add(canceler, onCancelled: onCancelled)
+    }
+
     private func getLazyList<T>(url:String,
                                 key:String,
                                 limit:Int = 10,
@@ -37,8 +47,20 @@ class RequestManager {
     
     func getEventsList() -> LazyList<Event, IOError> {
         return getLazyList("http://azazai.com/api/getEventsList", key: "events", limit: 10, factory: {
-            return Event.toEventsArray($0)
+            return Event.toEventsArray($0)!
         })
+    }
+    
+    func getTopComments(eventId:Int, maxCount:Int,
+                        onCancelled:(() -> Void)? = nil,
+                        complete:([Comment]?, IOError?) -> Void) {
+        let args:[String:CustomStringConvertible] = [
+            "id": eventId,
+            "limit": maxCount
+        ]
+        getJsonArray("http://azazai.com/api/getCommentsList?offset=0", key: "Comments", args: args, complete: {
+            complete(Comment.toCommentsArray($0), $1)
+        }, onCancelled: onCancelled);
     }
     
 }

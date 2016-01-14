@@ -12,17 +12,18 @@
       "url": "getCommentsList?offset=0",
       "args": [
         {
-          "name": "limit",
-          "argName": "maxCount",
+          "name": "id",
+          "argName": "eventId",
           "type": "Int"
         },
         {
-          "name": "eventId",
+          "name": "limit",
+          "argName": "maxCount",
           "type": "Int"
         }
       ],
-      "return": "[Event]",
-      "key": "events"
+      "return": "[Comment]",
+      "key": "Comments"
     }
   ]
 }

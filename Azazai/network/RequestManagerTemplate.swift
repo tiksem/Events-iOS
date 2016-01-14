@@ -17,7 +17,7 @@ class RequestManagerTemplate {
                                complete:([String: AnyObject]?, IOError?) -> Void,
                                onCancelled:(() -> Void)? = nil) {
         var canceler = Canceler()
-        Network.getJsonDictFromUrl(url, complete: complete, canceler: canceler)
+        Network.getJsonDictFromUrl(url, canceler: canceler, complete: complete)
         cancelers.add(canceler, onCancelled: onCancelled)
     }
 
@@ -27,7 +27,7 @@ class RequestManagerTemplate {
                               complete:([[String: AnyObject]]?, IOError?) -> Void,
                               onCancelled:(() -> Void)? = nil) {
         var canceler = Canceler()
-        Network.getJsonArrayFromUrl(url, key: key, canceler: canceler, complete: complete)
+        Network.getJsonArrayFromUrl(url, key: key, canceler: canceler, args: args, complete: complete)
         cancelers.add(canceler, onCancelled: onCancelled)
     }
 
@@ -47,16 +47,16 @@ class RequestManagerTemplate {
     /*lazyList*/
     func __methodName__() -> LazyList<__ParamName__, IOError> {
         return getLazyList(__url__, key: __key__, limit: __limit__, factory: {
-            return __ParamName__.to__ParamName__sArray($0)
+            return __ParamName__.to__ParamName__sArray($0)!
         })
     }
     /*}*/
 
     /*array*/
     func __methodName__(__args__,
-                        complete:([__ParamName__]?, IOError?) -> Void,
-                        onCancelled:(() -> Void)? = nil) {
-        let args = __request_args__
+                        onCancelled:(() -> Void)? = nil,
+                        complete:([__ParamName__]?, IOError?) -> Void) {
+        let args:[String:CustomStringConvertible] = __request_args__
         getJsonArray(__url__, key: __key__, args: args, complete: {
             complete(__ParamName__.to__ParamName__sArray($0), $1)
         }, onCancelled: onCancelled);

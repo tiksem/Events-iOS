@@ -12,17 +12,21 @@ public class LazyListAdapter<T, Error : ErrorType, CellType: UITableViewCell> : 
     private let list:LazyList<T, Error>
     private let displayItem:(T, CellType) -> Void
     private let displayNullItem:(CellType) -> Void
+    private let onItemSelected:((T, Int) -> Void)?
     private unowned let tableView:UITableView
 
     public init(cellIdentifier:String,
                 list:LazyList<T, Error>,
                 displayItem:(T, CellType) -> Void,
-                displayNullItem:(CellType) -> Void, tableView:UITableView) {
+                displayNullItem:(CellType) -> Void,
+                onItemSelected:((T, Int) -> Void)? = nil,
+                tableView:UITableView) {
         self.cellIdentifier = cellIdentifier
         self.list = list
         self.displayItem = displayItem
         self.displayNullItem = displayNullItem
         self.tableView = tableView
+        self.onItemSelected = onItemSelected
 
         super.init()
         reloadData()
@@ -54,6 +58,9 @@ public class LazyListAdapter<T, Error : ErrorType, CellType: UITableViewCell> : 
     }
 
     public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-
+        let row = indexPath.row
+        if let item = list[row] {
+            onItemSelected?(item, row)
+        }
     }
 }
