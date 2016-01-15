@@ -51,6 +51,10 @@ public class Network {
         }
     }
 
+    private static func throwErrorParseError() throws {
+        throw IOError.JsonParseError(error: nil, description: "Error parse error")
+    }
+
     public static func getJsonDictFromUrl(url:String,
                                           runCallbackOnMainThread:Bool = true,
                                           canceler: Canceler? = nil,
@@ -68,6 +72,21 @@ public class Network {
                     do {
                         let dict = try Json.toDictionary(data!)
                         if let err = dict["error"] where handleResponseErrors {
+                            if let errString = err as? CustomStringConvertible {
+                                let message = dict["message"]
+                                if message != nil {
+                                    if let messageString = message as? CustomStringConvertible {
+                                        throw IOError.ResponseError(error: errString.description,
+                                                message: messageString.description)
+                                    } else {
+                                        try throwErrorParseError()
+                                    }
+                                }
+
+                                throw IOError.ResponseError(error: errString.description, message: nil)
+                            } else {
+                                try throwErrorParseError()
+                            }
                             throw IOError.ResponseError(error: (err as! CustomStringConvertible).description,
                                     message: (dict["message"] as! CustomStringConvertible).description)
                         }

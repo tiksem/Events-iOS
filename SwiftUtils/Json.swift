@@ -35,12 +35,8 @@ public class Json {
     }
 
     public static func getString(jsonDict:Dictionary<String, AnyObject>, _ key:String) -> String? {
-        if let value = jsonDict[key] {
-            if let str = value as? String {
-                return str
-            } else if let number = value as? NSNumber {
-                return String(number)
-            }
+        if let value = jsonDict[key] as? CustomStringConvertible {
+            return value.description
         }
 
         return nil
