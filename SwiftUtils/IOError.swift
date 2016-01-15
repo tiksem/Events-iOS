@@ -8,7 +8,7 @@ import Foundation
 public enum IOError: ErrorType, CustomStringConvertible {
     case InvalidUrl
     case NetworkError(error:NSError)
-    case ResponseError
+    case ResponseError(error:String, message:String?)
     case StringEncodingError
     case JsonParseError(error:NSError?, description:String?)
 
@@ -17,7 +17,12 @@ public enum IOError: ErrorType, CustomStringConvertible {
             case .InvalidUrl: return "InvalidUrl"
             case .NetworkError(let error):
                 return "NetworkError (" + error.description + ")"
-            case .ResponseError: return "ResponseError"
+            case .ResponseError(let error, let message):
+                if let message = message {
+                    return "ResponseError(\(error): \(message))"
+                } else {
+                    return "ResponseError(\(error))"
+                }
             case .StringEncodingError: return "StringEncodingError"
             case .JsonParseError(let error, let description):
                 return "JsonParseError (" + (error?.description ?? description ?? "Unknown error") + ")"

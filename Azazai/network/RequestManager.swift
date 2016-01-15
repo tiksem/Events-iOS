@@ -61,7 +61,7 @@ class RequestManager {
         ]
         getJsonArray("http://azazai.com/api/getCommentsList?offset=0", key: "Comments", args: args, complete: {
             complete(Comment.toCommentsArray($0), $1)
-        }, onCancelled: onCancelled);
+        }, onCancelled: onCancelled)
     }
     
     func getCommentsList(eventId:Int) -> LazyList<Comment, IOError> {

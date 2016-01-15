@@ -54,6 +54,7 @@ public class Network {
     public static func getJsonDictFromUrl(url:String,
                                           runCallbackOnMainThread:Bool = true,
                                           canceler: Canceler? = nil,
+                                          handleResponseErrors:Bool = true,
                                           args: [String: CustomStringConvertible]? = nil,
                                           complete:([String: AnyObject]?, IOError?) -> Void) {
         let finalUrl = getUrl(url, params: args)
@@ -66,6 +67,11 @@ public class Network {
                 } else {
                     do {
                         let dict = try Json.toDictionary(data!)
+                        if let err = dict["error"] where handleResponseErrors {
+                            throw IOError.ResponseError(error: (err as! CustomStringConvertible).description,
+                                    message: (dict["message"] as! CustomStringConvertible).description)
+                        }
+
                         complete(dict, nil)
                     } catch let err as IOError {
                         complete(nil, err)

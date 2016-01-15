@@ -60,7 +60,7 @@ class RequestManagerTemplate {
         let args:[String:CustomStringConvertible] = __request_args__
         getJsonArray(__url__, key: __key__, args: args, complete: {
             complete(__ParamName__.to__ParamName__sArray($0), $1)
-        }, onCancelled: onCancelled);
+        }, onCancelled: onCancelled)
     }
     /*}*/
 
