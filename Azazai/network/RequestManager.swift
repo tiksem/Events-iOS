@@ -46,9 +46,10 @@ class RequestManager {
     }
     
     func getEventsList() -> LazyList<Event, IOError> {
+        let args:[String:CustomStringConvertible] = [:]
         return getLazyList("http://azazai.com/api/getEventsList", key: "events", limit: 10, factory: {
             return Event.toEventsArray($0)!
-        })
+        }, args: args)
     }
     
     func getTopComments(eventId:Int, maxCount:Int,
@@ -61,6 +62,15 @@ class RequestManager {
         getJsonArray("http://azazai.com/api/getCommentsList?offset=0", key: "Comments", args: args, complete: {
             complete(Comment.toCommentsArray($0), $1)
         }, onCancelled: onCancelled);
+    }
+    
+    func getCommentsList(eventId:Int) -> LazyList<Comment, IOError> {
+        let args:[String:CustomStringConvertible] = [
+            "id": eventId
+        ]
+        return getLazyList("http://azazai.com/api/getCommentsList", key: "Comments", limit: 10, factory: {
+            return Comment.toCommentsArray($0)!
+        }, args: args)
     }
     
 }

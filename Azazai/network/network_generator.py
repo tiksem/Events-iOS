@@ -58,6 +58,22 @@ def generate_base(request, type_name, first_quote, second_quote):
     url = quote(baseUrl + request.get("url", method_name))
     template = template.replace("__url__", url)
     template = template.replace("__key__", quote(request["key"]))
+    func_args = OrderedDict()
+    request_args = OrderedDict()
+    args = request.get("args", [])
+    for arg in args:
+        name = arg["name"]
+        argName = arg.get("argName", name)
+        func_args[argName] = arg["type"]
+        request_args[name] = argName
+    func_args_str = ", ".join([key + ":" + value for key, value in func_args.items()])
+    template = template.replace("__args__", func_args_str)
+    items = [_12_spaces + quote(key) + ": " + value for key, value in request_args.items()]
+    if len(items) > 0:
+        request_args_str = "[\n" + (",\n".join(items)) + "\n" + _8_spaces + "]"
+    else:
+        request_args_str = "[:]"
+    template = template.replace("__request_args__", request_args_str)
     return template
 
 def generate_lazy_list_method(request, type_name):
@@ -67,19 +83,6 @@ def generate_lazy_list_method(request, type_name):
 
 def generate_array_method(request, typeName):
     template = generate_base(request, typeName, "/*array*/", "/*}*/")
-    func_args = OrderedDict()
-    request_args = OrderedDict()
-    args = request["args"]
-    for arg in args:
-        name = arg["name"]
-        argName = arg.get("argName", name)
-        func_args[argName] = arg["type"]
-        request_args[name] = argName
-    func_args_str = ", ".join([key + ":" + value for key, value in func_args.items()])
-    template = template.replace("__args__", func_args_str)
-    items = [_12_spaces + quote(key) + ": " + value for key, value in request_args.items()]
-    request_args_str = "[\n" + (",\n".join(items)) + "\n" + _8_spaces + "]"
-    template = template.replace("__request_args__", request_args_str)
     return template
 
 body = ""

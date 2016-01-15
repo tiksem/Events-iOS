@@ -24,6 +24,19 @@
       ],
       "return": "[Comment]",
       "key": "Comments"
+    },
+    {
+      "method": "getCommentsList",
+      "limit": 10,
+      "return": "LazyList<Comment>",
+      "key": "Comments",
+      "args": [
+        {
+          "name": "id",
+          "argName": "eventId",
+          "type": "Int"
+        }
+      ]
     }
   ]
 }
