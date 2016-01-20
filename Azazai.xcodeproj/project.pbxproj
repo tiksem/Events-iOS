@@ -30,7 +30,7 @@
 		10628B74ECF13E09A388630F /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106283F528864E2303B1FA96 /* Comment.swift */; };
 		10628E19098D35964F53C5B8 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1062863DCAE17FDF00AA30AA /* Info.plist */; };
 		10628E41E1003B36BD308661 /* RandomAccessable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10628405F201F41AADA05117 /* RandomAccessable.swift */; };
-		10628E526C7394B97B7F9254 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10628CD8FA7A780278F12207 /* ViewController.swift */; };
+		10628E526C7394B97B7F9254 /* EventsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10628CD8FA7A780278F12207 /* EventsController.swift */; };
 		10628E744852CB9F4678E775 /* Canceler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10628884A9AFDF65CAD2F829 /* Canceler.swift */; };
 		10628EA943570F45C8A8B229 /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106282611AD0F4FC6419ADDC /* RequestManager.swift */; };
 		10628EF39DB3527198F865AC /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10628585B1C467D4A5F09BA9 /* Strings.swift */; };
@@ -106,7 +106,7 @@
 		10628A74865C670B8082549A /* SwiftUtilsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUtilsTests.swift; sourceTree = "<group>"; };
 		10628B7A317F96BE89C8C602 /* AzazaiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AzazaiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		10628C59BF300FB93058A150 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		10628CD8FA7A780278F12207 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		10628CD8FA7A780278F12207 /* EventsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsController.swift; sourceTree = "<group>"; };
 		10628D0176534A5B24FBF4E2 /* SwiftUtilsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftUtilsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		10628D5875D648D466F64DE1 /* LazyListAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LazyListAdapter.swift; sourceTree = "<group>"; };
 		10628D8CF320116885070D8E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -245,7 +245,7 @@
 				10628A7EAF6181C8E6B8FAE0 /* LaunchScreen.storyboard */,
 				10628A1FE40E6581899A2CDB /* AppDelegate.swift */,
 				106288381776A764A2C18CCC /* Main.storyboard */,
-				10628CD8FA7A780278F12207 /* ViewController.swift */,
+				10628CD8FA7A780278F12207 /* EventsController.swift */,
 				10628E33CBA135E48BD9FE77 /* data */,
 				106280DC441D7C7300AC9446 /* network */,
 				2EAFB8251C30502A00B6A7F4 /* EventCell.xib */,
@@ -514,7 +514,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				10628B15E306708D605BFF1D /* AppDelegate.swift in Sources */,
-				10628E526C7394B97B7F9254 /* ViewController.swift in Sources */,
+				10628E526C7394B97B7F9254 /* EventsController.swift in Sources */,
 				106280C7E962AAB3BBD37561 /* Event.swift in Sources */,
 				10628EA943570F45C8A8B229 /* RequestManager.swift in Sources */,
 				106288CEEC957BE252A6E621 /* EventCell.swift in Sources */,

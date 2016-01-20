@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  EventsController.swift
 //  Azazai
 //
 //  Created by Semyon Tikhonenko on 12/25/15.
@@ -10,7 +10,7 @@
 import UIKit
 import SwiftUtils
 
-class ViewController: UIViewController {
+class EventsController: UIViewController {
     @IBOutlet weak var eventsListView: UITableView!
 
     let requestManager:RequestManager
