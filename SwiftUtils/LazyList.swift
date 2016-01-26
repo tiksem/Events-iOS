@@ -8,17 +8,21 @@ import Foundation
 public class LazyList<T, Error : ErrorType> : RandomAccessable {
     public typealias ItemType = T
     private var items:[T] = []
-    private var allDataLoaded = false
+    private(set) var allDataLoaded = false
     private var loadNextPageExecuted = false
-    private var pageNumber = 0
+    var pageNumber = 0
 
     public init(getNextPageData:(([T]) -> Void, (Error) -> Void, Int) -> Void) {
         self.getNextPageData = getNextPageData
     }
 
+    public init() {
+
+    }
+
     public var onError:((Error) -> Void)?
     public var onNewPageLoaded:(([T]) -> Void)?
-    public var getNextPageData:(([T]) -> Void, (Error) -> Void, Int) -> Void
+    public var getNextPageData:((([T]) -> Void, (Error) -> Void, Int) -> Void)?
 
     public subscript(index:Int) -> ItemType? {
         if allDataLoaded {
@@ -49,7 +53,7 @@ public class LazyList<T, Error : ErrorType> : RandomAccessable {
 
         loadNextPageExecuted = true
 
-        getNextPageData({
+        getNextPageData!({
             self.loadNextPageExecuted = false
             self.pageNumber++
             self.allDataLoaded = $0.isEmpty

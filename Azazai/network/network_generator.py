@@ -59,21 +59,29 @@ def generate_base(request, type_name, first_quote, second_quote):
     template = template.replace("__url__", url)
     template = template.replace("__key__", quote(request["key"]))
     func_args = OrderedDict()
-    request_args = OrderedDict()
+
+    def generate_request_args(args):
+        result = OrderedDict()
+        for arg in args:
+            name = arg["name"]
+            argName = arg.get("argName", name)
+            if "type" in arg:
+                func_args[argName] = arg["type"]
+                result[name] = argName
+            else:
+                result[name] = arg["value"]
+        items = [_12_spaces + quote(key) + ": " + str(value) for key, value in result.items()]
+        if len(items) > 0:
+            return "[\n" + (",\n".join(items)) + "\n" + _8_spaces + "]"
+        else:
+            return "[:]"
+
     args = request.get("args", [])
-    for arg in args:
-        name = arg["name"]
-        argName = arg.get("argName", name)
-        func_args[argName] = arg["type"]
-        request_args[name] = argName
+    mergeArgs = request.get("mergeArgs", [])
+    template = template.replace("__request_args__", generate_request_args(args))
+    template = template.replace("__merge_args__", generate_request_args(mergeArgs))
     func_args_str = ", ".join([key + ":" + value for key, value in func_args.items()])
     template = template.replace("__args__", func_args_str)
-    items = [_12_spaces + quote(key) + ": " + value for key, value in request_args.items()]
-    if len(items) > 0:
-        request_args_str = "[\n" + (",\n".join(items)) + "\n" + _8_spaces + "]"
-    else:
-        request_args_str = "[:]"
-    template = template.replace("__request_args__", request_args_str)
     return template
 
 def generate_lazy_list_method(request, type_name):

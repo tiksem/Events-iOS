@@ -36,20 +36,25 @@ class RequestManager {
                                 limit:Int = 10,
                                 factory: ([[String:AnyObject]]) -> [T],
                                 var args: [String: CustomStringConvertible] = [:],
+                                var mergeArgs: [String: CustomStringConvertible] = [:],
                                 offsetKey:String = "offset",
                                 limitKey:String = "limit") -> LazyList<T, IOError> {
         var canceler = Canceler()
         cancelers.add(canceler)
         return Network.getJsonLazyList(url, key: key,
                 limit: limit, factory: factory, args: args,
-                offsetKey: offsetKey, limitKey: limitKey)
+                offsetKey: offsetKey, limitKey: limitKey,
+                mergeArgs: mergeArgs, canceler: canceler)
     }
     
     func getEventsList() -> LazyList<Event, IOError> {
         let args:[String:CustomStringConvertible] = [:]
+        let mergeArgs:[String:CustomStringConvertible] = [
+            "timeOut": true
+        ]
         return getLazyList("http://azazai.com/api/getEventsList", key: "events", limit: 10, factory: {
             return Event.toEventsArray($0)!
-        }, args: args)
+        }, args: args, mergeArgs: mergeArgs)
     }
     
     func getTopComments(eventId:Int, maxCount:Int,
@@ -68,9 +73,10 @@ class RequestManager {
         let args:[String:CustomStringConvertible] = [
             "id": eventId
         ]
+        let mergeArgs:[String:CustomStringConvertible] = [:]
         return getLazyList("http://azazai.com/api/getCommentsList", key: "Comments", limit: 10, factory: {
             return Comment.toCommentsArray($0)!
-        }, args: args)
+        }, args: args, mergeArgs: mergeArgs)
     }
     
 }

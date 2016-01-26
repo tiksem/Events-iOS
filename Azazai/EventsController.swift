@@ -48,6 +48,7 @@ class EventsController: UIViewController {
         cell.eventName?.text = event.name
         cell.eventDescription?.text = event.description
         cell.peopleNumber?.text = String(event.subscribersCount) + "/" + String(event.peopleNumber)
+        var e:Any
     }
 
     func displayNull(cell:EventCell) {
@@ -59,8 +60,8 @@ class EventsController: UIViewController {
             if let comments = $0 {
                 let message = comments.map { $0.text }.joinWithSeparator("\n")
                 Alerts.showOkAlert(message)
-            } else {
-                Alerts.showOkAlert($1!.description)
+            } else if let error = $1 {
+                Alerts.showOkAlert(error.description)
             }
         }
     }

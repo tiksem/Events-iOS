@@ -36,20 +36,23 @@ class RequestManagerTemplate {
                                 limit:Int = 10,
                                 factory: ([[String:AnyObject]]) -> [T],
                                 var args: [String: CustomStringConvertible] = [:],
+                                var mergeArgs: [String: CustomStringConvertible] = [:],
                                 offsetKey:String = "offset",
                                 limitKey:String = "limit") -> LazyList<T, IOError> {
         var canceler = Canceler()
         cancelers.add(canceler)
         return Network.getJsonLazyList(url, key: key,
                 limit: limit, factory: factory, args: args,
-                offsetKey: offsetKey, limitKey: limitKey)
+                offsetKey: offsetKey, limitKey: limitKey,
+                mergeArgs: mergeArgs, canceler: canceler)
     }/*helpers*/
     /*lazyList*/
     func __methodName__(__args__) -> LazyList<__ParamName__, IOError> {
         let args:[String:CustomStringConvertible] = __request_args__
+        let mergeArgs:[String:CustomStringConvertible] = __merge_args__
         return getLazyList(__url__, key: __key__, limit: __limit__, factory: {
             return __ParamName__.to__ParamName__sArray($0)!
-        }, args: args)
+        }, args: args, mergeArgs: mergeArgs)
     }
     /*}*/
 

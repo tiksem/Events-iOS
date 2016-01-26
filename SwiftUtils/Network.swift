@@ -159,7 +159,7 @@ public class Network {
         if let args = params {
             if !args.isEmpty {
                 let concatChar = base.containsString("?") ? "&" : "?"
-                var queryString = toQueryString(args)
+                let queryString = toQueryString(args)
                 return base + concatChar + queryString
             }
         }
@@ -174,23 +174,38 @@ public class Network {
                                           var args: [String: CustomStringConvertible] = [:],
                                           offsetKey:String = "offset",
                                           limitKey:String = "limit",
+                                          mergeArgs:[String: CustomStringConvertible] = [:],
                                           canceler: Canceler? = nil) -> LazyList<T, IOError> {
         args[limitKey] = limit
 
-        let result = LazyList<T, IOError>(getNextPageData: {
+        let result = LazyList<T, IOError>()
+        result.getNextPageData = {
             (onSuccess, onError, pageNumber) in
-            let offset = pageNumber * limit
+            var offset = pageNumber * limit
             args[offsetKey] = offset
-            let finalUrl = getUrl(url, params: args)
-            getJsonArrayFromUrl(finalUrl, key: key, canceler: canceler, complete: {
+            var finalUrl = getUrl(url, params: args)
+            var mergeApplied = mergeArgs.isEmpty
+            var complete:(([[String:AnyObject]]?, IOError?) -> Void)!
+            complete = {
                 (array, error) in
                 if let array = array {
+                    if array.isEmpty && !mergeApplied {
+                        mergeApplied = true
+                        args += mergeArgs
+                        result.pageNumber = 0
+                        args[offsetKey] = 0
+                        finalUrl = getUrl(url, params: args)
+                        getJsonArrayFromUrl(finalUrl, key: key, canceler: canceler, complete: complete)
+                        return
+                    }
+
                     onSuccess(factory(array))
                 } else {
                     onError(error!)
                 }
-            })
-        })
+            }
+            getJsonArrayFromUrl(finalUrl, key: key, canceler: canceler, complete: complete)
+        }
 
         return result
     }

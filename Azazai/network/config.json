@@ -5,7 +5,13 @@
       "method": "getEventsList",
       "limit": 10,
       "return": "LazyList<Event>",
-      "key": "events"
+      "key": "events",
+      "mergeArgs": [
+        {
+          "name": "timeOut",
+          "value": "true"
+        }
+      ]
     },
     {
       "method": "getTopComments",
