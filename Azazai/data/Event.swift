@@ -6,7 +6,11 @@
 import Foundation
 import SwiftUtils
 
-struct Event {
+func == (lhs: Event, rhs: Event) -> Bool {
+    return lhs.id == rhs.id
+}
+
+struct Event : Hashable, Equatable {
     let id:Int
     let name:String
     let description:String
@@ -17,10 +21,16 @@ struct Event {
     let date:Int
     var isSubscribed:Bool = false
 
+
+
     public static func toEventsArray(array:[[String:AnyObject]]?) -> [Event]? {
         return try! array?.map {
             return Event($0)
         }
+    }
+
+    var hashValue: Int {
+        return id.hashValue
     }
     init(_ map:Dictionary<String, AnyObject>) {
         id = Json.getInt(map, "id") ?? 0
@@ -33,3 +43,4 @@ struct Event {
         date = Json.getInt(map, "date") ?? 0
     }
 }
+

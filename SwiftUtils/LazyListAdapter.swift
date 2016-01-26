@@ -6,7 +6,7 @@
 import Foundation
 import UIKit
 
-public class LazyListAdapter<T, Error : ErrorType, CellType: UITableViewCell> : NSObject,
+public class LazyListAdapter<T : Hashable, Error : ErrorType, CellType: UITableViewCell> : NSObject,
         UITableViewDelegate, UITableViewDataSource {
     private let cellIdentifier:String
     private let list:LazyList<T, Error>

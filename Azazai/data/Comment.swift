@@ -6,22 +6,33 @@
 import Foundation
 import SwiftUtils
 
-struct Comment {
+func == (lhs: Comment, rhs: Comment) -> Bool {
+    return lhs.id == rhs.id
+}
+
+struct Comment : Hashable {
+    let id:Int
     let userId:Int
     let text:String
     let eventId:Int
     let date:Int
 
-    init(_ map:Dictionary<String, AnyObject>) {
-        userId = Json.getInt(map, "userId") ?? 0
-        text = Json.getString(map, "text") ?? ""
-        eventId = Json.getInt(map, "eventId") ?? 0
-        date = Json.getInt(map, "date") ?? 0
-    }
 
     public static func toCommentsArray(array:[[String:AnyObject]]?) -> [Comment]? {
         return try! array?.map {
             return Comment($0)
         }
     }
+    init(_ map:Dictionary<String, AnyObject>) {
+        id = Json.getInt(map, "id") ?? 0
+        userId = Json.getInt(map, "userId") ?? 0
+        text = Json.getString(map, "text") ?? ""
+        eventId = Json.getInt(map, "eventId") ?? 0
+        date = Json.getInt(map, "date") ?? 0
+    }
+
+    var hashValue: Int {
+        return id.hashValue
+    }
+
 }
