@@ -60,8 +60,8 @@ class EventsController: UIViewController {
             if let comments = $0 {
                 let message = comments.map { $0.text }.joinWithSeparator("\n")
                 Alerts.showOkAlert(message)
-            } else if let error = $1 {
-                Alerts.showOkAlert(error.description)
+            } else {
+                Alerts.showOkAlert($1?.description ?? "Uknown Error")
             }
         }
     }
