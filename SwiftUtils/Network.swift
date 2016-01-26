@@ -179,12 +179,12 @@ public class Network {
         args[limitKey] = limit
 
         let result = LazyList<T, IOError>()
+        var mergeApplied = mergeArgs.isEmpty
         result.getNextPageData = {
             (onSuccess, onError, pageNumber) in
             var offset = pageNumber * limit
             args[offsetKey] = offset
             var finalUrl = getUrl(url, params: args)
-            var mergeApplied = mergeArgs.isEmpty
             var complete:(([[String:AnyObject]]?, IOError?) -> Void)!
             complete = {
                 (array, error) in
