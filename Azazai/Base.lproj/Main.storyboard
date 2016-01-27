@@ -72,6 +72,7 @@
                                         <connections>
                                             <outlet property="eventDescription" destination="I7e-xu-s7K" id="SWd-SS-6cQ"/>
                                             <outlet property="eventName" destination="cCw-tc-PK3" id="kTm-mk-OBZ"/>
+                                            <outlet property="peopleNumber" destination="cst-Xq-cRn" id="0y0-3H-BP7"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
