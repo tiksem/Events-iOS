@@ -9,19 +9,22 @@ import UIKit
 public class LazyListAdapter<T : Hashable, Error : ErrorType, CellType: UITableViewCell> : NSObject,
         UITableViewDelegate, UITableViewDataSource {
     private let cellIdentifier:String
+    private let nullCellIdentifier:String
     private let list:LazyList<T, Error>
     private let displayItem:(T, CellType) -> Void
-    private let displayNullItem:(CellType) -> Void
+    private let displayNullItem:((UITableViewCell) -> Void)?
     private let onItemSelected:((T, Int) -> Void)?
     private unowned let tableView:UITableView
 
     public init(cellIdentifier:String,
+                nullCellIdentifier:String,
                 list:LazyList<T, Error>,
                 displayItem:(T, CellType) -> Void,
-                displayNullItem:(CellType) -> Void,
+                displayNullItem:((UITableViewCell) -> Void)? = nil,
                 onItemSelected:((T, Int) -> Void)? = nil,
                 tableView:UITableView) {
         self.cellIdentifier = cellIdentifier
+        self.nullCellIdentifier = nullCellIdentifier
         self.list = list
         self.displayItem = displayItem
         self.displayNullItem = displayNullItem
@@ -47,14 +50,15 @@ public class LazyListAdapter<T : Hashable, Error : ErrorType, CellType: UITableV
     }
 
     public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! CellType!
         if let item = list[indexPath.row] {
+            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! CellType!
             displayItem(item, cell)
+            return cell
         } else {
-            displayNullItem(cell)
+            let cell = tableView.dequeueReusableCellWithIdentifier(nullCellIdentifier)!
+            displayNullItem?(cell)
+            return cell
         }
-
-        return cell
     }
 
     public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

@@ -75,6 +75,23 @@
                                             <outlet property="peopleNumber" destination="cst-Xq-cRn" id="0y0-3H-BP7"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Loading" id="CCz-ov-VDC">
+                                        <rect key="frame" x="0.0" y="164" width="600" height="72"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CCz-ov-VDC" id="odH-Ob-IzI">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="71.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="GDi-Ud-dcv">
+                                                    <rect key="frame" x="290" y="26" width="20" height="20"/>
+                                                </activityIndicatorView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="GDi-Ud-dcv" firstAttribute="centerX" secondItem="odH-Ob-IzI" secondAttribute="centerX" id="PT9-qR-65B"/>
+                                                <constraint firstItem="GDi-Ud-dcv" firstAttribute="centerY" secondItem="odH-Ob-IzI" secondAttribute="centerY" id="xWL-yY-dJB"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </prototypes>
                             </tableView>
                         </subviews>

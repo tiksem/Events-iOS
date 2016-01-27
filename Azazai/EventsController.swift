@@ -29,11 +29,11 @@ class EventsController: UIViewController {
         }
 
         var adapter = LazyListAdapter(cellIdentifier: "EventCell",
+                nullCellIdentifier: "Loading",
                 list: events,
                 displayItem: displayEvent,
-                displayNullItem: displayNull,
                 onItemSelected: onEventSelected,
-                tableView: eventsListView);
+                tableView: eventsListView)
 
         eventsListView.tableFooterView = UIView(frame: CGRect.zero)
     }
@@ -47,10 +47,6 @@ class EventsController: UIViewController {
         cell.eventName?.text = event.name
         cell.eventDescription?.text = event.description
         cell.peopleNumber?.text = String(event.subscribersCount) + "/" + String(event.peopleNumber)
-    }
-
-    func displayNull(cell:EventCell) {
-        cell.eventDescription?.text = "Please, wait..."
     }
 
     func onEventSelected(event:Event, position:Int) {
