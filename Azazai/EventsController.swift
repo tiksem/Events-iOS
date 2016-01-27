@@ -35,7 +35,6 @@ class EventsController: UIViewController {
                 onItemSelected: onEventSelected,
                 tableView: eventsListView);
 
-        //eventsListView.registerClass(EventCell.self, forCellReuseIdentifier: "EventCell")
         eventsListView.tableFooterView = UIView(frame: CGRect.zero)
     }
 
@@ -48,7 +47,6 @@ class EventsController: UIViewController {
         cell.eventName?.text = event.name
         cell.eventDescription?.text = event.description
         cell.peopleNumber?.text = String(event.subscribersCount) + "/" + String(event.peopleNumber)
-        var e:Any
     }
 
     func displayNull(cell:EventCell) {
