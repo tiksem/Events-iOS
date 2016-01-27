@@ -56,13 +56,6 @@ class EventsController: UIViewController {
     }
 
     func onEventSelected(event:Event, position:Int) {
-        requestManager.getTopComments(event.id, maxCount: 4) {
-            if let comments = $0 {
-                let message = comments.map { $0.text }.joinWithSeparator("\n")
-                Alerts.showOkAlert(message)
-            } else {
-                Alerts.showOkAlert($1?.description ?? "Uknown Error")
-            }
-        }
+        performSegueWithIdentifier("ShowEvent", sender: self)
     }
 }
