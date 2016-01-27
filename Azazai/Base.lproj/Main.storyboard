@@ -69,6 +69,7 @@
                                                 <constraint firstAttribute="trailingMargin" secondItem="cCw-tc-PK3" secondAttribute="trailing" id="yUN-UE-e7Q"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <connections>
                                             <outlet property="eventDescription" destination="I7e-xu-s7K" id="SWd-SS-6cQ"/>
                                             <outlet property="eventName" destination="cCw-tc-PK3" id="kTm-mk-OBZ"/>
@@ -91,6 +92,7 @@
                                                 <constraint firstItem="GDi-Ud-dcv" firstAttribute="centerY" secondItem="odH-Ob-IzI" secondAttribute="centerY" id="xWL-yY-dJB"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
