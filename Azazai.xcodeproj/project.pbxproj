@@ -19,6 +19,7 @@
 		10628544ABA26438EA2E4802 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 10628F8DAA9F4386197EE280 /* Info.plist */; };
 		10628669E5AE660E3B8EB9E2 /* Dictionaries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1062814DB35C2726D6E39D1F /* Dictionaries.swift */; };
 		106286905B3C66407B0C3E5E /* config.json in Resources */ = {isa = PBXBuildFile; fileRef = 1062888865DA39368FB98ED4 /* config.json */; };
+		1062869C7D246BF07B7C14BA /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10628990ED1DB7924139CA45 /* LoginController.swift */; };
 		106287B84B68C9104471D780 /* CancelerSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1062847A0FC16268D00E3D22 /* CancelerSet.swift */; };
 		106287FFD711EC0B3B7D0BE9 /* LazyList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106280400E4B4DB3F62D7F0E /* LazyList.swift */; };
 		1062880B81174905BCAAED4C /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10628F71CCF2243E5A7B4DA2 /* Errors.swift */; };
@@ -36,6 +37,7 @@
 		10628EA943570F45C8A8B229 /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106282611AD0F4FC6419ADDC /* RequestManager.swift */; };
 		10628EF39DB3527198F865AC /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10628585B1C467D4A5F09BA9 /* Strings.swift */; };
 		10628F8F00D41576A3F88DB2 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 106285443E83EC6BEB9625E2 /* Info.plist */; };
+		2E3D0E521C5A67960066890E /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E3D0E511C5A67960066890E /* logo.png */; };
 		2E6E65421C2DA7A7004B2860 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106283A78DF0BB8802326F25 /* Network.swift */; };
 		2E6E65431C2DA7A7004B2860 /* IOError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106289354099CD0EA6F57F4F /* IOError.swift */; };
 		2E6E65441C2DA7A7004B2860 /* Threading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1062853DF25D7985866D0969 /* Threading.swift */; };
@@ -101,6 +103,7 @@
 		106288E9C23B456030785C08 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		106288FD94EAE39634F6C11C /* AzazaiUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AzazaiUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		106289354099CD0EA6F57F4F /* IOError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IOError.swift; sourceTree = "<group>"; };
+		10628990ED1DB7924139CA45 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		106289BDBA0D444158B662BB /* AzazaiTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AzazaiTests.swift; sourceTree = "<group>"; };
 		10628A015FC5E87C112B92E0 /* Json.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Json.swift; sourceTree = "<group>"; };
 		10628A1FE40E6581899A2CDB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -115,6 +118,7 @@
 		10628EEDEB9E10EBA84BE95C /* network_generator.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = network_generator.py; sourceTree = "<group>"; };
 		10628F71CCF2243E5A7B4DA2 /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		10628F8DAA9F4386197EE280 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
+		2E3D0E511C5A67960066890E /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		2EAFB8251C30502A00B6A7F4 /* EventCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventCell.xib; sourceTree = "<group>"; };
 		2ED5E4DD1C31F9DD002A1CFB /* ic_people_grey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_people_grey.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -216,6 +220,7 @@
 			isa = PBXGroup;
 			children = (
 				106285F64BF5C28376998927 /* EventCell.swift */,
+				10628990ED1DB7924139CA45 /* LoginController.swift */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -223,6 +228,7 @@
 		1062899727F855D6E386689D /* images */ = {
 			isa = PBXGroup;
 			children = (
+				2E3D0E511C5A67960066890E /* logo.png */,
 				2ED5E4DD1C31F9DD002A1CFB /* ic_people_grey.png */,
 			);
 			path = images;
@@ -449,6 +455,7 @@
 			files = (
 				2ED5E4DE1C31F9DD002A1CFB /* ic_people_grey.png in Resources */,
 				10628544ABA26438EA2E4802 /* Info.plist in Resources */,
+				2E3D0E521C5A67960066890E /* logo.png in Resources */,
 				106283488577203AC306B794 /* Assets.xcassets in Resources */,
 				106289FB42AA4D24D1BED3F3 /* LaunchScreen.storyboard in Resources */,
 				2EAFB8261C30502A00B6A7F4 /* EventCell.xib in Resources */,
@@ -524,6 +531,7 @@
 				106288CEEC957BE252A6E621 /* EventCell.swift in Sources */,
 				10628234E7536228D4653B1A /* Strings.swift in Sources */,
 				10628B74ECF13E09A388630F /* Comment.swift in Sources */,
+				1062869C7D246BF07B7C14BA /* LoginController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
