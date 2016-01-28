@@ -155,6 +155,9 @@
                                 <state key="normal" title="LOGIN WITH VK">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="onLoginClick:" destination="7jM-Tw-B79" eventType="touchUpInside" id="dPt-US-7r1"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.57677721854176367" green="0.84911647616331631" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -164,7 +167,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <segue destination="Qaf-5P-o3e" kind="show" id="WJs-Pc-Fxa"/>
+                        <segue destination="Qaf-5P-o3e" kind="show" identifier="ShowEvents" id="WJs-Pc-Fxa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tV9-jc-Avv" userLabel="First Responder" sceneMemberID="firstResponder"/>
