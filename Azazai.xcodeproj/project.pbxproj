@@ -45,6 +45,8 @@
 		2E6E65441C2DA7A7004B2860 /* Threading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1062853DF25D7985866D0969 /* Threading.swift */; };
 		2E6E65451C2DA7A7004B2860 /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106284947B4D79E6BEB481DA /* Alerts.swift */; };
 		2E6E65461C2DA7A7004B2860 /* Json.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10628A015FC5E87C112B92E0 /* Json.swift */; };
+		2E7C32551C5C0FAD00CE8F7C /* VKSdkFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E7C32541C5C0FAD00CE8F7C /* VKSdkFramework.framework */; };
+		2E7C32561C5C0FAD00CE8F7C /* VKSdkFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2E7C32541C5C0FAD00CE8F7C /* VKSdkFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2EAFB8261C30502A00B6A7F4 /* EventCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EAFB8251C30502A00B6A7F4 /* EventCell.xib */; };
 		2ED5E4DE1C31F9DD002A1CFB /* ic_people_grey.png in Resources */ = {isa = PBXBuildFile; fileRef = 2ED5E4DD1C31F9DD002A1CFB /* ic_people_grey.png */; };
 /* End PBXBuildFile section */
@@ -88,6 +90,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				2E5D01DC1C5AAC6C0013735F /* SwiftUtils.framework in Embed Frameworks */,
+				2E7C32561C5C0FAD00CE8F7C /* VKSdkFramework.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -135,6 +138,9 @@
 		10628F71CCF2243E5A7B4DA2 /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		10628F8DAA9F4386197EE280 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
 		2E3D0E511C5A67960066890E /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		2E7C32521C5C0B6300CE8F7C /* Cartfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
+		2E7C32531C5C0E9300CE8F7C /* Azazai-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Azazai-Bridging-Header.h"; sourceTree = "<group>"; };
+		2E7C32541C5C0FAD00CE8F7C /* VKSdkFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VKSdkFramework.framework; path = Carthage/Build/iOS/VKSdkFramework.framework; sourceTree = "<group>"; };
 		2EAFB8251C30502A00B6A7F4 /* EventCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventCell.xib; sourceTree = "<group>"; };
 		2ED5E4DD1C31F9DD002A1CFB /* ic_people_grey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_people_grey.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -152,6 +158,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E5D01DB1C5AAC6C0013735F /* SwiftUtils.framework in Frameworks */,
+				2E7C32551C5C0FAD00CE8F7C /* VKSdkFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -194,6 +201,8 @@
 		106283FB35D5C11BF3D0CEC3 = {
 			isa = PBXGroup;
 			children = (
+				2E7C32541C5C0FAD00CE8F7C /* VKSdkFramework.framework */,
+				2E7C32521C5C0B6300CE8F7C /* Cartfile */,
 				106289D93CA776EE1A346922 /* Products */,
 				106289E90FB5F4B0DB6C09AF /* Azazai */,
 				10628C6E83E548BBEA63DA13 /* AzazaiTests */,
@@ -277,6 +286,7 @@
 				2EAFB8251C30502A00B6A7F4 /* EventCell.xib */,
 				1062881861DED367041A5E87 /* ui */,
 				1062899727F855D6E386689D /* images */,
+				2E7C32531C5C0E9300CE8F7C /* Azazai-Bridging-Header.h */,
 			);
 			path = Azazai;
 			sourceTree = "<group>";
@@ -613,13 +623,14 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
-				FRAMEWORK_SEARCH_PATHS = "";
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/Carthage/Build/iOS";
 				INFOPLIST_FILE = Azazai/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = azazai.Azazai;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Azazai/Azazai-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -903,13 +914,14 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
-				FRAMEWORK_SEARCH_PATHS = "";
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/Carthage/Build/iOS";
 				INFOPLIST_FILE = Azazai/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = azazai.Azazai;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Azazai/Azazai-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
