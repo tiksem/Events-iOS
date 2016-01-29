@@ -23,12 +23,12 @@ class EventsController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        var events = requestManager.getEventsList()
+        let events = requestManager.getEventsList()
         events.onError = {
             Alerts.showOkAlert($0.description)
         }
 
-        var adapter = LazyListAdapter(cellIdentifier: "EventCell",
+        LazyListAdapter(cellIdentifier: "EventCell",
                 nullCellIdentifier: "Loading",
                 list: events,
                 displayItem: displayEvent,

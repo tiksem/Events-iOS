@@ -22,13 +22,6 @@ struct Event : Hashable, Equatable {
     var isSubscribed:Bool = false
 
 
-
-    public static func toEventsArray(array:[[String:AnyObject]]?) -> [Event]? {
-        return try! array?.map {
-            return Event($0)
-        }
-    }
-
     var hashValue: Int {
         return id.hashValue
     }
@@ -41,6 +34,12 @@ struct Event : Hashable, Equatable {
         peopleNumber = Json.getInt(map, "peopleNumber") ?? 0
         subscribersCount = Json.getInt(map, "subscribersCount") ?? 0
         date = Json.getInt(map, "date") ?? 0
+    }
+
+    static func toEventsArray(array:[[String:AnyObject]]?) -> [Event]? {
+        return try! array?.map {
+            return Event($0)
+        }
     }
 }
 
