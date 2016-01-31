@@ -47,6 +47,7 @@
 		2E6E65461C2DA7A7004B2860 /* Json.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10628A015FC5E87C112B92E0 /* Json.swift */; };
 		2E7C32551C5C0FAD00CE8F7C /* VKSdkFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E7C32541C5C0FAD00CE8F7C /* VKSdkFramework.framework */; };
 		2E7C32561C5C0FAD00CE8F7C /* VKSdkFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2E7C32541C5C0FAD00CE8F7C /* VKSdkFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2E7C32941C5EC3C200CE8F7C /* EventsListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E7C32931C5EC3C200CE8F7C /* EventsListView.xib */; };
 		2EAFB8261C30502A00B6A7F4 /* EventCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EAFB8251C30502A00B6A7F4 /* EventCell.xib */; };
 		2ED5E4DE1C31F9DD002A1CFB /* ic_people_grey.png in Resources */ = {isa = PBXBuildFile; fileRef = 2ED5E4DD1C31F9DD002A1CFB /* ic_people_grey.png */; };
 /* End PBXBuildFile section */
@@ -141,6 +142,7 @@
 		2E7C32521C5C0B6300CE8F7C /* Cartfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		2E7C32531C5C0E9300CE8F7C /* Azazai-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Azazai-Bridging-Header.h"; sourceTree = "<group>"; };
 		2E7C32541C5C0FAD00CE8F7C /* VKSdkFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VKSdkFramework.framework; path = Carthage/Build/iOS/VKSdkFramework.framework; sourceTree = "<group>"; };
+		2E7C32931C5EC3C200CE8F7C /* EventsListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventsListView.xib; sourceTree = "<group>"; };
 		2EAFB8251C30502A00B6A7F4 /* EventCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventCell.xib; sourceTree = "<group>"; };
 		2ED5E4DD1C31F9DD002A1CFB /* ic_people_grey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_people_grey.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -247,6 +249,7 @@
 			children = (
 				106285F64BF5C28376998927 /* EventCell.swift */,
 				10628990ED1DB7924139CA45 /* LoginController.swift */,
+				2E7C32931C5EC3C200CE8F7C /* EventsListView.xib */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -494,6 +497,7 @@
 				2E3D0E521C5A67960066890E /* logo.png in Resources */,
 				106283488577203AC306B794 /* Assets.xcassets in Resources */,
 				106289FB42AA4D24D1BED3F3 /* LaunchScreen.storyboard in Resources */,
+				2E7C32941C5EC3C200CE8F7C /* EventsListView.xib in Resources */,
 				2EAFB8261C30502A00B6A7F4 /* EventCell.xib in Resources */,
 				10628A02ACEC0E12DADB0004 /* Main.storyboard in Resources */,
 				106286905B3C66407B0C3E5E /* config.json in Resources */,

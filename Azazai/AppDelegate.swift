@@ -19,7 +19,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     override init() {
-        print("yo")
         VKSdk.initializeWithAppId("5251728")
     }
 
