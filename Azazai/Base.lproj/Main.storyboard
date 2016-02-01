@@ -27,7 +27,7 @@
                             <constraint firstItem="CR1-Qu-bGm" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="tZn-R0-x9J"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="5YB-V8-ju6"/>
+                    <tabBarItem key="tabBarItem" title="Events" id="5YB-V8-ju6"/>
                     <navigationItem key="navigationItem" id="1Mk-gj-wfE"/>
                     <connections>
                         <outlet property="eventsListView" destination="CR1-Qu-bGm" id="D0L-5b-PZq"/>
