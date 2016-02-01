@@ -9,7 +9,9 @@ import UIKit
 public class LazyListAdapter<T : Hashable, Error : ErrorType, CellType: UITableViewCell> : NSObject,
         UITableViewDelegate, UITableViewDataSource {
     private let cellIdentifier:String
+    private let cellNibFileName:String
     private let nullCellIdentifier:String
+    private let nullCellNibFileName:String
     private let list:LazyList<T, Error>
     private let displayItem:(T, CellType) -> Void
     private let displayNullItem:((UITableViewCell) -> Void)?
@@ -17,14 +19,18 @@ public class LazyListAdapter<T : Hashable, Error : ErrorType, CellType: UITableV
     private unowned let tableView:UITableView
 
     public init(cellIdentifier:String,
+                cellNibFileName:String? = nil,
                 nullCellIdentifier:String,
+                nullCellNibFileName:String? = nil,
                 list:LazyList<T, Error>,
                 displayItem:(T, CellType) -> Void,
                 displayNullItem:((UITableViewCell) -> Void)? = nil,
                 onItemSelected:((T, Int) -> Void)? = nil,
                 tableView:UITableView) {
         self.cellIdentifier = cellIdentifier
+        self.cellNibFileName = cellNibFileName ?? cellIdentifier
         self.nullCellIdentifier = nullCellIdentifier
+        self.nullCellNibFileName = nullCellNibFileName ?? nullCellIdentifier
         self.list = list
         self.displayItem = displayItem
         self.displayNullItem = displayNullItem
@@ -49,13 +55,22 @@ public class LazyListAdapter<T : Hashable, Error : ErrorType, CellType: UITableV
         return list.count
     }
 
+    private func getCell(cellIdentifier:String, nibFile:String) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) {
+            return cell
+        } else {
+            tableView.registerNib(UINib(nibName: nibFile, bundle: nil), forCellReuseIdentifier: cellIdentifier)
+            return tableView.dequeueReusableCellWithIdentifier(cellIdentifier)!
+        }
+    }
+
     public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if let item = list[indexPath.row] {
-            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! CellType!
+            let cell = getCell(cellIdentifier, nibFile: cellNibFileName) as! CellType
             displayItem(item, cell)
             return cell
         } else {
-            let cell = tableView.dequeueReusableCellWithIdentifier(nullCellIdentifier)!
+            let cell = getCell(nullCellIdentifier, nibFile: nullCellNibFileName)
             displayNullItem?(cell)
             return cell
         }

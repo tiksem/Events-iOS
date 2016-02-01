@@ -12,7 +12,7 @@ class LoginController : UIViewController, VKSdkDelegate, VKSdkUIDelegate {
     var onViewDidAppear:(() -> Void)?
 
     required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder);
+        super.init(coder: aDecoder)
         VKSdk.instance().registerDelegate(self)
         VKSdk.instance().uiDelegate = self
     }
