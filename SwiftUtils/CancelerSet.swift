@@ -25,4 +25,8 @@ public class CancelerSet {
             canceler.cancel()
         }
     }
+
+    deinit {
+        cancelAll()
+    }
 }
