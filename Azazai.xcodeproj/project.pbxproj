@@ -15,6 +15,7 @@
 		1062826A203E03DD64CFF5E2 /* AzazaiUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1062800C8BACD68A4655DC1E /* AzazaiUITests.swift */; };
 		10628299E4865D964A84B718 /* EventsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106288EF081F062EB4283FE1 /* EventsController.swift */; };
 		106283488577203AC306B794 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 106288E9C23B456030785C08 /* Assets.xcassets */; };
+		106284B1B683155F77310E80 /* UiUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10628D6A300A2ACDDF8EAB15 /* UiUtils.swift */; };
 		1062850658F26302961FF0E0 /* SwiftUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 106285F58DD238610C403D73 /* SwiftUtils.framework */; };
 		1062851535DF8C7E217B627B /* AzazaiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106289BDBA0D444158B662BB /* AzazaiTests.swift */; };
 		10628544ABA26438EA2E4802 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 10628F8DAA9F4386197EE280 /* Info.plist */; };
@@ -134,6 +135,7 @@
 		10628C59BF300FB93058A150 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		10628D0176534A5B24FBF4E2 /* SwiftUtilsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftUtilsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		10628D5875D648D466F64DE1 /* LazyListAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LazyListAdapter.swift; sourceTree = "<group>"; };
+		10628D6A300A2ACDDF8EAB15 /* UiUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UiUtils.swift; sourceTree = "<group>"; };
 		10628D8CF320116885070D8E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		10628EEDEB9E10EBA84BE95C /* network_generator.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = network_generator.py; sourceTree = "<group>"; };
 		10628F71CCF2243E5A7B4DA2 /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
@@ -240,6 +242,7 @@
 				10628585B1C467D4A5F09BA9 /* Strings.swift */,
 				10628D5875D648D466F64DE1 /* LazyListAdapter.swift */,
 				1062814DB35C2726D6E39D1F /* Dictionaries.swift */,
+				10628D6A300A2ACDDF8EAB15 /* UiUtils.swift */,
 			);
 			path = SwiftUtils;
 			sourceTree = "<group>";
@@ -549,6 +552,7 @@
 				10628EF39DB3527198F865AC /* Strings.swift in Sources */,
 				106280A3E159B5809FD37484 /* LazyListAdapter.swift in Sources */,
 				10628669E5AE660E3B8EB9E2 /* Dictionaries.swift in Sources */,
+				106284B1B683155F77310E80 /* UiUtils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

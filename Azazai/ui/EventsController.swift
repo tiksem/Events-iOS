@@ -32,6 +32,7 @@ class EventsController: UIViewController {
                 nullCellIdentifier: "Loading",
                 list: events,
                 displayItem: displayEvent,
+                displayNullItem: displayNull,
                 onItemSelected: onEventSelected,
                 tableView: eventsListView)
 
@@ -46,7 +47,12 @@ class EventsController: UIViewController {
     func displayEvent(event:Event, cell:EventCell) {
         cell.eventName?.text = event.name
         cell.eventDescription?.text = event.description
+        cell.layoutMargins = UIEdgeInsetsZero
         cell.peopleNumber?.text = String(event.subscribersCount) + "/" + String(event.peopleNumber)
+    }
+
+    func displayNull(cell:UITableViewCell) {
+        UiUtils.removeSeparator(cell)
     }
 
     func onEventSelected(event:Event, position:Int) {
