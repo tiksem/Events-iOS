@@ -57,6 +57,18 @@ class RequestManager {
         }, args: args, mergeArgs: mergeArgs)
     }
     
+    func getUserEvents(mod:EventMode) -> LazyList<Event, IOError> {
+        let args:[String:CustomStringConvertible] = [
+            "mod": mod
+        ]
+        let mergeArgs:[String:CustomStringConvertible] = [
+            "timeOut": true
+        ]
+        return getLazyList("http://azazai.com/api/getUserEvents", key: "Events", limit: 10, factory: {
+            return Event.toEventsArray($0)!
+        }, args: args, mergeArgs: mergeArgs)
+    }
+    
     func getTopComments(eventId:Int, maxCount:Int,
                         onCancelled:(() -> Void)? = nil,
                         complete:([Comment]?, IOError?) -> Void) {

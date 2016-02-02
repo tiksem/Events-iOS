@@ -10,4 +10,8 @@ public class UiUtils {
     public static func removeSeparator(cell:UITableViewCell) {
         cell.separatorInset = UIEdgeInsetsMake(0, cell.bounds.size.width, 0, 0);
     }
+
+    public static func instanceFromNib(fileName:String) -> UIView {
+        return UINib(nibName: fileName, bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! UIView
+    }
 }

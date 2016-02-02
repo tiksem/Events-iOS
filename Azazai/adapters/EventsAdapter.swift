@@ -9,7 +9,7 @@ import SwiftUtils
 class EventsAdapter {
     private weak var eventsListView: UITableView!
     private weak var controller:UIViewController!
-    private let requestManager:RequestManager
+    let requestManager:RequestManager
 
     init() {
         requestManager = RequestManager()
@@ -19,7 +19,7 @@ class EventsAdapter {
         controller = viewController
         self.eventsListView = eventsListView
 
-        let events = requestManager.getEventsList()
+        let events = getEventsList()
         events.onError = {
             Alerts.showOkAlert($0.description)
         }
@@ -48,5 +48,9 @@ class EventsAdapter {
 
     func onEventSelected(event:Event, position:Int) {
         controller.performSegueWithIdentifier("ShowEvent", sender: self)
+    }
+
+    func getEventsList() -> LazyList<Event, IOError> {
+        return requestManager.getEventsList()
     }
 }

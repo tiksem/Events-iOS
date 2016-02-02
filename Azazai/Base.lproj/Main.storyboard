@@ -59,22 +59,7 @@
         <!--Event-->
         <scene sceneID="NoA-yJ-HL9">
             <objects>
-                <viewController title="Event" id="Wi5-jD-USL" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="kiG-jq-C8u"/>
-                        <viewControllerLayoutGuide type="bottom" id="muD-Dh-FtN"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="IFp-lD-cfi">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="ic_people_grey.png" translatesAutoresizingMaskIntoConstraints="NO" id="9zF-Iw-CzX">
-                                <rect key="frame" x="94" y="136" width="35" height="35"/>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
+                <viewController title="Event" id="Wi5-jD-USL" customClass="EventController" customModule="Azazai" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G4t-zK-NLU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1648" y="-78"/>
@@ -137,7 +122,4 @@
             <point key="canvasLocation" x="275" y="-73"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="ic_people_grey.png" width="35" height="35"/>
-    </resources>
 </document>

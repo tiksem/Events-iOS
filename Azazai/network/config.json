@@ -14,6 +14,24 @@
       ]
     },
     {
+      "method": "getUserEvents",
+      "limit": 10,
+      "return": "LazyList<Event>",
+      "key": "Events",
+      "args": [
+        {
+          "name": "mod",
+          "type": "EventMode"
+        }
+      ],
+      "mergeArgs": [
+        {
+          "name": "timeOut",
+          "value": "true"
+        }
+      ]
+    },
+    {
       "method": "getTopComments",
       "url": "getCommentsList?offset=0",
       "args": [
