@@ -11,7 +11,7 @@ public class UiUtils {
         cell.separatorInset = UIEdgeInsetsMake(0, cell.bounds.size.width, 0, 0);
     }
 
-    public static func instanceFromNib(fileName:String) -> UIView {
+    public static func viewFromNib(fileName:String) -> UIView {
         return NSBundle.mainBundle().loadNibNamed(fileName,
                 owner: nil, options: nil)[0] as! UIView
     }

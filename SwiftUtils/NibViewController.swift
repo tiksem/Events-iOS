@@ -18,7 +18,7 @@ public class NibViewController : UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         self.edgesForExtendedLayout = .None
-        nestedView = UiUtils.instanceFromNib(nibFileName)
+        nestedView = UiUtils.viewFromNib(nibFileName)
         nestedView.clipsToBounds = true
         view.addSubview(nestedView)
         let bounds = view.bounds
