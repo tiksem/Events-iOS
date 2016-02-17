@@ -8,6 +8,7 @@ import UIKit
 
 public class NibViewController : UIViewController {
     private let nibFileName:String!
+    private(set) public var nestedView:UIView!
 
     public init?(coder: NSCoder, nibFileName:String) {
         self.nibFileName = nibFileName
@@ -17,11 +18,17 @@ public class NibViewController : UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         self.edgesForExtendedLayout = .None
-        var nestedView = UiUtils.instanceFromNib(nibFileName)
+        nestedView = UiUtils.instanceFromNib(nibFileName)
         nestedView.clipsToBounds = true
         view.addSubview(nestedView)
-        nestedView.center = view.center
-        nestedView.bounds = view.bounds
+        let bounds = view.bounds
+        let navBounds = navigationController?.navigationBar.bounds ?? CGRect.zero
+        let navHeight = navBounds.size.height
+        nestedView.bounds = CGRect(x: bounds.origin.x,
+                y: bounds.origin.y,
+                width: bounds.size.width,
+                height: bounds.size.height - navHeight)
+        nestedView.center = CGPoint(x: view.center.x, y: view.center.y + navHeight)
     }
 
     public required init?(coder: NSCoder) {

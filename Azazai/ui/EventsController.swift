@@ -10,17 +10,18 @@
 import UIKit
 import SwiftUtils
 
-class EventsController: UIViewController {
-    @IBOutlet weak var eventsListView: UITableView!
+class EventsController: NibViewController {
     var controller:EventsAdapter!
+    var eventsView:EventsView!
 
     required init?(coder:NSCoder) {
-        super.init(coder: coder)
+        super.init(coder: coder, nibFileName: "EventsView")
         controller = EventsAdapter()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        controller.viewDidLoad(controller: self, eventsListView: eventsListView)
+        eventsView = nestedView as! EventsView
+        controller.viewDidLoad(controller: self, eventsListView: eventsView.eventsListView)
     }
 }

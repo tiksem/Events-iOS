@@ -38,6 +38,10 @@ public class LazyListAdapter<T : Hashable, Error : ErrorType, CellType: UITableV
         self.onItemSelected = onItemSelected
 
         super.init()
+
+//        self.tableView.contentInset = UIEdgeInsetsMake(100, 0, 0, 0)
+//        self.tableView.contentOffset = CGPointMake(0, -100)
+
         reloadData()
         list.onNewPageLoaded = {
             (data) in
@@ -56,12 +60,13 @@ public class LazyListAdapter<T : Hashable, Error : ErrorType, CellType: UITableV
     }
 
     private func getCell(cellIdentifier:String, nibFile:String) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) {
-            return cell
-        } else {
+        var cell:UITableViewCell? = tableView.dequeueReusableCellWithIdentifier(cellIdentifier)
+        if cell == nil {
             tableView.registerNib(UINib(nibName: nibFile, bundle: nil), forCellReuseIdentifier: cellIdentifier)
-            return tableView.dequeueReusableCellWithIdentifier(cellIdentifier)!
+            cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier)
         }
+        cell?.clipsToBounds = true
+        return cell!
     }
 
     public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -82,4 +87,8 @@ public class LazyListAdapter<T : Hashable, Error : ErrorType, CellType: UITableV
             onItemSelected?(item, row)
         }
     }
+
+//    public func tableView(tableView:UITableView, heightForRowAtIndexPath indexPath:NSIndexPath) -> CGFloat {
+//        return 100
+//    }
 }

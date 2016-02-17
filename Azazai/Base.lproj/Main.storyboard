@@ -13,24 +13,14 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="72" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CR1-Qu-bGm">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </tableView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="CR1-Qu-bGm" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="mb8-2N-VpE"/>
-                            <constraint firstItem="CR1-Qu-bGm" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="tZn-R0-x9J"/>
-                        </constraints>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <tabBarItem key="tabBarItem" title="Events" id="5YB-V8-ju6"/>
                     <navigationItem key="navigationItem" id="1Mk-gj-wfE"/>
                     <connections>
-                        <outlet property="eventsListView" destination="CR1-Qu-bGm" id="D0L-5b-PZq"/>
                         <segue destination="Wi5-jD-USL" kind="show" identifier="ShowEvent" id="Nli-1f-Nn7"/>
                     </connections>
                 </viewController>

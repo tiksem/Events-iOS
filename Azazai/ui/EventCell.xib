@@ -14,23 +14,23 @@
                 <rect key="frame" x="0.0" y="0.0" width="600" height="71.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Event Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q2R-KS-vGu">
-                        <rect key="frame" x="51" y="0.0" width="549" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q2R-KS-vGu">
+                        <rect key="frame" x="51" y="8" width="541" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="j9i-Py-2yu">
-                        <rect key="frame" x="8" y="0.0" width="35" height="56"/>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="j9i-Py-2yu">
+                        <rect key="frame" x="8" y="8" width="35" height="55.5"/>
                         <subviews>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" image="ic_people_grey.png" translatesAutoresizingMaskIntoConstraints="NO" id="jLO-FQ-wck">
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="ic_people_grey.png" translatesAutoresizingMaskIntoConstraints="NO" id="jLO-FQ-wck">
                                 <rect key="frame" x="0.0" y="0.0" width="35" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="35" id="Ql4-ge-Bid"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="2/3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lcd-fP-EGf">
-                                <rect key="frame" x="0.0" y="35" width="35" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2/3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lcd-fP-EGf">
+                                <rect key="frame" x="0.0" y="35" width="35" height="20.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="35" id="E8f-Uo-jIu"/>
                                 </constraints>
@@ -40,8 +40,8 @@
                             </label>
                         </subviews>
                     </stackView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OIm-hD-nqf">
-                        <rect key="frame" x="51" y="29" width="494" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OIm-hD-nqf">
+                        <rect key="frame" x="51" y="29" width="88" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -51,6 +51,9 @@
                     <constraint firstItem="j9i-Py-2yu" firstAttribute="leading" secondItem="Dfh-S6-R7r" secondAttribute="leadingMargin" id="Axq-DG-OLr"/>
                     <constraint firstItem="q2R-KS-vGu" firstAttribute="leading" secondItem="j9i-Py-2yu" secondAttribute="trailing" constant="8" id="Dgf-DW-nlN"/>
                     <constraint firstItem="OIm-hD-nqf" firstAttribute="leading" secondItem="j9i-Py-2yu" secondAttribute="trailing" constant="8" id="G8K-aW-6VJ"/>
+                    <constraint firstItem="OIm-hD-nqf" firstAttribute="top" secondItem="q2R-KS-vGu" secondAttribute="bottom" constant="0.5" id="NOT-cu-EWk"/>
+                    <constraint firstItem="j9i-Py-2yu" firstAttribute="top" secondItem="Dfh-S6-R7r" secondAttribute="topMargin" id="PFY-Ra-kBf"/>
+                    <constraint firstItem="q2R-KS-vGu" firstAttribute="top" secondItem="Dfh-S6-R7r" secondAttribute="topMargin" id="hqW-ox-9xR"/>
                     <constraint firstAttribute="trailingMargin" secondItem="q2R-KS-vGu" secondAttribute="trailing" id="oFn-Gj-xFX"/>
                 </constraints>
             </tableViewCellContentView>
