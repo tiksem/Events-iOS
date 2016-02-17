@@ -16,10 +16,16 @@ public class NibViewController : UIViewController {
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(UiUtils.instanceFromNib(nibFileName))
+        self.edgesForExtendedLayout = .None
+        var nestedView = UiUtils.instanceFromNib(nibFileName)
+        nestedView.clipsToBounds = true
+        view.addSubview(nestedView)
+        nestedView.center = view.center
+        nestedView.bounds = view.bounds
     }
 
     public required init?(coder: NSCoder) {
+        assertionFailure("Should not be called")
         nibFileName = nil
         super.init(coder: coder)
     }
