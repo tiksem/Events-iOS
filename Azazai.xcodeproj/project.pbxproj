@@ -54,9 +54,10 @@
 		2E7C32561C5C0FAD00CE8F7C /* VKSdkFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2E7C32541C5C0FAD00CE8F7C /* VKSdkFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2E7C32D41C5FB45B00CE8F7C /* EventCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E7C32D31C5FB45B00CE8F7C /* EventCell.xib */; };
 		2E7C32D61C5FBD5600CE8F7C /* Loading.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E7C32D51C5FBD5600CE8F7C /* Loading.xib */; };
-		2E7C32D81C6158F500CE8F7C /* EventController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E7C32D71C6158F500CE8F7C /* EventController.xib */; };
 		2E7C32D91C615D3300CE8F7C /* EventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1062806EB94A695BC39A227F /* EventController.swift */; };
 		2ED5E4DE1C31F9DD002A1CFB /* ic_people_grey.png in Resources */ = {isa = PBXBuildFile; fileRef = 2ED5E4DD1C31F9DD002A1CFB /* ic_people_grey.png */; };
+		2EED38251C73FA1A00EC6E71 /* EventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EED38241C73FA1A00EC6E71 /* EventView.swift */; };
+		2EED38271C74098C00EC6E71 /* EventView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EED38261C74098C00EC6E71 /* EventView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -157,8 +158,9 @@
 		2E7C32541C5C0FAD00CE8F7C /* VKSdkFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VKSdkFramework.framework; path = Carthage/Build/iOS/VKSdkFramework.framework; sourceTree = "<group>"; };
 		2E7C32D31C5FB45B00CE8F7C /* EventCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventCell.xib; sourceTree = "<group>"; };
 		2E7C32D51C5FBD5600CE8F7C /* Loading.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Loading.xib; sourceTree = "<group>"; };
-		2E7C32D71C6158F500CE8F7C /* EventController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventController.xib; sourceTree = "<group>"; };
 		2ED5E4DD1C31F9DD002A1CFB /* ic_people_grey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_people_grey.png; sourceTree = "<group>"; };
+		2EED38241C73FA1A00EC6E71 /* EventView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventView.swift; sourceTree = "<group>"; };
+		2EED38261C74098C00EC6E71 /* EventView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -269,8 +271,9 @@
 				2E7C32D31C5FB45B00CE8F7C /* EventCell.xib */,
 				106288EF081F062EB4283FE1 /* EventsController.swift */,
 				2E7C32D51C5FBD5600CE8F7C /* Loading.xib */,
-				2E7C32D71C6158F500CE8F7C /* EventController.xib */,
 				1062806EB94A695BC39A227F /* EventController.swift */,
+				2EED38241C73FA1A00EC6E71 /* EventView.swift */,
+				2EED38261C74098C00EC6E71 /* EventView.xib */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -523,12 +526,12 @@
 			files = (
 				2ED5E4DE1C31F9DD002A1CFB /* ic_people_grey.png in Resources */,
 				10628544ABA26438EA2E4802 /* Info.plist in Resources */,
-				2E7C32D81C6158F500CE8F7C /* EventController.xib in Resources */,
 				2E3D0E521C5A67960066890E /* logo.png in Resources */,
 				106283488577203AC306B794 /* Assets.xcassets in Resources */,
 				106289FB42AA4D24D1BED3F3 /* LaunchScreen.storyboard in Resources */,
 				10628A02ACEC0E12DADB0004 /* Main.storyboard in Resources */,
 				106286905B3C66407B0C3E5E /* config.json in Resources */,
+				2EED38271C74098C00EC6E71 /* EventView.xib in Resources */,
 				2E7C32D41C5FB45B00CE8F7C /* EventCell.xib in Resources */,
 				2E7C32D61C5FBD5600CE8F7C /* Loading.xib in Resources */,
 				1062886942D2C12EBFAE1860 /* network_generator.py in Resources */,
@@ -598,6 +601,7 @@
 			files = (
 				10628B15E306708D605BFF1D /* AppDelegate.swift in Sources */,
 				106280C7E962AAB3BBD37561 /* Event.swift in Sources */,
+				2EED38251C73FA1A00EC6E71 /* EventView.swift in Sources */,
 				2E7C32D91C615D3300CE8F7C /* EventController.swift in Sources */,
 				10628EA943570F45C8A8B229 /* RequestManager.swift in Sources */,
 				106288CEEC957BE252A6E621 /* EventCell.swift in Sources */,

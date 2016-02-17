@@ -7,9 +7,8 @@ import Foundation
 import SwiftUtils
 import UIKit
 
-class EventController : UIViewController {
+class EventController : NibViewController {
     required init?(coder: NSCoder) {
-        super.init(nibName: "EventController", bundle: nil)
-        self.edgesForExtendedLayout = .None
+        super.init(coder: coder, nibFileName: "EventView")
     }
 }

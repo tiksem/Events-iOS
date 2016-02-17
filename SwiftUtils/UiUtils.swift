@@ -12,6 +12,7 @@ public class UiUtils {
     }
 
     public static func instanceFromNib(fileName:String) -> UIView {
-        return UINib(nibName: fileName, bundle: nil).instantiateWithOwner(nil, options: nil)[0] as! UIView
+        return NSBundle.mainBundle().loadNibNamed(fileName,
+                owner: nil, options: nil)[0] as! UIView
     }
 }
