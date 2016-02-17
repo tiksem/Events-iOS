@@ -37,10 +37,10 @@ public class LazyListAdapter<T : Hashable, Error : ErrorType, CellType: UITableV
         self.tableView = tableView
         self.onItemSelected = onItemSelected
 
-        super.init()
+        UiUtils.registerNib(tableView: tableView, nibName: self.cellNibFileName, cellIdentifier: cellIdentifier)
+        UiUtils.registerNib(tableView: tableView, nibName: self.nullCellNibFileName, cellIdentifier: nullCellIdentifier)
 
-//        self.tableView.contentInset = UIEdgeInsetsMake(100, 0, 0, 0)
-//        self.tableView.contentOffset = CGPointMake(0, -100)
+        super.init()
 
         reloadData()
         list.onNewPageLoaded = {
@@ -59,23 +59,13 @@ public class LazyListAdapter<T : Hashable, Error : ErrorType, CellType: UITableV
         return list.count
     }
 
-    private func getCell(cellIdentifier:String, nibFile:String) -> UITableViewCell {
-        var cell:UITableViewCell? = tableView.dequeueReusableCellWithIdentifier(cellIdentifier)
-        if cell == nil {
-            tableView.registerNib(UINib(nibName: nibFile, bundle: nil), forCellReuseIdentifier: cellIdentifier)
-            cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier)
-        }
-        cell?.clipsToBounds = true
-        return cell!
-    }
-
     public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if let item = list[indexPath.row] {
-            let cell = getCell(cellIdentifier, nibFile: cellNibFileName) as! CellType
+            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! CellType
             displayItem(item, cell)
             return cell
         } else {
-            let cell = getCell(nullCellIdentifier, nibFile: nullCellNibFileName)
+            let cell = tableView.dequeueReusableCellWithIdentifier(nullCellIdentifier)!
             displayNullItem?(cell)
             return cell
         }
@@ -87,8 +77,4 @@ public class LazyListAdapter<T : Hashable, Error : ErrorType, CellType: UITableV
             onItemSelected?(item, row)
         }
     }
-
-//    public func tableView(tableView:UITableView, heightForRowAtIndexPath indexPath:NSIndexPath) -> CGFloat {
-//        return 100
-//    }
 }

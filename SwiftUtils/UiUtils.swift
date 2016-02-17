@@ -15,4 +15,9 @@ public class UiUtils {
         return NSBundle.mainBundle().loadNibNamed(fileName,
                 owner: nil, options: nil)[0] as! UIView
     }
+
+    public static func registerNib(tableView tableView:UITableView, nibName:String, cellIdentifier:String) {
+        let nib = UINib(nibName: nibName, bundle: nil)
+        tableView.registerNib(nib, forCellReuseIdentifier: cellIdentifier)
+    }
 }
