@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1062807ABF0D029265A96A11 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1062881622458FB3CD7F9CDF /* Info.plist */; };
-		106280A3E159B5809FD37484 /* LazyListAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10628D5875D648D466F64DE1 /* LazyListAdapter.swift */; };
+		106280A3E159B5809FD37484 /* RandomAccessibleAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10628D5875D648D466F64DE1 /* RandomAccessibleAdapter.swift */; };
 		106280C7E962AAB3BBD37561 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1062846A23306049B69ADC14 /* Event.swift */; };
 		106280CF68C33B4FBAC16CDF /* EventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10628122C0857EE9A51CC8C0 /* EventsView.swift */; };
 		1062822070D3CD97D3BB12E1 /* SwiftUtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10628A74865C670B8082549A /* SwiftUtilsTests.swift */; };
@@ -35,6 +35,7 @@
 		10628A02ACEC0E12DADB0004 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 106288381776A764A2C18CCC /* Main.storyboard */; };
 		10628A7548C8099E781AE53D /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 10628680337E7DD4D0A9988F /* Info.plist */; };
 		10628B15E306708D605BFF1D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10628A1FE40E6581899A2CDB /* AppDelegate.swift */; };
+		10628B5AC968C1CBE4B7C941 /* LazyListAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1062820E7F16302928A33359 /* LazyListAdapter.swift */; };
 		10628B74ECF13E09A388630F /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106283F528864E2303B1FA96 /* Comment.swift */; };
 		10628C3A47B01891B4E13A66 /* UserEventsAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106281288A6DF1E75C5C23B0 /* UserEventsAdapter.swift */; };
 		10628DE22C607992575EC828 /* EventMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106285CA8BAE68A7ACA73444 /* EventMode.swift */; };
@@ -116,6 +117,7 @@
 		10628122C0857EE9A51CC8C0 /* EventsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsView.swift; sourceTree = "<group>"; };
 		106281288A6DF1E75C5C23B0 /* UserEventsAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserEventsAdapter.swift; sourceTree = "<group>"; };
 		1062814DB35C2726D6E39D1F /* Dictionaries.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dictionaries.swift; sourceTree = "<group>"; };
+		1062820E7F16302928A33359 /* LazyListAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LazyListAdapter.swift; sourceTree = "<group>"; };
 		106282611AD0F4FC6419ADDC /* RequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
 		1062832B6B3FA3E47AAFEA30 /* RequestManagerTemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestManagerTemplate.swift; sourceTree = "<group>"; };
 		106283A78DF0BB8802326F25 /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
@@ -151,7 +153,7 @@
 		10628B7A317F96BE89C8C602 /* AzazaiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AzazaiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		10628C59BF300FB93058A150 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		10628D0176534A5B24FBF4E2 /* SwiftUtilsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftUtilsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		10628D5875D648D466F64DE1 /* LazyListAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LazyListAdapter.swift; sourceTree = "<group>"; };
+		10628D5875D648D466F64DE1 /* RandomAccessibleAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomAccessibleAdapter.swift; sourceTree = "<group>"; };
 		10628D6A300A2ACDDF8EAB15 /* UiUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UiUtils.swift; sourceTree = "<group>"; };
 		10628D8CF320116885070D8E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		10628EEDEB9E10EBA84BE95C /* network_generator.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = network_generator.py; sourceTree = "<group>"; };
@@ -261,10 +263,11 @@
 				10628884A9AFDF65CAD2F829 /* Canceler.swift */,
 				1062847A0FC16268D00E3D22 /* CancelerSet.swift */,
 				10628585B1C467D4A5F09BA9 /* Strings.swift */,
-				10628D5875D648D466F64DE1 /* LazyListAdapter.swift */,
+				10628D5875D648D466F64DE1 /* RandomAccessibleAdapter.swift */,
 				1062814DB35C2726D6E39D1F /* Dictionaries.swift */,
 				10628D6A300A2ACDDF8EAB15 /* UiUtils.swift */,
 				106286A433B270940AADAD75 /* NibViewController.swift */,
+				1062820E7F16302928A33359 /* LazyListAdapter.swift */,
 			);
 			path = SwiftUtils;
 			sourceTree = "<group>";
@@ -590,11 +593,12 @@
 				10628E744852CB9F4678E775 /* Canceler.swift in Sources */,
 				106287B84B68C9104471D780 /* CancelerSet.swift in Sources */,
 				10628EF39DB3527198F865AC /* Strings.swift in Sources */,
-				106280A3E159B5809FD37484 /* LazyListAdapter.swift in Sources */,
+				106280A3E159B5809FD37484 /* RandomAccessibleAdapter.swift in Sources */,
 				10628669E5AE660E3B8EB9E2 /* Dictionaries.swift in Sources */,
 				106284B1B683155F77310E80 /* UiUtils.swift in Sources */,
 				106283A46E739346EB32C274 /* NibViewController.swift in Sources */,
 				106282595043D8CDE4164C75 /* NibViewControllerWithNavZeroBounds.swift in Sources */,
+				10628B5AC968C1CBE4B7C941 /* LazyListAdapter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
