@@ -13,6 +13,7 @@
 		106280CF68C33B4FBAC16CDF /* EventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10628122C0857EE9A51CC8C0 /* EventsView.swift */; };
 		1062822070D3CD97D3BB12E1 /* SwiftUtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10628A74865C670B8082549A /* SwiftUtilsTests.swift */; };
 		10628234E7536228D4653B1A /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10628585B1C467D4A5F09BA9 /* Strings.swift */; };
+		106282595043D8CDE4164C75 /* NibViewControllerWithNavZeroBounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1062851D1662D0E52B9A2E4B /* NibViewControllerWithNavZeroBounds.swift */; };
 		1062826A203E03DD64CFF5E2 /* AzazaiUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1062800C8BACD68A4655DC1E /* AzazaiUITests.swift */; };
 		10628299E4865D964A84B718 /* EventsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106288EF081F062EB4283FE1 /* EventsController.swift */; };
 		106283488577203AC306B794 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 106288E9C23B456030785C08 /* Assets.xcassets */; };
@@ -123,6 +124,7 @@
 		1062846A23306049B69ADC14 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		1062847A0FC16268D00E3D22 /* CancelerSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CancelerSet.swift; sourceTree = "<group>"; };
 		106284947B4D79E6BEB481DA /* Alerts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
+		1062851D1662D0E52B9A2E4B /* NibViewControllerWithNavZeroBounds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NibViewControllerWithNavZeroBounds.swift; path = SwiftUtils/NibViewControllerWithNavZeroBounds.swift; sourceTree = SOURCE_ROOT; };
 		1062853DF25D7985866D0969 /* Threading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Threading.swift; sourceTree = "<group>"; };
 		106285443E83EC6BEB9625E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
 		10628585B1C467D4A5F09BA9 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
@@ -280,6 +282,7 @@
 				2EED38261C74098C00EC6E71 /* EventView.xib */,
 				10628122C0857EE9A51CC8C0 /* EventsView.swift */,
 				2EED38281C740C8200EC6E71 /* EventsView.xib */,
+				1062851D1662D0E52B9A2E4B /* NibViewControllerWithNavZeroBounds.swift */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -591,6 +594,7 @@
 				10628669E5AE660E3B8EB9E2 /* Dictionaries.swift in Sources */,
 				106284B1B683155F77310E80 /* UiUtils.swift in Sources */,
 				106283A46E739346EB32C274 /* NibViewController.swift in Sources */,
+				106282595043D8CDE4164C75 /* NibViewControllerWithNavZeroBounds.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -49,7 +49,9 @@
         <!--Event-->
         <scene sceneID="NoA-yJ-HL9">
             <objects>
-                <viewController title="Event" id="Wi5-jD-USL" customClass="EventController" customModule="Azazai" sceneMemberID="viewController"/>
+                <viewController title="Event" id="Wi5-jD-USL" customClass="EventController" customModule="Azazai" sceneMemberID="viewController">
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G4t-zK-NLU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1648" y="-78"/>
