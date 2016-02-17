@@ -6,39 +6,62 @@
 import Foundation
 import UIKit
 
+public protocol AdapterDelegate {
+    typealias T
+    typealias CellType
+    func displayItem(element element:T, cell:CellType) -> Void
+    func displayNullItem(cell cell:UITableViewCell) -> Void
+    func onItemSelected(element element:T, position:Int) -> Void
+}
+
+public class AdapterDelegateDefaultImpl<T, CellType> : AdapterDelegate {
+    public init() {
+
+    }
+
+    public func displayNullItem(cell cell:UITableViewCell) -> Void {
+        UiUtils.removeSeparator(cell)
+    }
+
+    public func onItemSelected(element element:T, position:Int) -> Void {
+
+    }
+
+    public func displayItem(element element: T, cell: CellType) -> Void {
+
+    }
+}
+
 public class RandomAccessibleAdapter<Container:RandomAccessable,
-                                    CellType:UITableViewCell> :
+                                    Delegate:AdapterDelegate
+                                    where Container.ItemType == Delegate.T,
+                                    Delegate.CellType:UITableViewCell> :
         NSObject, UITableViewDelegate, UITableViewDataSource {
-    public typealias T = Container.ItemType
+    public typealias T = Delegate.T
+    public typealias CellType = Delegate.CellType
 
     private let cellIdentifier:String
     private let cellNibFileName:String
     private let nullCellIdentifier:String
     private let nullCellNibFileName:String
     private let list:Container
-    private let displayItem:(T, CellType) -> Void
-    private let displayNullItem:((UITableViewCell) -> Void)?
-    private let onItemSelected:((T, Int) -> Void)?
     private unowned let tableView:UITableView
+    public var delegate:Delegate
 
     public init(cellIdentifier:String,
                 cellNibFileName:String? = nil,
                 nullCellIdentifier:String,
                 nullCellNibFileName:String? = nil,
                 list:Container,
-                displayItem:(T, CellType) -> Void,
-                displayNullItem:((UITableViewCell) -> Void)? = nil,
-                onItemSelected:((T, Int) -> Void)? = nil,
-                tableView:UITableView) {
+                tableView:UITableView,
+                delegate:Delegate) {
         self.cellIdentifier = cellIdentifier
         self.cellNibFileName = cellNibFileName ?? cellIdentifier
         self.nullCellIdentifier = nullCellIdentifier
         self.nullCellNibFileName = nullCellNibFileName ?? nullCellIdentifier
         self.list = list
-        self.displayItem = displayItem
-        self.displayNullItem = displayNullItem
         self.tableView = tableView
-        self.onItemSelected = onItemSelected
+        self.delegate = delegate
 
         UiUtils.registerNib(tableView: tableView, nibName: self.cellNibFileName, cellIdentifier: cellIdentifier)
         UiUtils.registerNib(tableView: tableView, nibName: self.nullCellNibFileName, cellIdentifier: nullCellIdentifier)
@@ -61,11 +84,11 @@ public class RandomAccessibleAdapter<Container:RandomAccessable,
     public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if let item = list[indexPath.row] {
             let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! CellType
-            displayItem(item, cell)
+            delegate.displayItem(element: item, cell: cell)
             return cell
         } else {
             let cell = tableView.dequeueReusableCellWithIdentifier(nullCellIdentifier)!
-            displayNullItem?(cell)
+            delegate.displayNullItem(cell: cell)
             return cell
         }
     }
@@ -73,7 +96,7 @@ public class RandomAccessibleAdapter<Container:RandomAccessable,
     public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let row = indexPath.row
         if let item = list[row] {
-            onItemSelected?(item, row)
+            delegate.onItemSelected(element: item, position: row)
         }
     }
 }

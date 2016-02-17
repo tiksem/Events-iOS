@@ -21,5 +21,16 @@ public extension String {
 
         return self.stringByAddingPercentEncodingWithAllowedCharacters(characterSet)
     }
+}
 
+public class StringWrapper : CustomStringConvertible {
+    public var value:String
+
+    public init(_ value:String) {
+        self.value = value
+    }
+
+    public var description: String {
+        return value
+    }
 }

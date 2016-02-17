@@ -6,28 +6,25 @@
 import Foundation
 import UIKit
 
-public class LazyListAdapter<T:Hashable,
-                            Error:ErrorType,
-                            CellType:UITableViewCell> :
-        RandomAccessableAdapter<LazyList<T, Error>, CellType> {
+public class LazyListAdapter<Delegate:AdapterDelegate,
+                            Error:ErrorType where Delegate.T:Hashable,
+                            Delegate.CellType:UITableViewCell> :
+        RandomAccessibleAdapter<LazyList<Delegate.T, Error>, Delegate> {
     public override init(cellIdentifier:String,
                 cellNibFileName:String? = nil,
                 nullCellIdentifier:String,
                 nullCellNibFileName:String? = nil,
                 list:LazyList<T, Error>,
-                displayItem:(T, CellType) -> Void,
-                displayNullItem:((UITableViewCell) -> Void)? = nil,
-                onItemSelected:((T, Int) -> Void)? = nil,
-                tableView:UITableView) {
+                tableView:UITableView, delegate:Delegate) {
         super.init(cellIdentifier: cellIdentifier,
                 cellNibFileName: cellNibFileName,
                 nullCellIdentifier: nullCellIdentifier,
                 nullCellNibFileName: nullCellNibFileName,
                 list: list,
-                displayItem: displayItem,
-                displayNullItem: displayNullItem,
-                onItemSelected: onItemSelected,
-                tableView: tableView)
+                tableView: tableView,
+                delegate: delegate)
+
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
 
         list.onNewPageLoaded = {
             (data) in

@@ -11,17 +11,26 @@ import UIKit
 import SwiftUtils
 
 class EventsController: NibViewController {
-    var controller:EventsAdapter!
     var eventsView:EventsView!
+    let requestManager:RequestManager
 
     required init?(coder:NSCoder) {
+        requestManager = RequestManager()
         super.init(coder: coder, nibFileName: "EventsView")
-        controller = EventsAdapter()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         eventsView = nestedView as! EventsView
-        controller.viewDidLoad(controller: self, eventsListView: eventsView.eventsListView)
+        createEventsAdapter()
+    }
+
+    func createEventsAdapter() -> EventsAdapter {
+        return EventsAdapter(controller: self, eventsListView: eventsView.eventsListView,
+                events: getEventsList())
+    }
+
+    func getEventsList() -> LazyList<Event, IOError> {
+        return requestManager.getEventsList()
     }
 }

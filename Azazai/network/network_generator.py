@@ -66,8 +66,9 @@ def generate_base(request, type_name, first_quote, second_quote):
             name = arg["name"]
             argName = arg.get("argName", name)
             if "type" in arg:
-                func_args[argName] = arg["type"]
-                result[name] = argName
+                type_ = arg["type"]
+                func_args[argName] = type_
+                result[name] = "StringWrapper(" + argName + ")" if type_ == "String" else argName
             else:
                 result[name] = arg["value"]
         items = [_12_spaces + quote(key) + ": " + str(value) for key, value in result.items()]

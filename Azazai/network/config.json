@@ -22,6 +22,10 @@
         {
           "name": "mod",
           "type": "EventMode"
+        },
+        {
+          "name": "token",
+          "type": "String"
         }
       ],
       "mergeArgs": [
