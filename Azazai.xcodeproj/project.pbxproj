@@ -26,7 +26,7 @@
 		106286905B3C66407B0C3E5E /* config.json in Resources */ = {isa = PBXBuildFile; fileRef = 1062888865DA39368FB98ED4 /* config.json */; };
 		1062869C7D246BF07B7C14BA /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10628990ED1DB7924139CA45 /* LoginController.swift */; };
 		106287B84B68C9104471D780 /* CancelerSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1062847A0FC16268D00E3D22 /* CancelerSet.swift */; };
-		106287DB5B15F4575A9F4AC4 /* NibViewControllerWithNavZeroBounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10628325080F2E71B5F9CAE3 /* NibViewControllerWithNavZeroBounds.swift */; };
+		106287DB5B15F4575A9F4AC4 /* NibViewControllerWithoutBarHeightCalculation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10628325080F2E71B5F9CAE3 /* NibViewControllerWithoutBarHeightCalculation.swift */; };
 		106287FFD711EC0B3B7D0BE9 /* LazyList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106280400E4B4DB3F62D7F0E /* LazyList.swift */; };
 		1062880B81174905BCAAED4C /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10628F71CCF2243E5A7B4DA2 /* Errors.swift */; };
 		1062886942D2C12EBFAE1860 /* network_generator.py in Resources */ = {isa = PBXBuildFile; fileRef = 10628EEDEB9E10EBA84BE95C /* network_generator.py */; };
@@ -121,7 +121,7 @@
 		1062814DB35C2726D6E39D1F /* Dictionaries.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dictionaries.swift; sourceTree = "<group>"; };
 		1062820E7F16302928A33359 /* LazyListAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LazyListAdapter.swift; sourceTree = "<group>"; };
 		106282611AD0F4FC6419ADDC /* RequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
-		10628325080F2E71B5F9CAE3 /* NibViewControllerWithNavZeroBounds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibViewControllerWithNavZeroBounds.swift; sourceTree = "<group>"; };
+		10628325080F2E71B5F9CAE3 /* NibViewControllerWithoutBarHeightCalculation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibViewControllerWithoutBarHeightCalculation.swift; sourceTree = "<group>"; };
 		1062832B6B3FA3E47AAFEA30 /* RequestManagerTemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestManagerTemplate.swift; sourceTree = "<group>"; };
 		106283A78DF0BB8802326F25 /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		106283F528864E2303B1FA96 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
@@ -274,7 +274,7 @@
 				10628D6A300A2ACDDF8EAB15 /* UiUtils.swift */,
 				106286A433B270940AADAD75 /* NibViewController.swift */,
 				1062820E7F16302928A33359 /* LazyListAdapter.swift */,
-				10628325080F2E71B5F9CAE3 /* NibViewControllerWithNavZeroBounds.swift */,
+				10628325080F2E71B5F9CAE3 /* NibViewControllerWithoutBarHeightCalculation.swift */,
 			);
 			path = SwiftUtils;
 			sourceTree = "<group>";
@@ -604,7 +604,7 @@
 				106284B1B683155F77310E80 /* UiUtils.swift in Sources */,
 				106283A46E739346EB32C274 /* NibViewController.swift in Sources */,
 				10628B5AC968C1CBE4B7C941 /* LazyListAdapter.swift in Sources */,
-				106287DB5B15F4575A9F4AC4 /* NibViewControllerWithNavZeroBounds.swift in Sources */,
+				106287DB5B15F4575A9F4AC4 /* NibViewControllerWithoutBarHeightCalculation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

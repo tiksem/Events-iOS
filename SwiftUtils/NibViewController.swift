@@ -22,8 +22,7 @@ public class NibViewController : UIViewController {
         nestedView.clipsToBounds = true
         view.addSubview(nestedView)
         let bounds = view.bounds
-        let navBounds = getNavBounds()
-        let navHeight = navBounds.size.height
+        let navHeight = getNavigationBarHeight()
         nestedView.bounds = CGRect(x: bounds.origin.x,
                 y: bounds.origin.y,
                 width: bounds.size.width,
@@ -37,7 +36,7 @@ public class NibViewController : UIViewController {
         super.init(coder: coder)
     }
 
-    public func getNavBounds() -> CGRect {
-        return navigationController?.navigationBar.bounds ?? CGRect.zero
+    public func getNavigationBarHeight() -> CGFloat {
+        return navigationController?.navigationBar.bounds.height ?? 0.0
     }
 }

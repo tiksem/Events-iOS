@@ -6,7 +6,7 @@
 import Foundation
 import UIKit
 
-public class NibViewControllerWithNavZeroBounds : NibViewController {
+public class NibViewControllerWithoutBarHeightCalculation: NibViewController {
     public override init?(coder: NSCoder, nibFileName:String) {
         super.init(coder: coder, nibFileName: nibFileName)
     }
@@ -16,7 +16,7 @@ public class NibViewControllerWithNavZeroBounds : NibViewController {
         super.init(coder: coder)
     }
 
-    public override func getNavBounds() -> CGRect {
-        return CGRect.zero
+    public override func getNavigationBarHeight() -> CGFloat {
+        return 0.0
     }
 }
