@@ -10,5 +10,6 @@
 #define Azazai_Bridging_Header_h
 
 #import <VKSdkFramework/VKSdkFramework.h>
+#import <PageMenuFramework/PageMenuFramework-Swift.h>
 
 #endif /* Azazai_Bridging_Header_h */
