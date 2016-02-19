@@ -7,6 +7,8 @@ import Foundation
 import UIKit
 
 public class UiUtils {
+    public static let STATUS_BAR_HEIGHT:CGFloat = 20.0
+
     public static func removeSeparator(cell:UITableViewCell) {
         cell.separatorInset = UIEdgeInsetsMake(0, cell.bounds.size.width, 0, 0);
     }

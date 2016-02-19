@@ -58,7 +58,7 @@ class MyEventsController: UIViewController {
 
         // Initialize page menu with controller array, frame, and optional parameters
         var pageMenu = CAPSPageMenu(viewControllers: controllerArray, frame: CGRectMake(0.0,
-                (navigationController?.navigationBar.frame.height ?? 0.0) + 20,
+                (navigationController?.navigationBar.frame.height ?? 0.0) + UiUtils.STATUS_BAR_HEIGHT,
                 self.view.frame.width,
                 self.view.frame.height), pageMenuOptions: parameters)
 
