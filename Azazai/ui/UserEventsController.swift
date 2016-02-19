@@ -18,6 +18,18 @@ class SubscribedEventsController: EventsController {
     }
 }
 
+private let myEventsControllerTabsParameters: [CAPSPageMenuOption] = [
+        .ScrollMenuBackgroundColor(UIColor(red: 30.0/255.0, green: 30.0/255.0, blue: 30.0/255.0, alpha: 1.0)),
+        .ViewBackgroundColor(UIColor(red: 20.0/255.0, green: 20.0/255.0, blue: 20.0/255.0, alpha: 1.0)),
+        .SelectionIndicatorColor(UIColor.orangeColor()),
+        .BottomMenuHairlineColor(UIColor(red: 70.0/255.0, green: 70.0/255.0, blue: 80.0/255.0, alpha: 1.0)),
+        .MenuItemFont(UIFont(name: "HelveticaNeue", size: 13.0)!),
+        .CenterMenuItems(true),
+        .MenuItemSeparatorWidth(4.3),
+        .UseMenuLikeSegmentedControl(true),
+        .MenuItemSeparatorPercentageHeight(0.0)]
+
+
 class MyEventsController: UIViewController {
     var coder:NSCoder
 
@@ -42,25 +54,11 @@ class MyEventsController: UIViewController {
         controller.title = "CREATED"
         controllerArray.append(controller)
 
-        // Customize page menu to your liking (optional) or use default settings by sending nil for 'options' in the init
-        // Example:
-        let parameters: [CAPSPageMenuOption] = [
-                .ScrollMenuBackgroundColor(UIColor(red: 30.0/255.0, green: 30.0/255.0, blue: 30.0/255.0, alpha: 1.0)),
-                .ViewBackgroundColor(UIColor(red: 20.0/255.0, green: 20.0/255.0, blue: 20.0/255.0, alpha: 1.0)),
-                .SelectionIndicatorColor(UIColor.orangeColor()),
-                .BottomMenuHairlineColor(UIColor(red: 70.0/255.0, green: 70.0/255.0, blue: 80.0/255.0, alpha: 1.0)),
-                .MenuItemFont(UIFont(name: "HelveticaNeue", size: 13.0)!),
-                .CenterMenuItems(true),
-                .MenuItemSeparatorWidth(4.3),
-                .UseMenuLikeSegmentedControl(true),
-                .MenuItemSeparatorPercentageHeight(0.0)
-        ]
-
         // Initialize page menu with controller array, frame, and optional parameters
         var pageMenu = CAPSPageMenu(viewControllers: controllerArray, frame: CGRectMake(0.0,
                 (navigationController?.navigationBar.frame.height ?? 0.0) + UiUtils.STATUS_BAR_HEIGHT,
                 self.view.frame.width,
-                self.view.frame.height), pageMenuOptions: parameters)
+                self.view.frame.height), pageMenuOptions: myEventsControllerTabsParameters)
 
         // Lastly add page menu as subview of base view controller view
         // or use pageMenu controller in you view hierachy as desired
