@@ -15,8 +15,4 @@ public class NibViewControllerWithoutBarHeightCalculation: NibViewController {
         assertionFailure("Should not be called")
         super.init(coder: coder)
     }
-
-    public override func getNavigationBarHeight() -> CGFloat {
-        return 0.0
-    }
 }

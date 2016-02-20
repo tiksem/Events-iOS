@@ -22,4 +22,12 @@ public class UiUtils {
         let nib = UINib(nibName: nibName, bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: cellIdentifier)
     }
+
+    public static func getTabBarHeightOfController(controller:UIViewController) -> CGFloat {
+        return controller.tabBarController?.tabBar.frame.height ?? 0
+    }
+
+    public static func getNavigationBarHeightOfCotroller(controller:UIViewController) -> CGFloat {
+        return controller.navigationController?.navigationBar.frame.height ?? 0.0
+    }
 }

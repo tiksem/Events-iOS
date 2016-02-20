@@ -6,17 +6,32 @@
 import Foundation
 import SwiftUtils
 
-class CreatedEventsController: EventsController {
+class UserEventsController: EventsController {
+    var minusHeight:CGFloat = 0
+
+    public override func getNestedViewFrame() -> CGRect {
+        let statusBarHeight = UiUtils.STATUS_BAR_HEIGHT
+
+        return CGRect(x: 0, y: 0,
+                width: view.frame.width,
+                height: view.frame.height - minusHeight - statusBarHeight)
+    }
+}
+
+class CreatedEventsController: UserEventsController {
     override func getEventsList() -> LazyList<Event, IOError> {
         return requestManager.getUserEvents(.Created, token: VKSdk.accessToken().accessToken)
     }
 }
 
-class SubscribedEventsController: EventsController {
+class SubscribedEventsController: UserEventsController {
     override func getEventsList() -> LazyList<Event, IOError> {
         return requestManager.getUserEvents(.Subscribed, token: VKSdk.accessToken().accessToken)
     }
 }
+
+private let menuHeight: CGFloat = 34.0
+private let selectionIndicatorHeight: CGFloat = 3.0
 
 private let myEventsControllerTabsParameters: [CAPSPageMenuOption] = [
         .ScrollMenuBackgroundColor(UIColor(red: 30.0/255.0, green: 30.0/255.0, blue: 30.0/255.0, alpha: 1.0)),
@@ -26,6 +41,8 @@ private let myEventsControllerTabsParameters: [CAPSPageMenuOption] = [
         .MenuItemFont(UIFont(name: "HelveticaNeue", size: 13.0)!),
         .CenterMenuItems(true),
         .MenuItemSeparatorWidth(4.3),
+        .MenuHeight(menuHeight),
+        .SelectionIndicatorHeight(selectionIndicatorHeight),
         .UseMenuLikeSegmentedControl(true),
         .MenuItemSeparatorPercentageHeight(0.0)]
 
@@ -47,11 +64,15 @@ class MyEventsController: UIViewController {
         // (Can be any UIViewController subclass)
         // Make sure the title property of all view controllers is set
         // Example:
-        var controller : UIViewController = SubscribedEventsController(coder: coder)!
+        var controller : UserEventsController = SubscribedEventsController(coder: coder)!
         controller.title = "SUBSCRIBED"
+        let minusHeight = UiUtils.getNavigationBarHeightOfCotroller(self) +
+                UiUtils.getTabBarHeightOfController(self)
+        controller.minusHeight = minusHeight
         controllerArray.append(controller)
         controller = CreatedEventsController(coder: coder)!
         controller.title = "CREATED"
+        controller.minusHeight = minusHeight
         controllerArray.append(controller)
 
         // Initialize page menu with controller array, frame, and optional parameters
