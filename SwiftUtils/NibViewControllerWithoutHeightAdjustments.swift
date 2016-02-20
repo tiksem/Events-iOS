@@ -6,7 +6,7 @@
 import Foundation
 import UIKit
 
-public class NibViewControllerWithoutBarHeightCalculation: NibViewController {
+public class NibViewControllerWithoutHeightAdjustments: NibViewController {
     public override init?(coder: NSCoder, nibFileName:String) {
         super.init(coder: coder, nibFileName: nibFileName)
     }
@@ -14,5 +14,9 @@ public class NibViewControllerWithoutBarHeightCalculation: NibViewController {
     public required init?(coder: NSCoder) {
         assertionFailure("Should not be called")
         super.init(coder: coder)
+    }
+
+    public override func getNestedViewFrame() -> CGRect {
+        return view.frame
     }
 }

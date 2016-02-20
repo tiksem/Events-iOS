@@ -7,7 +7,7 @@ import Foundation
 import SwiftUtils
 import UIKit
 
-class EventController : NibViewControllerWithoutBarHeightCalculation {
+class EventController : NibViewControllerWithoutHeightAdjustments {
     required init?(coder: NSCoder) {
         super.init(coder: coder, nibFileName: "EventView")
     }
