@@ -15,6 +15,11 @@ public class NibViewController : UIViewController {
         super.init(coder: coder)
     }
 
+    public init(nibFileName:String) {
+        self.nibFileName = nibFileName
+        super.init(nibName: nil, bundle: nil)
+    }
+
     public override func viewDidLoad() {
         super.viewDidLoad()
         self.edgesForExtendedLayout = .None

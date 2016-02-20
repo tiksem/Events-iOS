@@ -6,37 +6,27 @@
 import Foundation
 import SwiftUtils
 
-class EventsAdapterDelegate : AdapterDelegateDefaultImpl<Event, EventCell> {
-    private unowned let controller:UIViewController
-
+class EventsAdapterDelegate : PushControllerOnItemSelectedAdapterDelegate<Event, EventCell> {
     init(controller:UIViewController) {
-        self.controller = controller
-        super.init()
+        super.init(hostController: controller, factory: {
+            (event) in
+            return EventController()
+        })
     }
 
-    override func displayItem(element event: T, cell: CellType) -> Void {
+    override func displayItem(element event: Event, cell: CellType) -> Void {
         cell.eventName?.text = event.name
         cell.eventDescription?.text = event.description
         cell.layoutMargins = UIEdgeInsetsZero
         cell.peopleNumber?.text = String(event.subscribersCount) + "/" + String(event.peopleNumber)
     }
-
-    override func onItemSelected(element element: T, position: Int) -> Void {
-        controller.performSegueWithIdentifier("ShowEvent", sender: self)
-    }
 }
 
-class EventsAdapter : LazyListAdapter<EventsAdapterDelegate, IOError> {
-    private weak var eventsListView: UITableView!
-
+class EventsAdapter : AzazaiListAdapter<EventsAdapterDelegate> {
     init(controller viewController:UIViewController, eventsListView:UITableView, events: LazyList<Event, IOError>) {
-        super.init(cellIdentifier: "EventCell",
-                nullCellIdentifier: "Loading",
+        super.init(tableView: eventsListView,
                 list: events,
-                tableView: eventsListView,
+                cellIdentifier: "EventCell",
                 delegate: EventsAdapterDelegate(controller: viewController))
-        events.onError = {
-            Alerts.showOkAlert($0.description)
-        }
     }
 }

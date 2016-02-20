@@ -16,6 +16,10 @@ public class NibViewControllerWithoutHeightAdjustments: NibViewController {
         super.init(coder: coder)
     }
 
+    public override init(nibFileName:String) {
+        super.init(nibFileName: nibFileName)
+    }
+
     public override func getNestedViewFrame() -> CGRect {
         return view.frame
     }

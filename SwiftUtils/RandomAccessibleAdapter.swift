@@ -32,6 +32,22 @@ public class AdapterDelegateDefaultImpl<T, CellType> : AdapterDelegate {
     }
 }
 
+public class PushControllerOnItemSelectedAdapterDelegate<T, CellType> : AdapterDelegateDefaultImpl<T, CellType> {
+    private unowned let hostController:UIViewController
+    public var controllerFactory:(T) -> UIViewController
+
+    public init(hostController:UIViewController, factory:(T) -> UIViewController) {
+        self.hostController = hostController
+        self.controllerFactory = factory
+        super.init()
+    }
+
+    public override func onItemSelected(element element:T, position:Int) -> Void {
+        let controller = controllerFactory(element)
+        hostController.navigationController!.pushViewController(controller, animated: true)
+    }
+}
+
 public class RandomAccessibleAdapter<Container:RandomAccessable,
                                     Delegate:AdapterDelegate
                                     where Container.ItemType == Delegate.T,

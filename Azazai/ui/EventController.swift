@@ -11,4 +11,8 @@ class EventController : NibViewControllerWithoutHeightAdjustments {
     required init?(coder: NSCoder) {
         super.init(coder: coder, nibFileName: "EventView")
     }
+
+    public init() {
+        super.init(nibFileName: "EventView")
+    }
 }

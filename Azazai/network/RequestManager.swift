@@ -92,4 +92,12 @@ class RequestManager {
         }, args: args, mergeArgs: mergeArgs)
     }
     
+    func getTags() -> LazyList<Tag, IOError> {
+        let args:[String:CustomStringConvertible] = [:]
+        let mergeArgs:[String:CustomStringConvertible] = [:]
+        return getLazyList("http://azazai.com/api/getTags", key: "Tags", limit: 10, factory: {
+            return Tag.toTagsArray($0)!
+        }, args: args, mergeArgs: mergeArgs)
+    }
+    
 }

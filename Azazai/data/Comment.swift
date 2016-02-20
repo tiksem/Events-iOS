@@ -21,17 +21,17 @@ struct Comment : Hashable {
         return id.hashValue
     }
 
+
+    static func toCommentsArray(array:[[String:AnyObject]]?) -> [Comment]? {
+        return try! array?.map {
+            return Comment($0)
+        }
+    }
     init(_ map:Dictionary<String, AnyObject>) {
         id = Json.getInt(map, "id") ?? 0
         userId = Json.getInt(map, "userId") ?? 0
         text = Json.getString(map, "text") ?? ""
         eventId = Json.getInt(map, "eventId") ?? 0
         date = Json.getInt(map, "date") ?? 0
-    }
-
-    static func toCommentsArray(array:[[String:AnyObject]]?) -> [Comment]? {
-        return try! array?.map {
-            return Comment($0)
-        }
     }
 }

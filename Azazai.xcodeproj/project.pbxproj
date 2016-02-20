@@ -34,13 +34,17 @@
 		106289FB42AA4D24D1BED3F3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10628A7EAF6181C8E6B8FAE0 /* LaunchScreen.storyboard */; };
 		10628A02ACEC0E12DADB0004 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 106288381776A764A2C18CCC /* Main.storyboard */; };
 		10628A7548C8099E781AE53D /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 10628680337E7DD4D0A9988F /* Info.plist */; };
+		10628AC70A0D37688FC2CE4D /* TagsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106281C653F6B8B8E7534CB0 /* TagsController.swift */; };
 		10628B15E306708D605BFF1D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10628A1FE40E6581899A2CDB /* AppDelegate.swift */; };
 		10628B5AC968C1CBE4B7C941 /* LazyListAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1062820E7F16302928A33359 /* LazyListAdapter.swift */; };
 		10628B74ECF13E09A388630F /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106283F528864E2303B1FA96 /* Comment.swift */; };
+		10628C7C51455C19B19D967F /* TagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10628B5E73303AE1FF4BD23F /* TagsView.swift */; };
+		10628D2FA2AD624DEE2D28FE /* AzazaiListAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10628C62E17A167FB82896BF /* AzazaiListAdapter.swift */; };
 		10628DE22C607992575EC828 /* EventMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106285CA8BAE68A7ACA73444 /* EventMode.swift */; };
 		10628E19098D35964F53C5B8 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1062863DCAE17FDF00AA30AA /* Info.plist */; };
 		10628E41E1003B36BD308661 /* RandomAccessable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10628405F201F41AADA05117 /* RandomAccessable.swift */; };
 		10628E744852CB9F4678E775 /* Canceler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10628884A9AFDF65CAD2F829 /* Canceler.swift */; };
+		10628E7708E7B16E669B1483 /* TagsAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10628DFFF1F5A18124DFF997 /* TagsAdapter.swift */; };
 		10628EA943570F45C8A8B229 /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106282611AD0F4FC6419ADDC /* RequestManager.swift */; };
 		10628EF39DB3527198F865AC /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10628585B1C467D4A5F09BA9 /* Strings.swift */; };
 		10628F8F00D41576A3F88DB2 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 106285443E83EC6BEB9625E2 /* Info.plist */; };
@@ -64,6 +68,9 @@
 		2EED382A1C74E97800EC6E71 /* UserEventsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10628DA5D2131CF8A60F3D47 /* UserEventsController.swift */; };
 		2EED38321C77CCD800EC6E71 /* PageMenuFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EED38311C77CCD800EC6E71 /* PageMenuFramework.framework */; };
 		2EED38331C77CCD800EC6E71 /* PageMenuFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2EED38311C77CCD800EC6E71 /* PageMenuFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2EED38341C77F97400EC6E71 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106289C7BC543EC2C3758F86 /* Tag.swift */; };
+		2EED38361C78018B00EC6E71 /* TagsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EED38351C78018B00EC6E71 /* TagsView.xib */; };
+		2EED38381C78025D00EC6E71 /* TagCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EED38371C78025D00EC6E71 /* TagCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,6 +126,7 @@
 		1062806EB94A695BC39A227F /* EventController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventController.swift; sourceTree = "<group>"; };
 		10628122C0857EE9A51CC8C0 /* EventsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsView.swift; sourceTree = "<group>"; };
 		1062814DB35C2726D6E39D1F /* Dictionaries.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dictionaries.swift; sourceTree = "<group>"; };
+		106281C653F6B8B8E7534CB0 /* TagsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsController.swift; sourceTree = "<group>"; };
 		1062820E7F16302928A33359 /* LazyListAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LazyListAdapter.swift; sourceTree = "<group>"; };
 		106282611AD0F4FC6419ADDC /* RequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
 		10628325080F2E71B5F9CAE3 /* NibViewControllerWithoutHeightAdjustments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibViewControllerWithoutHeightAdjustments.swift; sourceTree = "<group>"; };
@@ -148,17 +156,21 @@
 		106289354099CD0EA6F57F4F /* IOError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IOError.swift; sourceTree = "<group>"; };
 		10628990ED1DB7924139CA45 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		106289BDBA0D444158B662BB /* AzazaiTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AzazaiTests.swift; sourceTree = "<group>"; };
+		106289C7BC543EC2C3758F86 /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		10628A015FC5E87C112B92E0 /* Json.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Json.swift; sourceTree = "<group>"; };
 		10628A1FE40E6581899A2CDB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		10628A6573CCE4CF02120160 /* Azazai.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Azazai.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		10628A74865C670B8082549A /* SwiftUtilsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUtilsTests.swift; sourceTree = "<group>"; };
+		10628B5E73303AE1FF4BD23F /* TagsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsView.swift; sourceTree = "<group>"; };
 		10628B7A317F96BE89C8C602 /* AzazaiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AzazaiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		10628C59BF300FB93058A150 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		10628C62E17A167FB82896BF /* AzazaiListAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AzazaiListAdapter.swift; sourceTree = "<group>"; };
 		10628D0176534A5B24FBF4E2 /* SwiftUtilsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftUtilsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		10628D5875D648D466F64DE1 /* RandomAccessibleAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomAccessibleAdapter.swift; sourceTree = "<group>"; };
 		10628D6A300A2ACDDF8EAB15 /* UiUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UiUtils.swift; sourceTree = "<group>"; };
 		10628D8CF320116885070D8E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		10628DA5D2131CF8A60F3D47 /* UserEventsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserEventsController.swift; sourceTree = "<group>"; };
+		10628DFFF1F5A18124DFF997 /* TagsAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsAdapter.swift; sourceTree = "<group>"; };
 		10628EEDEB9E10EBA84BE95C /* network_generator.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = network_generator.py; sourceTree = "<group>"; };
 		10628F71CCF2243E5A7B4DA2 /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		10628F8DAA9F4386197EE280 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
@@ -173,6 +185,8 @@
 		2EED38261C74098C00EC6E71 /* EventView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventView.xib; sourceTree = "<group>"; };
 		2EED38281C740C8200EC6E71 /* EventsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventsView.xib; sourceTree = "<group>"; };
 		2EED38311C77CCD800EC6E71 /* PageMenuFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PageMenuFramework.framework; path = Carthage/Build/iOS/PageMenuFramework.framework; sourceTree = "<group>"; };
+		2EED38351C78018B00EC6E71 /* TagsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TagsView.xib; sourceTree = "<group>"; };
+		2EED38371C78025D00EC6E71 /* TagCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TagCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -293,6 +307,10 @@
 				10628122C0857EE9A51CC8C0 /* EventsView.swift */,
 				2EED38281C740C8200EC6E71 /* EventsView.xib */,
 				10628DA5D2131CF8A60F3D47 /* UserEventsController.swift */,
+				106281C653F6B8B8E7534CB0 /* TagsController.swift */,
+				10628B5E73303AE1FF4BD23F /* TagsView.swift */,
+				2EED38351C78018B00EC6E71 /* TagsView.xib */,
+				2EED38371C78025D00EC6E71 /* TagCell.xib */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -350,6 +368,7 @@
 			children = (
 				1062846A23306049B69ADC14 /* Event.swift */,
 				106283F528864E2303B1FA96 /* Comment.swift */,
+				106289C7BC543EC2C3758F86 /* Tag.swift */,
 			);
 			path = data;
 			sourceTree = "<group>";
@@ -367,6 +386,8 @@
 			isa = PBXGroup;
 			children = (
 				106288EDFB63498E03411E0C /* EventsAdapter.swift */,
+				10628C62E17A167FB82896BF /* AzazaiListAdapter.swift */,
+				10628DFFF1F5A18124DFF997 /* TagsAdapter.swift */,
 			);
 			path = adapters;
 			sourceTree = "<group>";
@@ -542,9 +563,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2EED38361C78018B00EC6E71 /* TagsView.xib in Resources */,
 				2ED5E4DE1C31F9DD002A1CFB /* ic_people_grey.png in Resources */,
 				10628544ABA26438EA2E4802 /* Info.plist in Resources */,
 				2E3D0E521C5A67960066890E /* logo.png in Resources */,
+				2EED38381C78025D00EC6E71 /* TagCell.xib in Resources */,
 				106283488577203AC306B794 /* Assets.xcassets in Resources */,
 				106289FB42AA4D24D1BED3F3 /* LaunchScreen.storyboard in Resources */,
 				10628A02ACEC0E12DADB0004 /* Main.storyboard in Resources */,
@@ -632,8 +655,13 @@
 				1062869C7D246BF07B7C14BA /* LoginController.swift in Sources */,
 				10628299E4865D964A84B718 /* EventsController.swift in Sources */,
 				10628428007366B02093208E /* EventsAdapter.swift in Sources */,
+				2EED38341C77F97400EC6E71 /* Tag.swift in Sources */,
 				10628DE22C607992575EC828 /* EventMode.swift in Sources */,
 				106280CF68C33B4FBAC16CDF /* EventsView.swift in Sources */,
+				10628AC70A0D37688FC2CE4D /* TagsController.swift in Sources */,
+				10628D2FA2AD624DEE2D28FE /* AzazaiListAdapter.swift in Sources */,
+				10628E7708E7B16E669B1483 /* TagsAdapter.swift in Sources */,
+				10628C7C51455C19B19D967F /* TagsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

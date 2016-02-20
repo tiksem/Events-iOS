@@ -65,6 +65,12 @@
           "type": "Int"
         }
       ]
+    },
+    {
+      "method": "getTags",
+      "limit": 10,
+      "return": "LazyList<Tag>",
+      "key": "Tags"
     }
   ]
 }
