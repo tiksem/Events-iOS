@@ -17,6 +17,7 @@ class TagsAdapterDelegate : PushControllerOnItemSelectedAdapterDelegate<Tag, UIT
     }
 
     override func displayItem(element tag: Tag, cell: CellType) -> Void {
+        cell.layoutMargins = UIEdgeInsetsZero
         cell.textLabel?.text = tag.tagName
     }
 }
