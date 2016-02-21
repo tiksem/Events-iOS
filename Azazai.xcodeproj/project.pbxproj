@@ -149,6 +149,7 @@
 		1062881622458FB3CD7F9CDF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
 		10628884A9AFDF65CAD2F829 /* Canceler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Canceler.swift; sourceTree = "<group>"; };
 		1062888865DA39368FB98ED4 /* config.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = config.json; sourceTree = "<group>"; };
+		10628891AAD30F025AA7FA45 /* config.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = config.json; sourceTree = "<group>"; };
 		106288E9C23B456030785C08 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		106288EDFB63498E03411E0C /* EventsAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsAdapter.swift; sourceTree = "<group>"; };
 		106288EF081F062EB4283FE1 /* EventsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsController.swift; sourceTree = "<group>"; };
@@ -161,6 +162,7 @@
 		10628A1FE40E6581899A2CDB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		10628A6573CCE4CF02120160 /* Azazai.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Azazai.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		10628A74865C670B8082549A /* SwiftUtilsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUtilsTests.swift; sourceTree = "<group>"; };
+		10628A92D295C9C144CE7066 /* Template.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Template.swift; sourceTree = "<group>"; };
 		10628B5E73303AE1FF4BD23F /* TagsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsView.swift; sourceTree = "<group>"; };
 		10628B7A317F96BE89C8C602 /* AzazaiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AzazaiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		10628C59BF300FB93058A150 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -369,6 +371,8 @@
 				1062846A23306049B69ADC14 /* Event.swift */,
 				106283F528864E2303B1FA96 /* Comment.swift */,
 				106289C7BC543EC2C3758F86 /* Tag.swift */,
+				10628A92D295C9C144CE7066 /* Template.swift */,
+				10628891AAD30F025AA7FA45 /* config.json */,
 			);
 			path = data;
 			sourceTree = "<group>";

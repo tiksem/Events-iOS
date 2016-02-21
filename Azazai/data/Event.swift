@@ -1,6 +1,6 @@
 //
-// Created by Semyon Tikhonenko on 12/25/15.
-// Copyright (c) 2015 ___FULLUSERNAME___. All rights reserved.
+// Created by Semyon Tikhonenko on 2/21/16.
+// Copyright (c) 2016 ___FULLUSERNAME___. All rights reserved.
 //
 
 import Foundation
@@ -21,16 +21,6 @@ struct Event : Hashable, Equatable {
     let date:Int
     var isSubscribed:Bool = false
 
-
-    var hashValue: Int {
-        return id.hashValue
-    }
-
-    static func toEventsArray(array:[[String:AnyObject]]?) -> [Event]? {
-        return try! array?.map {
-            return Event($0)
-        }
-    }
     init(_ map:Dictionary<String, AnyObject>) {
         id = Json.getInt(map, "id") ?? 0
         name = Json.getString(map, "name") ?? ""
@@ -41,5 +31,14 @@ struct Event : Hashable, Equatable {
         subscribersCount = Json.getInt(map, "subscribersCount") ?? 0
         date = Json.getInt(map, "date") ?? 0
     }
-}
 
+    static func toEventsArray(array:[[String:AnyObject]]?) -> [Event]? {
+        return try! array?.map {
+            return Event($0)
+        }
+    }
+
+    var hashValue: Int {
+        return id.hashValue
+    }
+}

@@ -1,5 +1,5 @@
 //
-// Created by Semyon Tikhonenko on 2/20/16.
+// Created by Semyon Tikhonenko on 2/21/16.
 // Copyright (c) 2016 ___FULLUSERNAME___. All rights reserved.
 //
 
@@ -10,12 +10,13 @@ func == (lhs: Tag, rhs: Tag) -> Bool {
     return lhs.tagName == rhs.tagName
 }
 
-struct Tag  : Hashable, Equatable {
+struct Tag : Hashable, Equatable {
     let tagName:String
     let eventsCount:Int
 
-    var hashValue: Int {
-        return tagName.hashValue
+    init(_ map:Dictionary<String, AnyObject>) {
+        tagName = Json.getString(map, "tagName") ?? ""
+        eventsCount = Json.getInt(map, "eventsCount") ?? 0
     }
 
     static func toTagsArray(array:[[String:AnyObject]]?) -> [Tag]? {
@@ -23,8 +24,8 @@ struct Tag  : Hashable, Equatable {
             return Tag($0)
         }
     }
-    init(_ map:Dictionary<String, AnyObject>) {
-        tagName = Json.getString(map, "tagName") ?? ""
-        eventsCount = Json.getInt(map, "eventsCount") ?? 0
+
+    var hashValue: Int {
+        return tagName.hashValue
     }
 }

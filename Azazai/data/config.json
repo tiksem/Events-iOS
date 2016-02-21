@@ -1,0 +1,38 @@
+{
+  "structs": [
+    {
+      "name": "Event",
+      "key": "id",
+      "fields": {
+        "id":"Int",
+        "name":"String",
+        "description": "String",
+        "userId":"Int",
+        "address":"String",
+        "peopleNumber":"Int",
+        "subscribersCount":"Int",
+        "date":"Int",
+        "var isSubscribed":"Bool = false"
+      }
+    },
+    {
+      "name": "Comment",
+      "key": "id",
+      "fields": {
+        "id":"Int",
+        "userId":"Int",
+        "text":"String",
+        "eventId":"Int",
+        "date":"Int"
+      }
+    },
+    {
+      "name": "Tag",
+      "key": "tagName",
+      "fields": {
+        "tagName":"String",
+        "eventsCount":"Int"
+      }
+    }
+  ] 
+}

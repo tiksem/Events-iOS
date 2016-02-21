@@ -1,51 +1,40 @@
-import sys
-import re
+import json
+from collections import OrderedDict
 
-args = sys.argv
-if len(args) <= 1:
-    print("Error: Specify file")
-    sys.exit()
-
-fileName = args[1]
-file = open(fileName, "r+")
-content = file.read()
-fields = re.findall("let +(\w[\w\d]*:\w[\w\d]*)", content)
-structName = re.search("struct +([\w[\w\d]*)", content).group(1)
-constructor = "    init(_ map:Dictionary<String, AnyObject>) {\n"
-constructorPrefix = constructor
+config = json.JSONDecoder(object_pairs_hook=OrderedDict).decode(open("config.json", "r").read())
+template = open("Template.swift", "r").read()
 
 _8_spaces = "        "
-for field in fields:
-    split = field.split(":")
-    name = split[0]
-    typeName = split[1]
-    defaultValue = "0" if typeName == "Int" else "\"\""
-    constructor += _8_spaces
-    constructor += name + " = " + "Json.get" + typeName + "(map, \"" + name + "\") ?? " + defaultValue + "\n"
-constructor += "    }\n"
+_4_spaces = "    "
 
-constructorIndex = content.find(constructorPrefix)
-if constructorIndex >= 0:
-    end = content.find("}\n", constructorIndex)
-    content = content[:constructorIndex] + content[end + 2:]
+for struct in config["structs"]:
+    structName = struct["name"]
+    content = template.replace("__StructName__", structName)
+    content = content.replace("__key__", struct["key"])
+    fields = struct["fields"]
+    declaration_parts = []
+    init_parts = []
+    for name, typeName in fields.items():
+        defaultValue = 0
+        declarationName = name
+        declarationType = typeName
+        if not name.startswith("var "):
+            declarationName = "let " + name
+            if type(typeName) is list:
+                defaultValue = typeName[1]
+                if isinstance(defaultValue, str):
+                    defaultValue = "\"" + defaultValue + "\""
+                typeName = typeName[0]
+                declarationType = typeName + " = " + defaultValue
+            elif typeName == "String":
+                defaultValue = "\"\""
+            init_parts.append(name + " = " + "Json.get" + typeName + "(map, \"" + name + "\") ?? " + str(defaultValue))
+        declaration_parts.append(declarationName + ":" + declarationType)
 
-print(content)
+    init = ("\n" + _8_spaces).join(init_parts)
+    declaration = ("\n" + _4_spaces).join(declaration_parts)
+    content = content.replace("/*init*/", init)
+    content = content.replace("/*fields*/", declaration)
+    open(structName + ".swift", 'w').write(content)
 
-endIndex = content.rfind("}")
-content = content[:endIndex] + constructor + content[endIndex:]
-print(content)
 
-arrayFactory = """    public static func to_sArray(array:[[String:AnyObject]]) -> [_] {
-        return try! array.map {
-            return Event($0)
-        }
-    }""".replace("_", structName)
-
-if content.find(arrayFactory) < 0:
-    endIndex = content.rfind("}")
-    content = content[:endIndex] + "\n" + arrayFactory + "\n" + content[endIndex:]
-
-file.seek(0)
-file.write(content)
-file.truncate()
-file.close()
