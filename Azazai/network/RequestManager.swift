@@ -100,4 +100,16 @@ class RequestManager {
         }, args: args, mergeArgs: mergeArgs)
     }
     
+    func getEventsByTag(tag:String) -> LazyList<Event, IOError> {
+        let args:[String:CustomStringConvertible] = [
+            "tag": StringWrapper(tag)
+        ]
+        let mergeArgs:[String:CustomStringConvertible] = [
+            "timeOut": true
+        ]
+        return getLazyList("http://azazai.com/api/getEventsByTag", key: "Events", limit: 10, factory: {
+            return Event.toEventsArray($0)!
+        }, args: args, mergeArgs: mergeArgs)
+    }
+    
 }

@@ -12,7 +12,7 @@ class TagsAdapterDelegate : PushControllerOnItemSelectedAdapterDelegate<Tag, UIT
     init(controller:UIViewController) {
         super.init(hostController: controller, factory: {
             (tag) in
-            return EventController()
+            return TagEventsController(tag: tag.tagName)
         })
     }
 

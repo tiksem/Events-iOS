@@ -48,10 +48,7 @@ private let myEventsControllerTabsParameters: [CAPSPageMenuOption] = [
 
 
 class MyEventsController: UIViewController {
-    var coder:NSCoder
-
     required init?(coder: NSCoder) {
-        self.coder = coder
         super.init(coder: coder)
     }
 
@@ -64,13 +61,13 @@ class MyEventsController: UIViewController {
         // (Can be any UIViewController subclass)
         // Make sure the title property of all view controllers is set
         // Example:
-        var controller : UserEventsController = SubscribedEventsController(coder: coder)!
+        var controller : UserEventsController = SubscribedEventsController()
         controller.title = "SUBSCRIBED"
         let minusHeight = UiUtils.getNavigationBarHeightOfCotroller(self) +
                 UiUtils.getTabBarHeightOfController(self)
         controller.minusHeight = minusHeight
         controllerArray.append(controller)
-        controller = CreatedEventsController(coder: coder)!
+        controller = CreatedEventsController()
         controller.title = "CREATED"
         controller.minusHeight = minusHeight
         controllerArray.append(controller)

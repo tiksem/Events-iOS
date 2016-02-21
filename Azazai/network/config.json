@@ -71,6 +71,24 @@
       "limit": 10,
       "return": "LazyList<Tag>",
       "key": "Tags"
+    },
+    {
+      "method": "getEventsByTag",
+      "limit": 10,
+      "return": "LazyList<Event>",
+      "key": "Events",
+      "args": [
+        {
+          "name": "tag",
+          "type": "String"
+        }
+      ],
+      "mergeArgs": [
+        {
+          "name": "timeOut",
+          "value": "true"
+        }
+      ]
     }
   ]
 }

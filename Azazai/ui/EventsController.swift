@@ -19,6 +19,11 @@ class EventsController: NibViewController {
         super.init(coder: coder, nibFileName: "EventsView")
     }
 
+    init() {
+        requestManager = RequestManager()
+        super.init(nibFileName: "EventsView")
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         eventsView = nestedView as! EventsView

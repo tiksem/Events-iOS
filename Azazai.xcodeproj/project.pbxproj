@@ -18,6 +18,7 @@
 		106283488577203AC306B794 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 106288E9C23B456030785C08 /* Assets.xcassets */; };
 		106283A46E739346EB32C274 /* NibViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106286A433B270940AADAD75 /* NibViewController.swift */; };
 		10628428007366B02093208E /* EventsAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106288EDFB63498E03411E0C /* EventsAdapter.swift */; };
+		10628458B8E10453052A97AB /* TagEventsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106283BDA9A62764DB1B48F9 /* TagEventsController.swift */; };
 		106284B1B683155F77310E80 /* UiUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10628D6A300A2ACDDF8EAB15 /* UiUtils.swift */; };
 		1062850658F26302961FF0E0 /* SwiftUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 106285F58DD238610C403D73 /* SwiftUtils.framework */; };
 		1062851535DF8C7E217B627B /* AzazaiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106289BDBA0D444158B662BB /* AzazaiTests.swift */; };
@@ -132,6 +133,7 @@
 		10628325080F2E71B5F9CAE3 /* NibViewControllerWithoutHeightAdjustments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibViewControllerWithoutHeightAdjustments.swift; sourceTree = "<group>"; };
 		1062832B6B3FA3E47AAFEA30 /* RequestManagerTemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestManagerTemplate.swift; sourceTree = "<group>"; };
 		106283A78DF0BB8802326F25 /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		106283BDA9A62764DB1B48F9 /* TagEventsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagEventsController.swift; sourceTree = "<group>"; };
 		106283F528864E2303B1FA96 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		10628405F201F41AADA05117 /* RandomAccessable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomAccessable.swift; sourceTree = "<group>"; };
 		1062846A23306049B69ADC14 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
@@ -313,6 +315,7 @@
 				10628B5E73303AE1FF4BD23F /* TagsView.swift */,
 				2EED38351C78018B00EC6E71 /* TagsView.xib */,
 				2EED38371C78025D00EC6E71 /* TagCell.xib */,
+				106283BDA9A62764DB1B48F9 /* TagEventsController.swift */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -666,6 +669,7 @@
 				10628D2FA2AD624DEE2D28FE /* AzazaiListAdapter.swift in Sources */,
 				10628E7708E7B16E669B1483 /* TagsAdapter.swift in Sources */,
 				10628C7C51455C19B19D967F /* TagsView.swift in Sources */,
+				10628458B8E10453052A97AB /* TagEventsController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
