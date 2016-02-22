@@ -7,7 +7,7 @@
         <!--Events-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController title="Events" id="BYZ-38-t0r" customClass="EventsController" customModule="Azazai" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Events" automaticallyAdjustsScrollViewInsets="NO" id="BYZ-38-t0r" customClass="EventsController" customModule="Azazai" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>

@@ -10,7 +10,7 @@
 import UIKit
 import SwiftUtils
 
-class EventsController: NibViewController {
+class EventsController: TableViewNibViewController {
     var eventsView:EventsView!
     let requestManager:RequestManager
 
@@ -37,5 +37,9 @@ class EventsController: NibViewController {
 
     func getEventsList() -> LazyList<Event, IOError> {
         return requestManager.getEventsList()
+    }
+
+    override func getTableView() -> UITableView? {
+        return eventsView?.eventsListView
     }
 }

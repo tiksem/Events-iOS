@@ -7,8 +7,9 @@ import Foundation
 import UIKit
 import SwiftUtils
 
-class TagsController : NibViewController {
+class TagsController : TableViewNibViewController {
     let requestManager:RequestManager
+    var tagsView:TagsView! = nil
 
     required init?(coder:NSCoder) {
         requestManager = RequestManager()
@@ -17,8 +18,13 @@ class TagsController : NibViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let tagsView = nestedView as! TagsView
+        tagsView = nestedView as! TagsView
         TagsAdapter(controller: self, tagsListView: tagsView.tagsListView,
                 tags: requestManager.getTags())
     }
+
+    override func getTableView() -> UITableView? {
+        return tagsView?.tagsListView
+    }
+
 }

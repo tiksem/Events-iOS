@@ -24,7 +24,7 @@ class TagEventsController : EventsController {
         return requestManager.getEventsByTag(tag)
     }
 
-    public override func getNestedViewFrame() -> CGRect {
-        return view.frame
+    override func getTableView() -> UITableView? {
+        return nil
     }
 }
