@@ -6,7 +6,7 @@
 import Foundation
 import SwiftUtils
 
-class EventsAdapterDelegate : PushControllerOnItemSelectedAdapterDelegate<Event, EventCell> {
+class EventsAdapterDelegate : AzazaiAdapterDelegate<Event, EventCell> {
     init(controller:UIViewController) {
         super.init(hostController: controller, factory: {
             (event) in

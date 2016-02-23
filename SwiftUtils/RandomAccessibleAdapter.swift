@@ -9,17 +9,18 @@ import UIKit
 public protocol AdapterDelegate {
     typealias T
     typealias CellType
+    typealias NullCellType
     func displayItem(element element:T, cell:CellType) -> Void
-    func displayNullItem(cell cell:UITableViewCell) -> Void
+    func displayNullItem(cell cell:NullCellType) -> Void
     func onItemSelected(element element:T, position:Int) -> Void
 }
 
-public class AdapterDelegateDefaultImpl<T, CellType> : AdapterDelegate {
+public class AdapterDelegateDefaultImpl<T, CellType, NullCellType : UITableViewCell> : AdapterDelegate {
     public init() {
 
     }
 
-    public func displayNullItem(cell cell:UITableViewCell) -> Void {
+    public func displayNullItem(cell cell:NullCellType) -> Void {
         UiUtils.removeSeparator(cell)
     }
 
@@ -32,7 +33,8 @@ public class AdapterDelegateDefaultImpl<T, CellType> : AdapterDelegate {
     }
 }
 
-public class PushControllerOnItemSelectedAdapterDelegate<T, CellType> : AdapterDelegateDefaultImpl<T, CellType> {
+public class PushControllerOnItemSelectedAdapterDelegate<T, CellType, NullCellType: UITableViewCell> :
+        AdapterDelegateDefaultImpl<T, CellType, NullCellType> {
     private unowned let hostController:UIViewController
     public var controllerFactory:(T) -> UIViewController
 
@@ -51,7 +53,8 @@ public class PushControllerOnItemSelectedAdapterDelegate<T, CellType> : AdapterD
 public class RandomAccessibleAdapter<Container:RandomAccessable,
                                     Delegate:AdapterDelegate
                                     where Container.ItemType == Delegate.T,
-                                    Delegate.CellType:UITableViewCell> :
+                                    Delegate.CellType:UITableViewCell,
+                                    Delegate.NullCellType:UITableViewCell> :
         NSObject, UITableViewDelegate, UITableViewDataSource {
     public typealias T = Delegate.T
     public typealias CellType = Delegate.CellType
@@ -60,7 +63,7 @@ public class RandomAccessibleAdapter<Container:RandomAccessable,
     private let cellNibFileName:String
     private let nullCellIdentifier:String
     private let nullCellNibFileName:String
-    private let list:Container
+    public var list:Container
     private unowned let tableView:UITableView
     public var delegate:Delegate
 
@@ -103,7 +106,7 @@ public class RandomAccessibleAdapter<Container:RandomAccessable,
             delegate.displayItem(element: item, cell: cell)
             return cell
         } else {
-            let cell = tableView.dequeueReusableCellWithIdentifier(nullCellIdentifier)!
+            let cell = tableView.dequeueReusableCellWithIdentifier(nullCellIdentifier) as! Delegate.NullCellType
             delegate.displayNullItem(cell: cell)
             return cell
         }

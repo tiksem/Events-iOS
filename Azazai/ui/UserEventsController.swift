@@ -5,11 +5,34 @@
 
 import Foundation
 import SwiftUtils
+import UIKit
 
+private let SubscribedIndex = 1
+private let CreatedIndex = 0
 
 class MyEventsController: EventsController {
-    override func getEventsList() -> LazyList<Event, IOError> {
-        return requestManager.getUserEvents(.Created, token: VKSdk.accessToken().accessToken)
+    var header:UISegmentedControl!
+    
+    func getEventsList(mode:EventMode) -> LazyList<Event, IOError> {
+        return requestManager.getUserEvents(mode, token: VKSdk.accessToken().accessToken)
     }
-
+    
+    override func getEventsList() -> LazyList<Event, IOError> {
+        return getEventsList(.Created)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        header = UiUtils.viewFromNib("MyEventsHeaderView") as! UISegmentedControl
+        header.addTarget(self, action: "onTabChanged", forControlEvents: .ValueChanged)
+        eventsView.eventsListView.tableHeaderView = header
+    }
+    
+    func onTabChanged() {
+        let index = header.selectedSegmentIndex
+        let mode = index == SubscribedIndex ? EventMode.Subscribed : EventMode.Created
+        let events = getEventsList(mode)
+        adapter.list = events
+        adapter.reloadData()
+    }
 }

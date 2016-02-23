@@ -13,6 +13,7 @@ import SwiftUtils
 class EventsController: TableViewNibViewController {
     var eventsView:EventsView!
     let requestManager:RequestManager
+    var adapter:EventsAdapter! = nil
 
     required init?(coder:NSCoder) {
         requestManager = RequestManager()
@@ -27,7 +28,7 @@ class EventsController: TableViewNibViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         eventsView = nestedView as! EventsView
-        createEventsAdapter()
+        adapter = createEventsAdapter()
     }
 
     func createEventsAdapter() -> EventsAdapter {

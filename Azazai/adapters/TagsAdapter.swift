@@ -8,7 +8,7 @@ import Foundation
 import Foundation
 import SwiftUtils
 
-class TagsAdapterDelegate : PushControllerOnItemSelectedAdapterDelegate<Tag, UITableViewCell> {
+class TagsAdapterDelegate : AzazaiAdapterDelegate<Tag, UITableViewCell> {
     init(controller:UIViewController) {
         super.init(hostController: controller, factory: {
             (tag) in

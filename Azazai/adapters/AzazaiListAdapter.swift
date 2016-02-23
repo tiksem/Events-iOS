@@ -6,8 +6,21 @@
 import Foundation
 import SwiftUtils
 
+class AzazaiAdapterDelegate<T, CellType>: PushControllerOnItemSelectedAdapterDelegate<T, CellType, LoadingView> {
+    override func displayNullItem(cell cell: LoadingView) -> Void {
+        super.displayNullItem(cell: cell)
+        cell.loading.startAnimating()
+    }
+
+    override init(hostController:UIViewController, factory:(T) -> UIViewController) {
+        super.init(hostController: hostController, factory: factory)
+    }
+}
+
 class AzazaiListAdapter<Delegate : AdapterDelegate
                        where Delegate.CellType : UITableViewCell,
+                       Delegate.CellType : UITableViewCell,
+                       Delegate.NullCellType: LoadingView,
                        Delegate.T : Hashable> : LazyListAdapter<Delegate, IOError> {
     init(tableView:UITableView,
          list: LazyList<Delegate.T, IOError>,

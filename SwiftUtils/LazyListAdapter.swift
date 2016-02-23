@@ -8,7 +8,8 @@ import UIKit
 
 public class LazyListAdapter<Delegate:AdapterDelegate,
                             Error:ErrorType where Delegate.T:Hashable,
-                            Delegate.CellType:UITableViewCell> :
+                            Delegate.CellType:UITableViewCell,
+                            Delegate.NullCellType:UITableViewCell> :
         RandomAccessibleAdapter<LazyList<Delegate.T, Error>, Delegate> {
     public override init(cellIdentifier:String,
                 cellNibFileName:String? = nil,
@@ -24,11 +25,20 @@ public class LazyListAdapter<Delegate:AdapterDelegate,
                 tableView: tableView,
                 delegate: delegate)
 
-        tableView.tableFooterView = UIView(frame: CGRect.zero)
-
         list.onNewPageLoaded = {
             (data) in
             self.reloadData()
+        }
+
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
+    }
+
+    public override var list : LazyList<Delegate.T, Error> {
+        didSet {
+            list.onNewPageLoaded = {
+                (data) in
+                self.reloadData()
+            }
         }
     }
 }

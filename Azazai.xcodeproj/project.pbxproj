@@ -72,6 +72,8 @@
 		2EED38341C77F97400EC6E71 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106289C7BC543EC2C3758F86 /* Tag.swift */; };
 		2EED38361C78018B00EC6E71 /* TagsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EED38351C78018B00EC6E71 /* TagsView.xib */; };
 		2EED38381C78025D00EC6E71 /* TagCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EED38371C78025D00EC6E71 /* TagCell.xib */; };
+		2EED383A1C7D0B0400EC6E71 /* MyEventsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EED38391C7D0B0400EC6E71 /* MyEventsHeaderView.xib */; };
+		2EED383C1C7D209300EC6E71 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EED383B1C7D209300EC6E71 /* LoadingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -191,6 +193,8 @@
 		2EED38311C77CCD800EC6E71 /* PageMenuFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PageMenuFramework.framework; path = Carthage/Build/iOS/PageMenuFramework.framework; sourceTree = "<group>"; };
 		2EED38351C78018B00EC6E71 /* TagsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TagsView.xib; sourceTree = "<group>"; };
 		2EED38371C78025D00EC6E71 /* TagCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TagCell.xib; sourceTree = "<group>"; };
+		2EED38391C7D0B0400EC6E71 /* MyEventsHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyEventsHeaderView.xib; sourceTree = "<group>"; };
+		2EED383B1C7D209300EC6E71 /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -316,6 +320,8 @@
 				2EED38351C78018B00EC6E71 /* TagsView.xib */,
 				2EED38371C78025D00EC6E71 /* TagCell.xib */,
 				106283BDA9A62764DB1B48F9 /* TagEventsController.swift */,
+				2EED38391C7D0B0400EC6E71 /* MyEventsHeaderView.xib */,
+				2EED383B1C7D209300EC6E71 /* LoadingView.swift */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -575,6 +581,7 @@
 				10628544ABA26438EA2E4802 /* Info.plist in Resources */,
 				2E3D0E521C5A67960066890E /* logo.png in Resources */,
 				2EED38381C78025D00EC6E71 /* TagCell.xib in Resources */,
+				2EED383A1C7D0B0400EC6E71 /* MyEventsHeaderView.xib in Resources */,
 				106283488577203AC306B794 /* Assets.xcassets in Resources */,
 				106289FB42AA4D24D1BED3F3 /* LaunchScreen.storyboard in Resources */,
 				10628A02ACEC0E12DADB0004 /* Main.storyboard in Resources */,
@@ -655,6 +662,7 @@
 				2EED38251C73FA1A00EC6E71 /* EventView.swift in Sources */,
 				2E7C32D91C615D3300CE8F7C /* EventController.swift in Sources */,
 				10628EA943570F45C8A8B229 /* RequestManager.swift in Sources */,
+				2EED383C1C7D209300EC6E71 /* LoadingView.swift in Sources */,
 				106288CEEC957BE252A6E621 /* EventCell.swift in Sources */,
 				2EED382A1C74E97800EC6E71 /* UserEventsController.swift in Sources */,
 				10628234E7536228D4653B1A /* Strings.swift in Sources */,
