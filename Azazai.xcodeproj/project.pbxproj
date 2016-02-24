@@ -79,6 +79,7 @@
 		2EED38401C7DE4AD00EC6E71 /* empty-avatar.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2EED383F1C7DE4AD00EC6E71 /* empty-avatar.jpg */; };
 		2EED38421C7DE9D900EC6E71 /* WebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EED38411C7DE9D900EC6E71 /* WebImage.framework */; };
 		2EED38431C7DE9D900EC6E71 /* WebImage.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2EED38411C7DE9D900EC6E71 /* WebImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2EED38451C7E55AC00EC6E71 /* event_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EED38441C7E55AC00EC6E71 /* event_icon.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -205,6 +206,7 @@
 		2EED383D1C7D467900EC6E71 /* VkUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VkUser.swift; sourceTree = "<group>"; };
 		2EED383F1C7DE4AD00EC6E71 /* empty-avatar.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "empty-avatar.jpg"; sourceTree = "<group>"; };
 		2EED38411C7DE9D900EC6E71 /* WebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebImage.framework; path = Carthage/Build/iOS/WebImage.framework; sourceTree = "<group>"; };
+		2EED38441C7E55AC00EC6E71 /* event_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = event_icon.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -342,6 +344,7 @@
 		1062899727F855D6E386689D /* images */ = {
 			isa = PBXGroup;
 			children = (
+				2EED38441C7E55AC00EC6E71 /* event_icon.png */,
 				2EED383F1C7DE4AD00EC6E71 /* empty-avatar.jpg */,
 				2E3D0E511C5A67960066890E /* logo.png */,
 				2ED5E4DD1C31F9DD002A1CFB /* ic_people_grey.png */,
@@ -605,6 +608,7 @@
 				2EED38291C740C8200EC6E71 /* EventsView.xib in Resources */,
 				2EED38271C74098C00EC6E71 /* EventView.xib in Resources */,
 				2E7C32D41C5FB45B00CE8F7C /* EventCell.xib in Resources */,
+				2EED38451C7E55AC00EC6E71 /* event_icon.png in Resources */,
 				2E7C32D61C5FBD5600CE8F7C /* Loading.xib in Resources */,
 				1062886942D2C12EBFAE1860 /* network_generator.py in Resources */,
 			);
