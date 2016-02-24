@@ -33,6 +33,16 @@
         "tagName":"String",
         "eventsCount":"Int"
       }
+    },
+    {
+      "name": "VkUser",
+      "key": "id",
+      "fields": {
+        "id":"Int",
+        "first_name":"String",
+        "last_name":"String",
+        "photo_200": "String"
+      }
     }
   ] 
 }

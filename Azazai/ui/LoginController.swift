@@ -22,7 +22,18 @@ class LoginController : UIViewController, VKSdkDelegate, VKSdkUIDelegate {
     }
 
     func onLoginSuccess() {
-        showEvents()
+        let request = VKApi.users().get([
+            "fields": "photo_200"
+        ])
+        request.executeWithResultBlock({
+            (response:VKResponse!) in
+            let json = (response.json as! [[String:AnyObject]])[0]
+            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            appDelegate.user = VkUser(json)
+            self.showEvents()
+        }, errorBlock: {
+            Alerts.showOkAlert($0.description)
+        })
     }
 
     func showEvents() {
@@ -55,7 +66,6 @@ class LoginController : UIViewController, VKSdkDelegate, VKSdkUIDelegate {
         onViewDidAppear?()
         onViewDidAppear = nil
     }
-
 
     deinit {
         VKSdk.instance().unregisterDelegate(self)

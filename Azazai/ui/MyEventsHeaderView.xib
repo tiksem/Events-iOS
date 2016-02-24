@@ -7,27 +7,52 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleAspectFit" id="72m-C0-jGj" customClass="MyEventsHeaderView" customModule="Azazai">
-            <rect key="frame" x="0.0" y="0.0" width="167" height="54"/>
+            <rect key="frame" x="0.0" y="0.0" width="259" height="110"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="GGb-w4-MUy">
-                    <rect key="frame" x="0.0" y="13" width="167" height="29"/>
+                    <rect key="frame" x="46" y="65" width="167" height="29"/>
                     <segments>
                         <segment title="Created"/>
                         <segment title="Subscribed"/>
                     </segments>
                 </segmentedControl>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty-avatar.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="7P1-j2-vOW">
+                    <rect key="frame" x="5" y="5" width="52" height="52"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="52" id="6mr-n2-G4L"/>
+                        <constraint firstAttribute="height" constant="52" id="K3t-zZ-1Xz"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dmt-HY-oas">
+                    <rect key="frame" x="65" y="20" width="148" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="El5-zz-Vfa"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="GGb-w4-MUy" firstAttribute="centerX" secondItem="72m-C0-jGj" secondAttribute="centerX" id="Vfr-ct-RDt"/>
-                <constraint firstItem="GGb-w4-MUy" firstAttribute="centerY" secondItem="72m-C0-jGj" secondAttribute="centerY" id="jAK-Hp-rN7"/>
+                <constraint firstItem="dmt-HY-oas" firstAttribute="centerY" secondItem="7P1-j2-vOW" secondAttribute="centerY" id="FEK-Cl-Ftm"/>
+                <constraint firstAttribute="bottom" secondItem="GGb-w4-MUy" secondAttribute="bottom" constant="17" id="FNb-11-PP0"/>
+                <constraint firstItem="dmt-HY-oas" firstAttribute="leading" secondItem="7P1-j2-vOW" secondAttribute="trailing" constant="8" id="M7R-x6-6g1"/>
+                <constraint firstItem="7P1-j2-vOW" firstAttribute="top" secondItem="72m-C0-jGj" secondAttribute="top" constant="5" id="MfG-h4-OAd"/>
+                <constraint firstItem="dmt-HY-oas" firstAttribute="trailing" secondItem="GGb-w4-MUy" secondAttribute="trailing" id="RvP-Ic-DiU"/>
+                <constraint firstItem="GGb-w4-MUy" firstAttribute="top" secondItem="7P1-j2-vOW" secondAttribute="bottom" constant="8" symbolic="YES" id="gTq-Pw-T0s"/>
+                <constraint firstItem="GGb-w4-MUy" firstAttribute="centerX" secondItem="72m-C0-jGj" secondAttribute="centerX" id="pVH-Mv-ZgF"/>
+                <constraint firstItem="7P1-j2-vOW" firstAttribute="leading" secondItem="72m-C0-jGj" secondAttribute="leading" constant="5" id="yro-dt-5Q2"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="tabs" destination="GGb-w4-MUy" id="zs4-gh-YVN"/>
             </connections>
-            <point key="canvasLocation" x="215.5" y="230"/>
+            <point key="canvasLocation" x="218.5" y="259"/>
         </view>
     </objects>
+    <resources>
+        <image name="empty-avatar.jpg" width="300" height="300"/>
+    </resources>
 </document>

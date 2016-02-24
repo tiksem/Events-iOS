@@ -12,6 +12,7 @@ public class LazyList<T : Hashable, Error : ErrorType> : RandomAccessable {
     private(set) var allDataLoaded = false
     private var loadNextPageExecuted = false
     var pageNumber = 0
+    public var canceler:Canceler? = nil
 
     public init(getNextPageData:(([T]) -> Void, (Error) -> Void, Int) -> Void) {
         self.getNextPageData = getNextPageData
@@ -68,5 +69,9 @@ public class LazyList<T : Hashable, Error : ErrorType> : RandomAccessable {
         }, {
             self.onError?($0)
         }, pageNumber)
+    }
+
+    deinit {
+        canceler?.cancel()
     }
 }

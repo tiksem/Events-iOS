@@ -13,8 +13,7 @@ import VKSdkFramework
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-
+    var user:VkUser! = nil
     var window: UIWindow?
 
 

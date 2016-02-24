@@ -75,6 +75,8 @@
 		2EED38381C78025D00EC6E71 /* TagCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EED38371C78025D00EC6E71 /* TagCell.xib */; };
 		2EED383A1C7D0B0400EC6E71 /* MyEventsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EED38391C7D0B0400EC6E71 /* MyEventsHeaderView.xib */; };
 		2EED383C1C7D209300EC6E71 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EED383B1C7D209300EC6E71 /* LoadingView.swift */; };
+		2EED383E1C7D467900EC6E71 /* VkUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EED383D1C7D467900EC6E71 /* VkUser.swift */; };
+		2EED38401C7DE4AD00EC6E71 /* empty-avatar.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2EED383F1C7DE4AD00EC6E71 /* empty-avatar.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -197,6 +199,8 @@
 		2EED38371C78025D00EC6E71 /* TagCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TagCell.xib; sourceTree = "<group>"; };
 		2EED38391C7D0B0400EC6E71 /* MyEventsHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyEventsHeaderView.xib; sourceTree = "<group>"; };
 		2EED383B1C7D209300EC6E71 /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		2EED383D1C7D467900EC6E71 /* VkUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VkUser.swift; sourceTree = "<group>"; };
+		2EED383F1C7DE4AD00EC6E71 /* empty-avatar.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "empty-avatar.jpg"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -332,6 +336,7 @@
 		1062899727F855D6E386689D /* images */ = {
 			isa = PBXGroup;
 			children = (
+				2EED383F1C7DE4AD00EC6E71 /* empty-avatar.jpg */,
 				2E3D0E511C5A67960066890E /* logo.png */,
 				2ED5E4DD1C31F9DD002A1CFB /* ic_people_grey.png */,
 			);
@@ -380,6 +385,7 @@
 		10628E33CBA135E48BD9FE77 /* data */ = {
 			isa = PBXGroup;
 			children = (
+				2EED383D1C7D467900EC6E71 /* VkUser.swift */,
 				1062846A23306049B69ADC14 /* Event.swift */,
 				106283F528864E2303B1FA96 /* Comment.swift */,
 				106289C7BC543EC2C3758F86 /* Tag.swift */,
@@ -589,6 +595,7 @@
 				106289FB42AA4D24D1BED3F3 /* LaunchScreen.storyboard in Resources */,
 				10628A02ACEC0E12DADB0004 /* Main.storyboard in Resources */,
 				106286905B3C66407B0C3E5E /* config.json in Resources */,
+				2EED38401C7DE4AD00EC6E71 /* empty-avatar.jpg in Resources */,
 				2EED38291C740C8200EC6E71 /* EventsView.xib in Resources */,
 				2EED38271C74098C00EC6E71 /* EventView.xib in Resources */,
 				2E7C32D41C5FB45B00CE8F7C /* EventCell.xib in Resources */,
@@ -670,6 +677,7 @@
 				2EED382A1C74E97800EC6E71 /* UserEventsController.swift in Sources */,
 				10628234E7536228D4653B1A /* Strings.swift in Sources */,
 				10628B74ECF13E09A388630F /* Comment.swift in Sources */,
+				2EED383E1C7D467900EC6E71 /* VkUser.swift in Sources */,
 				1062869C7D246BF07B7C14BA /* LoginController.swift in Sources */,
 				10628299E4865D964A84B718 /* EventsController.swift in Sources */,
 				10628428007366B02093208E /* EventsAdapter.swift in Sources */,

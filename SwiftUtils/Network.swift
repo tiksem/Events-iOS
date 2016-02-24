@@ -4,6 +4,7 @@
 //
 
 import Foundation
+import UIKit
 
 public class Network {
     public static func getStringFromUrl(url:String,
@@ -179,10 +180,11 @@ public class Network {
         args[limitKey] = limit
 
         let result = LazyList<T, IOError>()
+        result.canceler = canceler
         var mergeApplied = mergeArgs.isEmpty
         result.getNextPageData = {
             (onSuccess, onError, pageNumber) in
-            var offset = pageNumber * limit
+            let offset = pageNumber * limit
             args[offsetKey] = offset
             var finalUrl = getUrl(url, params: args)
             var complete:(([[String:AnyObject]]?, IOError?) -> Void)!
@@ -208,5 +210,20 @@ public class Network {
         }
 
         return result
+    }
+
+    public static func loadImageFromURL(uri:String) throws -> UIImage {
+        if let url = NSURL(string: uri) {
+            if let data = NSData(contentsOfURL: url) {
+                throw IOError.NetworkError(error: nil)
+                if let image = UIImage(data: data) {
+                    return image
+                }
+
+                throw IOError.ImageDecodingError
+            }
+        }
+
+        throw IOError.InvalidUrl
     }
 }
