@@ -6,14 +6,28 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="GGb-w4-MUy">
-            <rect key="frame" x="0.0" y="0.0" width="121" height="30"/>
+        <view contentMode="scaleAspectFit" id="72m-C0-jGj" customClass="MyEventsHeaderView" customModule="Azazai">
+            <rect key="frame" x="0.0" y="0.0" width="167" height="54"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <segments>
-                <segment title="Created"/>
-                <segment title="Subscribed"/>
-            </segments>
-            <point key="canvasLocation" x="396.5" y="258"/>
-        </segmentedControl>
+            <subviews>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="GGb-w4-MUy">
+                    <rect key="frame" x="0.0" y="13" width="167" height="29"/>
+                    <segments>
+                        <segment title="Created"/>
+                        <segment title="Subscribed"/>
+                    </segments>
+                </segmentedControl>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="GGb-w4-MUy" firstAttribute="centerX" secondItem="72m-C0-jGj" secondAttribute="centerX" id="Vfr-ct-RDt"/>
+                <constraint firstItem="GGb-w4-MUy" firstAttribute="centerY" secondItem="72m-C0-jGj" secondAttribute="centerY" id="jAK-Hp-rN7"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="tabs" destination="GGb-w4-MUy" id="zs4-gh-YVN"/>
+            </connections>
+            <point key="canvasLocation" x="215.5" y="230"/>
+        </view>
     </objects>
 </document>

@@ -14,6 +14,7 @@
 		1062822070D3CD97D3BB12E1 /* SwiftUtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10628A74865C670B8082549A /* SwiftUtilsTests.swift */; };
 		10628234E7536228D4653B1A /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10628585B1C467D4A5F09BA9 /* Strings.swift */; };
 		1062826A203E03DD64CFF5E2 /* AzazaiUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1062800C8BACD68A4655DC1E /* AzazaiUITests.swift */; };
+		1062827955953549DE2FEECF /* MyEventsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10628E15F24393379BA8BD98 /* MyEventsHeaderView.swift */; };
 		10628299E4865D964A84B718 /* EventsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106288EF081F062EB4283FE1 /* EventsController.swift */; };
 		106283488577203AC306B794 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 106288E9C23B456030785C08 /* Assets.xcassets */; };
 		106283A46E739346EB32C274 /* NibViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106286A433B270940AADAD75 /* NibViewController.swift */; };
@@ -177,6 +178,7 @@
 		10628D8CF320116885070D8E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		10628DA5D2131CF8A60F3D47 /* UserEventsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserEventsController.swift; sourceTree = "<group>"; };
 		10628DFFF1F5A18124DFF997 /* TagsAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsAdapter.swift; sourceTree = "<group>"; };
+		10628E15F24393379BA8BD98 /* MyEventsHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyEventsHeaderView.swift; sourceTree = "<group>"; };
 		10628EEDEB9E10EBA84BE95C /* network_generator.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = network_generator.py; sourceTree = "<group>"; };
 		10628F71CCF2243E5A7B4DA2 /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		10628F8DAA9F4386197EE280 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
@@ -322,6 +324,7 @@
 				106283BDA9A62764DB1B48F9 /* TagEventsController.swift */,
 				2EED38391C7D0B0400EC6E71 /* MyEventsHeaderView.xib */,
 				2EED383B1C7D209300EC6E71 /* LoadingView.swift */,
+				10628E15F24393379BA8BD98 /* MyEventsHeaderView.swift */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -678,6 +681,7 @@
 				10628E7708E7B16E669B1483 /* TagsAdapter.swift in Sources */,
 				10628C7C51455C19B19D967F /* TagsView.swift in Sources */,
 				10628458B8E10453052A97AB /* TagEventsController.swift in Sources */,
+				1062827955953549DE2FEECF /* MyEventsHeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
