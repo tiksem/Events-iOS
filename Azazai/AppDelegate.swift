@@ -64,4 +64,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         VKSdk.processOpenURL(url, fromApplication: options[UIApplicationOpenURLOptionsSourceApplicationKey] as! String)
         return true
     }
+
+    static func get() -> AppDelegate {
+        return UIApplication.sharedApplication().delegate as! AppDelegate
+    }
 }

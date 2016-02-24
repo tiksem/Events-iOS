@@ -24,7 +24,7 @@
                         <constraint firstAttribute="height" constant="52" id="K3t-zZ-1Xz"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dmt-HY-oas">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name LastName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dmt-HY-oas">
                     <rect key="frame" x="65" y="20" width="148" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="El5-zz-Vfa"/>
@@ -47,6 +47,8 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="avatar" destination="7P1-j2-vOW" id="KHu-C3-Ysc"/>
+                <outlet property="name" destination="dmt-HY-oas" id="30X-2C-Dqk"/>
                 <outlet property="tabs" destination="GGb-w4-MUy" id="zs4-gh-YVN"/>
             </connections>
             <point key="canvasLocation" x="218.5" y="259"/>

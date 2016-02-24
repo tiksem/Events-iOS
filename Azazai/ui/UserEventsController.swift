@@ -26,6 +26,9 @@ class MyEventsController: EventsController {
         header = UiUtils.viewFromNib("MyEventsHeaderView") as! MyEventsHeaderView
         header.tabs.addTarget(self, action: "onTabChanged", forControlEvents: .ValueChanged)
         eventsView.eventsListView.tableHeaderView = header
+
+        let user = AppDelegate.get().user
+        header.name.text = user.first_name + " " + user.last_name
     }
     
     func onTabChanged() {
