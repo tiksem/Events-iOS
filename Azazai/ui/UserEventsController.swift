@@ -29,6 +29,10 @@ class MyEventsController: EventsController {
 
         let user = AppDelegate.get().user
         header.name.text = user.first_name + " " + user.last_name
+
+        if let url = NSURL(string: user.photo_200) {
+            header.avatar.sd_setImageWithURL(url)
+        }
     }
     
     func onTabChanged() {

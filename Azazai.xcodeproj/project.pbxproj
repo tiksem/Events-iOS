@@ -77,6 +77,8 @@
 		2EED383C1C7D209300EC6E71 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EED383B1C7D209300EC6E71 /* LoadingView.swift */; };
 		2EED383E1C7D467900EC6E71 /* VkUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EED383D1C7D467900EC6E71 /* VkUser.swift */; };
 		2EED38401C7DE4AD00EC6E71 /* empty-avatar.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2EED383F1C7DE4AD00EC6E71 /* empty-avatar.jpg */; };
+		2EED38421C7DE9D900EC6E71 /* WebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EED38411C7DE9D900EC6E71 /* WebImage.framework */; };
+		2EED38431C7DE9D900EC6E71 /* WebImage.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2EED38411C7DE9D900EC6E71 /* WebImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -120,6 +122,7 @@
 				2E5D01DC1C5AAC6C0013735F /* SwiftUtils.framework in Embed Frameworks */,
 				2EED38331C77CCD800EC6E71 /* PageMenuFramework.framework in Embed Frameworks */,
 				2E7C32561C5C0FAD00CE8F7C /* VKSdkFramework.framework in Embed Frameworks */,
+				2EED38431C7DE9D900EC6E71 /* WebImage.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -201,6 +204,7 @@
 		2EED383B1C7D209300EC6E71 /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		2EED383D1C7D467900EC6E71 /* VkUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VkUser.swift; sourceTree = "<group>"; };
 		2EED383F1C7DE4AD00EC6E71 /* empty-avatar.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "empty-avatar.jpg"; sourceTree = "<group>"; };
+		2EED38411C7DE9D900EC6E71 /* WebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebImage.framework; path = Carthage/Build/iOS/WebImage.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,6 +222,7 @@
 				2E5D01DB1C5AAC6C0013735F /* SwiftUtils.framework in Frameworks */,
 				2EED38321C77CCD800EC6E71 /* PageMenuFramework.framework in Frameworks */,
 				2E7C32551C5C0FAD00CE8F7C /* VKSdkFramework.framework in Frameworks */,
+				2EED38421C7DE9D900EC6E71 /* WebImage.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,6 +266,7 @@
 		106283FB35D5C11BF3D0CEC3 = {
 			isa = PBXGroup;
 			children = (
+				2EED38411C7DE9D900EC6E71 /* WebImage.framework */,
 				2EED38311C77CCD800EC6E71 /* PageMenuFramework.framework */,
 				2E7C32541C5C0FAD00CE8F7C /* VKSdkFramework.framework */,
 				2E7C32521C5C0B6300CE8F7C /* Cartfile */,

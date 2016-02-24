@@ -11,5 +11,6 @@
 
 #import <VKSdkFramework/VKSdkFramework.h>
 #import <PageMenuFramework/PageMenuFramework-Swift.h>
+#import <WebImage/UIImageView+WebCache.h>
 
 #endif /* Azazai_Bridging_Header_h */
