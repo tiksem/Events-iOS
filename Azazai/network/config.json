@@ -24,8 +24,8 @@
           "type": "EventMode"
         },
         {
-          "name": "token",
-          "type": "String"
+          "name": "userId",
+          "type": "Int"
         }
       ],
       "mergeArgs": [

@@ -57,10 +57,10 @@ class RequestManager {
         }, args: args, mergeArgs: mergeArgs)
     }
     
-    func getUserEvents(mod:EventMode, token:String) -> LazyList<Event, IOError> {
+    func getUserEvents(mod:EventMode, userId:Int) -> LazyList<Event, IOError> {
         let args:[String:CustomStringConvertible] = [
             "mod": mod,
-            "token": StringWrapper(token)
+            "userId": userId
         ]
         let mergeArgs:[String:CustomStringConvertible] = [
             "timeOut": true
