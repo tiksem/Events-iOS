@@ -7,7 +7,9 @@ import Foundation
 import Eureka
 import UIKit
 
-class IconPickerController : UIViewController, TypedRowControllerType {
+private let DefaultEventIcon = "event_icon.png"
+
+private class IconPickerController : UIViewController, TypedRowControllerType {
     public var row: RowOf<UIImage>!
     public var completionCallback : ((UIViewController) -> ())?
 
@@ -25,7 +27,7 @@ class IconPickerController : UIViewController, TypedRowControllerType {
     }
 }
 
-class IconPickerRow : SelectorRow<UIImage, IconPickerController, PushSelectorCell<UIImage>> {
+private class IconPickerRow : SelectorRow<UIImage, IconPickerController, PushSelectorCell<UIImage>> {
     public required init(tag: String?) {
         super.init(tag: tag)
         presentationMode = .Show(controllerProvider: ControllerProvider.NibFile(name: "IconPicker", bundle: nil),
@@ -41,7 +43,8 @@ class IconPickerRow : SelectorRow<UIImage, IconPickerController, PushSelectorCel
     public override func customUpdateCell() {
         super.customUpdateCell()
         cell.accessoryType = .None
-        if let image = UIImage(named: "empty-avatar.jpg") {
+        cell.height = { 55 }
+        if let image = self.value {
             let imageView = UIImageView(frame: CGRectMake(0, 0, 44, 44))
             imageView.contentMode = .ScaleAspectFill
             imageView.image = image
@@ -61,8 +64,8 @@ class AddEventController : FormViewController {
                 <<< TextFloatLabelRow() {
             $0.title = "Event Name"
         } <<< IconPickerRow("tag1") {
-            $0.title = "ImageRow"
-            $0.value = UIImage(named: "empty-avatar.jpg")
+            $0.title = "Event Icon"
+            $0.value = UIImage(named: DefaultEventIcon)
         }
     }
 }
