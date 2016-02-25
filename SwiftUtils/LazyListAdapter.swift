@@ -25,20 +25,20 @@ public class LazyListAdapter<Delegate:AdapterDelegate,
                 tableView: tableView,
                 delegate: delegate)
 
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
+        listDidSet()
+    }
+
+    private func listDidSet() {
         list.onNewPageLoaded = {
             (data) in
             self.reloadData()
         }
-
-        tableView.tableFooterView = UIView(frame: CGRect.zero)
     }
 
     public override var list : LazyList<Delegate.T, Error> {
         didSet {
-            list.onNewPageLoaded = {
-                (data) in
-                self.reloadData()
-            }
+            listDidSet()
         }
     }
 }
