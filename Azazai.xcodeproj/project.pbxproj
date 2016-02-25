@@ -85,6 +85,7 @@
 		2EED38451C7E55AC00EC6E71 /* event_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EED38441C7E55AC00EC6E71 /* event_icon.png */; };
 		2EED38471C7F7B5100EC6E71 /* Eureka.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EED38461C7F7B5100EC6E71 /* Eureka.framework */; };
 		2EED38481C7F7B5100EC6E71 /* Eureka.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2EED38461C7F7B5100EC6E71 /* Eureka.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2EED384B1C7F93E700EC6E71 /* IconPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EED384A1C7F93E700EC6E71 /* IconPicker.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -217,6 +218,7 @@
 		2EED38411C7DE9D900EC6E71 /* WebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebImage.framework; path = Carthage/Build/iOS/WebImage.framework; sourceTree = "<group>"; };
 		2EED38441C7E55AC00EC6E71 /* event_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = event_icon.png; sourceTree = "<group>"; };
 		2EED38461C7F7B5100EC6E71 /* Eureka.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Eureka.framework; path = Carthage/Build/iOS/Eureka.framework; sourceTree = "<group>"; };
+		2EED384A1C7F93E700EC6E71 /* IconPicker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IconPicker.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -352,6 +354,7 @@
 				106282BB4A22233E917980E4 /* AddEventController.swift */,
 				106282A3460316D79F274623 /* FloatLabelTextField.swift */,
 				106281D86AB44BDD00DA5416 /* CustomCells.swift */,
+				2EED384A1C7F93E700EC6E71 /* IconPicker.xib */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -617,6 +620,7 @@
 				2EED383A1C7D0B0400EC6E71 /* MyEventsHeaderView.xib in Resources */,
 				106283488577203AC306B794 /* Assets.xcassets in Resources */,
 				106289FB42AA4D24D1BED3F3 /* LaunchScreen.storyboard in Resources */,
+				2EED384B1C7F93E700EC6E71 /* IconPicker.xib in Resources */,
 				10628A02ACEC0E12DADB0004 /* Main.storyboard in Resources */,
 				106286905B3C66407B0C3E5E /* config.json in Resources */,
 				2EED38401C7DE4AD00EC6E71 /* empty-avatar.jpg in Resources */,
