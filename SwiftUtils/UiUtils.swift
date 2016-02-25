@@ -40,4 +40,8 @@ public class UiUtils {
         topViewController.navigationItem.setRightBarButtonItem(addButton, animated: false)
         return topViewController
     }
+
+    public static func pushViewController(hostController:UIViewController, controller:UIViewController) {
+        hostController.navigationController!.pushViewController(controller, animated: true)
+    }
 }

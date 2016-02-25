@@ -47,6 +47,6 @@ class EventsController: TableViewNibViewController {
     }
 
     func addEvent() {
-        Alerts.showOkAlert()
+        UiUtils.pushViewController(self, controller: AddEventController())
     }
 }
