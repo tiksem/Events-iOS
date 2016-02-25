@@ -29,6 +29,8 @@ class EventsController: TableViewNibViewController {
         super.viewDidLoad()
         eventsView = nestedView as! EventsView
         adapter = createEventsAdapter()
+        let topController = UiUtils.addAddButtonToTheRightOfNavigationBarOfTopController(self, action: "addEvent")
+        topController.title = "Events"
     }
 
     func createEventsAdapter() -> EventsAdapter {
@@ -42,5 +44,9 @@ class EventsController: TableViewNibViewController {
 
     override func getTableView() -> UITableView? {
         return eventsView?.eventsListView
+    }
+
+    func addEvent() {
+        Alerts.showOkAlert()
     }
 }

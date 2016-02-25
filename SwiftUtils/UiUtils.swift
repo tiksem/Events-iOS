@@ -30,4 +30,14 @@ public class UiUtils {
     public static func getNavigationBarHeightOfCotroller(controller:UIViewController) -> CGFloat {
         return controller.navigationController?.navigationBar.frame.height ?? 0.0
     }
+
+    public static func addAddButtonToTheRightOfNavigationBarOfTopController(viewController:UIViewController,
+                                                             action:Selector) -> UIViewController {
+        let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target:viewController,
+                action:action)
+
+        let topViewController = viewController.navigationController!.topViewController!
+        topViewController.navigationItem.setRightBarButtonItem(addButton, animated: false)
+        return topViewController
+    }
 }
