@@ -22,6 +22,7 @@
 		106283F3CED3CE01C6609931 /* AddEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106282BB4A22233E917980E4 /* AddEventController.swift */; };
 		10628428007366B02093208E /* EventsAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106288EDFB63498E03411E0C /* EventsAdapter.swift */; };
 		10628458B8E10453052A97AB /* TagEventsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106283BDA9A62764DB1B48F9 /* TagEventsController.swift */; };
+		1062846525CCD5710ED6BA6F /* IconCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10628C44F65CEB23EA5DAD1E /* IconCell.swift */; };
 		106284B1B683155F77310E80 /* UiUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10628D6A300A2ACDDF8EAB15 /* UiUtils.swift */; };
 		1062850658F26302961FF0E0 /* SwiftUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 106285F58DD238610C403D73 /* SwiftUtils.framework */; };
 		1062851535DF8C7E217B627B /* AzazaiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106289BDBA0D444158B662BB /* AzazaiTests.swift */; };
@@ -54,6 +55,8 @@
 		10628EF39DB3527198F865AC /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10628585B1C467D4A5F09BA9 /* Strings.swift */; };
 		10628F8F00D41576A3F88DB2 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 106285443E83EC6BEB9625E2 /* Info.plist */; };
 		2E3D0E521C5A67960066890E /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E3D0E511C5A67960066890E /* logo.png */; };
+		2E4BE25A1C7F9CF200ED57F5 /* IconPickerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E4BE2591C7F9CF200ED57F5 /* IconPickerCell.xib */; };
+		2E4BE25C1C7FA31B00ED57F5 /* IconInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4BE25B1C7FA31B00ED57F5 /* IconInfo.swift */; };
 		2E5D01DB1C5AAC6C0013735F /* SwiftUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 106285F58DD238610C403D73 /* SwiftUtils.framework */; };
 		2E5D01DC1C5AAC6C0013735F /* SwiftUtils.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 106285F58DD238610C403D73 /* SwiftUtils.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2E6E65421C2DA7A7004B2860 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106283A78DF0BB8802326F25 /* Network.swift */; };
@@ -186,6 +189,7 @@
 		10628A92D295C9C144CE7066 /* Template.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Template.swift; sourceTree = "<group>"; };
 		10628B5E73303AE1FF4BD23F /* TagsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsView.swift; sourceTree = "<group>"; };
 		10628B7A317F96BE89C8C602 /* AzazaiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AzazaiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		10628C44F65CEB23EA5DAD1E /* IconCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconCell.swift; sourceTree = "<group>"; };
 		10628C59BF300FB93058A150 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		10628C62E17A167FB82896BF /* AzazaiListAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AzazaiListAdapter.swift; sourceTree = "<group>"; };
 		10628D0176534A5B24FBF4E2 /* SwiftUtilsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftUtilsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -199,6 +203,8 @@
 		10628F71CCF2243E5A7B4DA2 /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		10628F8DAA9F4386197EE280 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
 		2E3D0E511C5A67960066890E /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		2E4BE2591C7F9CF200ED57F5 /* IconPickerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IconPickerCell.xib; sourceTree = "<group>"; };
+		2E4BE25B1C7FA31B00ED57F5 /* IconInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconInfo.swift; sourceTree = "<group>"; };
 		2E7C32521C5C0B6300CE8F7C /* Cartfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		2E7C32531C5C0E9300CE8F7C /* Azazai-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Azazai-Bridging-Header.h"; sourceTree = "<group>"; };
 		2E7C32541C5C0FAD00CE8F7C /* VKSdkFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VKSdkFramework.framework; path = Carthage/Build/iOS/VKSdkFramework.framework; sourceTree = "<group>"; };
@@ -281,6 +287,7 @@
 		106283FB35D5C11BF3D0CEC3 = {
 			isa = PBXGroup;
 			children = (
+				2E4BE2591C7F9CF200ED57F5 /* IconPickerCell.xib */,
 				2EED38461C7F7B5100EC6E71 /* Eureka.framework */,
 				2EED38411C7DE9D900EC6E71 /* WebImage.framework */,
 				2EED38311C77CCD800EC6E71 /* PageMenuFramework.framework */,
@@ -355,6 +362,7 @@
 				106282A3460316D79F274623 /* FloatLabelTextField.swift */,
 				106281D86AB44BDD00DA5416 /* CustomCells.swift */,
 				2EED384A1C7F93E700EC6E71 /* IconPicker.xib */,
+				10628C44F65CEB23EA5DAD1E /* IconCell.swift */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -412,6 +420,7 @@
 		10628E33CBA135E48BD9FE77 /* data */ = {
 			isa = PBXGroup;
 			children = (
+				2E4BE25B1C7FA31B00ED57F5 /* IconInfo.swift */,
 				2EED383D1C7D467900EC6E71 /* VkUser.swift */,
 				1062846A23306049B69ADC14 /* Event.swift */,
 				106283F528864E2303B1FA96 /* Comment.swift */,
@@ -625,6 +634,7 @@
 				106286905B3C66407B0C3E5E /* config.json in Resources */,
 				2EED38401C7DE4AD00EC6E71 /* empty-avatar.jpg in Resources */,
 				2EED38291C740C8200EC6E71 /* EventsView.xib in Resources */,
+				2E4BE25A1C7F9CF200ED57F5 /* IconPickerCell.xib in Resources */,
 				2EED38271C74098C00EC6E71 /* EventView.xib in Resources */,
 				2E7C32D41C5FB45B00CE8F7C /* EventCell.xib in Resources */,
 				2EED38451C7E55AC00EC6E71 /* event_icon.png in Resources */,
@@ -710,6 +720,7 @@
 				1062869C7D246BF07B7C14BA /* LoginController.swift in Sources */,
 				10628299E4865D964A84B718 /* EventsController.swift in Sources */,
 				10628428007366B02093208E /* EventsAdapter.swift in Sources */,
+				2E4BE25C1C7FA31B00ED57F5 /* IconInfo.swift in Sources */,
 				2EED38341C77F97400EC6E71 /* Tag.swift in Sources */,
 				10628DE22C607992575EC828 /* EventMode.swift in Sources */,
 				106280CF68C33B4FBAC16CDF /* EventsView.swift in Sources */,
@@ -722,6 +733,7 @@
 				106283F3CED3CE01C6609931 /* AddEventController.swift in Sources */,
 				1062833D4A031341979801EC /* FloatLabelTextField.swift in Sources */,
 				10628DBCD7B1E023E45C63F5 /* CustomCells.swift in Sources */,
+				1062846525CCD5710ED6BA6F /* IconCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="IconPickerController" customModule="Azazai" customModuleProvider="target">
             <connections>
+                <outlet property="tableView" destination="nVC-I7-JhU" id="Zmn-7V-zt3"/>
                 <outlet property="view" destination="iN0-l3-epB" id="Ztp-m0-0yE"/>
             </connections>
         </placeholder>
@@ -14,12 +15,18 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oHr-Yx-eAa">
-                    <rect key="frame" x="0.0" y="0.0" width="46" height="30"/>
-                    <state key="normal" title="Button"/>
-                </button>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="55" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nVC-I7-JhU">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="nVC-I7-JhU" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="HjY-9Z-veO"/>
+                <constraint firstItem="nVC-I7-JhU" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" id="RGf-M5-egR"/>
+                <constraint firstItem="nVC-I7-JhU" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="Vwf-zP-bN5"/>
+                <constraint firstItem="nVC-I7-JhU" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="uii-wi-p1v"/>
+            </constraints>
             <point key="canvasLocation" x="195" y="239"/>
         </view>
     </objects>

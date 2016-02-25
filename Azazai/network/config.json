@@ -89,6 +89,12 @@
           "value": "true"
         }
       ]
+    },
+    {
+      "method": "getIcons",
+      "limit": 1000,
+      "return": "LazyList<IconInfo>",
+      "key": "Icons"
     }
   ]
 }

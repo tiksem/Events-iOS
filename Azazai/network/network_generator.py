@@ -82,7 +82,11 @@ def generate_base(request, type_name, first_quote, second_quote):
     template = template.replace("__request_args__", generate_request_args(args))
     template = template.replace("__merge_args__", generate_request_args(mergeArgs))
     func_args_str = ", ".join([key + ":" + value for key, value in func_args.items()])
-    template = template.replace("__args__", func_args_str)
+    if len(func_args) > 0:
+        template = template.replace("__args__", func_args_str)
+    else:
+        template = template.replace("__args__,\n" + _8_spaces + _8_spaces + _8_spaces, "")
+        template = template.replace("__args__", "")
     return template
 
 def generate_lazy_list_method(request, type_name):

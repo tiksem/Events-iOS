@@ -112,4 +112,12 @@ class RequestManager {
         }, args: args, mergeArgs: mergeArgs)
     }
     
+    func getIcons() -> LazyList<IconInfo, IOError> {
+        let args:[String:CustomStringConvertible] = [:]
+        let mergeArgs:[String:CustomStringConvertible] = [:]
+        return getLazyList("http://azazai.com/api/getIcons", key: "Icons", limit: 1000, factory: {
+            return IconInfo.toIconInfosArray($0)!
+        }, args: args, mergeArgs: mergeArgs)
+    }
+    
 }

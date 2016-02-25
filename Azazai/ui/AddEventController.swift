@@ -6,14 +6,39 @@
 import Foundation
 import Eureka
 import UIKit
+import SwiftUtils
 
 private let DefaultEventIcon = "event_icon.png"
+private let IconBaseUrl = "http://azazai.com/icon/"
+
+private class IconPickerAdapterDelegate : AdapterDelegateDefaultImpl<IconInfo, IconCell, LoadingView> {
+    override func displayItem(element icon: IconInfo, cell: IconCell) -> Void {
+        if let url = NSURL(string: IconBaseUrl + String(icon.mediaId)) {
+            cell.icon.sd_setImageWithURL(url)
+        }
+        cell.label.text = icon.tag
+    }
+}
+
+private class IconPickerAdapter : AzazaiListAdapter<IconPickerAdapterDelegate> {
+    init(icons: LazyList<IconInfo, IOError>,
+                  tableView: UITableView) {
+        super.init(tableView: tableView,
+                list: icons,
+                cellIdentifier: "IconPickerCell",
+                delegate: IconPickerAdapterDelegate())
+    }
+
+}
 
 private class IconPickerController : UIViewController, TypedRowControllerType {
-    public var row: RowOf<UIImage>!
-    public var completionCallback : ((UIViewController) -> ())?
+    @IBOutlet weak var tableView: UITableView!
+    
+    var row: RowOf<UIImage>!
+    var completionCallback : ((UIViewController) -> ())?
+    var requestManager:RequestManager!
 
-    override required init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
 
@@ -23,12 +48,15 @@ private class IconPickerController : UIViewController, TypedRowControllerType {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.edgesForExtendedLayout = .None;
+        self.edgesForExtendedLayout = .None
+
+        requestManager = RequestManager()
+        IconPickerAdapter(icons: requestManager.getIcons(), tableView: tableView)
     }
 }
 
 private class IconPickerRow : SelectorRow<UIImage, IconPickerController, PushSelectorCell<UIImage>> {
-    public required init(tag: String?) {
+    required init(tag: String?) {
         super.init(tag: tag)
         presentationMode = .Show(controllerProvider: ControllerProvider.NibFile(name: "IconPicker", bundle: nil),
                 completionCallback: {
@@ -40,7 +68,7 @@ private class IconPickerRow : SelectorRow<UIImage, IconPickerController, PushSel
         }
     }
 
-    public override func customUpdateCell() {
+    override func customUpdateCell() {
         super.customUpdateCell()
         cell.accessoryType = .None
         cell.height = { 55 }
@@ -50,8 +78,7 @@ private class IconPickerRow : SelectorRow<UIImage, IconPickerController, PushSel
             imageView.image = image
             imageView.clipsToBounds = true
             cell.accessoryView = imageView
-        }
-        else{
+        } else {
             cell.accessoryView = nil
         }
     }

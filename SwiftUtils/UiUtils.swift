@@ -44,4 +44,12 @@ public class UiUtils {
     public static func pushViewController(hostController:UIViewController, controller:UIViewController) {
         hostController.navigationController!.pushViewController(controller, animated: true)
     }
+
+    public static func addLoadingToCenterOfViewController(viewController:UIViewController) -> UIActivityIndicatorView {
+        let loading = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+        let view = viewController.view
+        view.addSubview(loading)
+        loading.center = view.center
+        return loading
+    }
 }

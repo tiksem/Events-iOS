@@ -61,15 +61,15 @@ public class RandomAccessibleAdapter<Container:RandomAccessable,
 
     private let cellIdentifier:String
     private let cellNibFileName:String
-    private let nullCellIdentifier:String
-    private let nullCellNibFileName:String
+    private let nullCellIdentifier:String?
+    private let nullCellNibFileName:String?
     public var list:Container
     private unowned let tableView:UITableView
     public var delegate:Delegate
 
     public init(cellIdentifier:String,
                 cellNibFileName:String? = nil,
-                nullCellIdentifier:String,
+                nullCellIdentifier:String? = nil,
                 nullCellNibFileName:String? = nil,
                 list:Container,
                 tableView:UITableView,
@@ -83,11 +83,16 @@ public class RandomAccessibleAdapter<Container:RandomAccessable,
         self.delegate = delegate
 
         UiUtils.registerNib(tableView: tableView, nibName: self.cellNibFileName, cellIdentifier: cellIdentifier)
-        UiUtils.registerNib(tableView: tableView, nibName: self.nullCellNibFileName, cellIdentifier: nullCellIdentifier)
+
+        if let nullNib = self.nullCellNibFileName {
+            UiUtils.registerNib(tableView: tableView, nibName: nullNib,
+                    cellIdentifier: nullCellIdentifier!)
+        }
 
         super.init()
 
         reloadData()
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
     }
 
     public func reloadData() {
@@ -106,7 +111,7 @@ public class RandomAccessibleAdapter<Container:RandomAccessable,
             delegate.displayItem(element: item, cell: cell)
             return cell
         } else {
-            let cell = tableView.dequeueReusableCellWithIdentifier(nullCellIdentifier) as! Delegate.NullCellType
+            let cell = tableView.dequeueReusableCellWithIdentifier(nullCellIdentifier!) as! Delegate.NullCellType
             delegate.displayNullItem(cell: cell)
             return cell
         }
@@ -117,5 +122,37 @@ public class RandomAccessibleAdapter<Container:RandomAccessable,
         if let item = list[row] {
             delegate.onItemSelected(element: item, position: row)
         }
+    }
+}
+
+public class ArrayRandomAccessible<ItemType> : RandomAccessable {
+    public var array:[ItemType]
+
+    public init(array:[ItemType]) {
+        self.array = array
+    }
+
+    public subscript(index: Int) -> ItemType? {
+        return array[index]
+    }
+
+    public var count: Int {
+        return array.count
+    }
+
+}
+
+public class ArrayAdapter<Delegate:AdapterDelegate where
+        Delegate.CellType:UITableViewCell,
+        Delegate.NullCellType:UITableViewCell> : RandomAccessibleAdapter<ArrayRandomAccessible<Delegate.T>, Delegate> {
+    public init(cellIdentifier:String,
+                         cellNibFileName:String? = nil,
+                         array:[Delegate.T],
+                         tableView:UITableView, delegate:Delegate) {
+        super.init(cellIdentifier: cellIdentifier,
+                cellNibFileName: cellNibFileName,
+                list: ArrayRandomAccessible<Delegate.T>(array: array),
+                tableView: tableView,
+                delegate: delegate)
     }
 }

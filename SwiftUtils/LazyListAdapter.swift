@@ -11,7 +11,7 @@ public class LazyListAdapter<Delegate:AdapterDelegate,
                             Delegate.CellType:UITableViewCell,
                             Delegate.NullCellType:UITableViewCell> :
         RandomAccessibleAdapter<LazyList<Delegate.T, Error>, Delegate> {
-    public override init(cellIdentifier:String,
+    public init(cellIdentifier:String,
                 cellNibFileName:String? = nil,
                 nullCellIdentifier:String,
                 nullCellNibFileName:String? = nil,
@@ -24,8 +24,6 @@ public class LazyListAdapter<Delegate:AdapterDelegate,
                 list: list,
                 tableView: tableView,
                 delegate: delegate)
-
-        tableView.tableFooterView = UIView(frame: CGRect.zero)
         listDidSet()
     }
 
