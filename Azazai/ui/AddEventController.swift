@@ -12,21 +12,32 @@ private let DefaultEventIcon = "event_icon.png"
 private let IconBaseUrl = "http://azazai.com/icon/"
 
 private class IconPickerAdapterDelegate : AdapterDelegateDefaultImpl<IconInfo, IconCell, LoadingView> {
+    let onItemSelected:(Int) -> Void
+
+    init(onItemSelected:(Int) -> Void) {
+        self.onItemSelected = onItemSelected
+    }
+
     override func displayItem(element icon: IconInfo, cell: IconCell) -> Void {
         if let url = NSURL(string: IconBaseUrl + String(icon.mediaId)) {
             cell.icon.sd_setImageWithURL(url)
         }
         cell.label.text = icon.tag
     }
+
+    override func onItemSelected(element element: IconInfo, position: Int) -> Void {
+        onItemSelected(position)
+    }
+
 }
 
 private class IconPickerAdapter : AzazaiListAdapter<IconPickerAdapterDelegate> {
     init(icons: LazyList<IconInfo, IOError>,
-                  tableView: UITableView) {
+                  tableView: UITableView, onItemSelected:(Int) -> Void) {
         super.init(tableView: tableView,
                 list: icons,
                 cellIdentifier: "IconPickerCell",
-                delegate: IconPickerAdapterDelegate())
+                delegate: IconPickerAdapterDelegate(onItemSelected: onItemSelected))
     }
 
 }
@@ -51,7 +62,11 @@ private class IconPickerController : UIViewController, TypedRowControllerType {
         self.edgesForExtendedLayout = .None
 
         requestManager = RequestManager()
-        IconPickerAdapter(icons: requestManager.getIcons(), tableView: tableView)
+        IconPickerAdapter(icons: requestManager.getIcons(), tableView: tableView, onItemSelected: {
+            let cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: $0, inSection: 0)) as! IconCell
+            self.row.value = cell.icon.image
+            self.completionCallback?(self)
+        })
     }
 }
 
