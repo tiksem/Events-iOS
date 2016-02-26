@@ -102,17 +102,18 @@ private class IconPickerRow : SelectorRow<UIImage, IconPickerController, PushSel
 class AddEventController : FormViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView!.rowHeight = UITableViewAutomaticDimension
-        self.tableView!.estimatedRowHeight = 50.0
 
         form +++ Section("Create New Event")
                 <<< TextFloatLabelRow() {
             $0.title = "Event Name"
+        } <<< TextFloatLabelRow() {
+            $0.title = "Event Address"
         } <<< IconPickerRow("tag1") {
             $0.title = "Event Icon"
             $0.value = UIImage(named: DefaultEventIcon)
-        } +++ Section("Event Description")
-                <<< TextAreaRow() {
+        } <<< TextAreaRow() {
+            $0.cell.height = {150}
+            $0.placeholder = "Event Description"
         }
     }
 }
