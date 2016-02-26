@@ -111,6 +111,8 @@ class AddEventController : FormViewController {
         } <<< IconPickerRow("tag1") {
             $0.title = "Event Icon"
             $0.value = UIImage(named: DefaultEventIcon)
+        } <<< DateTimeInlineRow("tag1") {
+            $0.title = "Event Date"
         } <<< TextAreaRow() {
             $0.cell.height = {150}
             $0.placeholder = "Event Description"
