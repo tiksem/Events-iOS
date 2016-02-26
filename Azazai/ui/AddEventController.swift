@@ -156,10 +156,10 @@ class AddEventController : FormViewController {
         var result:[String:CustomStringConvertible] = [:]
         do {
             try validateStringFieldOfRow(name, fieldTitle: "Event name", minCount: EventNameMinLength, addTo: result)
-            try validateStringFieldOfRow(eventDescription, fieldTitle: "Event description",
-                    minCount: EventDescriptionMinLength, addTo: result)
             try validateStringFieldOfRow(address, fieldTitle: "Event address",
                     minCount: EventAddressMinLength, addTo: result)
+            try validateStringFieldOfRow(eventDescription, fieldTitle: "Event description",
+                    minCount: EventDescriptionMinLength, addTo: result)
 
         } catch {
             return nil
@@ -194,7 +194,10 @@ class AddEventController : FormViewController {
 
         date = DateTimeInlineRow("date") {
             $0.title = "Event Date"
-            $0.minimumDate = NSDate()
+        }.cellUpdate() {
+            [unowned self]
+            (cell) in
+            self.date.minimumDate = NSDate()
         }
         section <<< date
 
