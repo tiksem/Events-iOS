@@ -113,9 +113,14 @@ class AddEventController : FormViewController {
             $0.value = UIImage(named: DefaultEventIcon)
         } <<< DateTimeInlineRow("tag1") {
             $0.title = "Event Date"
+            $0.minimumDate = NSDate()
         } <<< IntRow() {
             $0.title = "People Number"
             $0.placeholder = "Unlimited"
+        } <<< AlertRow<String>() {
+            $0.title = "Event Type"
+            $0.options = ["Public", "Private"]
+            $0.value = "Public"
         } +++ Section("Event Description") <<< TextAreaRow() {
             $0.cell.height = {140}
         }
