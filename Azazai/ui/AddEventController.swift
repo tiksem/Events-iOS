@@ -99,30 +99,41 @@ private class IconPickerRow : SelectorRow<UIImage, IconPickerController, PushSel
     }
 }
 
+private var values:[String: Any?]?
+
 class AddEventController : FormViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
         form +++ Section("Create New Event")
-                <<< TextFloatLabelRow() {
+                <<< TextFloatLabelRow("name") {
             $0.title = "Event Name"
-        } <<< TextFloatLabelRow() {
+        } <<< TextFloatLabelRow("addresss") {
             $0.title = "Event Address"
-        } <<< IconPickerRow("tag1") {
+        } <<< IconPickerRow("icon") {
             $0.title = "Event Icon"
             $0.value = UIImage(named: DefaultEventIcon)
-        } <<< DateTimeInlineRow("tag1") {
+        } <<< DateTimeInlineRow("date") {
             $0.title = "Event Date"
             $0.minimumDate = NSDate()
-        } <<< IntRow() {
+        } <<< IntRow("peopleNumber") {
             $0.title = "People Number"
             $0.placeholder = "Unlimited"
-        } <<< AlertRow<String>() {
+        } <<< AlertRow<String>("type") {
             $0.title = "Event Type"
             $0.options = ["Public", "Private"]
             $0.value = "Public"
-        } +++ Section("Event Description") <<< TextAreaRow() {
+        } +++ Section("Event Description") <<< TextAreaRow("description") {
             $0.cell.height = {140}
         }
+
+        if let values = values {
+            form.setValues(values)
+        }
+    }
+
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        values = form.values()
     }
 }
