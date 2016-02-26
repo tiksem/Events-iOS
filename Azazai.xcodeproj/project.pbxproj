@@ -19,7 +19,6 @@
 		1062833D4A031341979801EC /* FloatLabelTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106282A3460316D79F274623 /* FloatLabelTextField.swift */; };
 		106283488577203AC306B794 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 106288E9C23B456030785C08 /* Assets.xcassets */; };
 		106283A46E739346EB32C274 /* NibViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106286A433B270940AADAD75 /* NibViewController.swift */; };
-		106283F3CED3CE01C6609931 /* AddEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106282BB4A22233E917980E4 /* AddEventController.swift */; };
 		10628428007366B02093208E /* EventsAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106288EDFB63498E03411E0C /* EventsAdapter.swift */; };
 		10628458B8E10453052A97AB /* TagEventsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106283BDA9A62764DB1B48F9 /* TagEventsController.swift */; };
 		1062846525CCD5710ED6BA6F /* IconCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10628C44F65CEB23EA5DAD1E /* IconCell.swift */; };
@@ -57,6 +56,7 @@
 		2E3D0E521C5A67960066890E /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E3D0E511C5A67960066890E /* logo.png */; };
 		2E4BE25A1C7F9CF200ED57F5 /* IconPickerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E4BE2591C7F9CF200ED57F5 /* IconPickerCell.xib */; };
 		2E4BE25C1C7FA31B00ED57F5 /* IconInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4BE25B1C7FA31B00ED57F5 /* IconInfo.swift */; };
+		2E4BE25E1C80B26C00ED57F5 /* MaxLengthFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10628A103E51278166DCF31B /* MaxLengthFormatter.swift */; };
 		2E5D01DB1C5AAC6C0013735F /* SwiftUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 106285F58DD238610C403D73 /* SwiftUtils.framework */; };
 		2E5D01DC1C5AAC6C0013735F /* SwiftUtils.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 106285F58DD238610C403D73 /* SwiftUtils.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2E6E65421C2DA7A7004B2860 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106283A78DF0BB8802326F25 /* Network.swift */; };
@@ -69,6 +69,9 @@
 		2E7C32D41C5FB45B00CE8F7C /* EventCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E7C32D31C5FB45B00CE8F7C /* EventCell.xib */; };
 		2E7C32D61C5FBD5600CE8F7C /* Loading.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E7C32D51C5FBD5600CE8F7C /* Loading.xib */; };
 		2E7C32D91C615D3300CE8F7C /* EventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1062806EB94A695BC39A227F /* EventController.swift */; };
+		2E87D5C51C80F847002B1FF9 /* Eureka.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E87D5C41C80F847002B1FF9 /* Eureka.framework */; };
+		2E87D5C61C80F847002B1FF9 /* Eureka.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2E87D5C41C80F847002B1FF9 /* Eureka.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2E87D5C71C80FA96002B1FF9 /* AddEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106282BB4A22233E917980E4 /* AddEventController.swift */; };
 		2ED5E4DE1C31F9DD002A1CFB /* ic_people_grey.png in Resources */ = {isa = PBXBuildFile; fileRef = 2ED5E4DD1C31F9DD002A1CFB /* ic_people_grey.png */; };
 		2EED38251C73FA1A00EC6E71 /* EventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EED38241C73FA1A00EC6E71 /* EventView.swift */; };
 		2EED38271C74098C00EC6E71 /* EventView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EED38261C74098C00EC6E71 /* EventView.xib */; };
@@ -86,8 +89,6 @@
 		2EED38421C7DE9D900EC6E71 /* WebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EED38411C7DE9D900EC6E71 /* WebImage.framework */; };
 		2EED38431C7DE9D900EC6E71 /* WebImage.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2EED38411C7DE9D900EC6E71 /* WebImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2EED38451C7E55AC00EC6E71 /* event_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EED38441C7E55AC00EC6E71 /* event_icon.png */; };
-		2EED38471C7F7B5100EC6E71 /* Eureka.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EED38461C7F7B5100EC6E71 /* Eureka.framework */; };
-		2EED38481C7F7B5100EC6E71 /* Eureka.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2EED38461C7F7B5100EC6E71 /* Eureka.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2EED384B1C7F93E700EC6E71 /* IconPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EED384A1C7F93E700EC6E71 /* IconPicker.xib */; };
 /* End PBXBuildFile section */
 
@@ -133,7 +134,7 @@
 				2EED38331C77CCD800EC6E71 /* PageMenuFramework.framework in Embed Frameworks */,
 				2E7C32561C5C0FAD00CE8F7C /* VKSdkFramework.framework in Embed Frameworks */,
 				2EED38431C7DE9D900EC6E71 /* WebImage.framework in Embed Frameworks */,
-				2EED38481C7F7B5100EC6E71 /* Eureka.framework in Embed Frameworks */,
+				2E87D5C61C80F847002B1FF9 /* Eureka.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -183,6 +184,7 @@
 		106289C7BC543EC2C3758F86 /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		106289CA4B050824626DCDC8 /* TableViewNibViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewNibViewController.swift; sourceTree = "<group>"; };
 		10628A015FC5E87C112B92E0 /* Json.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Json.swift; sourceTree = "<group>"; };
+		10628A103E51278166DCF31B /* MaxLengthFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaxLengthFormatter.swift; sourceTree = "<group>"; };
 		10628A1FE40E6581899A2CDB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		10628A6573CCE4CF02120160 /* Azazai.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Azazai.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		10628A74865C670B8082549A /* SwiftUtilsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUtilsTests.swift; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 		2E7C32541C5C0FAD00CE8F7C /* VKSdkFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VKSdkFramework.framework; path = Carthage/Build/iOS/VKSdkFramework.framework; sourceTree = "<group>"; };
 		2E7C32D31C5FB45B00CE8F7C /* EventCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventCell.xib; sourceTree = "<group>"; };
 		2E7C32D51C5FBD5600CE8F7C /* Loading.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Loading.xib; sourceTree = "<group>"; };
+		2E87D5C41C80F847002B1FF9 /* Eureka.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Eureka.framework; path = Carthage/Build/iOS/Eureka.framework; sourceTree = "<group>"; };
 		2ED5E4DD1C31F9DD002A1CFB /* ic_people_grey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_people_grey.png; sourceTree = "<group>"; };
 		2EED38241C73FA1A00EC6E71 /* EventView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventView.swift; sourceTree = "<group>"; };
 		2EED38261C74098C00EC6E71 /* EventView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventView.xib; sourceTree = "<group>"; };
@@ -223,7 +226,6 @@
 		2EED383F1C7DE4AD00EC6E71 /* empty-avatar.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "empty-avatar.jpg"; sourceTree = "<group>"; };
 		2EED38411C7DE9D900EC6E71 /* WebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebImage.framework; path = Carthage/Build/iOS/WebImage.framework; sourceTree = "<group>"; };
 		2EED38441C7E55AC00EC6E71 /* event_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = event_icon.png; sourceTree = "<group>"; };
-		2EED38461C7F7B5100EC6E71 /* Eureka.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Eureka.framework; path = Carthage/Build/iOS/Eureka.framework; sourceTree = "<group>"; };
 		2EED384A1C7F93E700EC6E71 /* IconPicker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IconPicker.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -243,7 +245,7 @@
 				2EED38321C77CCD800EC6E71 /* PageMenuFramework.framework in Frameworks */,
 				2E7C32551C5C0FAD00CE8F7C /* VKSdkFramework.framework in Frameworks */,
 				2EED38421C7DE9D900EC6E71 /* WebImage.framework in Frameworks */,
-				2EED38471C7F7B5100EC6E71 /* Eureka.framework in Frameworks */,
+				2E87D5C51C80F847002B1FF9 /* Eureka.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,8 +289,8 @@
 		106283FB35D5C11BF3D0CEC3 = {
 			isa = PBXGroup;
 			children = (
+				2E87D5C41C80F847002B1FF9 /* Eureka.framework */,
 				2E4BE2591C7F9CF200ED57F5 /* IconPickerCell.xib */,
-				2EED38461C7F7B5100EC6E71 /* Eureka.framework */,
 				2EED38411C7DE9D900EC6E71 /* WebImage.framework */,
 				2EED38311C77CCD800EC6E71 /* PageMenuFramework.framework */,
 				2E7C32541C5C0FAD00CE8F7C /* VKSdkFramework.framework */,
@@ -332,6 +334,7 @@
 				106286A433B270940AADAD75 /* NibViewController.swift */,
 				1062820E7F16302928A33359 /* LazyListAdapter.swift */,
 				106289CA4B050824626DCDC8 /* TableViewNibViewController.swift */,
+				10628A103E51278166DCF31B /* MaxLengthFormatter.swift */,
 			);
 			path = SwiftUtils;
 			sourceTree = "<group>";
@@ -675,6 +678,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E6E65431C2DA7A7004B2860 /* IOError.swift in Sources */,
+				2E4BE25E1C80B26C00ED57F5 /* MaxLengthFormatter.swift in Sources */,
 				2E6E65461C2DA7A7004B2860 /* Json.swift in Sources */,
 				2E6E65441C2DA7A7004B2860 /* Threading.swift in Sources */,
 				2E6E65451C2DA7A7004B2860 /* Alerts.swift in Sources */,
@@ -720,6 +724,7 @@
 				1062869C7D246BF07B7C14BA /* LoginController.swift in Sources */,
 				10628299E4865D964A84B718 /* EventsController.swift in Sources */,
 				10628428007366B02093208E /* EventsAdapter.swift in Sources */,
+				2E87D5C71C80FA96002B1FF9 /* AddEventController.swift in Sources */,
 				2E4BE25C1C7FA31B00ED57F5 /* IconInfo.swift in Sources */,
 				2EED38341C77F97400EC6E71 /* Tag.swift in Sources */,
 				10628DE22C607992575EC828 /* EventMode.swift in Sources */,
@@ -730,7 +735,6 @@
 				10628C7C51455C19B19D967F /* TagsView.swift in Sources */,
 				10628458B8E10453052A97AB /* TagEventsController.swift in Sources */,
 				1062827955953549DE2FEECF /* MyEventsHeaderView.swift in Sources */,
-				106283F3CED3CE01C6609931 /* AddEventController.swift in Sources */,
 				1062833D4A031341979801EC /* FloatLabelTextField.swift in Sources */,
 				10628DBCD7B1E023E45C63F5 /* CustomCells.swift in Sources */,
 				1062846525CCD5710ED6BA6F /* IconCell.swift in Sources */,
@@ -785,11 +789,12 @@
 		1062823D8761FAA24317CA3C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/Carthage/Build/iOS";
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/**";
 				INFOPLIST_FILE = Azazai/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1076,11 +1081,12 @@
 		10628C52A0956D112965A538 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/Carthage/Build/iOS";
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/**";
 				INFOPLIST_FILE = Azazai/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

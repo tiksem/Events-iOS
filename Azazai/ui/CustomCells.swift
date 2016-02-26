@@ -32,6 +32,7 @@ import Eureka
 public class _FloatLabelCell<T where T: Equatable, T: InputTypeInitiable>: Cell<T>, UITextFieldDelegate, TextFieldCell {
 
     public var textField : UITextField { return floatLabelTextField }
+    public var maxLength = Int.max
 
     required public init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -116,6 +117,16 @@ public class _FloatLabelCell<T where T: Equatable, T: InputTypeInitiable>: Cell<
             return
         }
         row.value = newValue
+    }
+
+    public func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange,
+                          replacementString string: String) -> Bool {
+        let currentCharacterCount = textField.text?.characters.count ?? 0
+        if (range.length + range.location > currentCharacterCount){
+            return false
+        }
+        let newLength = currentCharacterCount + string.characters.count - range.length
+        return newLength <= maxLength
     }
 
     //MARK: TextFieldDelegate

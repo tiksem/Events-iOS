@@ -5,6 +5,6 @@
 
 import Foundation
 
-enum Errors: ErrorType {
+public enum Errors: ErrorType {
     case Void
 }

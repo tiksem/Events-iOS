@@ -29,8 +29,13 @@ public class LazyListAdapter<Delegate:AdapterDelegate,
 
     private func listDidSet() {
         list.onNewPageLoaded = {
+            [weak self]
             (data) in
-            self.reloadData()
+            if let this = self {
+                this.reloadData()
+            } else {
+                fatalError("LazyListAdapter reference is gone, after data loaded, please keep reference of it")
+            }
         }
     }
 

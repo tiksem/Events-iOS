@@ -21,6 +21,24 @@ public extension String {
 
         return self.stringByAddingPercentEncodingWithAllowedCharacters(characterSet)
     }
+
+    subscript (var r: Range<Int>) -> String {
+        get {
+            let count = self.characters.count
+            if count <= r.startIndex {
+                return ""
+            }
+
+            let startIndex = self.startIndex.advancedBy(r.startIndex)
+            if r.endIndex > count {
+                r.endIndex = count
+            }
+
+            let endIndex = self.startIndex.advancedBy(r.endIndex - r.startIndex)
+
+            return self[Range(start: startIndex, end: endIndex)]
+        }
+    }
 }
 
 public class StringWrapper : CustomStringConvertible {
