@@ -52,4 +52,22 @@ public class UiUtils {
         loading.center = view.center
         return loading
     }
+
+    public static func limitLengthHelper(textField textField: UITextField, maxLength:Int,
+                                         shouldChangeCharactersInRange range: NSRange,
+                                         replacementString string: String) -> Bool {
+        return limitLengthHelper(text: textField.text, maxLength: maxLength,
+                shouldChangeCharactersInRange: range, replacementString: string)
+    }
+
+    public static func limitLengthHelper(text text: String?, maxLength:Int,
+                                         shouldChangeCharactersInRange range: NSRange,
+                                         replacementString string: String) -> Bool {
+        let currentCharacterCount = text?.characters.count ?? 0
+        if (range.length + range.location > currentCharacterCount){
+            return false
+        }
+        let newLength = currentCharacterCount + string.characters.count - range.length
+        return newLength <= maxLength
+    }
 }

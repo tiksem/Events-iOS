@@ -227,4 +227,16 @@ class AddEventController : FormViewController {
         super.viewDidDisappear(animated)
         values = form.values()
     }
+
+    override func textInput<T>(textInput: UITextInput, shouldChangeCharactersInRange
+            range: NSRange, replacementString string: String, cell: Eureka.Cell<T>) -> Bool {
+        if cell === eventDescription.cell {
+            return UiUtils.limitLengthHelper(text: eventDescription.cell.textView.text,
+                    maxLength:EventDescriptionMaxLength,
+                    shouldChangeCharactersInRange: range, replacementString: string)
+        }
+
+        return true
+    }
+
 }

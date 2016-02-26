@@ -26,6 +26,7 @@ import Foundation
 import UIKit
 import MapKit
 import Eureka
+import SwiftUtils
 
 //MARK: FloatLabelCell
 
@@ -121,12 +122,8 @@ public class _FloatLabelCell<T where T: Equatable, T: InputTypeInitiable>: Cell<
 
     public func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange,
                           replacementString string: String) -> Bool {
-        let currentCharacterCount = textField.text?.characters.count ?? 0
-        if (range.length + range.location > currentCharacterCount){
-            return false
-        }
-        let newLength = currentCharacterCount + string.characters.count - range.length
-        return newLength <= maxLength
+        return UiUtils.limitLengthHelper(textField: textField, maxLength:maxLength,
+            shouldChangeCharactersInRange: range, replacementString: string)
     }
 
     //MARK: TextFieldDelegate
