@@ -8,9 +8,6 @@ import UIKit
 import Eureka
 import SwiftUtils
 
-private let DefaultEventIcon = "event_icon.png"
-private let IconBaseUrl = "http://azazai.com/icon/"
-
 private class IconPickerAdapterDelegate : AdapterDelegateDefaultImpl<IconInfo, IconCell, LoadingView> {
     let onItemSelected:(Int, IconInfo) -> Void
 

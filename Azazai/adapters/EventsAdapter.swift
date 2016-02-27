@@ -6,6 +6,9 @@
 import Foundation
 import SwiftUtils
 
+let DefaultEventIcon = "event_icon.png"
+let IconBaseUrl = "http://azazai.com/icon/"
+
 class EventsAdapterDelegate : AzazaiAdapterDelegate<Event, EventCell> {
     init(controller:UIViewController) {
         super.init(hostController: controller, factory: {
@@ -19,6 +22,7 @@ class EventsAdapterDelegate : AzazaiAdapterDelegate<Event, EventCell> {
         cell.eventDescription?.text = event.description
         cell.layoutMargins = UIEdgeInsetsZero
         cell.peopleNumber?.text = String(event.subscribersCount) + "/" + String(event.peopleNumber)
+        cell.icon.sd_setImageWithURL(NSURL(string: IconBaseUrl + String(event.icon))!)
     }
 }
 

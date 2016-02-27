@@ -61,6 +61,7 @@
             <connections>
                 <outlet property="eventDescription" destination="OIm-hD-nqf" id="Eyl-7S-Kf9"/>
                 <outlet property="eventName" destination="q2R-KS-vGu" id="BJq-Og-miy"/>
+                <outlet property="icon" destination="EhQ-AX-Dlt" id="c2G-ZY-dNT"/>
                 <outlet property="peopleNumber" destination="lcd-fP-EGf" id="wur-0O-LwH"/>
             </connections>
             <point key="canvasLocation" x="217" y="270"/>

@@ -12,6 +12,7 @@
         "peopleNumber":"Int",
         "subscribersCount":"Int",
         "date":"Int",
+        "icon":"Int",
         "var isSubscribed":"Bool = false"
       }
     },
