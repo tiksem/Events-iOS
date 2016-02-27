@@ -10,6 +10,7 @@
                 <outlet property="icon" destination="yEO-gg-Ppz" id="gmb-SI-Mxb"/>
                 <outlet property="name" destination="bNK-w0-kRh" id="WCk-xa-ubj"/>
                 <outlet property="peopleNumber" destination="XbE-A1-kRx" id="unB-5A-jIL"/>
+                <outlet property="subscribeButton" destination="OBR-VZ-4fJ" id="QjF-a8-bJg"/>
                 <outlet property="view" destination="MfR-Vb-CJT" id="Du6-ge-4Dm"/>
             </connections>
         </placeholder>
@@ -66,6 +67,12 @@
                                         <constraint firstAttribute="width" constant="100" id="pee-fa-7Wu"/>
                                     </constraints>
                                     <state key="normal" title="I Will Go"/>
+                                    <state key="selected" title="Subscribed">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="onSubscribeButtonClick:" destination="-1" eventType="touchUpInside" id="ywo-QR-yKG"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

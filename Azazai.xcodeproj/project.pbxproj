@@ -39,6 +39,7 @@
 		106289FB42AA4D24D1BED3F3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10628A7EAF6181C8E6B8FAE0 /* LaunchScreen.storyboard */; };
 		10628A02ACEC0E12DADB0004 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 106288381776A764A2C18CCC /* Main.storyboard */; };
 		10628A7548C8099E781AE53D /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 10628680337E7DD4D0A9988F /* Info.plist */; };
+		10628AA3BDF460F1413C68A7 /* ImageUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1062888F6732B29831FCFA09 /* ImageUtils.swift */; };
 		10628AC70A0D37688FC2CE4D /* TagsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106281C653F6B8B8E7534CB0 /* TagsController.swift */; };
 		10628B15E306708D605BFF1D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10628A1FE40E6581899A2CDB /* AppDelegate.swift */; };
 		10628B5AC968C1CBE4B7C941 /* LazyListAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1062820E7F16302928A33359 /* LazyListAdapter.swift */; };
@@ -173,6 +174,7 @@
 		1062881622458FB3CD7F9CDF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
 		10628884A9AFDF65CAD2F829 /* Canceler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Canceler.swift; sourceTree = "<group>"; };
 		1062888865DA39368FB98ED4 /* config.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = config.json; sourceTree = "<group>"; };
+		1062888F6732B29831FCFA09 /* ImageUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageUtils.swift; sourceTree = "<group>"; };
 		10628891AAD30F025AA7FA45 /* config.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = config.json; sourceTree = "<group>"; };
 		106288E9C23B456030785C08 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		106288EDFB63498E03411E0C /* EventsAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsAdapter.swift; sourceTree = "<group>"; };
@@ -335,6 +337,7 @@
 				1062820E7F16302928A33359 /* LazyListAdapter.swift */,
 				106289CA4B050824626DCDC8 /* TableViewNibViewController.swift */,
 				10628A103E51278166DCF31B /* MaxLengthFormatter.swift */,
+				1062888F6732B29831FCFA09 /* ImageUtils.swift */,
 			);
 			path = SwiftUtils;
 			sourceTree = "<group>";
@@ -695,6 +698,7 @@
 				106283A46E739346EB32C274 /* NibViewController.swift in Sources */,
 				10628B5AC968C1CBE4B7C941 /* LazyListAdapter.swift in Sources */,
 				106286E6C04BB326F3C0828B /* TableViewNibViewController.swift in Sources */,
+				10628AA3BDF460F1413C68A7 /* ImageUtils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
