@@ -22,7 +22,12 @@ class EventsAdapterDelegate : AzazaiAdapterDelegate<Event, EventCell> {
         cell.eventDescription?.text = event.description
         cell.layoutMargins = UIEdgeInsetsZero
         cell.peopleNumber?.text = String(event.subscribersCount) + "/" + String(event.peopleNumber)
-        cell.icon.sd_setImageWithURL(NSURL(string: IconBaseUrl + String(event.icon))!)
+        let icon = event.icon
+        if icon != 0 {
+            cell.icon.sd_setImageWithURL(NSURL(string: IconBaseUrl + String(icon))!)
+        } else {
+            cell.icon.image = UIImage(named: DefaultEventIcon)
+        }
     }
 }
 
