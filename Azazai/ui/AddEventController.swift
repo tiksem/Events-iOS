@@ -12,9 +12,9 @@ private let DefaultEventIcon = "event_icon.png"
 private let IconBaseUrl = "http://azazai.com/icon/"
 
 private class IconPickerAdapterDelegate : AdapterDelegateDefaultImpl<IconInfo, IconCell, LoadingView> {
-    let onItemSelected:(Int) -> Void
+    let onItemSelected:(Int, IconInfo) -> Void
 
-    init(onItemSelected:(Int) -> Void) {
+    init(onItemSelected:(Int, IconInfo) -> Void) {
         self.onItemSelected = onItemSelected
     }
 
@@ -26,14 +26,14 @@ private class IconPickerAdapterDelegate : AdapterDelegateDefaultImpl<IconInfo, I
     }
 
     override func onItemSelected(element element: IconInfo, position: Int) -> Void {
-        onItemSelected(position)
+        onItemSelected(position, element)
     }
 
 }
 
 private class IconPickerAdapter : AzazaiListAdapter<IconPickerAdapterDelegate> {
     init(icons: LazyList<IconInfo, IOError>,
-                  tableView: UITableView, onItemSelected:(Int) -> Void) {
+                  tableView: UITableView, onItemSelected:(Int, IconInfo) -> Void) {
         super.init(tableView: tableView,
                 list: icons,
                 cellIdentifier: "IconPickerCell",
@@ -42,10 +42,24 @@ private class IconPickerAdapter : AzazaiListAdapter<IconPickerAdapterDelegate> {
 
 }
 
+private struct Icon : Equatable {
+    init(image:UIImage?, id:Int) {
+        self.image = image
+        self.id = id
+    }
+
+    let image:UIImage?
+    let id:Int
+}
+
+private func == (lhs: Icon, rhs: Icon) -> Bool {
+    return lhs.id == rhs.id
+}
+
 private class IconPickerController : UIViewController, TypedRowControllerType {
     @IBOutlet weak var tableView: UITableView!
 
-    var row: RowOf<UIImage>!
+    var row: RowOf<Icon>!
     var completionCallback : ((UIViewController) -> ())?
     var requestManager:RequestManager!
     var adapter:IconPickerAdapter! = nil
@@ -64,14 +78,15 @@ private class IconPickerController : UIViewController, TypedRowControllerType {
 
         requestManager = RequestManager()
         adapter = IconPickerAdapter(icons: requestManager.getIcons(), tableView: tableView, onItemSelected: {
-            let cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: $0, inSection: 0)) as! IconCell
-            self.row.value = cell.icon.image
+            (position, iconInfo) in
+            let cell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: position, inSection: 0)) as! IconCell
+            self.row.value = Icon(image: cell.icon.image, id: iconInfo.mediaId)
             self.completionCallback?(self)
         })
     }
 }
 
-private class IconPickerRow : SelectorRow<UIImage, IconPickerController, PushSelectorCell<UIImage>> {
+private class IconPickerRow : SelectorRow<Icon, IconPickerController, PushSelectorCell<Icon>> {
     required init(tag: String?) {
         super.init(tag: tag)
         presentationMode = .Show(controllerProvider: ControllerProvider.NibFile(name: "IconPicker", bundle: nil),
@@ -88,7 +103,7 @@ private class IconPickerRow : SelectorRow<UIImage, IconPickerController, PushSel
         super.customUpdateCell()
         cell.accessoryType = .None
         cell.height = { 55 }
-        if let image = self.value {
+        if let image = self.value?.image {
             let imageView = UIImageView(frame: CGRectMake(0, 0, 44, 44))
             imageView.contentMode = .ScaleAspectFill
             imageView.image = image
@@ -118,6 +133,8 @@ class AddEventController : FormViewController {
     private var peopleNumber:IntRow!
     private var eventType:AlertRow<String>!
     private var eventDescription:TextAreaRow!
+    private var tags:TextAreaRow!
+    private var requestManager:RequestManager!
 
     func animateErrorCell(cell: UITableViewCell) {
         let animation = CAKeyframeAnimation()
@@ -131,11 +148,11 @@ class AddEventController : FormViewController {
     }
 
     func onValidateCellError(message:String, cell: UITableViewCell) {
-
+        Alerts.showOkAlert(message)
     }
 
     func validateStringFieldOfRow(row:RowOf<String>, fieldTitle:String,
-                                  minCount:Int, var addTo:[String:CustomStringConvertible]) throws {
+                                  minCount:Int, inout addTo:[String:CustomStringConvertible]) throws {
         if row.value == nil {
             onValidateCellError("\(fieldTitle) can't be blank", cell: name.cell)
         } else {
@@ -155,12 +172,21 @@ class AddEventController : FormViewController {
     func validateReturnQueryArgsIfSuccess() -> [String:CustomStringConvertible]? {
         var result:[String:CustomStringConvertible] = [:]
         do {
-            try validateStringFieldOfRow(name, fieldTitle: "Event name", minCount: EventNameMinLength, addTo: result)
+            try validateStringFieldOfRow(name, fieldTitle: "Event name", minCount: EventNameMinLength, addTo: &result)
             try validateStringFieldOfRow(address, fieldTitle: "Event address",
-                    minCount: EventAddressMinLength, addTo: result)
-            try validateStringFieldOfRow(eventDescription, fieldTitle: "Event description",
-                    minCount: EventDescriptionMinLength, addTo: result)
+                    minCount: EventAddressMinLength, addTo: &result)
 
+            result[eventType.tag!] = StringWrapper(eventType.value!.lowercaseString)
+            result[date.tag!] = Int(date.value!.timeIntervalSince1970)
+            result[peopleNumber.tag!] = peopleNumber.value ?? Int32.max
+            result[icon.tag!] = icon.value?.id ?? 0
+            let accessToken = VKSdk.accessToken().accessToken
+            result["token"] = StringWrapper(accessToken)
+
+            try validateStringFieldOfRow(eventDescription, fieldTitle: "Event description",
+                    minCount: EventDescriptionMinLength, addTo: &result)
+            try validateStringFieldOfRow(tags, fieldTitle: "Tags",
+                    minCount: 0, addTo: &result)
         } catch {
             return nil
         }
@@ -168,9 +194,7 @@ class AddEventController : FormViewController {
         return result
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
+    func setupForm() {
         var section = Section("Create New Event")
         form +++ section
 
@@ -180,7 +204,7 @@ class AddEventController : FormViewController {
         }
         section <<< name
 
-        address = TextFloatLabelRow("addresss") {
+        address = TextFloatLabelRow("address") {
             $0.title = "Event Address"
             $0.cell.maxLength = EventAddressMaxLength
         }
@@ -188,7 +212,7 @@ class AddEventController : FormViewController {
 
         icon = IconPickerRow("icon") {
             $0.title = "Event Icon"
-            $0.value = UIImage(named: DefaultEventIcon)
+            $0.value = Icon(image: UIImage(named: DefaultEventIcon), id: 0)
         }
         section <<< icon
 
@@ -217,13 +241,31 @@ class AddEventController : FormViewController {
         section = Section("Event Description")
         form +++ section
         eventDescription = TextAreaRow("description") {
+            $0.title = "YO"
             $0.cell.height = {140}
         }
         section <<< eventDescription
 
+        section = Section("Tags")
+        form +++ section
+        tags = TextAreaRow("tags") {
+            $0.placeholder = "Enter tags"
+            $0.cell.height = {80}
+        }
+        section <<< tags
+
         if let values = values {
             form.setValues(values)
         }
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupForm()
+        requestManager = RequestManager()
+
+        UiUtils.addButtonToTheRightOfNavigationBarOfTopController(self,
+                action: "createEvent", barButtonSystemItem: .Done)
     }
 
     override func viewDidDisappear(animated: Bool) {
@@ -242,4 +284,17 @@ class AddEventController : FormViewController {
         return true
     }
 
+    func createEvent() {
+        if let args = validateReturnQueryArgsIfSuccess() {
+            requestManager.createEvent(args) {
+                [unowned self]
+                (id, error) in
+                if id != nil {
+                    Alerts.showOkAlert("Event created \(id)")
+                } else {
+                    Alerts.showOkAlert(error!.description)
+                }
+            }
+        }
+    }
 }

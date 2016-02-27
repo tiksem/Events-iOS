@@ -95,6 +95,10 @@
       "limit": 1000,
       "return": "LazyList<IconInfo>",
       "key": "Icons"
+    },
+    {
+      "method": "createEvent",
+      "return": "Id"
     }
   ]
 }

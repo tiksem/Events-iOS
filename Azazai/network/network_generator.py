@@ -57,7 +57,7 @@ def generate_base(request, type_name, first_quote, second_quote):
     template = template.replace("__ParamName__", type_name)
     url = quote(baseUrl + request.get("url", method_name))
     template = template.replace("__url__", url)
-    template = template.replace("__key__", quote(request["key"]))
+    template = template.replace("__key__", quote(request.get("key", "")))
     func_args = OrderedDict()
 
     def generate_request_args(args):
@@ -98,6 +98,10 @@ def generate_array_method(request, typeName):
     template = generate_base(request, typeName, "/*array*/", "/*}*/")
     return template
 
+def generate_id_method(request, typeName):
+    template = generate_base(request, typeName, "/*id*/", "/*}*/")
+    return template
+
 body = ""
 for request in requests:
     returnType = request["return"]
@@ -109,6 +113,10 @@ for request in requests:
     if typeName is not None:
         body += generate_array_method(request, typeName)
         continue
+    if returnType == "Id":
+        body += generate_id_method(request, returnType)
+        continue
+
 
 input = remove_between_including_quotes(input, "/*helpers*/", "/*helpersEnd*/")
 input = input.replace("/*BODY*/", body)

@@ -14,10 +14,28 @@ class RequestManager {
     }
 
     private func getDictionary(url:String,
+                               args: [String: CustomStringConvertible]? = nil,
                                complete:([String: AnyObject]?, IOError?) -> Void,
                                onCancelled:(() -> Void)? = nil) {
         var canceler = Canceler()
-        Network.getJsonDictFromUrl(url, canceler: canceler, complete: complete)
+        Network.getJsonDictFromUrl(url, canceler: canceler, args: args, complete: complete)
+        cancelers.add(canceler, onCancelled: onCancelled)
+    }
+
+    private func getInt(url:String, key:String,
+                               args: [String: CustomStringConvertible]? = nil,
+                               complete:(Int?, IOError?) -> Void,
+                               onCancelled:(() -> Void)? = nil) {
+        var canceler = Canceler()
+        Network.getJsonDictFromUrl(url, canceler: canceler, args: args, complete: {
+            if let error = $1 {
+                complete(nil, error)
+            } else if let id = $0![key] as? Int {
+                complete(id, nil)
+            } else {
+                complete(nil, IOError.ResponseError(error: "BackEndError", message: "\(key) key not found or invalid"))
+            }
+        })
         cancelers.add(canceler, onCancelled: onCancelled)
     }
 
@@ -118,6 +136,12 @@ class RequestManager {
         return getLazyList("http://azazai.com/api/getIcons", key: "Icons", limit: 1000, factory: {
             return IconInfo.toIconInfosArray($0)!
         }, args: args, mergeArgs: mergeArgs)
+    }
+    
+    func createEvent(args:[String:CustomStringConvertible],
+                        onCancelled:(() -> Void)? = nil,
+                        complete:(Int?, IOError?) -> Void) {
+        getInt("http://azazai.com/api/createEvent", key: "id", args: args, complete: complete, onCancelled: onCancelled)
     }
     
 }

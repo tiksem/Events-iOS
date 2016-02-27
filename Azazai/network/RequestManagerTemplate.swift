@@ -14,10 +14,28 @@ class RequestManagerTemplate {
     }
 
     private func getDictionary(url:String,
+                               args: [String: CustomStringConvertible]? = nil,
                                complete:([String: AnyObject]?, IOError?) -> Void,
                                onCancelled:(() -> Void)? = nil) {
         var canceler = Canceler()
-        Network.getJsonDictFromUrl(url, canceler: canceler, complete: complete)
+        Network.getJsonDictFromUrl(url, canceler: canceler, args: args, complete: complete)
+        cancelers.add(canceler, onCancelled: onCancelled)
+    }
+
+    private func getInt(url:String, key:String,
+                               args: [String: CustomStringConvertible]? = nil,
+                               complete:(Int?, IOError?) -> Void,
+                               onCancelled:(() -> Void)? = nil) {
+        var canceler = Canceler()
+        Network.getJsonDictFromUrl(url, canceler: canceler, args: args, complete: {
+            if let error = $1 {
+                complete(nil, error)
+            } else if let id = $0![key] as? Int {
+                complete(id, nil)
+            } else {
+                complete(nil, IOError.ResponseError(error: "BackEndError", message: "\(key) key not found or invalid"))
+            }
+        })
         cancelers.add(canceler, onCancelled: onCancelled)
     }
 
@@ -64,6 +82,14 @@ class RequestManagerTemplate {
         getJsonArray(__url__, key: __key__, args: args, complete: {
             complete(__ParamName__.to__ParamName__sArray($0), $1)
         }, onCancelled: onCancelled)
+    }
+    /*}*/
+
+    /*id*/
+    func __methodName__(args:[String:CustomStringConvertible],
+                        onCancelled:(() -> Void)? = nil,
+                        complete:(Int?, IOError?) -> Void) {
+        getInt(__url__, key: "id", args: args, complete: complete, onCancelled: onCancelled)
     }
     /*}*/
 

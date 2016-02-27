@@ -31,14 +31,22 @@ public class UiUtils {
         return controller.navigationController?.navigationBar.frame.height ?? 0.0
     }
 
-    public static func addAddButtonToTheRightOfNavigationBarOfTopController(viewController:UIViewController,
-                                                             action:Selector) -> UIViewController {
-        let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target:viewController,
+    public static func addButtonToTheRightOfNavigationBarOfTopController(viewController:UIViewController,
+                                                                         action:Selector,
+                                                                         barButtonSystemItem: UIBarButtonSystemItem)
+                    -> UIViewController {
+        let addButton = UIBarButtonItem(barButtonSystemItem: barButtonSystemItem, target:viewController,
                 action:action)
 
         let topViewController = viewController.navigationController!.topViewController!
         topViewController.navigationItem.setRightBarButtonItem(addButton, animated: false)
         return topViewController
+    }
+
+    public static func addAddButtonToTheRightOfNavigationBarOfTopController(viewController:UIViewController,
+                                                             action:Selector) -> UIViewController {
+        return addButtonToTheRightOfNavigationBarOfTopController(viewController,
+                action:action, barButtonSystemItem: .Add)
     }
 
     public static func pushViewController(hostController:UIViewController, controller:UIViewController) {
