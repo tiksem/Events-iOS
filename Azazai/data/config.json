@@ -12,8 +12,7 @@
         "peopleNumber":"Int",
         "subscribersCount":"Int",
         "date":"Int",
-        "icon":"Int",
-        "var isSubscribed":"Bool = false"
+        "icon":"Int"
       }
     },
     {
@@ -53,5 +52,11 @@
         "tag":"String"
       }
     }
-  ] 
+  ],
+  "enums": [
+    {
+      "name": "SubscribeStatus",
+      "cases": ["none", "subscribed"]
+    }
+  ]
 }

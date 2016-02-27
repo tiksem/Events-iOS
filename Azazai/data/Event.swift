@@ -20,7 +20,6 @@ struct Event : Hashable, Equatable {
     let subscribersCount:Int
     let date:Int
     let icon:Int
-    var isSubscribed:Bool = false
 
     init(_ map:Dictionary<String, AnyObject>) {
         id = Json.getInt(map, "id") ?? 0

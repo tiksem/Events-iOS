@@ -116,6 +116,21 @@
       ],
       "key": "id",
       "return": "Void"
+    },
+    {
+      "method": "isSubscribed",
+      "return": "enum SubscribeStatus",
+      "key": "isSubscribed",
+      "args": [
+        {
+          "name": "id",
+          "type": "Int"
+        },
+        {
+          "name": "userId",
+          "type": "Int"
+        }
+      ]
     }
   ]
 }

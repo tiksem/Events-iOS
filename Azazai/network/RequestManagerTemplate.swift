@@ -78,8 +78,8 @@ class RequestManagerTemplate {
             let key = __key__
             if let error = $1 {
                 complete(nil, error)
-            } else if let id = $0![key] as? __ParamName__ {
-                complete(id, nil)
+            } else if let result = $0![key] as? __ParamName__ {
+                complete(__result__, nil)
             } else {
                 complete(nil, IOError.ResponseError(error: "BackEndError", message: "\(key) " +
                         "key not found or invalid"))

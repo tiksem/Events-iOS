@@ -130,8 +130,8 @@ class RequestManager {
             let key = "id"
             if let error = $1 {
                 complete(nil, error)
-            } else if let id = $0![key] as? Int {
-                complete(id, nil)
+            } else if let result = $0![key] as? Int {
+                complete(result, nil)
             } else {
                 complete(nil, IOError.ResponseError(error: "BackEndError", message: "\(key) " +
                         "key not found or invalid"))
@@ -151,6 +151,28 @@ class RequestManager {
         Network.getJsonDictFromUrl("http://azazai.com/api/subscribe", canceler: canceler, args: requestArgs, complete: {
             (dict, error) in
             complete(error)
+        })
+        cancelers.add(canceler, onCancelled: onCancelled)
+    }
+    
+    func isSubscribed(id:Int, userId:Int,
+                        onCancelled:(() -> Void)? = nil,
+                        complete:(SubscribeStatus?, IOError?) -> Void) {
+        var canceler = Canceler()
+        let requestArgs:[String:CustomStringConvertible] = [
+            "id": id,
+            "userId": userId
+        ]
+        Network.getJsonDictFromUrl("http://azazai.com/api/isSubscribed", canceler: canceler, args: requestArgs, complete: {
+            let key = "isSubscribed"
+            if let error = $1 {
+                complete(nil, error)
+            } else if let result = $0![key] as? String {
+                complete(SubscribeStatus(rawValue: result), nil)
+            } else {
+                complete(nil, IOError.ResponseError(error: "BackEndError", message: "\(key) " +
+                        "key not found or invalid"))
+            }
         })
         cancelers.add(canceler, onCancelled: onCancelled)
     }

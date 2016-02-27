@@ -54,6 +54,12 @@ def generate_base(request, type_name, first_quote, second_quote):
     template = find_between(input, first_quote, second_quote)
     method_name = request["method"]
     template = template.replace("__methodName__", method_name)
+    if type_name.startswith("enum "):
+        type_name = type_name.replace("enum ", "")
+        template = template.replace("__result__", type_name + "(rawValue: result)")
+        template = template.replace("as? __ParamName__", "as? String")
+    else:
+        template = template.replace("__result__", "result")
     template = template.replace("__ParamName__", type_name)
     url = quote(baseUrl + request.get("url", method_name))
     template = template.replace("__url__", url)

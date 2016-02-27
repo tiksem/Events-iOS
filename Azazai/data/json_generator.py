@@ -37,4 +37,16 @@ for struct in config["structs"]:
     content = content.replace("/*fields*/", declaration)
     open(structName + ".swift", 'w').write(content)
 
+template = open("EnumTemplate.swift", "r").read()
+for enum in config["enums"]:
+    name = enum["name"]
+    content = template.replace("__Name__", name)
+    cases = enum["cases"]
+    parts = []
+    for case in cases:
+        parts.append("case " + case + " = \"" + case + "\"")
+    content = content.replace("/*cases*/", ("\n" + _4_spaces).join(parts))
+    open(name + ".swift", 'w').write(content)
+
+
 

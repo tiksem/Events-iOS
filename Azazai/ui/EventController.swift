@@ -34,6 +34,19 @@ class EventController : UIViewController {
                 titleColor: UIColor.whiteColor(), backgroundColor: self.view.tintColor)
         UiUtils.setBackgroundAndTitleColorOfButton(subscribeButton, forState: .Disabled,
                 titleColor: UIColor.whiteColor(), backgroundColor: UIColor.lightGrayColor())
+
+        subscribeButton.enabled = false
+        subscribeButton.setTitle("Loading...", forState: .Disabled)
+        requestManager.isSubscribed(event.id, userId: AppDelegate.get().user.id) {
+            [unowned self]
+            (status, err) in
+            if let err = err {
+                Alerts.showOkAlert(err.description)
+            } else {
+                self.subscribeButton.enabled = true
+                self.subscribeButton.selected = status != .none
+            }
+        }
     }
 
     override func viewDidLoad() {

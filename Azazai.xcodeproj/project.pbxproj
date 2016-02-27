@@ -74,6 +74,7 @@
 		2E87D5C51C80F847002B1FF9 /* Eureka.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E87D5C41C80F847002B1FF9 /* Eureka.framework */; };
 		2E87D5C61C80F847002B1FF9 /* Eureka.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2E87D5C41C80F847002B1FF9 /* Eureka.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2E87D5C71C80FA96002B1FF9 /* AddEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106282BB4A22233E917980E4 /* AddEventController.swift */; };
+		2E87D5CA1C823B81002B1FF9 /* SubscribeStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E87D5C91C823B81002B1FF9 /* SubscribeStatus.swift */; };
 		2ED5E4DE1C31F9DD002A1CFB /* ic_people_grey.png in Resources */ = {isa = PBXBuildFile; fileRef = 2ED5E4DD1C31F9DD002A1CFB /* ic_people_grey.png */; };
 		2EED38271C74098C00EC6E71 /* EventController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EED38261C74098C00EC6E71 /* EventController.xib */; };
 		2EED38291C740C8200EC6E71 /* EventsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EED38281C740C8200EC6E71 /* EventsView.xib */; };
@@ -162,6 +163,7 @@
 		1062846A23306049B69ADC14 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		1062847A0FC16268D00E3D22 /* CancelerSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CancelerSet.swift; sourceTree = "<group>"; };
 		106284947B4D79E6BEB481DA /* Alerts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
+		106284F9462B4EA56795A974 /* EnumTemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnumTemplate.swift; sourceTree = "<group>"; };
 		1062853DF25D7985866D0969 /* Threading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Threading.swift; sourceTree = "<group>"; };
 		106285443E83EC6BEB9625E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
 		10628585B1C467D4A5F09BA9 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 		2E7C32D31C5FB45B00CE8F7C /* EventCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventCell.xib; sourceTree = "<group>"; };
 		2E7C32D51C5FBD5600CE8F7C /* Loading.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Loading.xib; sourceTree = "<group>"; };
 		2E87D5C41C80F847002B1FF9 /* Eureka.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Eureka.framework; path = Carthage/Build/iOS/Eureka.framework; sourceTree = "<group>"; };
+		2E87D5C91C823B81002B1FF9 /* SubscribeStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscribeStatus.swift; sourceTree = "<group>"; };
 		2ED5E4DD1C31F9DD002A1CFB /* ic_people_grey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_people_grey.png; sourceTree = "<group>"; };
 		2EED38261C74098C00EC6E71 /* EventController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventController.xib; sourceTree = "<group>"; };
 		2EED38281C740C8200EC6E71 /* EventsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventsView.xib; sourceTree = "<group>"; };
@@ -426,6 +429,7 @@
 		10628E33CBA135E48BD9FE77 /* data */ = {
 			isa = PBXGroup;
 			children = (
+				2E87D5C91C823B81002B1FF9 /* SubscribeStatus.swift */,
 				2E4BE25B1C7FA31B00ED57F5 /* IconInfo.swift */,
 				2EED383D1C7D467900EC6E71 /* VkUser.swift */,
 				1062846A23306049B69ADC14 /* Event.swift */,
@@ -433,6 +437,7 @@
 				106289C7BC543EC2C3758F86 /* Tag.swift */,
 				10628A92D295C9C144CE7066 /* Template.swift */,
 				10628891AAD30F025AA7FA45 /* config.json */,
+				106284F9462B4EA56795A974 /* EnumTemplate.swift */,
 			);
 			path = data;
 			sourceTree = "<group>";
@@ -731,6 +736,7 @@
 				2E4BE25C1C7FA31B00ED57F5 /* IconInfo.swift in Sources */,
 				2EED38341C77F97400EC6E71 /* Tag.swift in Sources */,
 				10628DE22C607992575EC828 /* EventMode.swift in Sources */,
+				2E87D5CA1C823B81002B1FF9 /* SubscribeStatus.swift in Sources */,
 				106280CF68C33B4FBAC16CDF /* EventsView.swift in Sources */,
 				10628AC70A0D37688FC2CE4D /* TagsController.swift in Sources */,
 				10628D2FA2AD624DEE2D28FE /* AzazaiListAdapter.swift in Sources */,
