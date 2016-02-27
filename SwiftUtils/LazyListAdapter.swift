@@ -49,4 +49,8 @@ public class LazyListAdapter<Delegate:AdapterDelegate,
         list.reload()
         reloadData()
     }
+
+    deinit {
+        list.onNewPageLoaded = nil
+    }
 }

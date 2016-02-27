@@ -10,6 +10,7 @@ import SwiftUtils
 class TagsController : TableViewNibViewController {
     let requestManager:RequestManager
     var tagsView:TagsView! = nil
+    var adapter:TagsAdapter! = nil
 
     required init?(coder:NSCoder) {
         requestManager = RequestManager()
@@ -19,7 +20,7 @@ class TagsController : TableViewNibViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tagsView = nestedView as! TagsView
-        TagsAdapter(controller: self, tagsListView: tagsView.tagsListView,
+        adapter = TagsAdapter(controller: self, tagsListView: tagsView.tagsListView,
                 tags: requestManager.getTags())
     }
 
