@@ -33,6 +33,8 @@ class EventController : UIViewController {
         EventUtils.displayIcon(event.icon, imageView: icon)
         subscribeButton.setTitleColor(UIColor.whiteColor(), forState: .Selected)
         subscribeButton.setBackgroundImage(UIImage.fromColor(UIColor.brownColor()), forState: .Selected)
+        subscribeButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        subscribeButton.setBackgroundImage(UIImage.fromColor(self.view.tintColor), forState: .Normal)
     }
     
     @IBAction func onSubscribeButtonClick(sender: AnyObject) {
