@@ -41,12 +41,18 @@ class LoginController : UIViewController, VKSdkDelegate, VKSdkUIDelegate {
     }
 
     func vkSdkAccessAuthorizationFinishedWithResult(_ result: VKAuthorizationResult!) {
-        onViewDidAppear = {
+        let callback = {
             if let error = result.error {
                 Alerts.showOkAlert(error.description)
             } else {
                 self.onLoginSuccess()
             }
+        }
+
+        if isViewLoaded() && view.window != nil {
+            callback()
+        } else {
+            onViewDidAppear = callback
         }
     }
 

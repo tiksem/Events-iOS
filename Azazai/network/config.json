@@ -98,7 +98,24 @@
     },
     {
       "method": "createEvent",
-      "return": "Id"
+      "args": "[:]",
+      "key": "id",
+      "return": "Int"
+    },
+    {
+      "method": "subscribe",
+      "args": [
+        {
+          "name": "id",
+          "type": "Int"
+        },
+        {
+          "name": "token",
+          "type": "String"
+        }
+      ],
+      "key": "id",
+      "return": "Void"
     }
   ]
 }

@@ -22,23 +22,6 @@ class RequestManager {
         cancelers.add(canceler, onCancelled: onCancelled)
     }
 
-    private func getInt(url:String, key:String,
-                               args: [String: CustomStringConvertible]? = nil,
-                               complete:(Int?, IOError?) -> Void,
-                               onCancelled:(() -> Void)? = nil) {
-        var canceler = Canceler()
-        Network.getJsonDictFromUrl(url, canceler: canceler, args: args, complete: {
-            if let error = $1 {
-                complete(nil, error)
-            } else if let id = $0![key] as? Int {
-                complete(id, nil)
-            } else {
-                complete(nil, IOError.ResponseError(error: "BackEndError", message: "\(key) key not found or invalid"))
-            }
-        })
-        cancelers.add(canceler, onCancelled: onCancelled)
-    }
-
     private func getJsonArray(url:String,
                               key:String,
                               args: [String: CustomStringConvertible]? = nil,
@@ -66,17 +49,17 @@ class RequestManager {
     }
     
     func getEventsList() -> LazyList<Event, IOError> {
-        let args:[String:CustomStringConvertible] = [:]
+        let requestArgs:[String:CustomStringConvertible] = [:]
         let mergeArgs:[String:CustomStringConvertible] = [
             "timeOut": true
         ]
         return getLazyList("http://azazai.com/api/getEventsList", key: "events", limit: 10, factory: {
             return Event.toEventsArray($0)!
-        }, args: args, mergeArgs: mergeArgs)
+        }, args: requestArgs, mergeArgs: mergeArgs)
     }
     
     func getUserEvents(mod:EventMode, userId:Int) -> LazyList<Event, IOError> {
-        let args:[String:CustomStringConvertible] = [
+        let requestArgs:[String:CustomStringConvertible] = [
             "mod": mod,
             "userId": userId
         ]
@@ -85,41 +68,41 @@ class RequestManager {
         ]
         return getLazyList("http://azazai.com/api/getUserEvents", key: "Events", limit: 10, factory: {
             return Event.toEventsArray($0)!
-        }, args: args, mergeArgs: mergeArgs)
+        }, args: requestArgs, mergeArgs: mergeArgs)
     }
     
     func getTopComments(eventId:Int, maxCount:Int,
                         onCancelled:(() -> Void)? = nil,
                         complete:([Comment]?, IOError?) -> Void) {
-        let args:[String:CustomStringConvertible] = [
+        let requestArgs:[String:CustomStringConvertible] = [
             "id": eventId,
             "limit": maxCount
         ]
-        getJsonArray("http://azazai.com/api/getCommentsList?offset=0", key: "Comments", args: args, complete: {
+        getJsonArray("http://azazai.com/api/getCommentsList?offset=0", key: "Comments", args: requestArgs, complete: {
             complete(Comment.toCommentsArray($0), $1)
         }, onCancelled: onCancelled)
     }
     
     func getCommentsList(eventId:Int) -> LazyList<Comment, IOError> {
-        let args:[String:CustomStringConvertible] = [
+        let requestArgs:[String:CustomStringConvertible] = [
             "id": eventId
         ]
         let mergeArgs:[String:CustomStringConvertible] = [:]
         return getLazyList("http://azazai.com/api/getCommentsList", key: "Comments", limit: 10, factory: {
             return Comment.toCommentsArray($0)!
-        }, args: args, mergeArgs: mergeArgs)
+        }, args: requestArgs, mergeArgs: mergeArgs)
     }
     
     func getTags() -> LazyList<Tag, IOError> {
-        let args:[String:CustomStringConvertible] = [:]
+        let requestArgs:[String:CustomStringConvertible] = [:]
         let mergeArgs:[String:CustomStringConvertible] = [:]
         return getLazyList("http://azazai.com/api/getTags", key: "Tags", limit: 10, factory: {
             return Tag.toTagsArray($0)!
-        }, args: args, mergeArgs: mergeArgs)
+        }, args: requestArgs, mergeArgs: mergeArgs)
     }
     
     func getEventsByTag(tag:String) -> LazyList<Event, IOError> {
-        let args:[String:CustomStringConvertible] = [
+        let requestArgs:[String:CustomStringConvertible] = [
             "tag": StringWrapper(tag)
         ]
         let mergeArgs:[String:CustomStringConvertible] = [
@@ -127,21 +110,49 @@ class RequestManager {
         ]
         return getLazyList("http://azazai.com/api/getEventsByTag", key: "Events", limit: 10, factory: {
             return Event.toEventsArray($0)!
-        }, args: args, mergeArgs: mergeArgs)
+        }, args: requestArgs, mergeArgs: mergeArgs)
     }
     
     func getIcons() -> LazyList<IconInfo, IOError> {
-        let args:[String:CustomStringConvertible] = [:]
+        let requestArgs:[String:CustomStringConvertible] = [:]
         let mergeArgs:[String:CustomStringConvertible] = [:]
         return getLazyList("http://azazai.com/api/getIcons", key: "Icons", limit: 1000, factory: {
             return IconInfo.toIconInfosArray($0)!
-        }, args: args, mergeArgs: mergeArgs)
+        }, args: requestArgs, mergeArgs: mergeArgs)
     }
     
     func createEvent(args:[String:CustomStringConvertible],
                         onCancelled:(() -> Void)? = nil,
                         complete:(Int?, IOError?) -> Void) {
-        getInt("http://azazai.com/api/createEvent", key: "id", args: args, complete: complete, onCancelled: onCancelled)
+        var canceler = Canceler()
+        let requestArgs:[String:CustomStringConvertible] = args
+        Network.getJsonDictFromUrl("http://azazai.com/api/createEvent", canceler: canceler, args: requestArgs, complete: {
+            let key = "id"
+            if let error = $1 {
+                complete(nil, error)
+            } else if let id = $0![key] as? Int {
+                complete(id, nil)
+            } else {
+                complete(nil, IOError.ResponseError(error: "BackEndError", message: "\(key) " +
+                        "key not found or invalid"))
+            }
+        })
+        cancelers.add(canceler, onCancelled: onCancelled)
+    }
+    
+    func subscribe(id:Int, token:String,
+                        onCancelled:(() -> Void)? = nil,
+                        complete:(IOError?) -> Void) {
+        var canceler = Canceler()
+        let requestArgs:[String:CustomStringConvertible] = [
+            "id": id,
+            "token": StringWrapper(token)
+        ]
+        Network.getJsonDictFromUrl("http://azazai.com/api/subscribe", canceler: canceler, args: requestArgs, complete: {
+            (dict, error) in
+            complete(error)
+        })
+        cancelers.add(canceler, onCancelled: onCancelled)
     }
     
 }

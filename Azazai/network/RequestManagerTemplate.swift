@@ -22,23 +22,6 @@ class RequestManagerTemplate {
         cancelers.add(canceler, onCancelled: onCancelled)
     }
 
-    private func getInt(url:String, key:String,
-                               args: [String: CustomStringConvertible]? = nil,
-                               complete:(Int?, IOError?) -> Void,
-                               onCancelled:(() -> Void)? = nil) {
-        var canceler = Canceler()
-        Network.getJsonDictFromUrl(url, canceler: canceler, args: args, complete: {
-            if let error = $1 {
-                complete(nil, error)
-            } else if let id = $0![key] as? Int {
-                complete(id, nil)
-            } else {
-                complete(nil, IOError.ResponseError(error: "BackEndError", message: "\(key) key not found or invalid"))
-            }
-        })
-        cancelers.add(canceler, onCancelled: onCancelled)
-    }
-
     private func getJsonArray(url:String,
                               key:String,
                               args: [String: CustomStringConvertible]? = nil,
@@ -66,11 +49,11 @@ class RequestManagerTemplate {
     }/*helpers*/
     /*lazyList*/
     func __methodName__(__args__) -> LazyList<__ParamName__, IOError> {
-        let args:[String:CustomStringConvertible] = __request_args__
+        let requestArgs:[String:CustomStringConvertible] = __request_args__
         let mergeArgs:[String:CustomStringConvertible] = __merge_args__
         return getLazyList(__url__, key: __key__, limit: __limit__, factory: {
             return __ParamName__.to__ParamName__sArray($0)!
-        }, args: args, mergeArgs: mergeArgs)
+        }, args: requestArgs, mergeArgs: mergeArgs)
     }
     /*}*/
 
@@ -78,18 +61,45 @@ class RequestManagerTemplate {
     func __methodName__(__args__,
                         onCancelled:(() -> Void)? = nil,
                         complete:([__ParamName__]?, IOError?) -> Void) {
-        let args:[String:CustomStringConvertible] = __request_args__
-        getJsonArray(__url__, key: __key__, args: args, complete: {
+        let requestArgs:[String:CustomStringConvertible] = __request_args__
+        getJsonArray(__url__, key: __key__, args: requestArgs, complete: {
             complete(__ParamName__.to__ParamName__sArray($0), $1)
         }, onCancelled: onCancelled)
     }
     /*}*/
 
-    /*id*/
-    func __methodName__(args:[String:CustomStringConvertible],
+    /*int*/
+    func __methodName__(__args__,
                         onCancelled:(() -> Void)? = nil,
-                        complete:(Int?, IOError?) -> Void) {
-        getInt(__url__, key: "id", args: args, complete: complete, onCancelled: onCancelled)
+                        complete:(__ParamName__?, IOError?) -> Void) {
+        var canceler = Canceler()
+        let requestArgs:[String:CustomStringConvertible] = __request_args__
+        Network.getJsonDictFromUrl(__url__, canceler: canceler, args: requestArgs, complete: {
+            let key = __key__
+            if let error = $1 {
+                complete(nil, error)
+            } else if let id = $0![key] as? __ParamName__ {
+                complete(id, nil)
+            } else {
+                complete(nil, IOError.ResponseError(error: "BackEndError", message: "\(key) " +
+                        "key not found or invalid"))
+            }
+        })
+        cancelers.add(canceler, onCancelled: onCancelled)
+    }
+    /*}*/
+
+    /*void*/
+    func __methodName__(__args__,
+                        onCancelled:(() -> Void)? = nil,
+                        complete:(IOError?) -> Void) {
+        var canceler = Canceler()
+        let requestArgs:[String:CustomStringConvertible] = __request_args__
+        Network.getJsonDictFromUrl(__url__, canceler: canceler, args: requestArgs, complete: {
+            (dict, error) in
+            complete(error)
+        })
+        cancelers.add(canceler, onCancelled: onCancelled)
     }
     /*}*/
 

@@ -79,11 +79,16 @@ def generate_base(request, type_name, first_quote, second_quote):
 
     args = request.get("args", [])
     mergeArgs = request.get("mergeArgs", [])
-    template = template.replace("__request_args__", generate_request_args(args))
+    if args == "[:]":
+        template = template.replace("__request_args__", "args")
+    else:
+        template = template.replace("__request_args__", generate_request_args(args))
     template = template.replace("__merge_args__", generate_request_args(mergeArgs))
     func_args_str = ", ".join([key + ":" + value for key, value in func_args.items()])
     if len(func_args) > 0:
         template = template.replace("__args__", func_args_str)
+    elif args == "[:]":
+        template = template.replace("__args__", "args:[String:CustomStringConvertible]")
     else:
         template = template.replace("__args__,\n" + _8_spaces + _8_spaces + _8_spaces, "")
         template = template.replace("__args__", "")
@@ -98,8 +103,12 @@ def generate_array_method(request, typeName):
     template = generate_base(request, typeName, "/*array*/", "/*}*/")
     return template
 
-def generate_id_method(request, typeName):
-    template = generate_base(request, typeName, "/*id*/", "/*}*/")
+def generate_primitive_method(request, typeName):
+    template = generate_base(request, typeName, "/*int*/", "/*}*/")
+    return template
+
+def generate_void_method(request, typeName):
+    template = generate_base(request, typeName, "/*void*/", "/*}*/")
     return template
 
 body = ""
@@ -113,8 +122,11 @@ for request in requests:
     if typeName is not None:
         body += generate_array_method(request, typeName)
         continue
-    if returnType == "Id":
-        body += generate_id_method(request, returnType)
+    if returnType == "Void":
+        body += generate_void_method(request, returnType)
+        continue
+    else:
+        body += generate_primitive_method(request, returnType)
         continue
 
 

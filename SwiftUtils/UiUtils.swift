@@ -103,4 +103,12 @@ public class UiUtils {
         label.text = text
         label.sizeToFit()
     }
+
+    public static func setBackgroundAndTitleColorOfButton(button: UIButton,
+                                                         forState: UIControlState,
+                                                         titleColor: UIColor,
+                                                         backgroundColor:UIColor) {
+        button.setTitleColor(titleColor, forState: forState)
+        button.setBackgroundImage(UIImage.fromColor(backgroundColor), forState: forState)
+    }
 }
