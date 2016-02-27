@@ -16,7 +16,7 @@ class EventController : UIViewController {
     
     private var event:Event! = nil
     private var requestManager:RequestManager! = nil
-    
+
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
@@ -57,13 +57,16 @@ class EventController : UIViewController {
         EventUtils.displayIcon(event.icon, imageView: icon)
         setupSubscribeButton()
     }
-    
+
     @IBAction func onSubscribeButtonClick(sender: AnyObject) {
+        var lastSelected = subscribeButton.selected
+        subscribeButton.selected = false
         subscribeButton.enabled = false
         requestManager.subscribe(event.id, token: VKSdk.accessToken().accessToken) {
             [unowned self]
             (err) in
             self.subscribeButton.enabled = true
+            self.subscribeButton.selected = lastSelected
             if let err = err {
                 Alerts.showOkAlert(err.description)
             } else {
