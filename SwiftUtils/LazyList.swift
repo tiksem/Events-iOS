@@ -71,6 +71,15 @@ public class LazyList<T : Hashable, Error : ErrorType> : RandomAccessable {
         }, pageNumber)
     }
 
+    public func reload() {
+        items = []
+        itemsSet = []
+        pageNumber = 0
+        canceler?.cancel()
+        allDataLoaded = false
+        loadNextPageExecuted = false
+    }
+
     deinit {
         canceler?.cancel()
     }

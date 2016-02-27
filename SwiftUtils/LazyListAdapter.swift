@@ -44,4 +44,9 @@ public class LazyListAdapter<Delegate:AdapterDelegate,
             listDidSet()
         }
     }
+
+    public func resetData() {
+        list.reload()
+        reloadData()
+    }
 }

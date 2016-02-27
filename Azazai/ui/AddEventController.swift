@@ -285,13 +285,19 @@ class AddEventController : FormViewController {
         return true
     }
 
+    func onEventCreated(id:Int) {
+        Alerts.showOkAlert("Event created \(id)")
+        let eventsController = UiUtils.getBackViewControllerFromTabBar(self) as! EventsController
+        eventsController.resetData()
+    }
+
     func createEvent() {
         if let args = validateReturnQueryArgsIfSuccess() {
             requestManager.createEvent(args) {
                 [unowned self]
                 (id, error) in
                 if id != nil {
-                    Alerts.showOkAlert("Event created \(id)")
+                    self.onEventCreated(id!)
                 } else {
                     Alerts.showOkAlert(error!.description)
                 }

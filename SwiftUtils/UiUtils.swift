@@ -7,36 +7,36 @@ import Foundation
 import UIKit
 
 public class UiUtils {
-    public static let STATUS_BAR_HEIGHT:CGFloat = 20.0
+    public static let STATUS_BAR_HEIGHT: CGFloat = 20.0
 
-    public static func removeSeparator(cell:UITableViewCell) {
+    public static func removeSeparator(cell: UITableViewCell) {
         cell.separatorInset = UIEdgeInsetsMake(0, cell.bounds.size.width, 0, 0);
     }
 
-    public static func viewFromNib(fileName:String) -> UIView {
+    public static func viewFromNib(fileName: String) -> UIView {
         return NSBundle.mainBundle().loadNibNamed(fileName,
                 owner: nil, options: nil)[0] as! UIView
     }
 
-    public static func registerNib(tableView tableView:UITableView, nibName:String, cellIdentifier:String) {
+    public static func registerNib(tableView tableView: UITableView, nibName: String, cellIdentifier: String) {
         let nib = UINib(nibName: nibName, bundle: nil)
         tableView.registerNib(nib, forCellReuseIdentifier: cellIdentifier)
     }
 
-    public static func getTabBarHeightOfController(controller:UIViewController) -> CGFloat {
+    public static func getTabBarHeightOfController(controller: UIViewController) -> CGFloat {
         return controller.tabBarController?.tabBar.frame.height ?? 0
     }
 
-    public static func getNavigationBarHeightOfCotroller(controller:UIViewController) -> CGFloat {
+    public static func getNavigationBarHeightOfCotroller(controller: UIViewController) -> CGFloat {
         return controller.navigationController?.navigationBar.frame.height ?? 0.0
     }
 
-    public static func addNavigationBarButtonOfTopController(viewController:UIViewController, left:Bool = false,
-                                                                         action:Selector,
-                                                                         barButtonSystemItem: UIBarButtonSystemItem)
+    public static func addNavigationBarButtonOfTopController(viewController: UIViewController, left: Bool = false,
+                                                             action: Selector,
+                                                             barButtonSystemItem: UIBarButtonSystemItem)
                     -> UIViewController {
-        let addButton = UIBarButtonItem(barButtonSystemItem: barButtonSystemItem, target:viewController,
-                action:action)
+        let addButton = UIBarButtonItem(barButtonSystemItem: barButtonSystemItem, target: viewController,
+                action: action)
 
         let topViewController = viewController.navigationController!.topViewController!
         if left {
@@ -47,17 +47,17 @@ public class UiUtils {
         return topViewController
     }
 
-    public static func addAddButtonToTheRightOfNavigationBarOfTopController(viewController:UIViewController,
-                                                             action:Selector) -> UIViewController {
+    public static func addAddButtonToTheRightOfNavigationBarOfTopController(viewController: UIViewController,
+                                                                            action: Selector) -> UIViewController {
         return addNavigationBarButtonOfTopController(viewController,
-                action:action, barButtonSystemItem: .Add)
+                action: action, barButtonSystemItem: .Add)
     }
 
-    public static func pushViewController(hostController:UIViewController, controller:UIViewController) {
+    public static func pushViewController(hostController: UIViewController, controller: UIViewController) {
         hostController.navigationController!.pushViewController(controller, animated: true)
     }
 
-    public static func addLoadingToCenterOfViewController(viewController:UIViewController) -> UIActivityIndicatorView {
+    public static func addLoadingToCenterOfViewController(viewController: UIViewController) -> UIActivityIndicatorView {
         let loading = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
         let view = viewController.view
         view.addSubview(loading)
@@ -65,21 +65,35 @@ public class UiUtils {
         return loading
     }
 
-    public static func limitLengthHelper(textField textField: UITextField, maxLength:Int,
+    public static func limitLengthHelper(textField textField: UITextField, maxLength: Int,
                                          shouldChangeCharactersInRange range: NSRange,
                                          replacementString string: String) -> Bool {
         return limitLengthHelper(text: textField.text, maxLength: maxLength,
                 shouldChangeCharactersInRange: range, replacementString: string)
     }
 
-    public static func limitLengthHelper(text text: String?, maxLength:Int,
+    public static func limitLengthHelper(text text: String?, maxLength: Int,
                                          shouldChangeCharactersInRange range: NSRange,
                                          replacementString string: String) -> Bool {
         let currentCharacterCount = text?.characters.count ?? 0
-        if (range.length + range.location > currentCharacterCount){
+        if (range.length + range.location > currentCharacterCount) {
             return false
         }
         let newLength = currentCharacterCount + string.characters.count - range.length
         return newLength <= maxLength
+    }
+
+    public static func getBackViewController(controller:UIViewController) -> UIViewController? {
+        let navigationController = controller.navigationController
+        let numberOfViewControllers = navigationController?.viewControllers.count ?? 0
+        if numberOfViewControllers < 2 {
+            return nil
+        } else {
+            return navigationController!.viewControllers[numberOfViewControllers - 2]
+        }
+    }
+
+    public static func getBackViewControllerFromTabBar(controller:UIViewController) -> UIViewController {
+        return (getBackViewController(controller)! as! UITabBarController).selectedViewController!
     }
 }

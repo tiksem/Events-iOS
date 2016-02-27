@@ -49,4 +49,8 @@ class EventsController: TableViewNibViewController {
     func addEvent() {
         UiUtils.pushViewController(self, controller: AddEventController())
     }
+
+    func resetData() {
+        adapter = createEventsAdapter()
+    }
 }
