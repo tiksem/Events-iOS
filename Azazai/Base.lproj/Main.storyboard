@@ -20,9 +20,6 @@
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <tabBarItem key="tabBarItem" title="Events" id="5YB-V8-ju6"/>
                     <navigationItem key="navigationItem" id="1Mk-gj-wfE"/>
-                    <connections>
-                        <segue destination="Wi5-jD-USL" kind="show" identifier="ShowEvent" id="Nli-1f-Nn7"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -85,16 +82,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nmO-Eq-VHb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="969" y="1451"/>
-        </scene>
-        <!--Event-->
-        <scene sceneID="NoA-yJ-HL9">
-            <objects>
-                <viewController title="Event" id="Wi5-jD-USL" customClass="EventController" customModule="Azazai" sceneMemberID="viewController">
-                    <extendedEdge key="edgesForExtendedLayout"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="G4t-zK-NLU" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1648" y="-78"/>
         </scene>
         <!--Login Screen-->
         <scene sceneID="eJR-lb-jgS">

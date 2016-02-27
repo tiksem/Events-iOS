@@ -16,9 +16,7 @@ private class IconPickerAdapterDelegate : AdapterDelegateDefaultImpl<IconInfo, I
     }
 
     override func displayItem(element icon: IconInfo, cell: IconCell) -> Void {
-        if let url = NSURL(string: IconBaseUrl + String(icon.mediaId)) {
-            cell.icon.sd_setImageWithURL(url)
-        }
+        EventUtils.displayIcon(icon.mediaId, imageView: cell.icon)
         cell.label.text = icon.tag
     }
 

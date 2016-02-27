@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1062807ABF0D029265A96A11 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1062881622458FB3CD7F9CDF /* Info.plist */; };
 		106280A3E159B5809FD37484 /* RandomAccessibleAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10628D5875D648D466F64DE1 /* RandomAccessibleAdapter.swift */; };
+		106280A8C1113A1EA16AECE9 /* EventUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10628EA5FCABBF8D8B1C4DB1 /* EventUtils.swift */; };
 		106280C7E962AAB3BBD37561 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1062846A23306049B69ADC14 /* Event.swift */; };
 		106280CF68C33B4FBAC16CDF /* EventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10628122C0857EE9A51CC8C0 /* EventsView.swift */; };
 		1062822070D3CD97D3BB12E1 /* SwiftUtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10628A74865C670B8082549A /* SwiftUtilsTests.swift */; };
@@ -73,8 +74,7 @@
 		2E87D5C61C80F847002B1FF9 /* Eureka.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2E87D5C41C80F847002B1FF9 /* Eureka.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2E87D5C71C80FA96002B1FF9 /* AddEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106282BB4A22233E917980E4 /* AddEventController.swift */; };
 		2ED5E4DE1C31F9DD002A1CFB /* ic_people_grey.png in Resources */ = {isa = PBXBuildFile; fileRef = 2ED5E4DD1C31F9DD002A1CFB /* ic_people_grey.png */; };
-		2EED38251C73FA1A00EC6E71 /* EventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EED38241C73FA1A00EC6E71 /* EventView.swift */; };
-		2EED38271C74098C00EC6E71 /* EventView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EED38261C74098C00EC6E71 /* EventView.xib */; };
+		2EED38271C74098C00EC6E71 /* EventController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EED38261C74098C00EC6E71 /* EventController.xib */; };
 		2EED38291C740C8200EC6E71 /* EventsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EED38281C740C8200EC6E71 /* EventsView.xib */; };
 		2EED382A1C74E97800EC6E71 /* UserEventsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10628DA5D2131CF8A60F3D47 /* UserEventsController.swift */; };
 		2EED38321C77CCD800EC6E71 /* PageMenuFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EED38311C77CCD800EC6E71 /* PageMenuFramework.framework */; };
@@ -201,6 +201,7 @@
 		10628DA5D2131CF8A60F3D47 /* UserEventsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserEventsController.swift; sourceTree = "<group>"; };
 		10628DFFF1F5A18124DFF997 /* TagsAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsAdapter.swift; sourceTree = "<group>"; };
 		10628E15F24393379BA8BD98 /* MyEventsHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyEventsHeaderView.swift; sourceTree = "<group>"; };
+		10628EA5FCABBF8D8B1C4DB1 /* EventUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventUtils.swift; sourceTree = "<group>"; };
 		10628EEDEB9E10EBA84BE95C /* network_generator.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = network_generator.py; sourceTree = "<group>"; };
 		10628F71CCF2243E5A7B4DA2 /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		10628F8DAA9F4386197EE280 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
@@ -214,8 +215,7 @@
 		2E7C32D51C5FBD5600CE8F7C /* Loading.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Loading.xib; sourceTree = "<group>"; };
 		2E87D5C41C80F847002B1FF9 /* Eureka.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Eureka.framework; path = Carthage/Build/iOS/Eureka.framework; sourceTree = "<group>"; };
 		2ED5E4DD1C31F9DD002A1CFB /* ic_people_grey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_people_grey.png; sourceTree = "<group>"; };
-		2EED38241C73FA1A00EC6E71 /* EventView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventView.swift; sourceTree = "<group>"; };
-		2EED38261C74098C00EC6E71 /* EventView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventView.xib; sourceTree = "<group>"; };
+		2EED38261C74098C00EC6E71 /* EventController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventController.xib; sourceTree = "<group>"; };
 		2EED38281C740C8200EC6E71 /* EventsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventsView.xib; sourceTree = "<group>"; };
 		2EED38311C77CCD800EC6E71 /* PageMenuFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PageMenuFramework.framework; path = Carthage/Build/iOS/PageMenuFramework.framework; sourceTree = "<group>"; };
 		2EED38351C78018B00EC6E71 /* TagsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TagsView.xib; sourceTree = "<group>"; };
@@ -348,8 +348,7 @@
 				106288EF081F062EB4283FE1 /* EventsController.swift */,
 				2E7C32D51C5FBD5600CE8F7C /* Loading.xib */,
 				1062806EB94A695BC39A227F /* EventController.swift */,
-				2EED38241C73FA1A00EC6E71 /* EventView.swift */,
-				2EED38261C74098C00EC6E71 /* EventView.xib */,
+				2EED38261C74098C00EC6E71 /* EventController.xib */,
 				10628122C0857EE9A51CC8C0 /* EventsView.swift */,
 				2EED38281C740C8200EC6E71 /* EventsView.xib */,
 				10628DA5D2131CF8A60F3D47 /* UserEventsController.swift */,
@@ -366,6 +365,7 @@
 				106281D86AB44BDD00DA5416 /* CustomCells.swift */,
 				2EED384A1C7F93E700EC6E71 /* IconPicker.xib */,
 				10628C44F65CEB23EA5DAD1E /* IconCell.swift */,
+				10628EA5FCABBF8D8B1C4DB1 /* EventUtils.swift */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -638,7 +638,7 @@
 				2EED38401C7DE4AD00EC6E71 /* empty-avatar.jpg in Resources */,
 				2EED38291C740C8200EC6E71 /* EventsView.xib in Resources */,
 				2E4BE25A1C7F9CF200ED57F5 /* IconPickerCell.xib in Resources */,
-				2EED38271C74098C00EC6E71 /* EventView.xib in Resources */,
+				2EED38271C74098C00EC6E71 /* EventController.xib in Resources */,
 				2E7C32D41C5FB45B00CE8F7C /* EventCell.xib in Resources */,
 				2EED38451C7E55AC00EC6E71 /* event_icon.png in Resources */,
 				2E7C32D61C5FBD5600CE8F7C /* Loading.xib in Resources */,
@@ -712,7 +712,6 @@
 			files = (
 				10628B15E306708D605BFF1D /* AppDelegate.swift in Sources */,
 				106280C7E962AAB3BBD37561 /* Event.swift in Sources */,
-				2EED38251C73FA1A00EC6E71 /* EventView.swift in Sources */,
 				2E7C32D91C615D3300CE8F7C /* EventController.swift in Sources */,
 				10628EA943570F45C8A8B229 /* RequestManager.swift in Sources */,
 				2EED383C1C7D209300EC6E71 /* LoadingView.swift in Sources */,
@@ -738,6 +737,7 @@
 				1062833D4A031341979801EC /* FloatLabelTextField.swift in Sources */,
 				10628DBCD7B1E023E45C63F5 /* CustomCells.swift in Sources */,
 				1062846525CCD5710ED6BA6F /* IconCell.swift in Sources */,
+				106280A8C1113A1EA16AECE9 /* EventUtils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

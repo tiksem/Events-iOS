@@ -96,4 +96,11 @@ public class UiUtils {
     public static func getBackViewControllerFromTabBar(controller:UIViewController) -> UIViewController {
         return (getBackViewController(controller)! as! UITabBarController).selectedViewController!
     }
+
+    public static func setupMultiLineForLabel(label:UILabel, text:String) {
+        label.lineBreakMode = .ByWordWrapping
+        label.numberOfLines = 0
+        label.text = text
+        label.sizeToFit()
+    }
 }

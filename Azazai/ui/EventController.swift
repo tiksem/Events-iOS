@@ -8,12 +8,28 @@ import SwiftUtils
 import UIKit
 
 
-class EventController : NibViewController {
+class EventController : UIViewController {
+    @IBOutlet weak var icon: UIImageView!
+    @IBOutlet weak var peopleNumber: UILabel!
+    @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var eventDescription: UILabel!
+    
+    private var event:Event! = nil
+    
     required init?(coder: NSCoder) {
-        super.init(coder: coder, nibFileName: "EventView")
+        super.init(coder: coder)
     }
 
-    public init() {
-        super.init(nibFileName: "EventView")
+    init(event:Event) {
+        super.init(nibName: "EventController", bundle: nil)
+        self.event = event
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        UiUtils.setupMultiLineForLabel(eventDescription, text: event.description)
+        EventUtils.displayPeopleNumberInLabel(peopleNumber, event: event)
+        name.text = event.name
+        EventUtils.displayIcon(event.icon, imageView: icon)
     }
 }
