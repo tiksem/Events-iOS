@@ -261,8 +261,12 @@ class AddEventController : FormViewController {
         setupForm()
         requestManager = RequestManager()
 
-        UiUtils.addButtonToTheRightOfNavigationBarOfTopController(self,
+        let topController = UiUtils.addNavigationBarButtonOfTopController(self,
                 action: "createEvent", barButtonSystemItem: .Done)
+        topController.navigationItem.setHidesBackButton(true, animated: false)
+
+        UiUtils.addNavigationBarButtonOfTopController(self, left: true,
+                action: "cancel", barButtonSystemItem: .Cancel)
     }
 
     override func viewDidDisappear(animated: Bool) {
@@ -293,5 +297,9 @@ class AddEventController : FormViewController {
                 }
             }
         }
+    }
+
+    func cancel() {
+        navigationController!.popViewControllerAnimated(true)
     }
 }

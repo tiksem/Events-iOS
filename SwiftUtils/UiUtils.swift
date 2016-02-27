@@ -31,7 +31,7 @@ public class UiUtils {
         return controller.navigationController?.navigationBar.frame.height ?? 0.0
     }
 
-    public static func addButtonToTheRightOfNavigationBarOfTopController(viewController:UIViewController,
+    public static func addNavigationBarButtonOfTopController(viewController:UIViewController, left:Bool = false,
                                                                          action:Selector,
                                                                          barButtonSystemItem: UIBarButtonSystemItem)
                     -> UIViewController {
@@ -39,13 +39,17 @@ public class UiUtils {
                 action:action)
 
         let topViewController = viewController.navigationController!.topViewController!
-        topViewController.navigationItem.setRightBarButtonItem(addButton, animated: false)
+        if left {
+            topViewController.navigationItem.setLeftBarButtonItem(addButton, animated: false)
+        } else {
+            topViewController.navigationItem.setRightBarButtonItem(addButton, animated: false)
+        }
         return topViewController
     }
 
     public static func addAddButtonToTheRightOfNavigationBarOfTopController(viewController:UIViewController,
                                                              action:Selector) -> UIViewController {
-        return addButtonToTheRightOfNavigationBarOfTopController(viewController,
+        return addNavigationBarButtonOfTopController(viewController,
                 action:action, barButtonSystemItem: .Add)
     }
 
