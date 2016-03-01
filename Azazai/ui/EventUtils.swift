@@ -21,4 +21,11 @@ class EventUtils {
     public static func displayPeopleNumberInLabel(label:UILabel, event:Event) {
         label.text = String(event.subscribersCount) + "/" + String(event.peopleNumber)
     }
+
+    public static func eventDateToString(date:Int) -> String {
+        let date = NSDate(timeIntervalSince1970: Double(date))
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "dd-MM-yyyy HH:mm:ss"
+        return formatter.stringFromDate(date)
+    }
 }

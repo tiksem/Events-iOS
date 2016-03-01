@@ -58,7 +58,7 @@ class EventController : UIViewController {
         name.text = event.name
         EventUtils.displayIcon(event.icon, imageView: icon)
         address.text! += " \(event.address)"
-        let date = NSDate(timeIntervalSince1970: Double(event.date))
+        let date = EventUtils.eventDateToString(event.date)
         eventDate.text! += " \(date)"
         setupSubscribeButton()
     }
