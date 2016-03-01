@@ -13,6 +13,8 @@ class EventController : UIViewController {
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var eventDescription: UILabel!
     @IBOutlet weak var subscribeButton: UIButton!
+    @IBOutlet weak var eventDate: UILabel!
+    @IBOutlet weak var address: UILabel!
     
     private var event:Event! = nil
     private var requestManager:RequestManager! = nil
@@ -55,11 +57,14 @@ class EventController : UIViewController {
         EventUtils.displayPeopleNumberInLabel(peopleNumber, event: event)
         name.text = event.name
         EventUtils.displayIcon(event.icon, imageView: icon)
+        address.text! += " \(event.address)"
+        let date = NSDate(timeIntervalSince1970: Double(event.date))
+        eventDate.text! += " \(date)"
         setupSubscribeButton()
     }
 
     @IBAction func onSubscribeButtonClick(sender: AnyObject) {
-        var lastSelected = subscribeButton.selected
+        let lastSelected = subscribeButton.selected
         subscribeButton.selected = false
         subscribeButton.enabled = false
         requestManager.subscribe(event.id, token: VKSdk.accessToken().accessToken) {
