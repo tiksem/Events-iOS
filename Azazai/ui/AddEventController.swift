@@ -249,6 +249,8 @@ class AddEventController : FormViewController {
         }
         section <<< tags
 
+        section <<< TagsRow("moretags")
+
         if let values = values {
             form.setValues(values)
         }
