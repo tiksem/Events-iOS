@@ -20,18 +20,7 @@ class TagView : UIView {
         var tagLabel = UILabel()
         tagLabel.text = tagName
         var labelFrame = tagLabel.frame
-        //tagLabel.font = tagInputField_.font
-//        labelFrame.size.width = frame.size.width + 16
-//        labelFrame.size.height = frame.size.height
-//        UiUtils.setupMultiLineForLabel(tagLabel, text: tagName)
-//        tagLabel.textColor = UIColor.yellowColor()
         tagLabel.textAlignment = .Center
-//        tagLabel.clipsToBounds = true
-//        tagLabel.layer.cornerRadius = 5
-//
-//        tagLabel.frame = labelFrame
-//        self.frame.size.width = labelFrame.size.width + 5
-//        tagLabel.frame.origin.x = (frame.size.width - labelFrame.size.width) * 0.5
         addSubview(tagLabel)
         tagLabel.sizeToFit()
         tagLabel.textColor = UIColor.yellowColor()
@@ -54,10 +43,11 @@ public class TagsView : UIView {
 
     public override init(frame withFrame:CGRect) {
         super.init(frame: withFrame)
-        frame.size.width = 0
-        frame.size.height = 0
-        let tagView = TagView(tagName: "YO", withFrame: CGRect(x: 0, y: 0, width: frame.width, height: frame.height))
+    }
+
+    public func addTag(tag:String) {
+        let tagView = TagView(tagName: tag, withFrame: CGRect(x: 0, y: 0, width: frame.width, height: frame.height))
         addSubview(tagView)
-        frame.size = tagView.frame.size
+        UiUtils.centerVerticaly(tagView)
     }
 }

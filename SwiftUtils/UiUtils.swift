@@ -111,4 +111,9 @@ public class UiUtils {
         button.setTitleColor(titleColor, forState: forState)
         button.setBackgroundImage(UIImage.fromColor(backgroundColor), forState: forState)
     }
+
+    public static func centerVerticaly(view:UIView) {
+        let superFrame = view.superview!.frame
+        view.frame.origin.y = (superFrame.height - view.frame.height) / 2
+    }
 }
