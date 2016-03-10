@@ -31,5 +31,6 @@ final class TagsCell : Cell<TagsArray>, CellType {
         let tagsView = SwiftUtils.TagsView(frame: frame)
         addSubview(tagsView)
         tagsView.addTag("YO")
+        tagsView.addTag("YO2")
     }
 }

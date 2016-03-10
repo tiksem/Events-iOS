@@ -28,7 +28,7 @@ class TagView : UIView {
         tagLabel.layer.cornerRadius = 5
         tagLabel.frame.size.width += 10
         tagLabel.frame.size.height += 5
-        frame = tagLabel.frame
+        frame.size = tagLabel.frame.size
     }
 
     override required init?(coder aDecoder: NSCoder) {
@@ -37,6 +37,8 @@ class TagView : UIView {
 }
 
 public class TagsView : UIView {
+    public var tagsSpace:CGFloat = 5
+
     public override required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -46,7 +48,14 @@ public class TagsView : UIView {
     }
 
     public func addTag(tag:String) {
-        let tagView = TagView(tagName: tag, withFrame: CGRect(x: 0, y: 0, width: frame.width, height: frame.height))
+        var tagViewOrigin = CGPoint(x: 0, y: 0)
+        if let lastView = subviews.last {
+            let lastViewFrame = lastView.frame
+            tagViewOrigin.x = lastViewFrame.origin.x + lastViewFrame.width + tagsSpace
+        }
+
+        let tagViewFrame = CGRect(origin: tagViewOrigin, size: frame.size)
+        let tagView = TagView(tagName: tag, withFrame: tagViewFrame)
         addSubview(tagView)
         UiUtils.centerVerticaly(tagView)
     }
