@@ -20,23 +20,35 @@ func == (a: TagsArray, b: TagsArray) -> Bool {
 final class TagsRow: Row<TagsArray, TagsCell>, RowType {
     required init(tag: String?) {
         super.init(tag: tag)
+        value = TagsArray()
         displayValueFor = nil
+
+        cell.tagsView.onTagsChanged = {
+            self.value!.array = self.cell.tagsView.tags as NSArray as! [String]
+        }
+    }
+}
+
+private class TagsListView : TLTagsControl {
+    var onTagsChanged:(() -> Void)?
+
+    override func reloadTagSubviews() {
+        super.reloadTagSubviews()
+        onTagsChanged?()
     }
 }
 
 final class TagsCell : Cell<TagsArray>, CellType {
-    var tagsView:TLTagsControl!
+    private var tagsView:TagsListView!
 
     required init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
-        tagsView = TLTagsControl(frame: CGRect(origin: CGPoint(x: frame.origin.x + 8, y: frame.origin.y),
+        tagsView = TagsListView(frame: CGRect(origin: CGPoint(x: frame.origin.x + 8, y: frame.origin.y),
                 size: CGSize(width: frame.width - 16, height: 36)),
                 andTags: [],
                 withTagsControlMode: .Edit)
         addSubview(tagsView)
         UiUtils.centerVerticaly(tagsView)
-        tagsView.addTag("YO")
-        tagsView.addTag("YO2")
     }
 }

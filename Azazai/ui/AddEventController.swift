@@ -128,7 +128,7 @@ class AddEventController : FormViewController {
     private var peopleNumber:IntRow!
     private var eventType:AlertRow<String>!
     private var eventDescription:TextAreaRow!
-    private var tags:TextAreaRow!
+    private var tags:TagsRow!
     private var requestManager:RequestManager!
 
     func animateErrorCell(cell: UITableViewCell) {
@@ -175,13 +175,19 @@ class AddEventController : FormViewController {
             result[date.tag!] = Int(date.value!.timeIntervalSince1970)
             result[peopleNumber.tag!] = peopleNumber.value ?? Int32.max
             result[icon.tag!] = icon.value?.id ?? 0
+
             let accessToken = VKSdk.accessToken().accessToken
             result["token"] = StringWrapper(accessToken)
 
             try validateStringFieldOfRow(eventDescription, fieldTitle: "Event description",
                     minCount: EventDescriptionMinLength, addTo: &result)
-            try validateStringFieldOfRow(tags, fieldTitle: "Tags",
-                    minCount: 0, addTo: &result)
+
+            if let tagsArray = tags.value?.array {
+                result[tags.tag!] = StringWrapper(tagsArray.joinWithSeparator(","))
+            } else {
+                onValidateCellError("Enter tags", cell: tags.cell)
+                throw Errors.Void
+            }
         } catch {
             return nil
         }
@@ -243,7 +249,8 @@ class AddEventController : FormViewController {
 
         section = Section("Tags")
         form +++ section
-        section <<< TagsRow("tags")
+        tags = TagsRow("tags")
+        section <<< tags
 
         if let values = values {
             form.setValues(values)
