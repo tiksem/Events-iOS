@@ -243,13 +243,7 @@ class AddEventController : FormViewController {
 
         section = Section("Tags")
         form +++ section
-        tags = TextAreaRow("tags") {
-            $0.placeholder = "Enter tags"
-            $0.cell.height = {80}
-        }
-        section <<< tags
-
-        section <<< TagsRow("moretags")
+        section <<< TagsRow("tags")
 
         if let values = values {
             form.setValues(values)

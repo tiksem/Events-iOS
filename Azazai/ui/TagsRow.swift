@@ -25,11 +25,17 @@ final class TagsRow: Row<TagsArray, TagsCell>, RowType {
 }
 
 final class TagsCell : Cell<TagsArray>, CellType {
+    var tagsView:TLTagsControl!
+
     required init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
-        let tagsView = SwiftUtils.TagsView(frame: frame)
+        tagsView = TLTagsControl(frame: CGRect(origin: CGPoint(x: frame.origin.x + 8, y: frame.origin.y),
+                size: CGSize(width: frame.width - 16, height: 36)),
+                andTags: [],
+                withTagsControlMode: .Edit)
         addSubview(tagsView)
+        UiUtils.centerVerticaly(tagsView)
         tagsView.addTag("YO")
         tagsView.addTag("YO2")
     }

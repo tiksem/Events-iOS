@@ -78,6 +78,7 @@
 		2E87D5C61C80F847002B1FF9 /* Eureka.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2E87D5C41C80F847002B1FF9 /* Eureka.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2E87D5C71C80FA96002B1FF9 /* AddEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106282BB4A22233E917980E4 /* AddEventController.swift */; };
 		2E87D5CA1C823B81002B1FF9 /* SubscribeStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E87D5C91C823B81002B1FF9 /* SubscribeStatus.swift */; };
+		2E87D5D51C976806002B1FF9 /* TLTagsControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E87D5D31C976806002B1FF9 /* TLTagsControl.m */; };
 		2ED5E4DE1C31F9DD002A1CFB /* ic_people_grey.png in Resources */ = {isa = PBXBuildFile; fileRef = 2ED5E4DD1C31F9DD002A1CFB /* ic_people_grey.png */; };
 		2EED38271C74098C00EC6E71 /* EventController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EED38261C74098C00EC6E71 /* EventController.xib */; };
 		2EED38291C740C8200EC6E71 /* EventsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EED38281C740C8200EC6E71 /* EventsView.xib */; };
@@ -225,6 +226,8 @@
 		2E7C32D51C5FBD5600CE8F7C /* Loading.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Loading.xib; sourceTree = "<group>"; };
 		2E87D5C41C80F847002B1FF9 /* Eureka.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Eureka.framework; path = Carthage/Build/iOS/Eureka.framework; sourceTree = "<group>"; };
 		2E87D5C91C823B81002B1FF9 /* SubscribeStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscribeStatus.swift; sourceTree = "<group>"; };
+		2E87D5D31C976806002B1FF9 /* TLTagsControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLTagsControl.m; sourceTree = "<group>"; };
+		2E87D5D41C976806002B1FF9 /* TLTagsControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLTagsControl.h; sourceTree = "<group>"; };
 		2ED5E4DD1C31F9DD002A1CFB /* ic_people_grey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_people_grey.png; sourceTree = "<group>"; };
 		2EED38261C74098C00EC6E71 /* EventController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventController.xib; sourceTree = "<group>"; };
 		2EED38281C740C8200EC6E71 /* EventsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventsView.xib; sourceTree = "<group>"; };
@@ -356,6 +359,8 @@
 		1062881861DED367041A5E87 /* ui */ = {
 			isa = PBXGroup;
 			children = (
+				2E87D5D31C976806002B1FF9 /* TLTagsControl.m */,
+				2E87D5D41C976806002B1FF9 /* TLTagsControl.h */,
 				106285F64BF5C28376998927 /* EventCell.swift */,
 				10628990ED1DB7924139CA45 /* LoginController.swift */,
 				2E7C32D31C5FB45B00CE8F7C /* EventCell.xib */,
@@ -748,6 +753,7 @@
 				2EED38341C77F97400EC6E71 /* Tag.swift in Sources */,
 				10628DE22C607992575EC828 /* EventMode.swift in Sources */,
 				2E87D5CA1C823B81002B1FF9 /* SubscribeStatus.swift in Sources */,
+				2E87D5D51C976806002B1FF9 /* TLTagsControl.m in Sources */,
 				106280CF68C33B4FBAC16CDF /* EventsView.swift in Sources */,
 				10628AC70A0D37688FC2CE4D /* TagsController.swift in Sources */,
 				10628D2FA2AD624DEE2D28FE /* AzazaiListAdapter.swift in Sources */,
