@@ -24,6 +24,8 @@ final class TagsRow: Row<TagsArray, TagsCell>, RowType {
         displayValueFor = nil
 
         cell.tagsView.onTagsChanged = {
+            [unowned self]
+            () in
             self.value!.array = self.cell.tagsView.tags as NSArray as! [String]
         }
     }

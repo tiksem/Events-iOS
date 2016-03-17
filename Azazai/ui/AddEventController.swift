@@ -287,9 +287,9 @@ class AddEventController : FormViewController {
     }
 
     func onEventCreated(id:Int) {
-        Alerts.showOkAlert("Event created \(id)")
         let eventsController = UiUtils.getBackViewControllerFromTabBar(self) as! EventsController
         eventsController.resetData()
+        cancel()
     }
 
     func createEvent() {
