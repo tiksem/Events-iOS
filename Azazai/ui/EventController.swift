@@ -15,7 +15,7 @@ class EventController : UIViewController {
     @IBOutlet weak var subscribeButton: UIButton!
     @IBOutlet weak var eventDate: UILabel!
     @IBOutlet weak var address: UILabel!
-    @IBOutlet weak var orginizerName: UILabel!
+    @IBOutlet weak var organizerName: UILabel!
     @IBOutlet weak var avatar: UIImageView!
     
     private var event:Event! = nil
@@ -53,6 +53,20 @@ class EventController : UIViewController {
         }
     }
 
+    func setupOrganizer() {
+        organizerName.text = "Loading..."
+        requestManager.getUserById(event.userId, success: {
+            (user) in
+            self.organizerName.text = user.first_name + " " + user.last_name
+            if let url = NSURL(string: user.photo_200) {
+                self.avatar.sd_setImageWithURL(url)
+            }
+        }, error: {
+            (err) in
+            self.organizerName.text = "No Internet Connection"
+        })
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         UiUtils.setupMultiLineForLabel(eventDescription, text: event.description)
@@ -63,6 +77,7 @@ class EventController : UIViewController {
         let date = EventUtils.eventDateToString(event.date)
         eventDate.text! += " \(date)"
         setupSubscribeButton()
+        setupOrganizer()
     }
 
     @IBAction func onSubscribeButtonClick(sender: AnyObject) {
