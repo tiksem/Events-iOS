@@ -177,4 +177,31 @@ class RequestManager {
         cancelers.add(canceler, onCancelled: onCancelled)
     }
     
+
+    func getUserById(userId:Int? = nil,
+                     success: (VkUser)->Void,
+                     error: ((NSError)->Void)? = nil,
+                     cancelled: (()->Void)? = nil) {
+        var args = [
+                "fields": "photo_200"
+        ]
+        if let id = userId {
+            args["user_ids"] = String(id)
+        }
+
+        let request = VKApi.users().get(args)
+        request.executeWithResultBlock({
+            (response:VKResponse!) in
+            let json = (response.json as! [[String:AnyObject]])[0]
+            success(VkUser(json))
+        }, errorBlock: {
+            if let err = $0 {
+                if let vkError = err.vkError where vkError.errorCode == Int(VK_API_CANCELED) {
+                    cancelled?()
+                } else {
+                    error?(err)
+                }
+            }
+        })
+    }
 }

@@ -8,6 +8,7 @@ import UIKit
 
 public class UiUtils {
     public static let STATUS_BAR_HEIGHT: CGFloat = 20.0
+    public static let TABLE_SEPARATOR_COLOR = UIColor(red: 0.783922, green: 0.780392, blue: 0.8, alpha: 1.0)
 
     public static func removeSeparator(cell: UITableViewCell) {
         cell.separatorInset = UIEdgeInsetsMake(0, cell.bounds.size.width, 0, 0);

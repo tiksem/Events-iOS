@@ -21,6 +21,7 @@ typedef NS_ENUM(NSUInteger, TLTagsControlMode) {
     TLTagsControlModeList,
 };
 
+IB_DESIGNABLE
 @interface TLTagsControl : UIScrollView
 
 @property (nonatomic, strong) NSMutableArray *tags;

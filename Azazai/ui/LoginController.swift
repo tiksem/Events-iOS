@@ -10,9 +10,11 @@ import SwiftUtils
 class LoginController : UIViewController, VKSdkDelegate, VKSdkUIDelegate {
     let PERMISSIONS:[AnyObject] = [VK_PER_OFFLINE, VK_PER_WALL]
     var onViewDidAppear:(() -> Void)?
+    var requestManager:RequestManager!
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        requestManager = RequestManager()
         VKSdk.instance().registerDelegate(self)
         VKSdk.instance().uiDelegate = self
     }
@@ -22,16 +24,12 @@ class LoginController : UIViewController, VKSdkDelegate, VKSdkUIDelegate {
     }
 
     func onLoginSuccess() {
-        let request = VKApi.users().get([
-            "fields": "photo_200"
-        ])
-        request.executeWithResultBlock({
-            (response:VKResponse!) in
-            let json = (response.json as! [[String:AnyObject]])[0]
+        print("onLoginSuccess")
+        requestManager.getUserById(success: {
             let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-            appDelegate.user = VkUser(json)
+            appDelegate.user = $0
             self.showEvents()
-        }, errorBlock: {
+        }, error: {
             Alerts.showOkAlert($0.description)
         })
     }

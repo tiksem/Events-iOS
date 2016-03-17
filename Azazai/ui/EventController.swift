@@ -15,6 +15,8 @@ class EventController : UIViewController {
     @IBOutlet weak var subscribeButton: UIButton!
     @IBOutlet weak var eventDate: UILabel!
     @IBOutlet weak var address: UILabel!
+    @IBOutlet weak var orginizerName: UILabel!
+    @IBOutlet weak var avatar: UIImageView!
     
     private var event:Event! = nil
     private var requestManager:RequestManager! = nil
