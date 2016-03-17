@@ -9,9 +9,10 @@ import UIKit
 public class LineSeparator : UIView {
     private func setup() {
         frame.size.height = 1
-        let horizontalLine = UIView(frame: CGRect(x: frame.origin.x, y: frame.origin.y,
+        let horizontalLine = UIView(frame: CGRect(x: 15, y: 0,
                 width: frame.size.width, height: 1))
         horizontalLine.backgroundColor = UiUtils.TABLE_SEPARATOR_COLOR
+        backgroundColor = UIColor.whiteColor()
         addSubview(horizontalLine)
     }
 
