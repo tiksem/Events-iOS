@@ -28,4 +28,18 @@ class EventUtils {
         formatter.dateFormat = "dd-MM-yyyy HH:mm:ss"
         return formatter.stringFromDate(date)
     }
+
+    public static func displayUserNameInLabel(label:UILabel, user:VkUser?) {
+        if let user = user {
+            label.text = user.first_name + " " + user.last_name
+        }
+    }
+}
+
+extension UIImageView {
+    func setImageFromURL(url:String?) {
+        if let url = NSURL(string: url ?? "") {
+            self.sd_setImageWithURL(url)
+        }
+    }
 }

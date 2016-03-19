@@ -36,6 +36,7 @@ class RequestManager {
                                 key:String,
                                 limit:Int = 10,
                                 factory: ([[String:AnyObject]]) -> [T],
+                                modifyPage: (([T], Canceler?, ([T])->Void) -> Void)? = nil,
                                 var args: [String: CustomStringConvertible] = [:],
                                 var mergeArgs: [String: CustomStringConvertible] = [:],
                                 offsetKey:String = "offset",
@@ -43,22 +44,24 @@ class RequestManager {
         var canceler = Canceler()
         cancelers.add(canceler)
         return Network.getJsonLazyList(url, key: key,
-                limit: limit, factory: factory, args: args,
+                limit: limit, factory: factory, modifyPage: modifyPage, args: args,
                 offsetKey: offsetKey, limitKey: limitKey,
                 mergeArgs: mergeArgs, canceler: canceler)
     }
     
-    func getEventsList() -> LazyList<Event, IOError> {
+    func getEventsList(modifyPage:(([Event], Canceler?, ([Event])->Void) -> Void)? = nil)
+                    -> LazyList<Event, IOError> {
         let requestArgs:[String:CustomStringConvertible] = [:]
         let mergeArgs:[String:CustomStringConvertible] = [
             "timeOut": true
         ]
         return getLazyList("http://azazai.com/api/getEventsList", key: "events", limit: 10, factory: {
             return Event.toEventsArray($0)!
-        }, args: requestArgs, mergeArgs: mergeArgs)
+        }, modifyPage: modifyPage, args: requestArgs, mergeArgs: mergeArgs)
     }
     
-    func getUserEvents(mod:EventMode, userId:Int) -> LazyList<Event, IOError> {
+    func getUserEvents(mod:EventMode, userId:Int, modifyPage:(([Event], Canceler?, ([Event])->Void) -> Void)? = nil)
+                    -> LazyList<Event, IOError> {
         let requestArgs:[String:CustomStringConvertible] = [
             "mod": mod,
             "userId": userId
@@ -68,7 +71,7 @@ class RequestManager {
         ]
         return getLazyList("http://azazai.com/api/getUserEvents", key: "Events", limit: 10, factory: {
             return Event.toEventsArray($0)!
-        }, args: requestArgs, mergeArgs: mergeArgs)
+        }, modifyPage: modifyPage, args: requestArgs, mergeArgs: mergeArgs)
     }
     
     func getTopComments(eventId:Int, maxCount:Int,
@@ -83,25 +86,28 @@ class RequestManager {
         }, onCancelled: onCancelled)
     }
     
-    func getCommentsList(eventId:Int) -> LazyList<Comment, IOError> {
+    func getCommentsList(eventId:Int, modifyPage:(([Comment], Canceler?, ([Comment])->Void) -> Void)? = nil)
+                    -> LazyList<Comment, IOError> {
         let requestArgs:[String:CustomStringConvertible] = [
             "id": eventId
         ]
         let mergeArgs:[String:CustomStringConvertible] = [:]
         return getLazyList("http://azazai.com/api/getCommentsList", key: "Comments", limit: 10, factory: {
             return Comment.toCommentsArray($0)!
-        }, args: requestArgs, mergeArgs: mergeArgs)
+        }, modifyPage: modifyPage, args: requestArgs, mergeArgs: mergeArgs)
     }
     
-    func getTags() -> LazyList<Tag, IOError> {
+    func getTags(modifyPage:(([Tag], Canceler?, ([Tag])->Void) -> Void)? = nil)
+                    -> LazyList<Tag, IOError> {
         let requestArgs:[String:CustomStringConvertible] = [:]
         let mergeArgs:[String:CustomStringConvertible] = [:]
         return getLazyList("http://azazai.com/api/getTags", key: "Tags", limit: 10, factory: {
             return Tag.toTagsArray($0)!
-        }, args: requestArgs, mergeArgs: mergeArgs)
+        }, modifyPage: modifyPage, args: requestArgs, mergeArgs: mergeArgs)
     }
     
-    func getEventsByTag(tag:String) -> LazyList<Event, IOError> {
+    func getEventsByTag(tag:String, modifyPage:(([Event], Canceler?, ([Event])->Void) -> Void)? = nil)
+                    -> LazyList<Event, IOError> {
         let requestArgs:[String:CustomStringConvertible] = [
             "tag": StringWrapper(tag)
         ]
@@ -110,15 +116,16 @@ class RequestManager {
         ]
         return getLazyList("http://azazai.com/api/getEventsByTag", key: "Events", limit: 10, factory: {
             return Event.toEventsArray($0)!
-        }, args: requestArgs, mergeArgs: mergeArgs)
+        }, modifyPage: modifyPage, args: requestArgs, mergeArgs: mergeArgs)
     }
     
-    func getIcons() -> LazyList<IconInfo, IOError> {
+    func getIcons(modifyPage:(([IconInfo], Canceler?, ([IconInfo])->Void) -> Void)? = nil)
+                    -> LazyList<IconInfo, IOError> {
         let requestArgs:[String:CustomStringConvertible] = [:]
         let mergeArgs:[String:CustomStringConvertible] = [:]
         return getLazyList("http://azazai.com/api/getIcons", key: "Icons", limit: 1000, factory: {
             return IconInfo.toIconInfosArray($0)!
-        }, args: requestArgs, mergeArgs: mergeArgs)
+        }, modifyPage: modifyPage, args: requestArgs, mergeArgs: mergeArgs)
     }
     
     func createEvent(args:[String:CustomStringConvertible],
@@ -178,22 +185,28 @@ class RequestManager {
     }
     
 
-    func getUserById(userId:Int? = nil,
-                     success: (VkUser)->Void,
+    private func getUsersById(users:String? = nil,
+                     success: ([VkUser])->Void,
                      error: ((NSError)->Void)? = nil,
+                     canceler:Canceler? = nil,
                      cancelled: (()->Void)? = nil) {
         var args = [
                 "fields": "photo_200"
         ]
-        if let id = userId {
-            args["user_ids"] = String(id)
+        if let users = users {
+            args["user_ids"] = users
+        }
+
+        let selectedCanceler = canceler ?? Canceler()
+        if canceler == nil {
+            cancelers.add(selectedCanceler)
         }
 
         let request = VKApi.users().get(args)
         request.executeWithResultBlock({
             (response:VKResponse!) in
-            let json = (response.json as! [[String:AnyObject]])[0]
-            success(VkUser(json))
+            let json = response.json as! [[String:AnyObject]]
+            success(VkUser.toVkUsersArray(json)!)
         }, errorBlock: {
             if let err = $0 {
                 if let vkError = err.vkError where vkError.errorCode == Int(VK_API_CANCELED) {
@@ -203,5 +216,33 @@ class RequestManager {
                 }
             }
         })
+
+        selectedCanceler.body = request.cancel
+    }
+
+    func getUserById(userId:Int? = nil,
+                     success: (VkUser)->Void,
+                     error: ((NSError)->Void)? = nil,
+                     canceler:Canceler? = nil,
+                     cancelled: (()->Void)? = nil) {
+        var users:String? = nil
+        if let id = userId {
+            users = String(id)
+        }
+
+        getUsersById(users, success: {
+            success($0[0])
+        }, error: error, canceler: canceler, cancelled: cancelled)
+    }
+
+    func getUsersByIdes(ides:[Int],
+                     success: ([VkUser])->Void,
+                     error: ((NSError)->Void)? = nil,
+                     canceler:Canceler? = nil,
+                     cancelled: (()->Void)? = nil) {
+        let users = (try! ides.map {
+            return String($0)
+        }).joinWithSeparator(",")
+        getUsersById(users, success: success, error: error, canceler: canceler, cancelled: cancelled)
     }
 }

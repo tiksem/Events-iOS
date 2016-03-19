@@ -6,7 +6,7 @@
 import Foundation
 
 public class Canceler : Hashable {
-    var body: (() -> Void)?
+    public var body: (() -> Void)?
     public var onCancelled:(() -> Void)?
 
     private var cancelled:Bool = false

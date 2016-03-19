@@ -36,6 +36,7 @@ class RequestManagerTemplate {
                                 key:String,
                                 limit:Int = 10,
                                 factory: ([[String:AnyObject]]) -> [T],
+                                modifyPage: (([T], Canceler?, ([T])->Void) -> Void)? = nil,
                                 var args: [String: CustomStringConvertible] = [:],
                                 var mergeArgs: [String: CustomStringConvertible] = [:],
                                 offsetKey:String = "offset",
@@ -43,17 +44,18 @@ class RequestManagerTemplate {
         var canceler = Canceler()
         cancelers.add(canceler)
         return Network.getJsonLazyList(url, key: key,
-                limit: limit, factory: factory, args: args,
+                limit: limit, factory: factory, modifyPage: modifyPage, args: args,
                 offsetKey: offsetKey, limitKey: limitKey,
                 mergeArgs: mergeArgs, canceler: canceler)
     }/*helpers*/
     /*lazyList*/
-    func __methodName__(__args__) -> LazyList<__ParamName__, IOError> {
+    func __methodName__(__args__, modifyPage:(([__ParamName__], Canceler?, ([__ParamName__])->Void) -> Void)? = nil)
+                    -> LazyList<__ParamName__, IOError> {
         let requestArgs:[String:CustomStringConvertible] = __request_args__
         let mergeArgs:[String:CustomStringConvertible] = __merge_args__
         return getLazyList(__url__, key: __key__, limit: __limit__, factory: {
             return __ParamName__.to__ParamName__sArray($0)!
-        }, args: requestArgs, mergeArgs: mergeArgs)
+        }, modifyPage: modifyPage, args: requestArgs, mergeArgs: mergeArgs)
     }
     /*}*/
 
@@ -106,22 +108,28 @@ class RequestManagerTemplate {
     /*helpersEnd*/
     /*BODY*/
 
-    func getUserById(userId:Int? = nil,
-                     success: (VkUser)->Void,
+    private func getUsersById(users:String? = nil,
+                     success: ([VkUser])->Void,
                      error: ((NSError)->Void)? = nil,
+                     canceler:Canceler? = nil,
                      cancelled: (()->Void)? = nil) {
         var args = [
                 "fields": "photo_200"
         ]
-        if let id = userId {
-            args["user_ids"] = String(id)
+        if let users = users {
+            args["user_ids"] = users
+        }
+
+        let selectedCanceler = canceler ?? Canceler()
+        if canceler == nil {
+            cancelers.add(selectedCanceler)
         }
 
         let request = VKApi.users().get(args)
         request.executeWithResultBlock({
             (response:VKResponse!) in
-            let json = (response.json as! [[String:AnyObject]])[0]
-            success(VkUser(json))
+            let json = response.json as! [[String:AnyObject]]
+            success(VkUser.toVkUsersArray(json)!)
         }, errorBlock: {
             if let err = $0 {
                 if let vkError = err.vkError where vkError.errorCode == Int(VK_API_CANCELED) {
@@ -131,5 +139,33 @@ class RequestManagerTemplate {
                 }
             }
         })
+
+        selectedCanceler.body = request.cancel
+    }
+
+    func getUserById(userId:Int? = nil,
+                     success: (VkUser)->Void,
+                     error: ((NSError)->Void)? = nil,
+                     canceler:Canceler? = nil,
+                     cancelled: (()->Void)? = nil) {
+        var users:String? = nil
+        if let id = userId {
+            users = String(id)
+        }
+
+        getUsersById(users, success: {
+            success($0[0])
+        }, error: error, canceler: canceler, cancelled: cancelled)
+    }
+
+    func getUsersByIdes(ides:[Int],
+                     success: ([VkUser])->Void,
+                     error: ((NSError)->Void)? = nil,
+                     canceler:Canceler? = nil,
+                     cancelled: (()->Void)? = nil) {
+        let users = (try! ides.map {
+            return String($0)
+        }).joinWithSeparator(",")
+        getUsersById(users, success: success, error: error, canceler: canceler, cancelled: cancelled)
     }
 }

@@ -23,7 +23,8 @@
         "userId":"Int",
         "text":"String",
         "eventId":"Int",
-        "date":"Int"
+        "date":"Int",
+        "var user":"VkUser?"
       }
     },
     {

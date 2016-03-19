@@ -16,6 +16,7 @@ struct Comment : Hashable, Equatable {
     let text:String
     let eventId:Int
     let date:Int
+    var user:VkUser?
 
     init(_ map:Dictionary<String, AnyObject>) {
         id = Json.getInt(map, "id") ?? 0

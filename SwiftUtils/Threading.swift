@@ -19,4 +19,11 @@ public struct Threading {
             callback()
         }
     }
+
+    public static func runOnBackground(backgroundTask:() -> Void, canceler:Canceler? = nil, onFinish:() -> Void) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+            backgroundTask()
+            runOnMainThreadIfNotCancelled(canceler, onFinish)
+        })
+    }
 }

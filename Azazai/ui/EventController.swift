@@ -57,7 +57,7 @@ class EventController : UIViewController {
         organizerName.text = "Loading..."
         requestManager.getUserById(event.userId, success: {
             (user) in
-            self.organizerName.text = user.first_name + " " + user.last_name
+            EventUtils.displayUserNameInLabel(self.organizerName, user: user)
             if let url = NSURL(string: user.photo_200) {
                 self.avatar.sd_setImageWithURL(url)
             }

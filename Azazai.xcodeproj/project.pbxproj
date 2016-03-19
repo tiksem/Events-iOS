@@ -19,7 +19,9 @@
 		10628299E4865D964A84B718 /* EventsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106288EF081F062EB4283FE1 /* EventsController.swift */; };
 		1062833D4A031341979801EC /* FloatLabelTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106282A3460316D79F274623 /* FloatLabelTextField.swift */; };
 		106283488577203AC306B794 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 106288E9C23B456030785C08 /* Assets.xcassets */; };
+		106283513073CFB4CE72026C /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106281A6B6D96EA3BF96F80A /* CommentCell.swift */; };
 		106283A46E739346EB32C274 /* NibViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106286A433B270940AADAD75 /* NibViewController.swift */; };
+		106283AE854DCABFA9D28DE6 /* CommentsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106282950113029DE8B01CDA /* CommentsController.swift */; };
 		106283E4C38D7EF600E3375F /* Arrays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1062885F0054C2A7ECC65E49 /* Arrays.swift */; };
 		10628428007366B02093208E /* EventsAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106288EDFB63498E03411E0C /* EventsAdapter.swift */; };
 		10628458B8E10453052A97AB /* TagEventsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106283BDA9A62764DB1B48F9 /* TagEventsController.swift */; };
@@ -65,6 +67,8 @@
 		2E4BE25E1C80B26C00ED57F5 /* MaxLengthFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10628A103E51278166DCF31B /* MaxLengthFormatter.swift */; };
 		2E5D01DB1C5AAC6C0013735F /* SwiftUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 106285F58DD238610C403D73 /* SwiftUtils.framework */; };
 		2E5D01DC1C5AAC6C0013735F /* SwiftUtils.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 106285F58DD238610C403D73 /* SwiftUtils.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2E5DBA491C9B6F36004CF220 /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E5DBA481C9B6F36004CF220 /* CommentCell.xib */; };
+		2E5DBA4B1C9DBEB2004CF220 /* CommentsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E5DBA4A1C9DBEB2004CF220 /* CommentsController.xib */; };
 		2E6E65421C2DA7A7004B2860 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106283A78DF0BB8802326F25 /* Network.swift */; };
 		2E6E65431C2DA7A7004B2860 /* IOError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106289354099CD0EA6F57F4F /* IOError.swift */; };
 		2E6E65441C2DA7A7004B2860 /* Threading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1062853DF25D7985866D0969 /* Threading.swift */; };
@@ -154,10 +158,12 @@
 		1062806EB94A695BC39A227F /* EventController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventController.swift; sourceTree = "<group>"; };
 		10628122C0857EE9A51CC8C0 /* EventsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsView.swift; sourceTree = "<group>"; };
 		1062814DB35C2726D6E39D1F /* Dictionaries.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dictionaries.swift; sourceTree = "<group>"; };
+		106281A6B6D96EA3BF96F80A /* CommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		106281C653F6B8B8E7534CB0 /* TagsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsController.swift; sourceTree = "<group>"; };
 		106281D86AB44BDD00DA5416 /* CustomCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCells.swift; sourceTree = "<group>"; };
 		1062820E7F16302928A33359 /* LazyListAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LazyListAdapter.swift; sourceTree = "<group>"; };
 		106282611AD0F4FC6419ADDC /* RequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
+		106282950113029DE8B01CDA /* CommentsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsController.swift; sourceTree = "<group>"; };
 		106282A3460316D79F274623 /* FloatLabelTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatLabelTextField.swift; sourceTree = "<group>"; };
 		106282BB4A22233E917980E4 /* AddEventController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEventController.swift; sourceTree = "<group>"; };
 		1062832B6B3FA3E47AAFEA30 /* RequestManagerTemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestManagerTemplate.swift; sourceTree = "<group>"; };
@@ -221,6 +227,8 @@
 		2E3D0E511C5A67960066890E /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		2E4BE2591C7F9CF200ED57F5 /* IconPickerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IconPickerCell.xib; sourceTree = "<group>"; };
 		2E4BE25B1C7FA31B00ED57F5 /* IconInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconInfo.swift; sourceTree = "<group>"; };
+		2E5DBA481C9B6F36004CF220 /* CommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentCell.xib; sourceTree = "<group>"; };
+		2E5DBA4A1C9DBEB2004CF220 /* CommentsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentsController.xib; sourceTree = "<group>"; };
 		2E7C32521C5C0B6300CE8F7C /* Cartfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		2E7C32531C5C0E9300CE8F7C /* Azazai-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Azazai-Bridging-Header.h"; sourceTree = "<group>"; };
 		2E7C32541C5C0FAD00CE8F7C /* VKSdkFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VKSdkFramework.framework; path = Carthage/Build/iOS/VKSdkFramework.framework; sourceTree = "<group>"; };
@@ -317,6 +325,7 @@
 				10628E3BAC00AAA6F0B8E010 /* AzazaiUITests */,
 				106287826422789662C1223B /* SwiftUtils */,
 				106285C216DF57F2F0816EEC /* SwiftUtilsTests */,
+				106281A6B6D96EA3BF96F80A /* CommentCell.swift */,
 			);
 			sourceTree = "<group>";
 		};
@@ -389,6 +398,9 @@
 				10628C44F65CEB23EA5DAD1E /* IconCell.swift */,
 				10628EA5FCABBF8D8B1C4DB1 /* EventUtils.swift */,
 				106285B88CABCE775F322BAB /* TagsRow.swift */,
+				2E5DBA481C9B6F36004CF220 /* CommentCell.xib */,
+				106282950113029DE8B01CDA /* CommentsController.swift */,
+				2E5DBA4A1C9DBEB2004CF220 /* CommentsController.xib */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -658,12 +670,14 @@
 				106283488577203AC306B794 /* Assets.xcassets in Resources */,
 				106289FB42AA4D24D1BED3F3 /* LaunchScreen.storyboard in Resources */,
 				2EED384B1C7F93E700EC6E71 /* IconPicker.xib in Resources */,
+				2E5DBA4B1C9DBEB2004CF220 /* CommentsController.xib in Resources */,
 				10628A02ACEC0E12DADB0004 /* Main.storyboard in Resources */,
 				106286905B3C66407B0C3E5E /* config.json in Resources */,
 				2EED38401C7DE4AD00EC6E71 /* empty-avatar.jpg in Resources */,
 				2EED38291C740C8200EC6E71 /* EventsView.xib in Resources */,
 				2E4BE25A1C7F9CF200ED57F5 /* IconPickerCell.xib in Resources */,
 				2EED38271C74098C00EC6E71 /* EventController.xib in Resources */,
+				2E5DBA491C9B6F36004CF220 /* CommentCell.xib in Resources */,
 				2E7C32D41C5FB45B00CE8F7C /* EventCell.xib in Resources */,
 				2EED38451C7E55AC00EC6E71 /* event_icon.png in Resources */,
 				2E7C32D61C5FBD5600CE8F7C /* Loading.xib in Resources */,
@@ -770,6 +784,8 @@
 				1062846525CCD5710ED6BA6F /* IconCell.swift in Sources */,
 				106280A8C1113A1EA16AECE9 /* EventUtils.swift in Sources */,
 				106284EE57D076BDB3388260 /* TagsRow.swift in Sources */,
+				106283513073CFB4CE72026C /* CommentCell.swift in Sources */,
+				106283AE854DCABFA9D28DE6 /* CommentsController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

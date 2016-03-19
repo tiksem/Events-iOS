@@ -172,6 +172,7 @@ public class Network {
                                           key:String,
                                           limit:Int = 10,
                                           factory: ([[String:AnyObject]]) -> [T],
+                                          modifyPage: (([T], Canceler?, ([T])->Void) -> Void)? = nil,
                                           var args: [String: CustomStringConvertible] = [:],
                                           offsetKey:String = "offset",
                                           limitKey:String = "limit",
@@ -201,7 +202,14 @@ public class Network {
                         return
                     }
 
-                    onSuccess(factory(array))
+                    let resultArray = factory(array)
+                    if let modify = modifyPage {
+                        modify(resultArray, canceler, {
+                            onSuccess($0)
+                        })
+                    } else {
+                        onSuccess(resultArray)
+                    }
                 } else {
                     onError(error!)
                 }

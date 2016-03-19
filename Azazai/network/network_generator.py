@@ -97,6 +97,7 @@ def generate_base(request, type_name, first_quote, second_quote):
         template = template.replace("__args__", "args:[String:CustomStringConvertible]")
     else:
         template = template.replace("__args__,\n" + _8_spaces + _8_spaces + _8_spaces, "")
+        template = template.replace("__args__, ", "")
         template = template.replace("__args__", "")
     return template
 
