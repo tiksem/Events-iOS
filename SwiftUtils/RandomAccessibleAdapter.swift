@@ -93,6 +93,8 @@ public class RandomAccessibleAdapter<Container:RandomAccessable,
 
         reloadData()
         tableView.tableFooterView = UIView(frame: CGRect.zero)
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 160.0
     }
 
     public func reloadData() {
@@ -123,6 +125,15 @@ public class RandomAccessibleAdapter<Container:RandomAccessable,
             delegate.onItemSelected(element: item, position: row)
         }
     }
+
+//    public func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+//        if let item = list[indexPath.row] {
+//            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! CellType
+//            return UiUtils.calculateCellHeight(cell)
+//        }
+//
+//        return tableView.rowHeight
+//    }
 }
 
 public class ArrayRandomAccessible<ItemType> : RandomAccessable {

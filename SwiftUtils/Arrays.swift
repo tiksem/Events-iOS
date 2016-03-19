@@ -9,4 +9,13 @@ public extension Array {
     public var last:Generator.Element? {
         return count > 0 ? self[count - 1] : nil
     }
+
+    func findFirst<L : BooleanType>(predicate: Element -> L) -> Element? {
+        for item in self {
+            if predicate(item) {
+                return item // found
+            }
+        }
+        return nil // not found
+    }
 }

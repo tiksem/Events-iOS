@@ -243,6 +243,17 @@ class RequestManager {
         let users = (try! ides.map {
             return String($0)
         }).joinWithSeparator(",")
-        getUsersById(users, success: success, error: error, canceler: canceler, cancelled: cancelled)
+        getUsersById(users, success: {
+            (users) in
+            if users.count != ides.count {
+                var result:[VkUser] = []
+                for id in ides {
+                    result.append(users.findFirst({$0.id == id})!)
+                }
+                success(result)
+            } else {
+                success(users)
+            }
+        }, error: error, canceler: canceler, cancelled: cancelled)
     }
 }

@@ -9,7 +9,7 @@ import UIKit
 
 class CommentsAdapterDelegate : AdapterDelegateDefaultImpl<Comment, CommentCell, LoadingView> {
     override func displayItem(element comment: Comment, cell: CommentCell) -> Void {
-        cell.message.text = comment.text
+        UiUtils.setupMultiLineForLabel(cell.message, text: comment.text)
         cell.avatar.setImageFromURL(comment.user?.photo_200)
         EventUtils.displayUserNameInLabel(cell.name, user: comment.user)
     }

@@ -117,4 +117,11 @@ public class UiUtils {
         let superFrame = view.superview!.frame
         view.frame.origin.y = (superFrame.height - view.frame.height) / 2
     }
+
+    public static func calculateCellHeight(cell:UITableViewCell) -> CGFloat {
+        cell.layoutIfNeeded()
+
+        let size = cell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize)
+        return size.height
+    }
 }

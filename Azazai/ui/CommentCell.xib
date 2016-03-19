@@ -22,7 +22,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ivan Oblivan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KHk-2u-Nct" userLabel="Name">
-                        <rect key="frame" x="70" y="12" width="250" height="16"/>
+                        <rect key="frame" x="70" y="12" width="79.5" height="16"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                         <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -35,14 +35,15 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="JrM-cL-ifl" firstAttribute="leading" secondItem="dXA-LN-a2q" secondAttribute="trailing" constant="8" id="10K-CH-d3t"/>
-                    <constraint firstItem="dXA-LN-a2q" firstAttribute="top" secondItem="Jdc-4d-5a1" secondAttribute="topMargin" constant="4" id="1y4-03-tpq"/>
-                    <constraint firstItem="JrM-cL-ifl" firstAttribute="trailing" secondItem="Jdc-4d-5a1" secondAttribute="trailingMargin" id="39E-q3-axo"/>
-                    <constraint firstItem="KHk-2u-Nct" firstAttribute="trailing" secondItem="Jdc-4d-5a1" secondAttribute="trailingMargin" constant="8" id="Ury-tD-emT"/>
-                    <constraint firstItem="JrM-cL-ifl" firstAttribute="top" secondItem="KHk-2u-Nct" secondAttribute="bottom" constant="6.5" id="XWL-0T-4KZ"/>
-                    <constraint firstItem="KHk-2u-Nct" firstAttribute="top" secondItem="Jdc-4d-5a1" secondAttribute="topMargin" constant="4" id="aYJ-Kc-iy2"/>
-                    <constraint firstItem="KHk-2u-Nct" firstAttribute="leading" secondItem="dXA-LN-a2q" secondAttribute="trailing" constant="8" id="idw-iY-AWA"/>
-                    <constraint firstItem="dXA-LN-a2q" firstAttribute="leading" secondItem="Jdc-4d-5a1" secondAttribute="leadingMargin" constant="4" id="l6a-sJ-RPm"/>
+                    <constraint firstItem="dXA-LN-a2q" firstAttribute="top" secondItem="Jdc-4d-5a1" secondAttribute="topMargin" constant="4" id="69d-Vy-F4t"/>
+                    <constraint firstItem="JrM-cL-ifl" firstAttribute="top" secondItem="KHk-2u-Nct" secondAttribute="bottom" constant="6" id="DhL-zh-Lbg"/>
+                    <constraint firstItem="dXA-LN-a2q" firstAttribute="leading" secondItem="Jdc-4d-5a1" secondAttribute="leadingMargin" constant="4" id="HAk-mJ-xPA"/>
+                    <constraint firstItem="JrM-cL-ifl" firstAttribute="leading" secondItem="dXA-LN-a2q" secondAttribute="trailing" constant="8" id="Oz2-gf-fXe"/>
+                    <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="JrM-cL-ifl" secondAttribute="bottom" constant="4" id="YHj-JU-Adm"/>
+                    <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="dXA-LN-a2q" secondAttribute="bottom" constant="4" id="aA0-ai-3oT"/>
+                    <constraint firstItem="JrM-cL-ifl" firstAttribute="trailing" secondItem="Jdc-4d-5a1" secondAttribute="trailingMargin" id="aTo-9m-gYJ"/>
+                    <constraint firstItem="KHk-2u-Nct" firstAttribute="top" secondItem="Jdc-4d-5a1" secondAttribute="topMargin" constant="4" id="gE0-lQ-6VE"/>
+                    <constraint firstItem="KHk-2u-Nct" firstAttribute="leading" secondItem="dXA-LN-a2q" secondAttribute="trailing" constant="8" id="qZW-Zp-uA0"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
