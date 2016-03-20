@@ -14,6 +14,7 @@ public class LazyList<T : Hashable, Error : ErrorType> : RandomAccessable {
     var pageNumber = 0
     public var canceler:Canceler? = nil
     private(set) var additionalOffset = 0
+    public var isLastPage:([T])->Bool = {$0.isEmpty}
 
     public init(getNextPageData:(([T]) -> Void, (Error) -> Void, Int) -> Void) {
         self.getNextPageData = getNextPageData
@@ -57,16 +58,18 @@ public class LazyList<T : Hashable, Error : ErrorType> : RandomAccessable {
         loadNextPageExecuted = true
 
         getNextPageData!({
+            [unowned self]
+            (page) in
             self.loadNextPageExecuted = false
             self.pageNumber++
-            self.allDataLoaded = $0.isEmpty
-            for item in $0 {
+            self.allDataLoaded = self.isLastPage(page)
+            for item in page {
                 if !self.itemsSet.contains(item) {
                     self.items.append(item)
                     self.itemsSet.insert(item)
                 }
             }
-            self.onNewPageLoaded?($0)
+            self.onNewPageLoaded?(page)
         }, {
             self.onError?($0)
         }, pageNumber)

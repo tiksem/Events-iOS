@@ -180,9 +180,12 @@ public class Network {
                                           canceler: Canceler? = nil) -> LazyList<T, IOError> {
         args[limitKey] = limit
 
-        let result = LazyList<T, IOError>()
-        result.canceler = canceler
         var mergeApplied = mergeArgs.isEmpty
+        let result = LazyList<T, IOError>()
+        result.isLastPage = {
+            $0.count < limit && mergeApplied
+        }
+        result.canceler = canceler
         result.getNextPageData = {
             [unowned result]
             (onSuccess, onError, pageNumber) in
