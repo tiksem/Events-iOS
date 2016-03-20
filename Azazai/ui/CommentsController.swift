@@ -51,13 +51,7 @@ class CommentsController : UIViewController {
             [weak requestManager]
             (var comments, canceler, onFinish) in
             if let rm = requestManager {
-                rm.getUsersByIdes(try! comments.map {$0.userId}, success: {
-                    (users) in
-                    for (commentIndex, user) in zip(0..<comments.count, users) {
-                        comments[commentIndex].user = user
-                    }
-                    onFinish(comments)
-                }, canceler: canceler)
+                rm.fillCommentsUsers(comments, canceler: canceler, onFinish: onFinish)
             }
         }
         adapter = CommentsAdapter(controller: self, commentsListView: tableView, comments: comments)

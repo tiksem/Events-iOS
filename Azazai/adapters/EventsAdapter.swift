@@ -10,7 +10,7 @@ class EventsAdapterDelegate : AzazaiAdapterDelegate<Event, EventCell> {
     init(controller:UIViewController) {
         super.init(hostController: controller, factory: {
             (event) in
-            return CommentsController(eventId: event.id)
+            return EventController(event: event)
         })
     }
 

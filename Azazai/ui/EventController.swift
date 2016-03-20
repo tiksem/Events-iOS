@@ -7,6 +7,21 @@ import Foundation
 import SwiftUtils
 import UIKit
 
+private class TopCommentsAdapterDelegate : AdapterDelegateDefaultImpl<Comment, TopCommentCell, LoadingView> {
+    override func displayItem(element comment: Comment, cell: TopCommentCell) -> Void {
+        EventUtils.displayUserNameInLabel(cell.name, user: comment.user)
+        cell.message.text = comment.text
+        UiUtils.removeSeparator(cell)
+    }
+}
+
+private class TopCommentsAdapter : ArrayAdapter<TopCommentsAdapterDelegate> {
+    init(array:[Comment], tableView:UITableView) {
+        super.init(cellIdentifier: "TopCommentCell", array: array, tableView: tableView,
+                delegate: TopCommentsAdapterDelegate(), dynamicHeight: false)
+    }
+}
+
 class EventController : UIViewController {
     @IBOutlet weak var icon: UIImageView!
     @IBOutlet weak var peopleNumber: UILabel!
@@ -17,9 +32,11 @@ class EventController : UIViewController {
     @IBOutlet weak var address: UILabel!
     @IBOutlet weak var organizerName: UILabel!
     @IBOutlet weak var avatar: UIImageView!
+    @IBOutlet weak var comments: UITableView!
     
     private var event:Event! = nil
     private var requestManager:RequestManager! = nil
+    private var topCommentsAdapter:TopCommentsAdapter!
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -67,6 +84,28 @@ class EventController : UIViewController {
         })
     }
 
+    func setupComments() {
+        comments.scrollEnabled = false
+        comments.allowsSelection = false
+        comments.tableFooterView = UIView()
+        requestManager.getTopComments(event.id, maxCount: 3, complete: {
+            [unowned self]
+            (comments, error) in
+            if let err = error {
+                Alerts.showOkAlert(err.description)
+            } else {
+                self.requestManager.fillCommentsUsers(comments!, onFinish: {
+                    [unowned self]
+                    (comments) in
+                    self.topCommentsAdapter = TopCommentsAdapter(array: comments, tableView: self.comments)
+                })
+            }
+        })
+
+        let tap = UITapGestureRecognizer(target:self, action:"onCommentsTap:")
+        comments.addGestureRecognizer(tap)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         UiUtils.setupMultiLineForLabel(eventDescription, text: event.description)
@@ -78,6 +117,7 @@ class EventController : UIViewController {
         eventDate.text! += " \(date)"
         setupSubscribeButton()
         setupOrganizer()
+        setupComments()
     }
 
     @IBAction func onSubscribeButtonClick(sender: AnyObject) {
@@ -95,5 +135,9 @@ class EventController : UIViewController {
                 self.subscribeButton.selected = !self.subscribeButton.selected
             }
         }
+    }
+
+    func onCommentsTap(recognizer:UIGestureRecognizer) {
+        navigationController!.pushViewController(CommentsController(eventId: event.id), animated: true)
     }
 }

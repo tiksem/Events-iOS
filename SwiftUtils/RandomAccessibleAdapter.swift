@@ -73,7 +73,7 @@ public class RandomAccessibleAdapter<Container:RandomAccessable,
                 nullCellNibFileName:String? = nil,
                 list:Container,
                 tableView:UITableView,
-                delegate:Delegate) {
+                delegate:Delegate, dynamicHeight:Bool = true) {
         self.cellIdentifier = cellIdentifier
         self.cellNibFileName = cellNibFileName ?? cellIdentifier
         self.nullCellIdentifier = nullCellIdentifier
@@ -93,8 +93,10 @@ public class RandomAccessibleAdapter<Container:RandomAccessable,
 
         reloadData()
         tableView.tableFooterView = UIView(frame: CGRect.zero)
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 160.0
+        if dynamicHeight {
+            tableView.rowHeight = UITableViewAutomaticDimension
+            tableView.estimatedRowHeight = 160.0
+        }
     }
 
     public func reloadData() {
@@ -159,11 +161,11 @@ public class ArrayAdapter<Delegate:AdapterDelegate where
     public init(cellIdentifier:String,
                          cellNibFileName:String? = nil,
                          array:[Delegate.T],
-                         tableView:UITableView, delegate:Delegate) {
+                         tableView:UITableView, delegate:Delegate, dynamicHeight:Bool = true) {
         super.init(cellIdentifier: cellIdentifier,
                 cellNibFileName: cellNibFileName,
                 list: ArrayRandomAccessible<Delegate.T>(array: array),
                 tableView: tableView,
-                delegate: delegate)
+                delegate: delegate, dynamicHeight: dynamicHeight)
     }
 }

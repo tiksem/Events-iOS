@@ -66,6 +66,27 @@ public class UiUtils {
         return loading
     }
 
+    public static func showIndicatorWhileLoadingViewDataReturnOnDataLoaded(view: UIView) -> ()->Void {
+        let parent = view.superview!
+        let loading = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+//        let viewFrame = view.frame
+//        let viewSize = viewFrame.size
+//        let viewOrigin = viewFrame.origin
+//        let loadingSize = loading.frame.size
+//        loading.frame = CGRect(x: viewOrigin.x + (viewSize.width - loadingSize.width) / 2,
+//                y: viewOrigin.y + (viewSize.height - loadingSize.height) / 2,
+//                width: loadingSize.width, height: loadingSize.height)
+        loading.center = view.center
+        parent.addSubview(loading)
+        view.hidden = true
+        loading.startAnimating()
+
+        return {
+            loading.removeFromSuperview()
+            view.hidden = false
+        }
+    }
+
     public static func limitLengthHelper(textField textField: UITextField, maxLength: Int,
                                          shouldChangeCharactersInRange range: NSRange,
                                          replacementString string: String) -> Bool {

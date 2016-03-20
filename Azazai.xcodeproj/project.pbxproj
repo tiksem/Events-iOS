@@ -35,6 +35,7 @@
 		10628669E5AE660E3B8EB9E2 /* Dictionaries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1062814DB35C2726D6E39D1F /* Dictionaries.swift */; };
 		106286905B3C66407B0C3E5E /* config.json in Resources */ = {isa = PBXBuildFile; fileRef = 1062888865DA39368FB98ED4 /* config.json */; };
 		1062869C7D246BF07B7C14BA /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10628990ED1DB7924139CA45 /* LoginController.swift */; };
+		106286DBA207F3BB724A5944 /* TopCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106282E70D21E7707A56B5B5 /* TopCommentCell.swift */; };
 		106286E6C04BB326F3C0828B /* TableViewNibViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106289CA4B050824626DCDC8 /* TableViewNibViewController.swift */; };
 		106287B84B68C9104471D780 /* CancelerSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1062847A0FC16268D00E3D22 /* CancelerSet.swift */; };
 		106287FFD711EC0B3B7D0BE9 /* LazyList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106280400E4B4DB3F62D7F0E /* LazyList.swift */; };
@@ -69,6 +70,7 @@
 		2E5D01DC1C5AAC6C0013735F /* SwiftUtils.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 106285F58DD238610C403D73 /* SwiftUtils.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2E5DBA491C9B6F36004CF220 /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E5DBA481C9B6F36004CF220 /* CommentCell.xib */; };
 		2E5DBA4B1C9DBEB2004CF220 /* CommentsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E5DBA4A1C9DBEB2004CF220 /* CommentsController.xib */; };
+		2E5DBA4D1C9E089A004CF220 /* TopCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E5DBA4C1C9E089A004CF220 /* TopCommentCell.xib */; };
 		2E6E65421C2DA7A7004B2860 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106283A78DF0BB8802326F25 /* Network.swift */; };
 		2E6E65431C2DA7A7004B2860 /* IOError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106289354099CD0EA6F57F4F /* IOError.swift */; };
 		2E6E65441C2DA7A7004B2860 /* Threading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1062853DF25D7985866D0969 /* Threading.swift */; };
@@ -166,6 +168,7 @@
 		106282950113029DE8B01CDA /* CommentsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsController.swift; sourceTree = "<group>"; };
 		106282A3460316D79F274623 /* FloatLabelTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatLabelTextField.swift; sourceTree = "<group>"; };
 		106282BB4A22233E917980E4 /* AddEventController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddEventController.swift; sourceTree = "<group>"; };
+		106282E70D21E7707A56B5B5 /* TopCommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopCommentCell.swift; sourceTree = "<group>"; };
 		1062832B6B3FA3E47AAFEA30 /* RequestManagerTemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestManagerTemplate.swift; sourceTree = "<group>"; };
 		1062833CEED38DF9185CE506 /* TagsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsView.swift; sourceTree = "<group>"; };
 		106283A78DF0BB8802326F25 /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
@@ -229,6 +232,7 @@
 		2E4BE25B1C7FA31B00ED57F5 /* IconInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconInfo.swift; sourceTree = "<group>"; };
 		2E5DBA481C9B6F36004CF220 /* CommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentCell.xib; sourceTree = "<group>"; };
 		2E5DBA4A1C9DBEB2004CF220 /* CommentsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentsController.xib; sourceTree = "<group>"; };
+		2E5DBA4C1C9E089A004CF220 /* TopCommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TopCommentCell.xib; sourceTree = "<group>"; };
 		2E7C32521C5C0B6300CE8F7C /* Cartfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		2E7C32531C5C0E9300CE8F7C /* Azazai-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Azazai-Bridging-Header.h"; sourceTree = "<group>"; };
 		2E7C32541C5C0FAD00CE8F7C /* VKSdkFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VKSdkFramework.framework; path = Carthage/Build/iOS/VKSdkFramework.framework; sourceTree = "<group>"; };
@@ -401,6 +405,8 @@
 				2E5DBA481C9B6F36004CF220 /* CommentCell.xib */,
 				106282950113029DE8B01CDA /* CommentsController.swift */,
 				2E5DBA4A1C9DBEB2004CF220 /* CommentsController.xib */,
+				106282E70D21E7707A56B5B5 /* TopCommentCell.swift */,
+				2E5DBA4C1C9E089A004CF220 /* TopCommentCell.xib */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -672,6 +678,7 @@
 				2EED384B1C7F93E700EC6E71 /* IconPicker.xib in Resources */,
 				2E5DBA4B1C9DBEB2004CF220 /* CommentsController.xib in Resources */,
 				10628A02ACEC0E12DADB0004 /* Main.storyboard in Resources */,
+				2E5DBA4D1C9E089A004CF220 /* TopCommentCell.xib in Resources */,
 				106286905B3C66407B0C3E5E /* config.json in Resources */,
 				2EED38401C7DE4AD00EC6E71 /* empty-avatar.jpg in Resources */,
 				2EED38291C740C8200EC6E71 /* EventsView.xib in Resources */,
@@ -786,6 +793,7 @@
 				106284EE57D076BDB3388260 /* TagsRow.swift in Sources */,
 				106283513073CFB4CE72026C /* CommentCell.swift in Sources */,
 				106283AE854DCABFA9D28DE6 /* CommentsController.swift in Sources */,
+				106286DBA207F3BB724A5944 /* TopCommentCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

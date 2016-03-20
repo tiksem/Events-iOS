@@ -159,13 +159,34 @@ class RequestManagerTemplate {
     }
 
     func getUsersByIdes(ides:[Int],
-                     success: ([VkUser])->Void,
-                     error: ((NSError)->Void)? = nil,
-                     canceler:Canceler? = nil,
-                     cancelled: (()->Void)? = nil) {
+                        success: ([VkUser])->Void,
+                        error: ((NSError)->Void)? = nil,
+                        canceler:Canceler? = nil,
+                        cancelled: (()->Void)? = nil) {
         let users = (try! ides.map {
             return String($0)
         }).joinWithSeparator(",")
-        getUsersById(users, success: success, error: error, canceler: canceler, cancelled: cancelled)
+        getUsersById(users, success: {
+            (users) in
+            if users.count != ides.count {
+                var result:[VkUser] = []
+                for id in ides {
+                    result.append(users.findFirst({$0.id == id})!)
+                }
+                success(result)
+            } else {
+                success(users)
+            }
+        }, error: error, canceler: canceler, cancelled: cancelled)
+    }
+
+    func fillCommentsUsers(var comments:[Comment], canceler:Canceler? = nil, onFinish:([Comment]) -> Void) {
+        getUsersByIdes(try! comments.map {$0.userId}, success: {
+            (users) in
+            for (commentIndex, user) in zip(0..<comments.count, users) {
+                comments[commentIndex].user = user
+            }
+            onFinish(comments)
+        }, canceler: canceler)
     }
 }
