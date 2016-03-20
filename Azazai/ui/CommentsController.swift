@@ -31,15 +31,17 @@ class CommentsController : UIViewController {
     private var requestManager:RequestManager!
     private var adapter:CommentsAdapter!
     private var eventId:Int = 0
+    private var topComments:[Comment] = []
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         assertionFailure("Should not be called")
     }
 
-    init(eventId:Int) {
+    init(eventId:Int, topComments:[Comment]) {
         super.init(nibName: "CommentsController", bundle: nil)
         self.eventId = eventId
+        self.topComments = topComments
     }
 
     override func viewDidLoad() {
@@ -47,13 +49,14 @@ class CommentsController : UIViewController {
         self.edgesForExtendedLayout = .None
 
         requestManager = RequestManager()
-        let comments = requestManager.getCommentsList(eventId) {
-            [weak requestManager]
+        let comments = requestManager.getCommentsList(eventId, modifyPage: {
+            [weak self]
             (var comments, canceler, onFinish) in
-            if let rm = requestManager {
+            if let rm = self?.requestManager {
                 rm.fillCommentsUsers(comments, canceler: canceler, onFinish: onFinish)
             }
-        }
+        })
+        comments.addAdditionalItemsToStart(topComments)
         adapter = CommentsAdapter(controller: self, commentsListView: tableView, comments: comments)
     }
 }

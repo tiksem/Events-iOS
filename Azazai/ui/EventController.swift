@@ -143,6 +143,7 @@ class EventController : UIViewController {
     }
 
     func onCommentsTap(recognizer:UIGestureRecognizer) {
-        navigationController!.pushViewController(CommentsController(eventId: event.id), animated: true)
+        navigationController!.pushViewController(CommentsController(eventId: event.id,
+                topComments: topCommentsAdapter.list.array), animated: true)
     }
 }

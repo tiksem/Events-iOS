@@ -13,6 +13,7 @@ public class LazyList<T : Hashable, Error : ErrorType> : RandomAccessable {
     private var loadNextPageExecuted = false
     var pageNumber = 0
     public var canceler:Canceler? = nil
+    private(set) var additionalOffset = 0
 
     public init(getNextPageData:(([T]) -> Void, (Error) -> Void, Int) -> Void) {
         self.getNextPageData = getNextPageData
@@ -78,6 +79,11 @@ public class LazyList<T : Hashable, Error : ErrorType> : RandomAccessable {
         canceler?.cancel()
         allDataLoaded = false
         loadNextPageExecuted = false
+    }
+
+    public func addAdditionalItemsToStart(items:[T]) {
+        self.items += items
+        additionalOffset += items.count
     }
 
     deinit {

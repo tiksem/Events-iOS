@@ -184,8 +184,9 @@ public class Network {
         result.canceler = canceler
         var mergeApplied = mergeArgs.isEmpty
         result.getNextPageData = {
+            [unowned result]
             (onSuccess, onError, pageNumber) in
-            let offset = pageNumber * limit
+            let offset = pageNumber * limit + result.additionalOffset
             args[offsetKey] = offset
             var finalUrl = getUrl(url, params: args)
             var complete:(([[String:AnyObject]]?, IOError?) -> Void)!
