@@ -22,6 +22,8 @@ private class TopCommentsAdapter : ArrayAdapter<TopCommentsAdapterDelegate> {
     }
 }
 
+private let MaxTopComments = 3
+
 class EventController : UIViewController {
     @IBOutlet weak var icon: UIImageView!
     @IBOutlet weak var peopleNumber: UILabel!
@@ -88,7 +90,7 @@ class EventController : UIViewController {
         comments.scrollEnabled = false
         comments.allowsSelection = false
         comments.tableFooterView = UIView()
-        requestManager.getTopComments(event.id, maxCount: 3, complete: {
+        requestManager.getTopComments(event.id, maxCount: MaxTopComments, complete: {
             [unowned self]
             (comments, error) in
             if let err = error {
