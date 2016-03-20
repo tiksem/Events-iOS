@@ -157,6 +157,7 @@ class RequestManager {
         ]
         Network.getJsonDictFromUrl("http://azazai.com/api/subscribe", canceler: canceler, args: requestArgs, complete: {
             (dict, error) in
+            
             complete(error)
         })
         cancelers.add(canceler, onCancelled: onCancelled)
@@ -180,6 +181,18 @@ class RequestManager {
                 complete(nil, IOError.ResponseError(error: "BackEndError", message: "\(key) " +
                         "key not found or invalid"))
             }
+        })
+        cancelers.add(canceler, onCancelled: onCancelled)
+    }
+    
+    func logoutFromVk(onCancelled:(() -> Void)? = nil,
+                        complete:(IOError?) -> Void) {
+        var canceler = Canceler()
+        let requestArgs:[String:CustomStringConvertible] = [:]
+        Network.getJsonDictFromUrl("http://api.vk.com/oauth/logout", canceler: canceler, args: requestArgs, complete: {
+            (dict, error) in
+            self.clearVkData()
+            complete(error)
         })
         cancelers.add(canceler, onCancelled: onCancelled)
     }
@@ -265,5 +278,13 @@ class RequestManager {
             }
             onFinish(comments)
         }, canceler: canceler)
+    }
+
+    func clearVkData() {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.removeObjectForKey("VKAccessUserId")
+        defaults.removeObjectForKey("VKAccessToken")
+        defaults.removeObjectForKey("VKAccessTokenDate")
+        defaults.synchronize()
     }
 }

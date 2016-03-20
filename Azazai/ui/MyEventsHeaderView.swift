@@ -10,4 +10,5 @@ class MyEventsHeaderView : UIView {
     @IBOutlet weak var tabs: UISegmentedControl!
     @IBOutlet weak var avatar: UIImageView!
     @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var logoutButton: UIImageView!
 }

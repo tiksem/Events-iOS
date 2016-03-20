@@ -131,6 +131,12 @@
           "type": "Int"
         }
       ]
+    },
+    {
+      "method": "logoutFromVk",
+      "url": "http://api.vk.com/oauth/logout",
+      "success": "self.clearVkData()",
+      "return": "Void"
     }
   ]
 }

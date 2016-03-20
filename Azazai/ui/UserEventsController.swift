@@ -33,6 +33,10 @@ class MyEventsController: EventsController {
         if let url = NSURL(string: user.photo_200) {
             header.avatar.sd_setImageWithURL(url)
         }
+
+        let tap = UITapGestureRecognizer(target:self, action:"onLogout:")
+        header.logoutButton.userInteractionEnabled = true
+        header.logoutButton.addGestureRecognizer(tap)
     }
     
     func onTabChanged() {
@@ -41,5 +45,15 @@ class MyEventsController: EventsController {
         let events = getEventsList(mode)
         adapter.list = events
         adapter.reloadData()
+    }
+
+    func onLogout(recognizer:UIGestureRecognizer) {
+        var vc = self.presentingViewController
+        while vc!.presentingViewController != nil {
+            vc = vc!.presentingViewController
+        }
+        vc!.dismissViewControllerAnimated(true, completion:{
+            UiUtils.postNotificationWithName("logout")
+        })
     }
 }

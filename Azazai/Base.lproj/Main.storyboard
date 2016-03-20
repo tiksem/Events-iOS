@@ -115,6 +115,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="loginButton" destination="UAp-xy-l14" id="1ES-JV-sBo"/>
                         <segue destination="Qaf-5P-o3e" kind="show" identifier="ShowEvents" id="WJs-Pc-Fxa"/>
                     </connections>
                 </viewController>

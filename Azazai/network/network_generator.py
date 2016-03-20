@@ -61,7 +61,10 @@ def generate_base(request, type_name, first_quote, second_quote):
     else:
         template = template.replace("__result__", "result")
     template = template.replace("__ParamName__", type_name)
-    url = quote(baseUrl + request.get("url", method_name))
+    url = request.get("url", method_name)
+    if not url.startswith("http"):
+        url = baseUrl + url
+    url = quote(url)
     template = template.replace("__url__", url)
     template = template.replace("__key__", quote(request.get("key", "")))
     func_args = OrderedDict()
@@ -99,6 +102,9 @@ def generate_base(request, type_name, first_quote, second_quote):
         template = template.replace("__args__,\n" + _8_spaces + _8_spaces + _8_spaces, "")
         template = template.replace("__args__, ", "")
         template = template.replace("__args__", "")
+    innerBody = request.get("success", "")
+    template = template.replace("/*body*/", innerBody)
+
     return template
 
 def generate_lazy_list_method(request, type_name):

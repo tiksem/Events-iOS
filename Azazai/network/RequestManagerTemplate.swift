@@ -99,6 +99,7 @@ class RequestManagerTemplate {
         let requestArgs:[String:CustomStringConvertible] = __request_args__
         Network.getJsonDictFromUrl(__url__, canceler: canceler, args: requestArgs, complete: {
             (dict, error) in
+            /*body*/
             complete(error)
         })
         cancelers.add(canceler, onCancelled: onCancelled)
@@ -188,5 +189,23 @@ class RequestManagerTemplate {
             }
             onFinish(comments)
         }, canceler: canceler)
+    }
+
+    func clearVkData() {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.removeObjectForKey("VKAccessUserId")
+        defaults.removeObjectForKey("VKAccessToken")
+        defaults.removeObjectForKey("VKAccessTokenDate")
+        defaults.synchronize()
+
+        let storage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
+        for cookie in storage.cookies {
+            let domainName = cookie.domain
+            let domainRange = domainName.rangeOfString("vk.com")
+
+            if(domainRange.length > 0) {
+                storage.deleteCookie(cookie)
+            }
+        }
     }
 }

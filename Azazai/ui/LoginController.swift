@@ -12,15 +12,44 @@ class LoginController : UIViewController, VKSdkDelegate, VKSdkUIDelegate {
     var onViewDidAppear:(() -> Void)?
     var requestManager:RequestManager!
 
+    @IBOutlet weak var loginButton: UIButton!
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         requestManager = RequestManager()
         VKSdk.instance().registerDelegate(self)
         VKSdk.instance().uiDelegate = self
+
+        UiUtils.registerNotificationWithName("logout", selector: Selector("logout"), target: self)
     }
     
     @IBAction func onLoginClick(sender: UIButton) {
         VKSdk.authorize(PERMISSIONS)
+    }
+
+    func logout() {
+//        requestManager.clearVkData()
+        VkUtils.logout()
+        loginButton.hidden = true
+//        Network.getStringFromUrl("http://api.vkontakte.ru/oauth/logout", complete: {
+//            (string, error) in
+//            if let err = error {
+//                Alerts.showOkAlert(err.description)
+//            } else {
+//                Alerts.showOkAlert(string!)
+//                self.requestManager.clearVkData()
+//                self.loginButton.hidden = false
+//            }
+//        })
+//        requestManager.logoutFromVk {
+//            [unowned self]
+//            (error) in
+//            if let err = error {
+//                Alerts.showOkAlert(err.description)
+//            } else {
+//                self.loginButton.hidden = false
+//            }
+//        }
     }
 
     func onLoginSuccess() {
@@ -55,9 +84,10 @@ class LoginController : UIViewController, VKSdkDelegate, VKSdkUIDelegate {
     }
 
     func vkSdkUserAuthorizationFailed() {
+        Alerts.showOkAlert("Failed")
     }
 
-    func vkSdkShouldPresentViewController(_ controller: UIViewController!) {
+    func vkSdkShouldPresentViewController(controller: UIViewController!) {
         presentViewController(controller, animated: true, completion: nil)
     }
 
@@ -69,6 +99,22 @@ class LoginController : UIViewController, VKSdkDelegate, VKSdkUIDelegate {
         super.viewDidAppear(animated)
         onViewDidAppear?()
         onViewDidAppear = nil
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        loginButton.hidden = true
+        VKSdk.wakeUpSession(PERMISSIONS) {
+            [weak self]
+            (state, error) in
+            if let this = self {
+                if state == .Authorized {
+                    this.onLoginSuccess()
+                } else {
+                    this.loginButton.hidden = false
+                }
+            }
+        }
     }
 
     deinit {

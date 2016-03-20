@@ -33,6 +33,13 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logout.png" translatesAutoresizingMaskIntoConstraints="NO" id="crG-0j-9Ny">
+                    <rect key="frame" x="226" y="8" width="25" height="25"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="25" id="T0N-0P-ul0"/>
+                        <constraint firstAttribute="height" constant="25" id="h0S-bb-jmz"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
@@ -43,11 +50,14 @@
                 <constraint firstItem="dmt-HY-oas" firstAttribute="trailing" secondItem="GGb-w4-MUy" secondAttribute="trailing" id="RvP-Ic-DiU"/>
                 <constraint firstItem="GGb-w4-MUy" firstAttribute="top" secondItem="7P1-j2-vOW" secondAttribute="bottom" constant="8" symbolic="YES" id="gTq-Pw-T0s"/>
                 <constraint firstItem="GGb-w4-MUy" firstAttribute="centerX" secondItem="72m-C0-jGj" secondAttribute="centerX" id="pVH-Mv-ZgF"/>
+                <constraint firstItem="crG-0j-9Ny" firstAttribute="top" secondItem="72m-C0-jGj" secondAttribute="top" constant="8" id="yKB-bq-Fdd"/>
+                <constraint firstAttribute="trailing" secondItem="crG-0j-9Ny" secondAttribute="trailing" constant="8" id="yqE-Md-Ump"/>
                 <constraint firstItem="7P1-j2-vOW" firstAttribute="leading" secondItem="72m-C0-jGj" secondAttribute="leading" constant="5" id="yro-dt-5Q2"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="avatar" destination="7P1-j2-vOW" id="KHu-C3-Ysc"/>
+                <outlet property="logoutButton" destination="crG-0j-9Ny" id="zu6-pm-LEq"/>
                 <outlet property="name" destination="dmt-HY-oas" id="30X-2C-Dqk"/>
                 <outlet property="tabs" destination="GGb-w4-MUy" id="zs4-gh-YVN"/>
             </connections>
@@ -56,5 +66,6 @@
     </objects>
     <resources>
         <image name="empty-avatar.jpg" width="300" height="300"/>
+        <image name="logout.png" width="552" height="600"/>
     </resources>
 </document>

@@ -145,4 +145,14 @@ public class UiUtils {
         let size = cell.contentView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize)
         return size.height
     }
+
+    public static func registerNotificationWithName(name:String, selector:Selector, target:NSObject) {
+        let note = NSNotificationCenter.defaultCenter()
+        note.addObserver(target, selector:selector, name:name, object:nil)
+    }
+
+    public static func postNotificationWithName(name:String, object:NSObject? = nil) {
+        let note = NSNotificationCenter.defaultCenter()
+        note.postNotificationName(name, object:object)
+    }
 }
