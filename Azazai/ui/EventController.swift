@@ -120,6 +120,9 @@ class EventController : UIViewController {
         setupSubscribeButton()
         setupOrganizer()
         setupComments()
+        let subView = view.subviews[0].subviews[0]
+        subView.changeHeightConstraintToFitSubViews()
+        (view.subviews[0] as! UIScrollView).contentSize = subView.frame.size
     }
 
     @IBAction func onSubscribeButtonClick(sender: AnyObject) {

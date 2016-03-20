@@ -155,4 +155,28 @@ public class UiUtils {
         let note = NSNotificationCenter.defaultCenter()
         note.postNotificationName(name, object:object)
     }
+
+    public static func getHeightConstraintOfView(view:UIView) -> NSLayoutConstraint? {
+        var heightConstraint:NSLayoutConstraint?
+        for constraint in view.constraints {
+            if constraint.firstAttribute == NSLayoutAttribute.Height {
+                heightConstraint = constraint
+                break;
+            }
+        }
+        return heightConstraint
+    }
+}
+
+public extension UIView {
+    func changeHeightConstraintToFitSubViews() {
+        var h:CGFloat = 0
+
+        for v in subviews {
+            let fh = v.frame.origin.y + v.frame.size.height
+            h = max(fh, h)
+        }
+
+        UiUtils.getHeightConstraintOfView(self)!.constant = h
+    }
 }
