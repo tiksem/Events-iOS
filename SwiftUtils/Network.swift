@@ -187,6 +187,9 @@ public class Network {
             $0.count < limit && mergeApplied
         }
         result.canceler = canceler
+        result.onReload = {
+            mergeApplied = false
+        }
         result.getNextPageData = {
             [unowned result]
             (onSuccess, onError, pageNumber) in
