@@ -37,6 +37,7 @@ class RequestManager {
                                 limit:Int = 10,
                                 factory: ([[String:AnyObject]]) -> [T],
                                 modifyPage: (([T], Canceler?, ([T])->Void) -> Void)? = nil,
+                                onArgsMerged:(()->Void)? = nil,
                                 var args: [String: CustomStringConvertible] = [:],
                                 var mergeArgs: [String: CustomStringConvertible] = [:],
                                 offsetKey:String = "offset",
@@ -46,10 +47,11 @@ class RequestManager {
         return Network.getJsonLazyList(url, key: key,
                 limit: limit, factory: factory, modifyPage: modifyPage, args: args,
                 offsetKey: offsetKey, limitKey: limitKey,
-                mergeArgs: mergeArgs, canceler: canceler)
+                mergeArgs: mergeArgs, onArgsMerged: onArgsMerged, canceler: canceler)
     }
     
-    func getEventsList(modifyPage:(([Event], Canceler?, ([Event])->Void) -> Void)? = nil)
+    func getEventsList(modifyPage:(([Event], Canceler?, ([Event])->Void) -> Void)? = nil,
+                        onArgsMerged:(()->Void)? = nil)
                     -> LazyList<Event, IOError> {
         let requestArgs:[String:CustomStringConvertible] = [:]
         let mergeArgs:[String:CustomStringConvertible] = [
@@ -57,10 +59,11 @@ class RequestManager {
         ]
         return getLazyList("http://azazai.com/api/getEventsList", key: "events", limit: 10, factory: {
             return Event.toEventsArray($0)!
-        }, modifyPage: modifyPage, args: requestArgs, mergeArgs: mergeArgs)
+        }, modifyPage: modifyPage, onArgsMerged: onArgsMerged, args: requestArgs, mergeArgs: mergeArgs)
     }
     
-    func getUserEvents(mod:EventMode, userId:Int, modifyPage:(([Event], Canceler?, ([Event])->Void) -> Void)? = nil)
+    func getUserEvents(mod:EventMode, userId:Int, modifyPage:(([Event], Canceler?, ([Event])->Void) -> Void)? = nil,
+                        onArgsMerged:(()->Void)? = nil)
                     -> LazyList<Event, IOError> {
         let requestArgs:[String:CustomStringConvertible] = [
             "mod": mod,
@@ -71,7 +74,7 @@ class RequestManager {
         ]
         return getLazyList("http://azazai.com/api/getUserEvents", key: "Events", limit: 10, factory: {
             return Event.toEventsArray($0)!
-        }, modifyPage: modifyPage, args: requestArgs, mergeArgs: mergeArgs)
+        }, modifyPage: modifyPage, onArgsMerged: onArgsMerged, args: requestArgs, mergeArgs: mergeArgs)
     }
     
     func getTopComments(eventId:Int, maxCount:Int,
@@ -86,7 +89,8 @@ class RequestManager {
         }, onCancelled: onCancelled)
     }
     
-    func getCommentsList(eventId:Int, modifyPage:(([Comment], Canceler?, ([Comment])->Void) -> Void)? = nil)
+    func getCommentsList(eventId:Int, modifyPage:(([Comment], Canceler?, ([Comment])->Void) -> Void)? = nil,
+                        onArgsMerged:(()->Void)? = nil)
                     -> LazyList<Comment, IOError> {
         let requestArgs:[String:CustomStringConvertible] = [
             "id": eventId
@@ -94,19 +98,21 @@ class RequestManager {
         let mergeArgs:[String:CustomStringConvertible] = [:]
         return getLazyList("http://azazai.com/api/getCommentsList", key: "Comments", limit: 10, factory: {
             return Comment.toCommentsArray($0)!
-        }, modifyPage: modifyPage, args: requestArgs, mergeArgs: mergeArgs)
+        }, modifyPage: modifyPage, onArgsMerged: onArgsMerged, args: requestArgs, mergeArgs: mergeArgs)
     }
     
-    func getTags(modifyPage:(([Tag], Canceler?, ([Tag])->Void) -> Void)? = nil)
+    func getTags(modifyPage:(([Tag], Canceler?, ([Tag])->Void) -> Void)? = nil,
+                        onArgsMerged:(()->Void)? = nil)
                     -> LazyList<Tag, IOError> {
         let requestArgs:[String:CustomStringConvertible] = [:]
         let mergeArgs:[String:CustomStringConvertible] = [:]
         return getLazyList("http://azazai.com/api/getTags", key: "Tags", limit: 10, factory: {
             return Tag.toTagsArray($0)!
-        }, modifyPage: modifyPage, args: requestArgs, mergeArgs: mergeArgs)
+        }, modifyPage: modifyPage, onArgsMerged: onArgsMerged, args: requestArgs, mergeArgs: mergeArgs)
     }
     
-    func getEventsByTag(tag:String, modifyPage:(([Event], Canceler?, ([Event])->Void) -> Void)? = nil)
+    func getEventsByTag(tag:String, modifyPage:(([Event], Canceler?, ([Event])->Void) -> Void)? = nil,
+                        onArgsMerged:(()->Void)? = nil)
                     -> LazyList<Event, IOError> {
         let requestArgs:[String:CustomStringConvertible] = [
             "tag": StringWrapper(tag)
@@ -116,16 +122,17 @@ class RequestManager {
         ]
         return getLazyList("http://azazai.com/api/getEventsByTag", key: "Events", limit: 10, factory: {
             return Event.toEventsArray($0)!
-        }, modifyPage: modifyPage, args: requestArgs, mergeArgs: mergeArgs)
+        }, modifyPage: modifyPage, onArgsMerged: onArgsMerged, args: requestArgs, mergeArgs: mergeArgs)
     }
     
-    func getIcons(modifyPage:(([IconInfo], Canceler?, ([IconInfo])->Void) -> Void)? = nil)
+    func getIcons(modifyPage:(([IconInfo], Canceler?, ([IconInfo])->Void) -> Void)? = nil,
+                        onArgsMerged:(()->Void)? = nil)
                     -> LazyList<IconInfo, IOError> {
         let requestArgs:[String:CustomStringConvertible] = [:]
         let mergeArgs:[String:CustomStringConvertible] = [:]
         return getLazyList("http://azazai.com/api/getIcons", key: "Icons", limit: 1000, factory: {
             return IconInfo.toIconInfosArray($0)!
-        }, modifyPage: modifyPage, args: requestArgs, mergeArgs: mergeArgs)
+        }, modifyPage: modifyPage, onArgsMerged: onArgsMerged, args: requestArgs, mergeArgs: mergeArgs)
     }
     
     func createEvent(args:[String:CustomStringConvertible],
@@ -286,5 +293,15 @@ class RequestManager {
         defaults.removeObjectForKey("VKAccessToken")
         defaults.removeObjectForKey("VKAccessTokenDate")
         defaults.synchronize()
+
+        let storage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
+        for cookie in storage.cookies ?? [] {
+            let domainName = cookie.domain
+            let domainRange = domainName.rangeOfString("vk.com")
+
+            if let range = domainRange where range.count > 0 {
+                storage.deleteCookie(cookie)
+            }
+        }
     }
 }

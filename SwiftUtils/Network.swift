@@ -177,6 +177,7 @@ public class Network {
                                           offsetKey:String = "offset",
                                           limitKey:String = "limit",
                                           mergeArgs:[String: CustomStringConvertible] = [:],
+                                          onArgsMerged:(()->Void)? = nil,
                                           canceler: Canceler? = nil) -> LazyList<T, IOError> {
         args[limitKey] = limit
 
@@ -198,6 +199,7 @@ public class Network {
                 if let array = array {
                     if array.isEmpty && !mergeApplied {
                         mergeApplied = true
+                        onArgsMerged?()
                         args += mergeArgs
                         result.pageNumber = 0
                         args[offsetKey] = 0

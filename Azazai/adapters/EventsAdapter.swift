@@ -24,10 +24,40 @@ class EventsAdapterDelegate : AzazaiAdapterDelegate<Event, EventCell> {
 }
 
 class EventsAdapter : AzazaiListAdapter<EventsAdapterDelegate> {
+    private var sectionsCount = 1
+    private var loadedUpcomingEventsCount = 0
+
     init(controller viewController:UIViewController, eventsListView:UITableView, events: LazyList<Event, IOError>) {
         super.init(tableView: eventsListView,
                 list: events,
                 cellIdentifier: "EventCell",
                 delegate: EventsAdapterDelegate(controller: viewController))
+    }
+
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return sectionsCount
+    }
+
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
+            return sectionsCount == 1 ? list.count : loadedUpcomingEventsCount
+        } else {
+            return list.count - loadedUpcomingEventsCount
+        }
+
+        return list.count
+    }
+
+    func onUpcomingEventsLoaded() {
+        sectionsCount = 2
+        loadedUpcomingEventsCount = list.count - 1
+    }
+
+    func tableView(tableView:UITableView, titleForHeaderInSection section:NSInteger) -> String {
+        if section == 1 {
+            return "Past events"
+        }
+
+        return "Upcoming events"
     }
 }

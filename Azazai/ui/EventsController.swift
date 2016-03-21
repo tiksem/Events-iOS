@@ -39,7 +39,11 @@ class EventsController: TableViewNibViewController {
     }
 
     func getEventsList() -> LazyList<Event, IOError> {
-        return requestManager.getEventsList()
+        return requestManager.getEventsList(onArgsMerged: {
+            [unowned self]
+            () in
+            self.adapter.onUpcomingEventsLoaded()
+        })
     }
 
     override func getTableView() -> UITableView? {

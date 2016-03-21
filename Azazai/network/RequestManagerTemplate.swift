@@ -37,6 +37,7 @@ class RequestManagerTemplate {
                                 limit:Int = 10,
                                 factory: ([[String:AnyObject]]) -> [T],
                                 modifyPage: (([T], Canceler?, ([T])->Void) -> Void)? = nil,
+                                onArgsMerged:(()->Void)? = nil,
                                 var args: [String: CustomStringConvertible] = [:],
                                 var mergeArgs: [String: CustomStringConvertible] = [:],
                                 offsetKey:String = "offset",
@@ -46,16 +47,17 @@ class RequestManagerTemplate {
         return Network.getJsonLazyList(url, key: key,
                 limit: limit, factory: factory, modifyPage: modifyPage, args: args,
                 offsetKey: offsetKey, limitKey: limitKey,
-                mergeArgs: mergeArgs, canceler: canceler)
+                mergeArgs: mergeArgs, onArgsMerged: onArgsMerged, canceler: canceler)
     }/*helpers*/
     /*lazyList*/
-    func __methodName__(__args__, modifyPage:(([__ParamName__], Canceler?, ([__ParamName__])->Void) -> Void)? = nil)
+    func __methodName__(__args__, modifyPage:(([__ParamName__], Canceler?, ([__ParamName__])->Void) -> Void)? = nil,
+                        onArgsMerged:(()->Void)? = nil)
                     -> LazyList<__ParamName__, IOError> {
         let requestArgs:[String:CustomStringConvertible] = __request_args__
         let mergeArgs:[String:CustomStringConvertible] = __merge_args__
         return getLazyList(__url__, key: __key__, limit: __limit__, factory: {
             return __ParamName__.to__ParamName__sArray($0)!
-        }, modifyPage: modifyPage, args: requestArgs, mergeArgs: mergeArgs)
+        }, modifyPage: modifyPage, onArgsMerged: onArgsMerged, args: requestArgs, mergeArgs: mergeArgs)
     }
     /*}*/
 
@@ -199,11 +201,11 @@ class RequestManagerTemplate {
         defaults.synchronize()
 
         let storage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
-        for cookie in storage.cookies {
+        for cookie in storage.cookies ?? [] {
             let domainName = cookie.domain
             let domainRange = domainName.rangeOfString("vk.com")
 
-            if(domainRange.length > 0) {
+            if let range = domainRange where range.count > 0 {
                 storage.deleteCookie(cookie)
             }
         }
