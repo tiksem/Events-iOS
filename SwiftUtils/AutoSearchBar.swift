@@ -43,5 +43,10 @@ public class AutoSearchBar : UISearchBar, UISearchBarDelegate {
         resignFirstResponder()
         let text = searchBar.text ?? ""
         onSearchButtonClicked?(text)
+        for subview in UiUtils.getAllSubViewsRecursive(self) {
+            if let view = subview as? UIButton {
+                view.enabled = true
+            }
+        }
     }
 }

@@ -166,6 +166,18 @@ public class UiUtils {
         }
         return heightConstraint
     }
+
+    public static func getAllSubViewsRecursive(view:UIView) -> [UIView] {
+        var result:[UIView] = []
+        func produce(root:UIView) {
+            for subview in root.subviews {
+                result.append(subview)
+                produce(subview)
+            }
+        }
+        produce(view)
+        return result
+    }
 }
 
 public extension UIView {
