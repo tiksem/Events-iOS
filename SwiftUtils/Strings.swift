@@ -48,6 +48,15 @@ public class StringWrapper : CustomStringConvertible {
         self.value = value
     }
 
+    public init?(_ value:String?) {
+        if let value = value {
+            self.value = value
+        } else {
+            self.value = ""
+            return nil
+        }
+    }
+
     public var description: String {
         return value
     }

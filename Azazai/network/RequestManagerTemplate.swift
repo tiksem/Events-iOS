@@ -53,8 +53,10 @@ class RequestManagerTemplate {
     func __methodName__(__args__, modifyPage:(([__ParamName__], Canceler?, ([__ParamName__])->Void) -> Void)? = nil,
                         onArgsMerged:(()->Void)? = nil)
                     -> LazyList<__ParamName__, IOError> {
-        let requestArgs:[String:CustomStringConvertible] = __request_args__
-        let mergeArgs:[String:CustomStringConvertible] = __merge_args__
+        var requestArgs:[String:CustomStringConvertible] = [:]
+        __request_args__
+        var mergeArgs:[String:CustomStringConvertible] = [:]
+        __merge_args__
         return getLazyList(__url__, key: __key__, limit: __limit__, factory: {
             return __ParamName__.to__ParamName__sArray($0)!
         }, modifyPage: modifyPage, onArgsMerged: onArgsMerged, args: requestArgs, mergeArgs: mergeArgs)
@@ -65,7 +67,8 @@ class RequestManagerTemplate {
     func __methodName__(__args__,
                         onCancelled:(() -> Void)? = nil,
                         complete:([__ParamName__]?, IOError?) -> Void) {
-        let requestArgs:[String:CustomStringConvertible] = __request_args__
+        var requestArgs:[String:CustomStringConvertible] = [:]
+        __request_args__
         getJsonArray(__url__, key: __key__, args: requestArgs, complete: {
             complete(__ParamName__.to__ParamName__sArray($0), $1)
         }, onCancelled: onCancelled)
@@ -77,7 +80,8 @@ class RequestManagerTemplate {
                         onCancelled:(() -> Void)? = nil,
                         complete:(__ParamName__?, IOError?) -> Void) {
         var canceler = Canceler()
-        let requestArgs:[String:CustomStringConvertible] = __request_args__
+        var requestArgs:[String:CustomStringConvertible] = [:]
+        __request_args__
         Network.getJsonDictFromUrl(__url__, canceler: canceler, args: requestArgs, complete: {
             let key = __key__
             if let error = $1 {
@@ -98,7 +102,8 @@ class RequestManagerTemplate {
                         onCancelled:(() -> Void)? = nil,
                         complete:(IOError?) -> Void) {
         var canceler = Canceler()
-        let requestArgs:[String:CustomStringConvertible] = __request_args__
+        var requestArgs:[String:CustomStringConvertible] = [:]
+        __request_args__
         Network.getJsonDictFromUrl(__url__, canceler: canceler, args: requestArgs, complete: {
             (dict, error) in
             /*body*/

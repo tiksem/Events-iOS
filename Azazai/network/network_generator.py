@@ -69,30 +69,39 @@ def generate_base(request, type_name, first_quote, second_quote):
     template = template.replace("__key__", quote(request.get("key", "")))
     func_args = OrderedDict()
 
-    def generate_request_args(args):
+    def generate_request_args(args, dictName):
         result = OrderedDict()
+        defaults = OrderedDict()
         for arg in args:
             name = arg["name"]
             argName = arg.get("argName", name)
             if "type" in arg:
                 type_ = arg["type"]
-                func_args[argName] = type_
-                result[name] = "StringWrapper(" + argName + ")" if type_ == "String" else argName
+                default = arg.get("default", "")
+                func_args[argName] = type_ + (default if default == "" else " = " + default)
+                d = result
+                if type_.endswith("?"):
+                    d = defaults
+                d[name] = "StringWrapper(" + argName + ")" if type_ == "String" or type_ == "String?" else argName
             else:
                 result[name] = arg["value"]
-        items = [_12_spaces + quote(key) + ": " + str(value) for key, value in result.items()]
+        items = [dictName + "[" + quote(key) + "] = " + str(value) for key, value in result.items()]
+        items.extend(["if let value = " + str(value) + " { " + dictName + "[" + quote(key) + "] = value }"
+                      for key, value in defaults.items()])
         if len(items) > 0:
-            return "[\n" + (",\n".join(items)) + "\n" + _8_spaces + "]"
+            return (("\n" + _8_spaces).join(items)) + "\n"
         else:
-            return "[:]"
+            return ""
 
     args = request.get("args", [])
     mergeArgs = request.get("mergeArgs", [])
     if args == "[:]":
-        template = template.replace("__request_args__", "args")
+        template = template.replace("requestArgs:[String:CustomStringConvertible] = [:]",
+                                    "requestArgs:[String:CustomStringConvertible] = args")
+        template = template.replace("__request_args__", "")
     else:
-        template = template.replace("__request_args__", generate_request_args(args))
-    template = template.replace("__merge_args__", generate_request_args(mergeArgs))
+        template = template.replace("__request_args__", generate_request_args(args, "requestArgs"))
+    template = template.replace("__merge_args__", generate_request_args(mergeArgs, "mergeArgs"))
     func_args_str = ", ".join([key + ":" + value for key, value in func_args.items()])
     if len(func_args) > 0:
         template = template.replace("__args__", func_args_str)

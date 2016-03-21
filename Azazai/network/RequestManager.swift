@@ -50,13 +50,15 @@ class RequestManager {
                 mergeArgs: mergeArgs, onArgsMerged: onArgsMerged, canceler: canceler)
     }
     
-    func getEventsList(modifyPage:(([Event], Canceler?, ([Event])->Void) -> Void)? = nil,
+    func getEventsList(query:String? = nil, modifyPage:(([Event], Canceler?, ([Event])->Void) -> Void)? = nil,
                         onArgsMerged:(()->Void)? = nil)
                     -> LazyList<Event, IOError> {
-        let requestArgs:[String:CustomStringConvertible] = [:]
-        let mergeArgs:[String:CustomStringConvertible] = [
-            "timeOut": true
-        ]
+        var requestArgs:[String:CustomStringConvertible] = [:]
+        if let value = StringWrapper(query) { requestArgs["query"] = value }
+
+        var mergeArgs:[String:CustomStringConvertible] = [:]
+        mergeArgs["timeOut"] = true
+
         return getLazyList("http://azazai.com/api/getEventsList", key: "events", limit: 10, factory: {
             return Event.toEventsArray($0)!
         }, modifyPage: modifyPage, onArgsMerged: onArgsMerged, args: requestArgs, mergeArgs: mergeArgs)
@@ -65,13 +67,13 @@ class RequestManager {
     func getUserEvents(mod:EventMode, userId:Int, modifyPage:(([Event], Canceler?, ([Event])->Void) -> Void)? = nil,
                         onArgsMerged:(()->Void)? = nil)
                     -> LazyList<Event, IOError> {
-        let requestArgs:[String:CustomStringConvertible] = [
-            "mod": mod,
-            "userId": userId
-        ]
-        let mergeArgs:[String:CustomStringConvertible] = [
-            "timeOut": true
-        ]
+        var requestArgs:[String:CustomStringConvertible] = [:]
+        requestArgs["mod"] = mod
+        requestArgs["userId"] = userId
+
+        var mergeArgs:[String:CustomStringConvertible] = [:]
+        mergeArgs["timeOut"] = true
+
         return getLazyList("http://azazai.com/api/getUserEvents", key: "Events", limit: 10, factory: {
             return Event.toEventsArray($0)!
         }, modifyPage: modifyPage, onArgsMerged: onArgsMerged, args: requestArgs, mergeArgs: mergeArgs)
@@ -80,10 +82,10 @@ class RequestManager {
     func getTopComments(eventId:Int, maxCount:Int,
                         onCancelled:(() -> Void)? = nil,
                         complete:([Comment]?, IOError?) -> Void) {
-        let requestArgs:[String:CustomStringConvertible] = [
-            "id": eventId,
-            "limit": maxCount
-        ]
+        var requestArgs:[String:CustomStringConvertible] = [:]
+        requestArgs["id"] = eventId
+        requestArgs["limit"] = maxCount
+
         getJsonArray("http://azazai.com/api/getCommentsList?offset=0", key: "Comments", args: requestArgs, complete: {
             complete(Comment.toCommentsArray($0), $1)
         }, onCancelled: onCancelled)
@@ -92,10 +94,11 @@ class RequestManager {
     func getCommentsList(eventId:Int, modifyPage:(([Comment], Canceler?, ([Comment])->Void) -> Void)? = nil,
                         onArgsMerged:(()->Void)? = nil)
                     -> LazyList<Comment, IOError> {
-        let requestArgs:[String:CustomStringConvertible] = [
-            "id": eventId
-        ]
-        let mergeArgs:[String:CustomStringConvertible] = [:]
+        var requestArgs:[String:CustomStringConvertible] = [:]
+        requestArgs["id"] = eventId
+
+        var mergeArgs:[String:CustomStringConvertible] = [:]
+        
         return getLazyList("http://azazai.com/api/getCommentsList", key: "Comments", limit: 10, factory: {
             return Comment.toCommentsArray($0)!
         }, modifyPage: modifyPage, onArgsMerged: onArgsMerged, args: requestArgs, mergeArgs: mergeArgs)
@@ -104,8 +107,10 @@ class RequestManager {
     func getTags(modifyPage:(([Tag], Canceler?, ([Tag])->Void) -> Void)? = nil,
                         onArgsMerged:(()->Void)? = nil)
                     -> LazyList<Tag, IOError> {
-        let requestArgs:[String:CustomStringConvertible] = [:]
-        let mergeArgs:[String:CustomStringConvertible] = [:]
+        var requestArgs:[String:CustomStringConvertible] = [:]
+        
+        var mergeArgs:[String:CustomStringConvertible] = [:]
+        
         return getLazyList("http://azazai.com/api/getTags", key: "Tags", limit: 10, factory: {
             return Tag.toTagsArray($0)!
         }, modifyPage: modifyPage, onArgsMerged: onArgsMerged, args: requestArgs, mergeArgs: mergeArgs)
@@ -114,12 +119,12 @@ class RequestManager {
     func getEventsByTag(tag:String, modifyPage:(([Event], Canceler?, ([Event])->Void) -> Void)? = nil,
                         onArgsMerged:(()->Void)? = nil)
                     -> LazyList<Event, IOError> {
-        let requestArgs:[String:CustomStringConvertible] = [
-            "tag": StringWrapper(tag)
-        ]
-        let mergeArgs:[String:CustomStringConvertible] = [
-            "timeOut": true
-        ]
+        var requestArgs:[String:CustomStringConvertible] = [:]
+        requestArgs["tag"] = StringWrapper(tag)
+
+        var mergeArgs:[String:CustomStringConvertible] = [:]
+        mergeArgs["timeOut"] = true
+
         return getLazyList("http://azazai.com/api/getEventsByTag", key: "Events", limit: 10, factory: {
             return Event.toEventsArray($0)!
         }, modifyPage: modifyPage, onArgsMerged: onArgsMerged, args: requestArgs, mergeArgs: mergeArgs)
@@ -128,8 +133,10 @@ class RequestManager {
     func getIcons(modifyPage:(([IconInfo], Canceler?, ([IconInfo])->Void) -> Void)? = nil,
                         onArgsMerged:(()->Void)? = nil)
                     -> LazyList<IconInfo, IOError> {
-        let requestArgs:[String:CustomStringConvertible] = [:]
-        let mergeArgs:[String:CustomStringConvertible] = [:]
+        var requestArgs:[String:CustomStringConvertible] = [:]
+        
+        var mergeArgs:[String:CustomStringConvertible] = [:]
+        
         return getLazyList("http://azazai.com/api/getIcons", key: "Icons", limit: 1000, factory: {
             return IconInfo.toIconInfosArray($0)!
         }, modifyPage: modifyPage, onArgsMerged: onArgsMerged, args: requestArgs, mergeArgs: mergeArgs)
@@ -139,7 +146,8 @@ class RequestManager {
                         onCancelled:(() -> Void)? = nil,
                         complete:(Int?, IOError?) -> Void) {
         var canceler = Canceler()
-        let requestArgs:[String:CustomStringConvertible] = args
+        var requestArgs:[String:CustomStringConvertible] = args
+        
         Network.getJsonDictFromUrl("http://azazai.com/api/createEvent", canceler: canceler, args: requestArgs, complete: {
             let key = "id"
             if let error = $1 {
@@ -158,10 +166,10 @@ class RequestManager {
                         onCancelled:(() -> Void)? = nil,
                         complete:(IOError?) -> Void) {
         var canceler = Canceler()
-        let requestArgs:[String:CustomStringConvertible] = [
-            "id": id,
-            "token": StringWrapper(token)
-        ]
+        var requestArgs:[String:CustomStringConvertible] = [:]
+        requestArgs["id"] = id
+        requestArgs["token"] = StringWrapper(token)
+
         Network.getJsonDictFromUrl("http://azazai.com/api/subscribe", canceler: canceler, args: requestArgs, complete: {
             (dict, error) in
             
@@ -174,10 +182,10 @@ class RequestManager {
                         onCancelled:(() -> Void)? = nil,
                         complete:(SubscribeStatus?, IOError?) -> Void) {
         var canceler = Canceler()
-        let requestArgs:[String:CustomStringConvertible] = [
-            "id": id,
-            "userId": userId
-        ]
+        var requestArgs:[String:CustomStringConvertible] = [:]
+        requestArgs["id"] = id
+        requestArgs["userId"] = userId
+
         Network.getJsonDictFromUrl("http://azazai.com/api/isSubscribed", canceler: canceler, args: requestArgs, complete: {
             let key = "isSubscribed"
             if let error = $1 {
@@ -195,7 +203,8 @@ class RequestManager {
     func logoutFromVk(onCancelled:(() -> Void)? = nil,
                         complete:(IOError?) -> Void) {
         var canceler = Canceler()
-        let requestArgs:[String:CustomStringConvertible] = [:]
+        var requestArgs:[String:CustomStringConvertible] = [:]
+        
         Network.getJsonDictFromUrl("http://api.vk.com/oauth/logout", canceler: canceler, args: requestArgs, complete: {
             (dict, error) in
             self.clearVkData()

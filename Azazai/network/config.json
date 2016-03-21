@@ -6,6 +6,13 @@
       "limit": 10,
       "return": "LazyList<Event>",
       "key": "events",
+      "args": [
+        {
+          "name": "query",
+          "type": "String?",
+          "default": "nil"
+        }
+      ],
       "mergeArgs": [
         {
           "name": "timeOut",
