@@ -21,7 +21,7 @@ class TagEventsController : EventsController {
     }
 
     override func getEventsList() -> LazyList<Event, IOError> {
-        return requestManager.getEventsByTag(tag)
+        return requestManager.getEventsByTag(tag, onArgsMerged: onArgsMerged)
     }
 
     override func getTableView() -> UITableView? {

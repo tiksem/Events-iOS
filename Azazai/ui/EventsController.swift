@@ -14,7 +14,7 @@ class EventsController: TableViewNibViewController {
     var eventsView:EventsView!
     let requestManager:RequestManager
     var adapter:EventsAdapter! = nil
-
+    private (set) var onArgsMerged:(()->Void)? = nil
     required init?(coder:NSCoder) {
         requestManager = RequestManager()
         super.init(coder: coder, nibFileName: "EventsView")
@@ -27,6 +27,9 @@ class EventsController: TableViewNibViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        onArgsMerged = {
+            [unowned self] () in self.adapter.onUpcomingEventsLoaded()
+        }
         eventsView = nestedView as! EventsView
         adapter = createEventsAdapter()
         let topController = UiUtils.addAddButtonToTheRightOfNavigationBarOfTopController(self, action: "addEvent")
@@ -39,11 +42,7 @@ class EventsController: TableViewNibViewController {
     }
 
     func getEventsList() -> LazyList<Event, IOError> {
-        return requestManager.getEventsList(onArgsMerged: {
-            [unowned self]
-            () in
-            self.adapter.onUpcomingEventsLoaded()
-        })
+        return requestManager.getEventsList(onArgsMerged: onArgsMerged)
     }
 
     override func getTableView() -> UITableView? {

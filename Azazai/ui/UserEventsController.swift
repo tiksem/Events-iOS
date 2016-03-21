@@ -14,7 +14,7 @@ class MyEventsController: EventsController {
     var header:MyEventsHeaderView!
     
     func getEventsList(mode:EventMode) -> LazyList<Event, IOError> {
-        return requestManager.getUserEvents(mode, userId: Int(VKSdk.accessToken().userId)!)
+        return requestManager.getUserEvents(mode, userId: Int(VKSdk.accessToken().userId)!, onArgsMerged: onArgsMerged)
     }
     
     override func getEventsList() -> LazyList<Event, IOError> {
