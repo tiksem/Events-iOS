@@ -40,6 +40,7 @@ class EventController : UIViewController {
     private var requestManager:RequestManager! = nil
     private var topCommentsAdapter:TopCommentsAdapter!
     private var isMine = false
+    private var subscribeStatus:SubscribeStatus = .none
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -74,6 +75,7 @@ class EventController : UIViewController {
                 } else {
                     self.subscribeButton.enabled = true
                     self.subscribeButton.selected = status != .none
+                    self.subscribeStatus = status!
                 }
             }
         }
@@ -133,12 +135,12 @@ class EventController : UIViewController {
 
         EventUtils.setupOpenProfile(self, avatar: avatar, name: organizerName)
     }
-    
-    @IBAction func onSubscribeButtonClick(sender: AnyObject) {
+
+    private func onSubscribeCancelAccept() {
         let lastSelected = subscribeButton.selected
         subscribeButton.selected = false
         subscribeButton.enabled = false
-        
+
         if isMine {
             requestManager.cancelEvent(event.id, token: VKSdk.accessToken().accessToken) {
                 [unowned self]
@@ -157,9 +159,27 @@ class EventController : UIViewController {
                     Alerts.showOkAlert(err.description)
                 } else {
                     self.subscribeButton.selected = !self.subscribeButton.selected
+                    if self.subscribeStatus == .none {
+                        self.subscribeStatus = .subscribed
+                    } else {
+                        self.subscribeStatus = .none
+                    }
                 }
             }
         }
+    }
+
+    @IBAction func onSubscribeButtonClick(sender: AnyObject) {
+        if !isMine && subscribeStatus == .none {
+            onSubscribeCancelAccept()
+            return
+        }
+
+        let cancelActionName = isMine ? "No" : "Cancel"
+        let actionName = isMine ? "Yes, cancel it" : "Unsubscribe"
+        let title = isMine ? "Cancel event \(event.name)?" : "Unsubscrive from \(event.name)?"
+        Alerts.showSlidingFromBottomOneActionAlert(self, title: title,
+                actionName: actionName, cancelActionName: cancelActionName, onAccept: onSubscribeCancelAccept)
     }
 
     func onCommentsTap(recognizer:UIGestureRecognizer) {
