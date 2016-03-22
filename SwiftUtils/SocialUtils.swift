@@ -8,7 +8,7 @@ import UIKit
 
 public class SocialUtils {
     public static func openVkProfile(userId:String) {
-        let url = NSURL(string: "vk://vk.com/" + userId)!
+        let url = NSURL(string: "vk://vk.com/id" + userId)!
         let app = UIApplication.sharedApplication()
         if app.canOpenURL(url) {
             app.openURL(url)
