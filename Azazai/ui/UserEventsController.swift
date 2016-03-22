@@ -37,6 +37,12 @@ class MyEventsController: EventsController {
         let tap = UITapGestureRecognizer(target:self, action:"onLogout:")
         header.logoutButton.userInteractionEnabled = true
         header.logoutButton.addGestureRecognizer(tap)
+
+        let tapFactory = {UITapGestureRecognizer(target:self, action:"openVkProfile:")}
+        header.avatar.userInteractionEnabled = true
+        header.name.userInteractionEnabled = true
+        header.avatar.addGestureRecognizer(tapFactory())
+        header.name.addGestureRecognizer(tapFactory())
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -50,6 +56,10 @@ class MyEventsController: EventsController {
         let mode = index == SubscribedIndex ? EventMode.Subscribed : EventMode.Created
         let events = getEventsList(mode)
         adapter.list = events
+    }
+
+    func openVkProfile(recognizer:UIGestureRecognizer) {
+        SocialUtils.openVkProfile(VKSdk.accessToken().userId)
     }
 
     func onLogout(recognizer:UIGestureRecognizer) {
