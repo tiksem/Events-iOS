@@ -42,7 +42,11 @@ class EventsController: TableViewNibViewController {
     }
 
     func updateEvents() {
-        let events = requestManager.getEventsList(searchBar.text, onArgsMerged: onArgsMerged)
+        var query:String? = searchBar.text
+        if query == "" {
+            query = nil
+        }
+        let events = requestManager.getEventsList(query, onArgsMerged: onArgsMerged)
         adapter.list = events
     }
 
