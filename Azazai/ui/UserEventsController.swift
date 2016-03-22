@@ -38,7 +38,13 @@ class MyEventsController: EventsController {
         header.logoutButton.userInteractionEnabled = true
         header.logoutButton.addGestureRecognizer(tap)
     }
-    
+
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        tabBarController?.navigationItem.title = "My Events"
+    }
+
+
     func onTabChanged() {
         let index = header.tabs.selectedSegmentIndex
         let mode = index == SubscribedIndex ? EventMode.Subscribed : EventMode.Created

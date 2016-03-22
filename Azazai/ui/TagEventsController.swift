@@ -20,8 +20,8 @@ class TagEventsController : EventsController {
         super.init()
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         navigationItem.title = "\(tag) Events"
     }
 

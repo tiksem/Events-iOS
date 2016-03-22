@@ -34,12 +34,17 @@ class EventsController: TableViewNibViewController {
         eventsView = nestedView as! EventsView
         adapter = createEventsAdapter()
         let topController = UiUtils.addAddButtonToTheRightOfNavigationBarOfTopController(self, action: "addEvent")
-        topController.title = "Events"
         searchBar = UiUtils.viewFromNib("SearchBar") as! AutoSearchBar
         eventsView.eventsListView.tableHeaderView = searchBar
         searchBar.onSearchButtonClicked = search
         searchBar.onCancel = updateEvents
     }
+
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        tabBarController?.navigationItem.title = "Events"
+    }
+
 
     func updateEvents() {
         var query:String? = searchBar.text

@@ -58,5 +58,6 @@ class CommentsController : UIViewController {
         })
         comments.addAdditionalItemsToStart(topComments)
         adapter = CommentsAdapter(controller: self, commentsListView: tableView, comments: comments)
+        navigationItem.title = "Comments"
     }
 }
