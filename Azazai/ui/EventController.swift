@@ -130,6 +130,8 @@ class EventController : UIViewController {
         let subView = view.subviews[0].subviews[0]
         subView.changeHeightConstraintToFitSubViews()
         (view.subviews[0] as! UIScrollView).contentSize = subView.frame.size
+
+        EventUtils.setupOpenProfile(self, avatar: avatar, name: organizerName)
     }
     
     @IBAction func onSubscribeButtonClick(sender: AnyObject) {
@@ -163,5 +165,9 @@ class EventController : UIViewController {
     func onCommentsTap(recognizer:UIGestureRecognizer) {
         navigationController!.pushViewController(CommentsController(eventId: event.id,
                 topComments: topCommentsAdapter.list.array), animated: true)
+    }
+
+    func openVkProfile(recognizer:UIGestureRecognizer) {
+        SocialUtils.openVkProfile(VKSdk.accessToken().userId)
     }
 }

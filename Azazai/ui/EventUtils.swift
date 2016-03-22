@@ -34,6 +34,14 @@ class EventUtils {
             label.text = user.first_name + " " + user.last_name
         }
     }
+
+    public static func setupOpenProfile(target:UIViewController, avatar:UIImageView, name:UILabel) {
+        let tapFactory = {UITapGestureRecognizer(target:target, action:"openVkProfile:")}
+        avatar.userInteractionEnabled = true
+        name.userInteractionEnabled = true
+        avatar.addGestureRecognizer(tapFactory())
+        name.addGestureRecognizer(tapFactory())
+    }
 }
 
 extension UIImageView {

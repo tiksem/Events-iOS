@@ -38,11 +38,7 @@ class MyEventsController: EventsController {
         header.logoutButton.userInteractionEnabled = true
         header.logoutButton.addGestureRecognizer(tap)
 
-        let tapFactory = {UITapGestureRecognizer(target:self, action:"openVkProfile:")}
-        header.avatar.userInteractionEnabled = true
-        header.name.userInteractionEnabled = true
-        header.avatar.addGestureRecognizer(tapFactory())
-        header.name.addGestureRecognizer(tapFactory())
+        EventUtils.setupOpenProfile(self, avatar: header.avatar, name: header.name)
     }
 
     override func viewWillAppear(animated: Bool) {
