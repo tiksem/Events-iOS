@@ -22,6 +22,7 @@ class TagsController : TableViewNibViewController {
         tagsView = nestedView as! TagsView
         adapter = TagsAdapter(controller: self, tagsListView: tagsView.tagsListView,
                 tags: requestManager.getTags())
+        tabBarController?.navigationItem.title = "Tags"
     }
 
     override func getTableView() -> UITableView? {
