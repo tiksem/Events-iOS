@@ -20,6 +20,11 @@ class TagEventsController : EventsController {
         super.init()
     }
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        navigationItem.title = "\(tag) Events"
+    }
+
     override func getEventsList() -> LazyList<Event, IOError> {
         return requestManager.getEventsByTag(tag, onArgsMerged: onArgsMerged)
     }
