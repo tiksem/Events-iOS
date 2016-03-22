@@ -39,6 +39,7 @@ class EventController : UIViewController {
     private var event:Event! = nil
     private var requestManager:RequestManager! = nil
     private var topCommentsAdapter:TopCommentsAdapter!
+    private var isMine = false
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -58,16 +59,22 @@ class EventController : UIViewController {
         UiUtils.setBackgroundAndTitleColorOfButton(subscribeButton, forState: .Disabled,
                 titleColor: UIColor.whiteColor(), backgroundColor: UIColor.lightGrayColor())
 
-        subscribeButton.enabled = false
+        isMine = event.userId == Int(VKSdk.accessToken().userId)
+        let normalTitle = isMine ? "Cancel" : "I Will Go"
+        subscribeButton.setTitle(normalTitle, forState: .Normal)
         subscribeButton.setTitle("Loading...", forState: .Disabled)
-        requestManager.isSubscribed(event.id, userId: AppDelegate.get().user.id) {
-            [unowned self]
-            (status, err) in
-            if let err = err {
-                Alerts.showOkAlert(err.description)
-            } else {
-                self.subscribeButton.enabled = true
-                self.subscribeButton.selected = status != .none
+
+        if !isMine {
+            subscribeButton.enabled = false
+            requestManager.isSubscribed(event.id, userId: AppDelegate.get().user.id) {
+                [unowned self]
+                (status, err) in
+                if let err = err {
+                    Alerts.showOkAlert(err.description)
+                } else {
+                    self.subscribeButton.enabled = true
+                    self.subscribeButton.selected = status != .none
+                }
             }
         }
     }
@@ -124,20 +131,31 @@ class EventController : UIViewController {
         subView.changeHeightConstraintToFitSubViews()
         (view.subviews[0] as! UIScrollView).contentSize = subView.frame.size
     }
-
+    
     @IBAction func onSubscribeButtonClick(sender: AnyObject) {
         let lastSelected = subscribeButton.selected
         subscribeButton.selected = false
         subscribeButton.enabled = false
-        requestManager.subscribe(event.id, token: VKSdk.accessToken().accessToken) {
-            [unowned self]
-            (err) in
-            self.subscribeButton.enabled = true
-            self.subscribeButton.selected = lastSelected
-            if let err = err {
-                Alerts.showOkAlert(err.description)
-            } else {
-                self.subscribeButton.selected = !self.subscribeButton.selected
+        
+        if isMine {
+            requestManager.cancelEvent(event.id, token: VKSdk.accessToken().accessToken) {
+                [unowned self]
+                (err) in
+                let eventsControler = UiUtils.getBackViewControllerFromTabBarIfTabBarExists(self) as! EventsController
+                eventsControler.updateEvents()
+                self.navigationController!.popViewControllerAnimated(true)
+            }
+        } else {
+            requestManager.subscribe(event.id, token: VKSdk.accessToken().accessToken) {
+                [unowned self]
+                (err) in
+                self.subscribeButton.enabled = true
+                self.subscribeButton.selected = lastSelected
+                if let err = err {
+                    Alerts.showOkAlert(err.description)
+                } else {
+                    self.subscribeButton.selected = !self.subscribeButton.selected
+                }
             }
         }
     }

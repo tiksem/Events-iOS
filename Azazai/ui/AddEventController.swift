@@ -287,7 +287,7 @@ class AddEventController : FormViewController {
     }
 
     func onEventCreated(id:Int) {
-        let eventsController = UiUtils.getBackViewControllerFromTabBar(self) as! EventsController
+        let eventsController = UiUtils.getBackViewControllerFromTabBarIfTabBarExists(self) as! EventsController
         eventsController.resetData()
         cancel()
     }

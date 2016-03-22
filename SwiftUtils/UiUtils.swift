@@ -115,8 +115,13 @@ public class UiUtils {
         }
     }
 
-    public static func getBackViewControllerFromTabBar(controller:UIViewController) -> UIViewController {
-        return (getBackViewController(controller)! as! UITabBarController).selectedViewController!
+    public static func getBackViewControllerFromTabBarIfTabBarExists(controller:UIViewController) -> UIViewController {
+        let backController = getBackViewController(controller)!
+        if let backController = (backController as? UITabBarController)?.selectedViewController {
+            return backController
+        }
+
+       return backController
     }
 
     public static func setupMultiLineForLabel(label:UILabel, text:String) {

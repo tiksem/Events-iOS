@@ -125,6 +125,21 @@
       "return": "Void"
     },
     {
+      "method": "cancelEvent",
+      "args": [
+        {
+          "name": "id",
+          "type": "Int"
+        },
+        {
+          "name": "token",
+          "type": "String"
+        }
+      ],
+      "key": "id",
+      "return": "Void"
+    },
+    {
       "method": "isSubscribed",
       "return": "enum SubscribeStatus",
       "key": "isSubscribed",

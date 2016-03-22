@@ -178,6 +178,22 @@ class RequestManager {
         cancelers.add(canceler, onCancelled: onCancelled)
     }
     
+    func cancelEvent(id:Int, token:String,
+                        onCancelled:(() -> Void)? = nil,
+                        complete:(IOError?) -> Void) {
+        var canceler = Canceler()
+        var requestArgs:[String:CustomStringConvertible] = [:]
+        requestArgs["id"] = id
+        requestArgs["token"] = StringWrapper(token)
+
+        Network.getJsonDictFromUrl("http://azazai.com/api/cancelEvent", canceler: canceler, args: requestArgs, complete: {
+            (dict, error) in
+            
+            complete(error)
+        })
+        cancelers.add(canceler, onCancelled: onCancelled)
+    }
+    
     func isSubscribed(id:Int, userId:Int,
                         onCancelled:(() -> Void)? = nil,
                         complete:(SubscribeStatus?, IOError?) -> Void) {
