@@ -109,8 +109,16 @@ public class RandomAccessibleAdapter<Container:RandomAccessable,
         return list.count
     }
 
+    private func getItemFromIndexPath(indexPath:NSIndexPath) -> T? {
+        var row = 0
+        for section in 0..<indexPath.section {
+            row += tableView(tableView, numberOfRowsInSection:section)
+        }
+        return list[row + indexPath.row]
+    }
+
     public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if let item = list[indexPath.row] {
+        if let item = getItemFromIndexPath(indexPath) {
             let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! CellType
             delegate.displayItem(element: item, cell: cell)
             return cell

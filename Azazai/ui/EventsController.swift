@@ -44,7 +44,6 @@ class EventsController: TableViewNibViewController {
     func updateEvents() {
         let events = requestManager.getEventsList(searchBar.text, onArgsMerged: onArgsMerged)
         adapter.list = events
-        adapter.reloadData()
     }
 
     func search(text:String) {

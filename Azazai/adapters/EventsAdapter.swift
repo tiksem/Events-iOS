@@ -61,10 +61,9 @@ class EventsAdapter : AzazaiListAdapter<EventsAdapterDelegate> {
         return "Upcoming events"
     }
 
-    override func reloadData() {
+    override func listWillSet() {
         sectionsCount = 1
         loadedUpcomingEventsCount = 0
-        super.reloadData()
+        super.listWillSet()
     }
-
 }

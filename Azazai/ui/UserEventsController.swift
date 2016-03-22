@@ -44,7 +44,6 @@ class MyEventsController: EventsController {
         let mode = index == SubscribedIndex ? EventMode.Subscribed : EventMode.Created
         let events = getEventsList(mode)
         adapter.list = events
-        adapter.reloadData()
     }
 
     func onLogout(recognizer:UIGestureRecognizer) {

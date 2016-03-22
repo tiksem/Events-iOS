@@ -27,7 +27,7 @@ public class LazyListAdapter<Delegate:AdapterDelegate,
         listDidSet()
     }
 
-    private func listDidSet() {
+    public func listDidSet() {
         list.onNewPageLoaded = {
             [weak self]
             (data) in
@@ -37,17 +37,21 @@ public class LazyListAdapter<Delegate:AdapterDelegate,
                 fatalError("LazyListAdapter reference is gone, after data loaded, please keep reference of it")
             }
         }
+        reloadData()
+    }
+
+    public func listWillSet() {
+        list.reload()
     }
 
     public override var list : LazyList<Delegate.T, Error> {
+        willSet {
+            listWillSet()
+        }
+
         didSet {
             listDidSet()
         }
-    }
-
-    public func resetData() {
-        list.reload()
-        reloadData()
     }
 
     deinit {

@@ -190,9 +190,21 @@ public class Network {
         result.onReload = {
             mergeApplied = false
         }
+
+        var shouldMerge = false
+
         result.getNextPageData = {
             [unowned result]
-            (onSuccess, onError, pageNumber) in
+            (onSuccess, onError, var pageNumber) in
+            if shouldMerge {
+                mergeApplied = true
+                onArgsMerged?()
+                args += mergeArgs
+                result.pageNumber = 0
+                pageNumber = 0
+                args[offsetKey] = 0
+                shouldMerge = false
+            }
             let offset = pageNumber * limit + result.additionalOffset
             args[offsetKey] = offset
             var finalUrl = getUrl(url, params: args)
@@ -200,16 +212,7 @@ public class Network {
             complete = {
                 (array, error) in
                 if let array = array {
-                    if array.isEmpty && !mergeApplied {
-                        mergeApplied = true
-                        onArgsMerged?()
-                        args += mergeArgs
-                        result.pageNumber = 0
-                        args[offsetKey] = 0
-                        finalUrl = getUrl(url, params: args)
-                        getJsonArrayFromUrl(finalUrl, key: key, canceler: canceler, complete: complete)
-                        return
-                    }
+                    shouldMerge =  array.count < limit && !mergeApplied
 
                     let resultArray = factory(array)
                     if let modify = modifyPage {
