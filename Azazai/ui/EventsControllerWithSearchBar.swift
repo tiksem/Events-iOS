@@ -26,7 +26,8 @@ class EventsControllerWithSearchBar : EventsController {
     }
 
     func onCalendarTap() {
-        Alerts.showOkAlert("YO")
+        let calendarController = CalendarPickerController()
+        navigationController!.pushViewController(calendarController, animated: true)
     }
 
     override func updateEvents() {

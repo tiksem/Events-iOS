@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1062806117B1ED21790CB1F1 /* CalendarPickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10628FD049A75FE10B810521 /* CalendarPickerController.swift */; };
 		1062807ABF0D029265A96A11 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1062881622458FB3CD7F9CDF /* Info.plist */; };
 		106280A3E159B5809FD37484 /* RandomAccessibleAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10628D5875D648D466F64DE1 /* RandomAccessibleAdapter.swift */; };
 		106280A8C1113A1EA16AECE9 /* EventUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10628EA5FCABBF8D8B1C4DB1 /* EventUtils.swift */; };
@@ -243,6 +244,7 @@
 		10628EEDEB9E10EBA84BE95C /* network_generator.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = network_generator.py; sourceTree = "<group>"; };
 		10628F71CCF2243E5A7B4DA2 /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		10628F8DAA9F4386197EE280 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
+		10628FD049A75FE10B810521 /* CalendarPickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarPickerController.swift; sourceTree = "<group>"; };
 		2E3D0E511C5A67960066890E /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		2E4BE2591C7F9CF200ED57F5 /* IconPickerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IconPickerCell.xib; sourceTree = "<group>"; };
 		2E4BE25B1C7FA31B00ED57F5 /* IconInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconInfo.swift; sourceTree = "<group>"; };
@@ -435,6 +437,7 @@
 				2E5DBA501CA07BA0004CF220 /* SearchBar.xib */,
 				1062834154D7326EE3FCB40D /* EventsControllerWithSearchBar.swift */,
 				10628C42F238025B0F31CC81 /* AllEventsController.swift */,
+				10628FD049A75FE10B810521 /* CalendarPickerController.swift */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -832,6 +835,7 @@
 				106285639BD62123840E6946 /* VkUtils.swift in Sources */,
 				106283EDBB5C8D8095E03981 /* EventsControllerWithSearchBar.swift in Sources */,
 				10628B89782BAFC04E5B7B45 /* AllEventsController.swift in Sources */,
+				1062806117B1ED21790CB1F1 /* CalendarPickerController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

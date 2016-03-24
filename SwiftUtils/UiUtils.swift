@@ -54,6 +54,16 @@ public class UiUtils {
                 action: action, barButtonSystemItem: .Add)
     }
 
+    public static func setupCancelDoneButtonsOfNavigationBar(target:UIViewController, doneAction:String,
+                                                             cancelAction:String) {
+        let topController = addNavigationBarButtonOfTopController(target,
+                action: Selector(doneAction), barButtonSystemItem: .Done)
+        topController.navigationItem.setHidesBackButton(true, animated: false)
+
+        addNavigationBarButtonOfTopController(target, left: true,
+                action: Selector(cancelAction), barButtonSystemItem: .Cancel)
+    }
+
     public static func pushViewController(hostController: UIViewController, controller: UIViewController) {
         hostController.navigationController!.pushViewController(controller, animated: true)
     }
