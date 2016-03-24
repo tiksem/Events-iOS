@@ -81,7 +81,7 @@ private class IconPickerController : UIViewController, TypedRowControllerType {
     }
 }
 
-private class IconPickerRow : SelectorRow<Icon, IconPickerController, PushSelectorCell<Icon>> {
+private class IconPickerRow : SelectorRow<Icon, PushSelectorCell<Icon>, IconPickerController>, RowType {
     required init(tag: String?) {
         super.init(tag: tag)
         presentationMode = .Show(controllerProvider: ControllerProvider.NibFile(name: "IconPicker", bundle: nil),

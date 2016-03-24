@@ -51,6 +51,7 @@ class CallbacksTests: XCTestCase {
         onChangeTest(PopoverSelectorRow<String>(), value: "text")
         onChangeTest(PostalAddressRow(), value: PostalAddress(street: "a", state: "b", postalCode: "c", city: "d", country: "e"))
         onChangeTest(SliderRow(), value: 5.0)
+        onChangeTest(StepperRow(), value: 2.5)
     }
     
     func testCellSetup() {
@@ -63,6 +64,7 @@ class CallbacksTests: XCTestCase {
         cellSetupTest(PopoverSelectorRow<String>())
         cellSetupTest(PostalAddressRow())
         cellSetupTest(SliderRow())
+        cellSetupTest(StepperRow())
     }
     
     func testCellUpdate() {
@@ -75,6 +77,7 @@ class CallbacksTests: XCTestCase {
         cellUpdateTest(PopoverSelectorRow<String>())
         cellUpdateTest(PostalAddressRow())
         cellUpdateTest(SliderRow())
+        cellUpdateTest(StepperRow())
     }
     
     func testDefaultCellSetup() {
@@ -87,6 +90,7 @@ class CallbacksTests: XCTestCase {
         defaultCellSetupTest(PopoverSelectorRow<String>())
         defaultCellSetupTest(PostalAddressRow())
         defaultCellSetupTest(SliderRow())
+        defaultCellSetupTest(StepperRow())
     }
     
     func testDefaultCellUpdate() {
@@ -99,6 +103,7 @@ class CallbacksTests: XCTestCase {
         defaultCellUpdateTest(PopoverSelectorRow<String>())
         defaultCellUpdateTest(PostalAddressRow())
         defaultCellUpdateTest(SliderRow())
+        defaultCellUpdateTest(StepperRow())
     }
     
     func testDefaultInitializers() {
@@ -111,9 +116,10 @@ class CallbacksTests: XCTestCase {
         defaultInitializerTest(PopoverSelectorRow<String>())
         defaultInitializerTest(PostalAddressRow())
         defaultInitializerTest(SliderRow())
+        defaultInitializerTest(StepperRow())
     }
     
-    private func onChangeTest<Row, Value where  Row: BaseRow, Row : RowType, Row.Value == Row.Cell.Value, Value == Row.Value>(row:Row, value:Value){
+    private func onChangeTest<Row, Value where Row: BaseRow, Row: RowType, Row: TypedRowType, Row.Value == Row.Cell.Value, Value == Row.Value>(row:Row, value:Value){
         var invoked = false
         row.onChange { row in
             invoked = true
@@ -123,7 +129,7 @@ class CallbacksTests: XCTestCase {
         XCTAssertTrue(invoked)
     }
     
-    private func cellSetupTest<Row, Value where  Row: BaseRow, Row : RowType, Row.Value == Row.Cell.Value, Value == Row.Value>(row:Row){
+    private func cellSetupTest<Row, Value where  Row: BaseRow, Row : RowType, Row: TypedRowType, Row.Value == Row.Cell.Value, Value == Row.Value>(row:Row){
         var invoked = false
         row.cellSetup { cell, row in
             invoked = true
@@ -133,7 +139,7 @@ class CallbacksTests: XCTestCase {
         XCTAssertTrue(invoked)
     }
     
-    private func cellUpdateTest<Row, Value where  Row: BaseRow, Row : RowType, Row.Value == Row.Cell.Value, Value == Row.Value>(row:Row){
+    private func cellUpdateTest<Row, Value where  Row: BaseRow, Row : RowType, Row: TypedRowType, Row.Value == Row.Cell.Value, Value == Row.Value>(row:Row){
         var invoked = false
         row.cellUpdate { cell, row in
             invoked = true
@@ -143,7 +149,7 @@ class CallbacksTests: XCTestCase {
         XCTAssertTrue(invoked)
     }
     
-    private func defaultInitializerTest<Row where Row: BaseRow, Row : RowType, Row.Value == Row.Cell.Value>(row:Row){
+    private func defaultInitializerTest<Row where Row: BaseRow, Row : RowType,  Row: TypedRowType, Row.Value == Row.Cell.Value>(row:Row){
         var invoked = false
         Row.defaultRowInitializer = { row in
             invoked = true
@@ -152,7 +158,7 @@ class CallbacksTests: XCTestCase {
         XCTAssertTrue(invoked)
     }
     
-    private func defaultCellSetupTest<Row where Row: BaseRow, Row : RowType, Row.Value == Row.Cell.Value>(row:Row){
+    private func defaultCellSetupTest<Row where Row: BaseRow, Row: RowType,  Row: TypedRowType, Row.Value == Row.Cell.Value>(row:Row){
         var invoked = false
         Row.defaultCellSetup = { cell, row in
             invoked = true
@@ -162,7 +168,7 @@ class CallbacksTests: XCTestCase {
         XCTAssertTrue(invoked)
     }
 
-    private func defaultCellUpdateTest<Row where Row: BaseRow, Row : RowType, Row.Value == Row.Cell.Value>(row:Row){
+    private func defaultCellUpdateTest<Row where Row: BaseRow, Row : RowType, Row: TypedRowType, Row.Value == Row.Cell.Value>(row:Row){
         var invoked = false
         Row.defaultCellUpdate = { cell, row in
             invoked = true

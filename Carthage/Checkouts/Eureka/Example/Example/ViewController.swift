@@ -139,6 +139,11 @@ class RowsExampleViewController: FormViewController {
                     $0.value = 5.0
                 }
             
+                <<< StepperRow() {
+                    $0.title = "StepperRow"
+                    $0.value = 1.0
+                }
+            
             +++ Section("SegmentedRow examples")
             
                 <<< SegmentedRow<String>() { $0.options = ["One", "Two", "Three"] }
@@ -221,7 +226,7 @@ class RowsExampleViewController: FormViewController {
                         $0.value = [👦🏼, 🍐, 🐗]
                     }
                     .onPresent { from, to in
-                        to.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Done, target: from, action: "multipleSelectorDone:")
+                        to.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Done, target: from, action: #selector(RowsExampleViewController.multipleSelectorDone(_:)))
                     }
             
         form +++ Section("Generic picker")
@@ -247,6 +252,9 @@ class RowsExampleViewController: FormViewController {
                         $0.value = 5
                         $0.formatter = DecimalFormatter()
                         $0.useFormatterDuringInput = true
+                        //$0.useFormatterOnDidBeginEditing = true
+                    }.cellSetup { cell, _  in
+                        cell.textField.keyboardType = .NumberPad
                     }
                 
                 <<< URLRow() {
@@ -531,7 +539,7 @@ class NativeEventFormViewController : FormViewController {
         initializeForm()
         
         self.navigationItem.leftBarButtonItem?.target = self
-        self.navigationItem.leftBarButtonItem?.action = "cancelTapped:"
+        self.navigationItem.leftBarButtonItem?.action = #selector(NativeEventFormViewController.cancelTapped(_:))
     }
     
     private func initializeForm() {
@@ -547,7 +555,7 @@ class NativeEventFormViewController : FormViewController {
                 }
         
             +++
-            
+    
                 SwitchRow("All-day") {
                     $0.title = $0.tag
                 }.onChange { [weak self] row in
@@ -571,7 +579,7 @@ class NativeEventFormViewController : FormViewController {
                     startDate.inlineRow?.updateCell()
                     endDate.inlineRow?.updateCell()
                 }
-            
+        
             <<< DateTimeInlineRow("Starts") {
                     $0.title = $0.tag
                     $0.value = NSDate().dateByAddingTimeInterval(60*60*24)
