@@ -5,5 +5,9 @@
 
 import Foundation
 
-class AllEventsController : EventsController {
+class AllEventsController : EventsControllerWithSearchBar {
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        tabBarController?.navigationItem.title = "Events"
+    }
 }

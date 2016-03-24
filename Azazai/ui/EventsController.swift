@@ -14,7 +14,6 @@ class EventsController: TableViewNibViewController {
     var eventsView:EventsView!
     let requestManager:RequestManager
     var adapter:EventsAdapter! = nil
-    var searchBar:AutoSearchBar! = nil
     private (set) var onArgsMerged:(()->Void)? = nil
     required init?(coder:NSCoder) {
         requestManager = RequestManager()
@@ -34,29 +33,6 @@ class EventsController: TableViewNibViewController {
         eventsView = nestedView as! EventsView
         adapter = createEventsAdapter()
         let topController = UiUtils.addAddButtonToTheRightOfNavigationBarOfTopController(self, action: "addEvent")
-        searchBar = UiUtils.viewFromNib("SearchBar") as! AutoSearchBar
-        eventsView.eventsListView.tableHeaderView = searchBar
-        searchBar.onSearchButtonClicked = search
-        searchBar.onCancel = updateEvents
-    }
-
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        tabBarController?.navigationItem.title = "Events"
-    }
-
-
-    func updateEvents() {
-        var query:String? = searchBar.text
-        if query == "" {
-            query = nil
-        }
-        let events = requestManager.getEventsList(query, onArgsMerged: onArgsMerged)
-        adapter.list = events
-    }
-
-    func search(text:String) {
-        updateEvents()
     }
 
     func createEventsAdapter() -> EventsAdapter {
@@ -66,6 +42,11 @@ class EventsController: TableViewNibViewController {
 
     func getEventsList() -> LazyList<Event, IOError> {
         return requestManager.getEventsList(onArgsMerged: onArgsMerged)
+    }
+
+    func updateEvents() {
+        let events = requestManager.getEventsList(onArgsMerged: onArgsMerged)
+        adapter.list = events
     }
 
     override func getTableView() -> UITableView? {

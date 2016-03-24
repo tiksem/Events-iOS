@@ -1,4 +1,5 @@
 github "VKCOM/vk-ios-sdk" >= 1.3.8
 github "uacaps/PageMenu"
 github "rs/SDWebImage"
-github "xmartlabs/Eureka" ~> 1.4.1
+github "xmartlabs/Eureka"
+github "jivesoftware/PDTSimpleCalendar" ~> 0.9.1

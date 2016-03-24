@@ -23,6 +23,7 @@
 		106283A46E739346EB32C274 /* NibViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106286A433B270940AADAD75 /* NibViewController.swift */; };
 		106283AE854DCABFA9D28DE6 /* CommentsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106282950113029DE8B01CDA /* CommentsController.swift */; };
 		106283E4C38D7EF600E3375F /* Arrays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1062885F0054C2A7ECC65E49 /* Arrays.swift */; };
+		106283EDBB5C8D8095E03981 /* EventsControllerWithSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1062834154D7326EE3FCB40D /* EventsControllerWithSearchBar.swift */; };
 		10628428007366B02093208E /* EventsAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106288EDFB63498E03411E0C /* EventsAdapter.swift */; };
 		10628458B8E10453052A97AB /* TagEventsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106283BDA9A62764DB1B48F9 /* TagEventsController.swift */; };
 		1062846525CCD5710ED6BA6F /* IconCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10628C44F65CEB23EA5DAD1E /* IconCell.swift */; };
@@ -53,6 +54,7 @@
 		10628B15E306708D605BFF1D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10628A1FE40E6581899A2CDB /* AppDelegate.swift */; };
 		10628B5AC968C1CBE4B7C941 /* LazyListAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1062820E7F16302928A33359 /* LazyListAdapter.swift */; };
 		10628B74ECF13E09A388630F /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106283F528864E2303B1FA96 /* Comment.swift */; };
+		10628B89782BAFC04E5B7B45 /* AllEventsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10628C42F238025B0F31CC81 /* AllEventsController.swift */; };
 		10628C7C51455C19B19D967F /* TagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10628B5E73303AE1FF4BD23F /* TagsView.swift */; };
 		10628D2FA2AD624DEE2D28FE /* AzazaiListAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10628C62E17A167FB82896BF /* AzazaiListAdapter.swift */; };
 		10628D898C61DFEE2389CD19 /* TagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1062833CEED38DF9185CE506 /* TagsView.swift */; };
@@ -86,11 +88,14 @@
 		2E7C32D41C5FB45B00CE8F7C /* EventCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E7C32D31C5FB45B00CE8F7C /* EventCell.xib */; };
 		2E7C32D61C5FBD5600CE8F7C /* Loading.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E7C32D51C5FBD5600CE8F7C /* Loading.xib */; };
 		2E7C32D91C615D3300CE8F7C /* EventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1062806EB94A695BC39A227F /* EventController.swift */; };
-		2E87D5C51C80F847002B1FF9 /* Eureka.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E87D5C41C80F847002B1FF9 /* Eureka.framework */; };
-		2E87D5C61C80F847002B1FF9 /* Eureka.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2E87D5C41C80F847002B1FF9 /* Eureka.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2E87D5C71C80FA96002B1FF9 /* AddEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106282BB4A22233E917980E4 /* AddEventController.swift */; };
 		2E87D5CA1C823B81002B1FF9 /* SubscribeStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E87D5C91C823B81002B1FF9 /* SubscribeStatus.swift */; };
 		2E87D5D51C976806002B1FF9 /* TLTagsControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E87D5D31C976806002B1FF9 /* TLTagsControl.m */; };
+		2E8C16711CA36CED0027ED16 /* Eureka.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E8C16701CA36CED0027ED16 /* Eureka.framework */; };
+		2E8C16721CA36CED0027ED16 /* Eureka.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2E8C16701CA36CED0027ED16 /* Eureka.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2EB1E3571CA3583600C0E60A /* PDTSimpleCalendar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EB1E3561CA3583600C0E60A /* PDTSimpleCalendar.framework */; };
+		2EB1E3581CA3583600C0E60A /* PDTSimpleCalendar.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2EB1E3561CA3583600C0E60A /* PDTSimpleCalendar.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2EB1E35A1CA35A6100C0E60A /* calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EB1E3591CA35A6100C0E60A /* calendar.png */; };
 		2ED5E4DE1C31F9DD002A1CFB /* ic_people_grey.png in Resources */ = {isa = PBXBuildFile; fileRef = 2ED5E4DD1C31F9DD002A1CFB /* ic_people_grey.png */; };
 		2EED38271C74098C00EC6E71 /* EventController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EED38261C74098C00EC6E71 /* EventController.xib */; };
 		2EED38291C740C8200EC6E71 /* EventsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EED38281C740C8200EC6E71 /* EventsView.xib */; };
@@ -151,8 +156,9 @@
 				2E5D01DC1C5AAC6C0013735F /* SwiftUtils.framework in Embed Frameworks */,
 				2EED38331C77CCD800EC6E71 /* PageMenuFramework.framework in Embed Frameworks */,
 				2E7C32561C5C0FAD00CE8F7C /* VKSdkFramework.framework in Embed Frameworks */,
+				2E8C16721CA36CED0027ED16 /* Eureka.framework in Embed Frameworks */,
 				2EED38431C7DE9D900EC6E71 /* WebImage.framework in Embed Frameworks */,
-				2E87D5C61C80F847002B1FF9 /* Eureka.framework in Embed Frameworks */,
+				2EB1E3581CA3583600C0E60A /* PDTSimpleCalendar.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -176,6 +182,7 @@
 		106282E70D21E7707A56B5B5 /* TopCommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopCommentCell.swift; sourceTree = "<group>"; };
 		1062832B6B3FA3E47AAFEA30 /* RequestManagerTemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestManagerTemplate.swift; sourceTree = "<group>"; };
 		1062833CEED38DF9185CE506 /* TagsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsView.swift; sourceTree = "<group>"; };
+		1062834154D7326EE3FCB40D /* EventsControllerWithSearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsControllerWithSearchBar.swift; sourceTree = "<group>"; };
 		106283A78DF0BB8802326F25 /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		106283BDA9A62764DB1B48F9 /* TagEventsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagEventsController.swift; sourceTree = "<group>"; };
 		106283F528864E2303B1FA96 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
@@ -220,6 +227,7 @@
 		10628A92D295C9C144CE7066 /* Template.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Template.swift; sourceTree = "<group>"; };
 		10628B5E73303AE1FF4BD23F /* TagsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsView.swift; sourceTree = "<group>"; };
 		10628B7A317F96BE89C8C602 /* AzazaiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AzazaiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		10628C42F238025B0F31CC81 /* AllEventsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllEventsController.swift; sourceTree = "<group>"; };
 		10628C44F65CEB23EA5DAD1E /* IconCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconCell.swift; sourceTree = "<group>"; };
 		10628C59BF300FB93058A150 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		10628C62E17A167FB82896BF /* AzazaiListAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AzazaiListAdapter.swift; sourceTree = "<group>"; };
@@ -248,10 +256,12 @@
 		2E7C32541C5C0FAD00CE8F7C /* VKSdkFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VKSdkFramework.framework; path = Carthage/Build/iOS/VKSdkFramework.framework; sourceTree = "<group>"; };
 		2E7C32D31C5FB45B00CE8F7C /* EventCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventCell.xib; sourceTree = "<group>"; };
 		2E7C32D51C5FBD5600CE8F7C /* Loading.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Loading.xib; sourceTree = "<group>"; };
-		2E87D5C41C80F847002B1FF9 /* Eureka.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Eureka.framework; path = Carthage/Build/iOS/Eureka.framework; sourceTree = "<group>"; };
 		2E87D5C91C823B81002B1FF9 /* SubscribeStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscribeStatus.swift; sourceTree = "<group>"; };
 		2E87D5D31C976806002B1FF9 /* TLTagsControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLTagsControl.m; sourceTree = "<group>"; };
 		2E87D5D41C976806002B1FF9 /* TLTagsControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLTagsControl.h; sourceTree = "<group>"; };
+		2E8C16701CA36CED0027ED16 /* Eureka.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Eureka.framework; path = Carthage/Build/iOS/Eureka.framework; sourceTree = "<group>"; };
+		2EB1E3561CA3583600C0E60A /* PDTSimpleCalendar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PDTSimpleCalendar.framework; path = Carthage/Build/iOS/PDTSimpleCalendar.framework; sourceTree = "<group>"; };
+		2EB1E3591CA35A6100C0E60A /* calendar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendar.png; sourceTree = "<group>"; };
 		2ED5E4DD1C31F9DD002A1CFB /* ic_people_grey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_people_grey.png; sourceTree = "<group>"; };
 		2EED38261C74098C00EC6E71 /* EventController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventController.xib; sourceTree = "<group>"; };
 		2EED38281C740C8200EC6E71 /* EventsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventsView.xib; sourceTree = "<group>"; };
@@ -282,8 +292,9 @@
 				2E5D01DB1C5AAC6C0013735F /* SwiftUtils.framework in Frameworks */,
 				2EED38321C77CCD800EC6E71 /* PageMenuFramework.framework in Frameworks */,
 				2E7C32551C5C0FAD00CE8F7C /* VKSdkFramework.framework in Frameworks */,
+				2E8C16711CA36CED0027ED16 /* Eureka.framework in Frameworks */,
 				2EED38421C7DE9D900EC6E71 /* WebImage.framework in Frameworks */,
-				2E87D5C51C80F847002B1FF9 /* Eureka.framework in Frameworks */,
+				2EB1E3571CA3583600C0E60A /* PDTSimpleCalendar.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,7 +339,8 @@
 		106283FB35D5C11BF3D0CEC3 = {
 			isa = PBXGroup;
 			children = (
-				2E87D5C41C80F847002B1FF9 /* Eureka.framework */,
+				2E8C16701CA36CED0027ED16 /* Eureka.framework */,
+				2EB1E3561CA3583600C0E60A /* PDTSimpleCalendar.framework */,
 				2E4BE2591C7F9CF200ED57F5 /* IconPickerCell.xib */,
 				2EED38411C7DE9D900EC6E71 /* WebImage.framework */,
 				2EED38311C77CCD800EC6E71 /* PageMenuFramework.framework */,
@@ -421,6 +433,8 @@
 				106282E70D21E7707A56B5B5 /* TopCommentCell.swift */,
 				2E5DBA4C1C9E089A004CF220 /* TopCommentCell.xib */,
 				2E5DBA501CA07BA0004CF220 /* SearchBar.xib */,
+				1062834154D7326EE3FCB40D /* EventsControllerWithSearchBar.swift */,
+				10628C42F238025B0F31CC81 /* AllEventsController.swift */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -428,6 +442,7 @@
 		1062899727F855D6E386689D /* images */ = {
 			isa = PBXGroup;
 			children = (
+				2EB1E3591CA35A6100C0E60A /* calendar.png */,
 				2E5DBA4E1C9F0A54004CF220 /* logout.png */,
 				2EED38441C7E55AC00EC6E71 /* event_icon.png */,
 				2EED383F1C7DE4AD00EC6E71 /* empty-avatar.jpg */,
@@ -699,6 +714,7 @@
 				2EED38401C7DE4AD00EC6E71 /* empty-avatar.jpg in Resources */,
 				2EED38291C740C8200EC6E71 /* EventsView.xib in Resources */,
 				2E4BE25A1C7F9CF200ED57F5 /* IconPickerCell.xib in Resources */,
+				2EB1E35A1CA35A6100C0E60A /* calendar.png in Resources */,
 				2E5DBA511CA07BA0004CF220 /* SearchBar.xib in Resources */,
 				2EED38271C74098C00EC6E71 /* EventController.xib in Resources */,
 				2E5DBA491C9B6F36004CF220 /* CommentCell.xib in Resources */,
@@ -814,6 +830,8 @@
 				106283AE854DCABFA9D28DE6 /* CommentsController.swift in Sources */,
 				106286DBA207F3BB724A5944 /* TopCommentCell.swift in Sources */,
 				106285639BD62123840E6946 /* VkUtils.swift in Sources */,
+				106283EDBB5C8D8095E03981 /* EventsControllerWithSearchBar.swift in Sources */,
+				10628B89782BAFC04E5B7B45 /* AllEventsController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -870,7 +888,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/**";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SRCROOT)/**",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Azazai/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1162,7 +1183,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/**";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SRCROOT)/**",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Azazai/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

@@ -6,7 +6,7 @@
 import Foundation
 import SwiftUtils
 
-class TagEventsController : EventsController {
+class TagEventsController : EventsControllerWithSearchBar {
     private let tag:String
 
     required init?(coder:NSCoder) {
