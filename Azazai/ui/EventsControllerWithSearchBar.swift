@@ -17,17 +17,6 @@ class EventsControllerWithSearchBar : EventsController {
         eventsView.eventsListView.tableHeaderView = searchBar
         searchBar.onSearchButtonClicked = search
         searchBar.onCancel = updateEvents
-
-        let calendarButton = UIBarButtonItem(image:UIImage(named: "calendar"),
-        style:.Plain, target:self, action:Selector("onCalendarTap"))
-
-        let topViewController = navigationController!.topViewController!
-        topViewController.navigationItem.setLeftBarButtonItem(calendarButton, animated: false)
-    }
-
-    func onCalendarTap() {
-        let calendarController = CalendarPickerController()
-        navigationController!.pushViewController(calendarController, animated: true)
     }
 
     override func updateEvents() {

@@ -7,9 +7,19 @@ import Foundation
 import SwiftUtils
 
 class CalendarPickerController : PDTSimpleCalendarViewController {
+    var selectedDateValue:NSDate! = nil
+
     override func viewDidLoad() {
         super.viewDidLoad()
         UiUtils.setupCancelDoneButtonsOfNavigationBar(self, doneAction: "onDone", cancelAction: "onCancel")
+        title = "Select event date"
+        selectedDate = selectedDateValue
+    }
+
+    override var selectedDate:NSDate! {
+        didSet {
+            navigationItem.rightBarButtonItem!.enabled = selectedDate != nil
+        }
     }
 
     func onDone() {
