@@ -5,19 +5,24 @@
 
 import Foundation
 import UIKit
+import SwiftUtils
 
 class AllEventsController : EventsControllerWithSearchBar {
     var topController:UIViewController! = nil
+    var selectedDate:NSDate? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
         topController = navigationController!.topViewController!
-    }
 
+        let tap = UITapGestureRecognizer(target:self, action:#selector(AllEventsController.onCloseDateFilter(_:)))
+        searchBarView.closeDateFilter.userInteractionEnabled = true
+        searchBarView.closeDateFilter.addGestureRecognizer(tap)
+    }
 
     func onCalendarTap() {
         let calendarController = CalendarPickerController()
-        //calendarController.selectedDateValue = DateUtils.createNSDate(year: 2016, month: 3, day: 25)
+        calendarController.selectedDateValue = selectedDate
         calendarController.weekdayHeaderEnabled = true
         calendarController.weekdayTextType = .VeryShort
         calendarController.edgesForExtendedLayout = .None
@@ -29,7 +34,7 @@ class AllEventsController : EventsControllerWithSearchBar {
         tabBarController?.navigationItem.title = "Events"
 
         let calendarButton = UIBarButtonItem(image:UIImage(named: "calendar"),
-                style:.Plain, target:self, action:Selector("onCalendarTap"))
+                style:.Plain, target:self, action:#selector(AllEventsController.onCalendarTap))
 
         topController.navigationItem.setLeftBarButtonItem(calendarButton, animated: animated)
     }
@@ -39,4 +44,14 @@ class AllEventsController : EventsControllerWithSearchBar {
         topController.navigationItem.setLeftBarButtonItem(nil, animated: animated)
     }
 
+    func onDateSelected(date:NSDate) {
+        selectedDate = date
+        searchBarView.dateFilter?.text = "Date filter: " + DateUtils.getAlternativeDisplayDate(date)
+        showCalendarFilter()
+    }
+
+    func onCloseDateFilter(recognizer:UIGestureRecognizer) {
+        hideCalendarFilter()
+        selectedDate = nil
+    }
 }

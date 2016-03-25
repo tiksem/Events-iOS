@@ -14,4 +14,10 @@ public class DateUtils {
         components.month = month
         return calendar.dateFromComponents(components)!
     }
+
+    public static func getAlternativeDisplayDate(date:NSDate) -> String {
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "dd-MM-yyyy"
+        return formatter.stringFromDate(date)
+    }
 }

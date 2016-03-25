@@ -6,14 +6,52 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <searchBar contentMode="redraw" placeholder="Search Events" translucent="NO" id="k0b-x0-vT2" customClass="AutoSearchBar" customModule="SwiftUtils">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-            <textInputTraits key="textInputTraits"/>
-            <scopeButtonTitles>
-                <string>Title</string>
-                <string>Title</string>
-            </scopeButtonTitles>
-        </searchBar>
+        <view contentMode="scaleToFill" id="Tfu-O6-T6C" customClass="SearchBarView" customModule="Azazai" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="82"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date Filter:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Twe-8v-oS6">
+                    <rect key="frame" x="124" y="0.0" width="72" height="38"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="38" id="a0N-BW-Sjj"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <searchBar contentMode="redraw" placeholder="Search Events" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k0b-x0-vT2" customClass="AutoSearchBar" customModule="SwiftUtils">
+                    <rect key="frame" x="0.0" y="38" width="320" height="44"/>
+                    <textInputTraits key="textInputTraits"/>
+                    <scopeButtonTitles>
+                        <string>Title</string>
+                        <string>Title</string>
+                    </scopeButtonTitles>
+                </searchBar>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="x" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZcD-PM-4Ej">
+                    <rect key="frame" x="303" y="8" width="9" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="k0b-x0-vT2" secondAttribute="trailing" id="BDq-s6-Ump"/>
+                <constraint firstItem="k0b-x0-vT2" firstAttribute="top" secondItem="Twe-8v-oS6" secondAttribute="bottom" id="D7H-PC-fGM"/>
+                <constraint firstAttribute="trailing" secondItem="ZcD-PM-4Ej" secondAttribute="trailing" constant="8" id="GB0-l7-61F"/>
+                <constraint firstItem="Twe-8v-oS6" firstAttribute="centerX" secondItem="k0b-x0-vT2" secondAttribute="centerX" id="We4-93-FGw"/>
+                <constraint firstItem="ZcD-PM-4Ej" firstAttribute="centerY" secondItem="Twe-8v-oS6" secondAttribute="centerY" id="YGz-Nb-bSR"/>
+                <constraint firstItem="k0b-x0-vT2" firstAttribute="leading" secondItem="Tfu-O6-T6C" secondAttribute="leading" id="jzZ-zb-Td5"/>
+                <constraint firstAttribute="bottom" secondItem="k0b-x0-vT2" secondAttribute="bottom" id="vpK-Ff-eyo"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="closeDateFilter" destination="ZcD-PM-4Ej" id="72i-m0-3sc"/>
+                <outlet property="dateFilter" destination="Twe-8v-oS6" id="8rW-Pw-EGS"/>
+                <outlet property="dateFilterHeight" destination="a0N-BW-Sjj" id="tNn-bB-cQD"/>
+                <outlet property="searchbar" destination="k0b-x0-vT2" id="QrH-Gx-lil"/>
+            </connections>
+            <point key="canvasLocation" x="-58" y="841"/>
+        </view>
     </objects>
 </document>

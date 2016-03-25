@@ -13,6 +13,7 @@
 		106280A8C1113A1EA16AECE9 /* EventUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10628EA5FCABBF8D8B1C4DB1 /* EventUtils.swift */; };
 		106280C7E962AAB3BBD37561 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1062846A23306049B69ADC14 /* Event.swift */; };
 		106280CF68C33B4FBAC16CDF /* EventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10628122C0857EE9A51CC8C0 /* EventsView.swift */; };
+		1062821D91512BE101C4EE03 /* LinearLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106283DC0042C799AA633C5F /* LinearLayout.swift */; };
 		1062822070D3CD97D3BB12E1 /* SwiftUtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10628A74865C670B8082549A /* SwiftUtilsTests.swift */; };
 		10628234E7536228D4653B1A /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10628585B1C467D4A5F09BA9 /* Strings.swift */; };
 		1062826A203E03DD64CFF5E2 /* AzazaiUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1062800C8BACD68A4655DC1E /* AzazaiUITests.swift */; };
@@ -60,6 +61,7 @@
 		10628C7C51455C19B19D967F /* TagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10628B5E73303AE1FF4BD23F /* TagsView.swift */; };
 		10628D2FA2AD624DEE2D28FE /* AzazaiListAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10628C62E17A167FB82896BF /* AzazaiListAdapter.swift */; };
 		10628D898C61DFEE2389CD19 /* TagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1062833CEED38DF9185CE506 /* TagsView.swift */; };
+		10628D9BE5BF329BAB5A5C45 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1062896FED64B3026246CEDC /* SearchBarView.swift */; };
 		10628DBCD7B1E023E45C63F5 /* CustomCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106281D86AB44BDD00DA5416 /* CustomCells.swift */; };
 		10628DE22C607992575EC828 /* EventMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106285CA8BAE68A7ACA73444 /* EventMode.swift */; };
 		10628E19098D35964F53C5B8 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1062863DCAE17FDF00AA30AA /* Info.plist */; };
@@ -188,6 +190,7 @@
 		106283A78DF0BB8802326F25 /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		106283A934858E020AD5BE83 /* DateUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
 		106283BDA9A62764DB1B48F9 /* TagEventsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagEventsController.swift; sourceTree = "<group>"; };
+		106283DC0042C799AA633C5F /* LinearLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinearLayout.swift; sourceTree = "<group>"; };
 		106283F528864E2303B1FA96 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		10628405F201F41AADA05117 /* RandomAccessable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomAccessable.swift; sourceTree = "<group>"; };
 		1062846A23306049B69ADC14 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
@@ -217,6 +220,7 @@
 		106288EF081F062EB4283FE1 /* EventsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsController.swift; sourceTree = "<group>"; };
 		106288FD94EAE39634F6C11C /* AzazaiUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AzazaiUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		106289354099CD0EA6F57F4F /* IOError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IOError.swift; sourceTree = "<group>"; };
+		1062896FED64B3026246CEDC /* SearchBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		10628990ED1DB7924139CA45 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		106289BDBA0D444158B662BB /* AzazaiTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AzazaiTests.swift; sourceTree = "<group>"; };
 		106289C7BC543EC2C3758F86 /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
@@ -441,6 +445,8 @@
 				1062834154D7326EE3FCB40D /* EventsControllerWithSearchBar.swift */,
 				10628C42F238025B0F31CC81 /* AllEventsController.swift */,
 				10628FD049A75FE10B810521 /* CalendarPickerController.swift */,
+				106283DC0042C799AA633C5F /* LinearLayout.swift */,
+				1062896FED64B3026246CEDC /* SearchBarView.swift */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -787,6 +793,7 @@
 				106287EF9C9F51FE52979A27 /* AutoSearchBar.swift in Sources */,
 				106287476A6D0531B601ACF0 /* SocialUtils.swift in Sources */,
 				1062835C4973FB0E51CEDB40 /* DateUtils.swift in Sources */,
+				1062821D91512BE101C4EE03 /* LinearLayout.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -840,6 +847,7 @@
 				106283EDBB5C8D8095E03981 /* EventsControllerWithSearchBar.swift in Sources */,
 				10628B89782BAFC04E5B7B45 /* AllEventsController.swift in Sources */,
 				1062806117B1ED21790CB1F1 /* CalendarPickerController.swift in Sources */,
+				10628D9BE5BF329BAB5A5C45 /* SearchBarView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

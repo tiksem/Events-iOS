@@ -23,7 +23,9 @@ class CalendarPickerController : PDTSimpleCalendarViewController {
     }
 
     func onDone() {
-        Alerts.showOkAlert("Done")
+        let allEventsController = UiUtils.getBackViewControllerFromTabBarIfTabBarExists(self) as! AllEventsController
+        allEventsController.onDateSelected(selectedDate!)
+        onCancel()
     }
 
     func onCancel() {

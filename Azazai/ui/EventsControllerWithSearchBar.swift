@@ -9,14 +9,37 @@ import UIKit
 
 class EventsControllerWithSearchBar : EventsController {
     private var searchBar:AutoSearchBar! = nil
+    var searchBarView:SearchBarView! = nil
+    private var dateFilterHeight:CGFloat = 0
+
+    func showCalendarFilter() {
+        searchBarView.dateFilterHeight.constant = dateFilterHeight
+        searchBarView.frame.size.height = searchBar.frame.height + dateFilterHeight
+        searchBarView.closeDateFilter.hidden = false
+        eventsView.eventsListView.reloadData()
+    }
+
+    func hideCalendarFilter() {
+        searchBarView.dateFilterHeight.constant = 0
+        searchBarView.frame.size.height = searchBar.frame.height
+        searchBarView.closeDateFilter.hidden = true
+        eventsView.eventsListView.reloadData()
+    }
+
+    func onAfterSearchBar() {
+        hideCalendarFilter()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        searchBar = UiUtils.viewFromNib("SearchBar") as! AutoSearchBar
-        eventsView.eventsListView.tableHeaderView = searchBar
+        searchBarView = UiUtils.viewFromNib("SearchBar") as! SearchBarView
+        eventsView.eventsListView.tableHeaderView = searchBarView
+        searchBar = searchBarView.searchbar
         searchBar.onSearchButtonClicked = search
         searchBar.onCancel = updateEvents
+        dateFilterHeight = searchBarView.dateFilterHeight.constant
+        onAfterSearchBar()
     }
 
     override func updateEvents() {
