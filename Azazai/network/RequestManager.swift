@@ -50,11 +50,12 @@ class RequestManager {
                 mergeArgs: mergeArgs, onArgsMerged: onArgsMerged, canceler: canceler)
     }
     
-    func getEventsList(query:String? = nil, modifyPage:(([Event], Canceler?, ([Event])->Void) -> Void)? = nil,
+    func getEventsList(query query:String? = nil, dateFilter:Int? = nil, modifyPage:(([Event], Canceler?, ([Event])->Void) -> Void)? = nil,
                         onArgsMerged:(()->Void)? = nil)
                     -> LazyList<Event, IOError> {
         var requestArgs:[String:CustomStringConvertible] = [:]
         if let value = StringWrapper(query) { requestArgs["query"] = value }
+        if let value = dateFilter { requestArgs["dateFilter"] = value }
 
         var mergeArgs:[String:CustomStringConvertible] = [:]
         mergeArgs["timeOut"] = true

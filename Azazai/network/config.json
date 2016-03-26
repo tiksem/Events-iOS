@@ -9,7 +9,13 @@
       "args": [
         {
           "name": "query",
+          "argName": "query query",
           "type": "String?",
+          "default": "nil"
+        },
+        {
+          "name": "dateFilter",
+          "type": "Int?",
           "default": "nil"
         }
       ],

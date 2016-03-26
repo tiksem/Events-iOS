@@ -82,6 +82,7 @@ def generate_base(request, type_name, first_quote, second_quote):
                 d = result
                 if type_.endswith("?"):
                     d = defaults
+                argName = argName.split(" ")[0]
                 d[name] = "StringWrapper(" + argName + ")" if type_ == "String" or type_ == "String?" else argName
             else:
                 result[name] = arg["value"]

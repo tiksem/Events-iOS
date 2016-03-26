@@ -11,6 +11,7 @@ class EventsControllerWithSearchBar : EventsController {
     private var searchBar:AutoSearchBar! = nil
     var searchBarView:SearchBarView! = nil
     private var dateFilterHeight:CGFloat = 0
+    var selectedDate:NSDate? = nil
 
     func showCalendarFilter() {
         searchBarView.dateFilterHeight.constant = dateFilterHeight
@@ -47,7 +48,13 @@ class EventsControllerWithSearchBar : EventsController {
         if query == "" {
             query = nil
         }
-        let events = requestManager.getEventsList(query, onArgsMerged: onArgsMerged)
+        
+        var date:Int? = nil
+        if let interval = selectedDate?.timeIntervalSince1970 {
+            date = Int(interval)
+        }
+        
+        let events = requestManager.getEventsList(query: query, dateFilter: date, onArgsMerged: onArgsMerged)
         adapter.list = events
     }
 

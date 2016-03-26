@@ -9,7 +9,6 @@ import SwiftUtils
 
 class AllEventsController : EventsControllerWithSearchBar {
     var topController:UIViewController! = nil
-    var selectedDate:NSDate? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,10 +47,12 @@ class AllEventsController : EventsControllerWithSearchBar {
         selectedDate = date
         searchBarView.dateFilter?.text = "Date filter: " + DateUtils.getAlternativeDisplayDate(date)
         showCalendarFilter()
+        updateEvents()
     }
 
     func onCloseDateFilter(recognizer:UIGestureRecognizer) {
         hideCalendarFilter()
         selectedDate = nil
+        updateEvents()
     }
 }
