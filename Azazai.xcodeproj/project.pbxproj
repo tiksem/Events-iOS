@@ -101,6 +101,9 @@
 		2EB1E3581CA3583600C0E60A /* PDTSimpleCalendar.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2EB1E3561CA3583600C0E60A /* PDTSimpleCalendar.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2EB1E35A1CA35A6100C0E60A /* calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EB1E3591CA35A6100C0E60A /* calendar.png */; };
 		2ED5E4DE1C31F9DD002A1CFB /* ic_people_grey.png in Resources */ = {isa = PBXBuildFile; fileRef = 2ED5E4DD1C31F9DD002A1CFB /* ic_people_grey.png */; };
+		2EECBF2B1CA8854A0087709A /* ic_events.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EECBF281CA8854A0087709A /* ic_events.png */; };
+		2EECBF2C1CA8854A0087709A /* ic_my_events.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EECBF291CA8854A0087709A /* ic_my_events.png */; };
+		2EECBF2D1CA8854A0087709A /* ic_tags.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EECBF2A1CA8854A0087709A /* ic_tags.png */; };
 		2EED38271C74098C00EC6E71 /* EventController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EED38261C74098C00EC6E71 /* EventController.xib */; };
 		2EED38291C740C8200EC6E71 /* EventsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EED38281C740C8200EC6E71 /* EventsView.xib */; };
 		2EED382A1C74E97800EC6E71 /* UserEventsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10628DA5D2131CF8A60F3D47 /* UserEventsController.swift */; };
@@ -271,6 +274,9 @@
 		2EB1E3561CA3583600C0E60A /* PDTSimpleCalendar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PDTSimpleCalendar.framework; path = Carthage/Build/iOS/PDTSimpleCalendar.framework; sourceTree = "<group>"; };
 		2EB1E3591CA35A6100C0E60A /* calendar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendar.png; sourceTree = "<group>"; };
 		2ED5E4DD1C31F9DD002A1CFB /* ic_people_grey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_people_grey.png; sourceTree = "<group>"; };
+		2EECBF281CA8854A0087709A /* ic_events.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_events.png; sourceTree = "<group>"; };
+		2EECBF291CA8854A0087709A /* ic_my_events.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_my_events.png; sourceTree = "<group>"; };
+		2EECBF2A1CA8854A0087709A /* ic_tags.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_tags.png; sourceTree = "<group>"; };
 		2EED38261C74098C00EC6E71 /* EventController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventController.xib; sourceTree = "<group>"; };
 		2EED38281C740C8200EC6E71 /* EventsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventsView.xib; sourceTree = "<group>"; };
 		2EED38311C77CCD800EC6E71 /* PageMenuFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PageMenuFramework.framework; path = Carthage/Build/iOS/PageMenuFramework.framework; sourceTree = "<group>"; };
@@ -454,6 +460,9 @@
 		1062899727F855D6E386689D /* images */ = {
 			isa = PBXGroup;
 			children = (
+				2EECBF281CA8854A0087709A /* ic_events.png */,
+				2EECBF291CA8854A0087709A /* ic_my_events.png */,
+				2EECBF2A1CA8854A0087709A /* ic_tags.png */,
 				2EB1E3591CA35A6100C0E60A /* calendar.png */,
 				2E5DBA4E1C9F0A54004CF220 /* logout.png */,
 				2EED38441C7E55AC00EC6E71 /* event_icon.png */,
@@ -717,12 +726,15 @@
 				2EED38381C78025D00EC6E71 /* TagCell.xib in Resources */,
 				2EED383A1C7D0B0400EC6E71 /* MyEventsHeaderView.xib in Resources */,
 				106283488577203AC306B794 /* Assets.xcassets in Resources */,
+				2EECBF2D1CA8854A0087709A /* ic_tags.png in Resources */,
 				106289FB42AA4D24D1BED3F3 /* LaunchScreen.storyboard in Resources */,
 				2EED384B1C7F93E700EC6E71 /* IconPicker.xib in Resources */,
 				2E5DBA4B1C9DBEB2004CF220 /* CommentsController.xib in Resources */,
 				10628A02ACEC0E12DADB0004 /* Main.storyboard in Resources */,
+				2EECBF2B1CA8854A0087709A /* ic_events.png in Resources */,
 				2E5DBA4D1C9E089A004CF220 /* TopCommentCell.xib in Resources */,
 				106286905B3C66407B0C3E5E /* config.json in Resources */,
+				2EECBF2C1CA8854A0087709A /* ic_my_events.png in Resources */,
 				2EED38401C7DE4AD00EC6E71 /* empty-avatar.jpg in Resources */,
 				2EED38291C740C8200EC6E71 /* EventsView.xib in Resources */,
 				2E4BE25A1C7F9CF200ED57F5 /* IconPickerCell.xib in Resources */,

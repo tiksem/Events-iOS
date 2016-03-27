@@ -7,15 +7,13 @@ import Foundation
 import SwiftUtils
 
 class VkUtils {
-    public static func logout() {
+    static func logout() {
         let logoutUrl = "http://api.vk.com/oauth/logout"
 
         let request = NSMutableURLRequest(URL: NSURL(string: logoutUrl)!,
         cachePolicy:.ReloadIgnoringLocalCacheData,
         timeoutInterval:60.0)
         let responseData = try! NSURLConnection.sendSynchronousRequest(request, returningResponse: nil)
-        let dict = try! SwiftUtils.Json.toDictionary(responseData)
-        print(dict)
 
         let defaults = NSUserDefaults.standardUserDefaults()
         defaults.removeObjectForKey("VKAccessUserId")

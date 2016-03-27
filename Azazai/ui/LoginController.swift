@@ -20,7 +20,7 @@ class LoginController : UIViewController, VKSdkDelegate, VKSdkUIDelegate {
         VKSdk.instance().registerDelegate(self)
         VKSdk.instance().uiDelegate = self
 
-        UiUtils.registerNotificationWithName("logout", selector: Selector("logout"), target: self)
+        UiUtils.registerNotificationWithName("logout", selector: #selector(LoginController.logout), target: self)
     }
     
     @IBAction func onLoginClick(sender: UIButton) {
@@ -28,9 +28,10 @@ class LoginController : UIViewController, VKSdkDelegate, VKSdkUIDelegate {
     }
 
     func logout() {
+        requestManager.clearVkData()
 //        requestManager.clearVkData()
-        VkUtils.logout()
-        loginButton.hidden = true
+        //VkUtils.logout()
+        loginButton.hidden = false
 //        Network.getStringFromUrl("http://api.vkontakte.ru/oauth/logout", complete: {
 //            (string, error) in
 //            if let err = error {
@@ -67,7 +68,7 @@ class LoginController : UIViewController, VKSdkDelegate, VKSdkUIDelegate {
         performSegueWithIdentifier("ShowEvents", sender: self)
     }
 
-    func vkSdkAccessAuthorizationFinishedWithResult(_ result: VKAuthorizationResult!) {
+    func vkSdkAccessAuthorizationFinishedWithResult(result: VKAuthorizationResult!) {
         let callback = {
             if let error = result.error {
                 Alerts.showOkAlert(error.description)
@@ -91,7 +92,7 @@ class LoginController : UIViewController, VKSdkDelegate, VKSdkUIDelegate {
         presentViewController(controller, animated: true, completion: nil)
     }
 
-    func vkSdkNeedCaptchaEnter(_ captchaError: VKError!) {
+    func vkSdkNeedCaptchaEnter(captchaError: VKError!) {
         print("vkSdkNeedCaptchaEnter")
     }
 
