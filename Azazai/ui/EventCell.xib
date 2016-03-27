@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -15,18 +15,9 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q2R-KS-vGu">
-                        <rect key="frame" x="66" y="8" width="526" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OIm-hD-nqf">
-                        <rect key="frame" x="66" y="29" width="526" height="18"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="18" id="Hsi-Bw-IJh"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <rect key="frame" x="66" y="8" width="526" height="16"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                        <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="event_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="EhQ-AX-Dlt">
@@ -37,8 +28,17 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2/3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lcd-fP-EGf">
-                        <rect key="frame" x="20" y="61" width="26" height="20.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <rect key="frame" x="23" y="61" width="20.5" height="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OIm-hD-nqf">
+                        <rect key="frame" x="66" y="24" width="526" height="18"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="18" id="Hsi-Bw-IJh"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -49,10 +49,10 @@
                     <constraint firstItem="EhQ-AX-Dlt" firstAttribute="centerX" secondItem="lcd-fP-EGf" secondAttribute="centerX" id="B97-pd-kXQ"/>
                     <constraint firstItem="q2R-KS-vGu" firstAttribute="leading" secondItem="EhQ-AX-Dlt" secondAttribute="trailing" constant="8" symbolic="YES" id="CIl-CX-vr7"/>
                     <constraint firstAttribute="trailingMargin" secondItem="OIm-hD-nqf" secondAttribute="trailing" id="Xjg-8c-PLx"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="OIm-hD-nqf" secondAttribute="bottom" constant="30.5" id="ZaH-OY-kgL"/>
                     <constraint firstAttribute="trailingMargin" secondItem="q2R-KS-vGu" secondAttribute="trailing" id="ebD-OH-1Jq"/>
                     <constraint firstItem="lcd-fP-EGf" firstAttribute="top" secondItem="EhQ-AX-Dlt" secondAttribute="bottom" constant="3" id="fep-s2-9Mz"/>
                     <constraint firstItem="EhQ-AX-Dlt" firstAttribute="top" secondItem="Dfh-S6-R7r" secondAttribute="topMargin" id="k8L-1I-RPr"/>
+                    <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="lcd-fP-EGf" secondAttribute="bottom" id="k9T-Sg-zQ0"/>
                     <constraint firstItem="OIm-hD-nqf" firstAttribute="top" secondItem="q2R-KS-vGu" secondAttribute="bottom" id="naF-Ke-HeV"/>
                     <constraint firstItem="EhQ-AX-Dlt" firstAttribute="top" secondItem="q2R-KS-vGu" secondAttribute="top" id="pB8-7P-5JD"/>
                 </constraints>
@@ -64,7 +64,7 @@
                 <outlet property="icon" destination="EhQ-AX-Dlt" id="c2G-ZY-dNT"/>
                 <outlet property="peopleNumber" destination="lcd-fP-EGf" id="wur-0O-LwH"/>
             </connections>
-            <point key="canvasLocation" x="217" y="270"/>
+            <point key="canvasLocation" x="-1" y="251"/>
         </tableViewCell>
     </objects>
     <resources>

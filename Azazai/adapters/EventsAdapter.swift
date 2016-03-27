@@ -16,10 +16,10 @@ class EventsAdapterDelegate : AzazaiAdapterDelegate<Event, EventCell> {
 
     override func displayItem(element event: Event, cell: CellType) -> Void {
         cell.eventName?.text = event.name
-        cell.eventDescription?.text = event.description
         cell.layoutMargins = UIEdgeInsetsZero
         EventUtils.displayPeopleNumberInLabel(cell.peopleNumber, event: event)
         EventUtils.displayIcon(event.icon, imageView: cell.icon)
+        UiUtils.setupMultiLineForLabel(cell.eventDescription, text: event.description)
     }
 }
 
