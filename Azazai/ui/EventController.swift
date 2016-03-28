@@ -113,7 +113,7 @@ class EventController : UIViewController {
             }
         })
 
-        let tap = UITapGestureRecognizer(target:self, action:"onCommentsTap:")
+        let tap = UITapGestureRecognizer(target:self, action:#selector(EventController.onCommentsTap(_:)))
         comments.addGestureRecognizer(tap)
     }
 
@@ -123,7 +123,7 @@ class EventController : UIViewController {
         EventUtils.displayPeopleNumberInLabel(peopleNumber, event: event)
         name.text = event.name
         EventUtils.displayIcon(event.icon, imageView: icon)
-        address.text! += " \(event.address)"
+        address.text = " \(event.address)"
         let date = EventUtils.eventDateToString(event.date)
         eventDate.text = "\(date)"
         setupSubscribeButton()

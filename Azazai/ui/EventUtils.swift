@@ -25,7 +25,7 @@ class EventUtils {
 
     static func eventDateToString(date:Int) -> String {
         let date = NSDate(timeIntervalSince1970: Double(date))
-        return DateUtils.getAlternativeDisplayDate(date)
+        return DateUtils.getAlternativeDisplayDateAndTime(date)
     }
 
     static func displayUserNameInLabel(label:UILabel, user:VkUser?) {
