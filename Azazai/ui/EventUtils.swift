@@ -5,12 +5,13 @@
 
 import Foundation
 import UIKit
+import SwiftUtils
 
 let DefaultEventIcon = "event_icon.png"
 let IconBaseUrl = "http://azazai.com/icon/"
 
 class EventUtils {
-    public static func displayIcon(iconId:Int, imageView:UIImageView) {
+    static func displayIcon(iconId:Int, imageView:UIImageView) {
         if iconId != 0 {
             imageView.sd_setImageWithURL(NSURL(string: IconBaseUrl + String(iconId))!)
         } else {
@@ -18,24 +19,22 @@ class EventUtils {
         }
     }
 
-    public static func displayPeopleNumberInLabel(label:UILabel, event:Event) {
+    static func displayPeopleNumberInLabel(label:UILabel, event:Event) {
         label.text = String(event.subscribersCount) + "/" + String(event.peopleNumber)
     }
 
-    public static func eventDateToString(date:Int) -> String {
+    static func eventDateToString(date:Int) -> String {
         let date = NSDate(timeIntervalSince1970: Double(date))
-        let formatter = NSDateFormatter()
-        formatter.dateFormat = "dd-MM-yyyy HH:mm:ss"
-        return formatter.stringFromDate(date)
+        return DateUtils.getAlternativeDisplayDate(date)
     }
 
-    public static func displayUserNameInLabel(label:UILabel, user:VkUser?) {
+    static func displayUserNameInLabel(label:UILabel, user:VkUser?) {
         if let user = user {
             label.text = user.first_name + " " + user.last_name
         }
     }
 
-    public static func setupOpenProfile(target:UIViewController, avatar:UIImageView, name:UILabel) {
+    static func setupOpenProfile(target:UIViewController, avatar:UIImageView, name:UILabel) {
         let tapFactory = {UITapGestureRecognizer(target:target, action:"openVkProfile:")}
         avatar.userInteractionEnabled = true
         name.userInteractionEnabled = true
