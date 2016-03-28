@@ -24,10 +24,12 @@ class EventsAdapterDelegate : AzazaiAdapterDelegate<Event, EventCell> {
 }
 
 private let HeaderCellIdentifier = "EventsSectionHeaderCell"
+private let PastEvents = "Past events"
+private let UpcomingEvents = "Upcoming events"
 
 class EventsAdapter : AzazaiListAdapter<EventsAdapterDelegate> {
     private var sectionsCount = 1
-    private var loadedUpcomingEventsCount = 0
+    private var loadedUpcomingEventsCount = -1
 
     init(controller viewController:UIViewController, eventsListView:UITableView, events: LazyList<Event, IOError>) {
         super.init(tableView: eventsListView,
@@ -46,24 +48,38 @@ class EventsAdapter : AzazaiListAdapter<EventsAdapterDelegate> {
         if section == 0 {
             return sectionsCount == 1 ? list.count : loadedUpcomingEventsCount
         } else {
-            return list.count - loadedUpcomingEventsCount
+            return list.count - (loadedUpcomingEventsCount < 0 ? 0 : loadedUpcomingEventsCount)
         }
     }
 
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = tableView.dequeueReusableCellWithIdentifier(HeaderCellIdentifier) as! EventsSectionHeaderView
-        header.headerText.text = ["Upcoming events", "Past events"][section]
+        header.headerText.text = getHeaderOfSection(section)
         return header
     }
     
+    func getHeaderOfSection(section:Int) -> String {
+        if section == 0 {
+            if loadedUpcomingEventsCount == 0 {
+                return PastEvents
+            } else {
+                return UpcomingEvents
+            }
+        } else {
+            return PastEvents
+        }
+    }
+    
     func onUpcomingEventsLoaded() {
-        sectionsCount = 2
         loadedUpcomingEventsCount = list.count - 1
+        if (loadedUpcomingEventsCount != 0) {
+            sectionsCount = 2
+        }
     }
 
     override func listWillSet() {
         sectionsCount = 1
-        loadedUpcomingEventsCount = 0
+        loadedUpcomingEventsCount = -1
         super.listWillSet()
     }
 }

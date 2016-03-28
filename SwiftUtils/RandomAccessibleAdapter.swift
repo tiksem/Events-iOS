@@ -110,13 +110,17 @@ public class RandomAccessibleAdapter<Container:RandomAccessable,
     }
 
     private func getItemFromIndexPath(indexPath:NSIndexPath) -> T? {
+        return list[getItemPositionForIndexPath(indexPath)]
+    }
+
+    private func getItemPositionForIndexPath(indexPath:NSIndexPath) -> Int {
         var row = 0
         for section in 0..<indexPath.section {
             row += tableView(tableView, numberOfRowsInSection:section)
         }
-        return list[row + indexPath.row]
+        return row + indexPath.row
     }
-
+    
     public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if let item = getItemFromIndexPath(indexPath) {
             let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! CellType
@@ -130,9 +134,9 @@ public class RandomAccessibleAdapter<Container:RandomAccessable,
     }
 
     public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let row = indexPath.row
-        if let item = list[row] {
-            delegate.onItemSelected(element: item, position: row)
+        let position = getItemPositionForIndexPath(indexPath)
+        if let item = list[position] {
+            delegate.onItemSelected(element: item, position: position)
         }
     }
 
