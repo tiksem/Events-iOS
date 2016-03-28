@@ -23,6 +23,8 @@ class EventsAdapterDelegate : AzazaiAdapterDelegate<Event, EventCell> {
     }
 }
 
+private let HeaderCellIdentifier = "EventsSectionHeaderCell"
+
 class EventsAdapter : AzazaiListAdapter<EventsAdapterDelegate> {
     private var sectionsCount = 1
     private var loadedUpcomingEventsCount = 0
@@ -32,6 +34,8 @@ class EventsAdapter : AzazaiListAdapter<EventsAdapterDelegate> {
                 list: events,
                 cellIdentifier: "EventCell",
                 delegate: EventsAdapterDelegate(controller: viewController))
+        
+        UiUtils.registerNib(tableView: eventsListView, nibName: HeaderCellIdentifier, cellIdentifier: HeaderCellIdentifier)
     }
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -44,21 +48,17 @@ class EventsAdapter : AzazaiListAdapter<EventsAdapterDelegate> {
         } else {
             return list.count - loadedUpcomingEventsCount
         }
-
-        return list.count
     }
 
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = tableView.dequeueReusableCellWithIdentifier(HeaderCellIdentifier) as! EventsSectionHeaderView
+        header.headerText.text = ["Upcoming events", "Past events"][section]
+        return header
+    }
+    
     func onUpcomingEventsLoaded() {
         sectionsCount = 2
         loadedUpcomingEventsCount = list.count - 1
-    }
-
-    func tableView(tableView:UITableView, titleForHeaderInSection section:NSInteger) -> String {
-        if section == 1 {
-            return "Past events"
-        }
-
-        return "Upcoming events"
     }
 
     override func listWillSet() {

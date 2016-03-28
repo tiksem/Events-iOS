@@ -104,6 +104,8 @@
 		2EECBF2B1CA8854A0087709A /* ic_events.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EECBF281CA8854A0087709A /* ic_events.png */; };
 		2EECBF2C1CA8854A0087709A /* ic_my_events.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EECBF291CA8854A0087709A /* ic_my_events.png */; };
 		2EECBF2D1CA8854A0087709A /* ic_tags.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EECBF2A1CA8854A0087709A /* ic_tags.png */; };
+		2EECBF2F1CA8A38C0087709A /* EventsSectionHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EECBF2E1CA8A38C0087709A /* EventsSectionHeaderCell.xib */; };
+		2EECBF311CA8AD3A0087709A /* EventsSeactionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EECBF301CA8AD3A0087709A /* EventsSeactionHeaderView.swift */; };
 		2EED38271C74098C00EC6E71 /* EventController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EED38261C74098C00EC6E71 /* EventController.xib */; };
 		2EED38291C740C8200EC6E71 /* EventsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EED38281C740C8200EC6E71 /* EventsView.xib */; };
 		2EED382A1C74E97800EC6E71 /* UserEventsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10628DA5D2131CF8A60F3D47 /* UserEventsController.swift */; };
@@ -277,6 +279,8 @@
 		2EECBF281CA8854A0087709A /* ic_events.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_events.png; sourceTree = "<group>"; };
 		2EECBF291CA8854A0087709A /* ic_my_events.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_my_events.png; sourceTree = "<group>"; };
 		2EECBF2A1CA8854A0087709A /* ic_tags.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_tags.png; sourceTree = "<group>"; };
+		2EECBF2E1CA8A38C0087709A /* EventsSectionHeaderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventsSectionHeaderCell.xib; sourceTree = "<group>"; };
+		2EECBF301CA8AD3A0087709A /* EventsSeactionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsSeactionHeaderView.swift; sourceTree = "<group>"; };
 		2EED38261C74098C00EC6E71 /* EventController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventController.xib; sourceTree = "<group>"; };
 		2EED38281C740C8200EC6E71 /* EventsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventsView.xib; sourceTree = "<group>"; };
 		2EED38311C77CCD800EC6E71 /* PageMenuFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PageMenuFramework.framework; path = Carthage/Build/iOS/PageMenuFramework.framework; sourceTree = "<group>"; };
@@ -453,6 +457,8 @@
 				10628FD049A75FE10B810521 /* CalendarPickerController.swift */,
 				106283DC0042C799AA633C5F /* LinearLayout.swift */,
 				1062896FED64B3026246CEDC /* SearchBarView.swift */,
+				2EECBF2E1CA8A38C0087709A /* EventsSectionHeaderCell.xib */,
+				2EECBF301CA8AD3A0087709A /* EventsSeactionHeaderView.swift */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -720,6 +726,7 @@
 			files = (
 				2EED38361C78018B00EC6E71 /* TagsView.xib in Resources */,
 				2E5DBA4F1C9F0A54004CF220 /* logout.png in Resources */,
+				2EECBF2F1CA8A38C0087709A /* EventsSectionHeaderCell.xib in Resources */,
 				2ED5E4DE1C31F9DD002A1CFB /* ic_people_grey.png in Resources */,
 				10628544ABA26438EA2E4802 /* Info.plist in Resources */,
 				2E3D0E521C5A67960066890E /* logo.png in Resources */,
@@ -845,6 +852,7 @@
 				10628D2FA2AD624DEE2D28FE /* AzazaiListAdapter.swift in Sources */,
 				10628E7708E7B16E669B1483 /* TagsAdapter.swift in Sources */,
 				10628C7C51455C19B19D967F /* TagsView.swift in Sources */,
+				2EECBF311CA8AD3A0087709A /* EventsSeactionHeaderView.swift in Sources */,
 				10628458B8E10453052A97AB /* TagEventsController.swift in Sources */,
 				1062827955953549DE2FEECF /* MyEventsHeaderView.swift in Sources */,
 				1062833D4A031341979801EC /* FloatLabelTextField.swift in Sources */,

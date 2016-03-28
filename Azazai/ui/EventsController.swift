@@ -32,7 +32,7 @@ class EventsController: TableViewNibViewController {
         }
         eventsView = nestedView as! EventsView
         adapter = createEventsAdapter()
-        let topController = UiUtils.addAddButtonToTheRightOfNavigationBarOfTopController(self, action: "addEvent")
+        UiUtils.addAddButtonToTheRightOfNavigationBarOfTopController(self, action: #selector(EventsController.addEvent))
     }
 
     func createEventsAdapter() -> EventsAdapter {
