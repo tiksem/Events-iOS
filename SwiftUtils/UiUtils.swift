@@ -193,6 +193,14 @@ public class UiUtils {
         produce(view)
         return result
     }
+    
+    public static func setTapListenerForViews(views:[UIView], target:NSObject, action:String) {
+        let tapFactory = {UITapGestureRecognizer(target:target, action:Selector(action))}
+        for view in views {
+            view.userInteractionEnabled = true
+            view.addGestureRecognizer(tapFactory())
+        }
+    }
 }
 
 public extension UIView {

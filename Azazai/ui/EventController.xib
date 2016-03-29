@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EventController" customModule="Azazai" customModuleProvider="target">
@@ -12,6 +12,7 @@
                 <outlet property="eventDate" destination="ta9-dj-TpR" id="ahB-n1-7OW"/>
                 <outlet property="eventDescription" destination="A1X-ok-9gA" id="90l-Ag-dX8"/>
                 <outlet property="icon" destination="yEO-gg-Ppz" id="gmb-SI-Mxb"/>
+                <outlet property="membersLabel" destination="hQK-Er-d8k" id="pmL-4X-jnO"/>
                 <outlet property="name" destination="bNK-w0-kRh" id="WCk-xa-ubj"/>
                 <outlet property="organizerName" destination="rIR-Ec-Sbg" id="XnW-lV-pRG"/>
                 <outlet property="peopleNumber" destination="XbE-A1-kRx" id="unB-5A-jIL"/>

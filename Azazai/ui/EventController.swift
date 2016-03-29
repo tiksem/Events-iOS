@@ -35,6 +35,7 @@ class EventController : UIViewController {
     @IBOutlet weak var organizerName: UILabel!
     @IBOutlet weak var avatar: UIImageView!
     @IBOutlet weak var comments: UITableView!
+    @IBOutlet weak var membersLabel: UILabel!
     
     private var event:Event! = nil
     private var requestManager:RequestManager! = nil
@@ -134,8 +135,14 @@ class EventController : UIViewController {
         (view.subviews[0] as! UIScrollView).contentSize = subView.frame.size
 
         EventUtils.setupOpenProfile(self, avatar: avatar, name: organizerName)
+        
+        UiUtils.setTapListenerForViews([membersLabel, peopleNumber], target:self, action:"showMembers:")
     }
 
+    func showMembers(_:UIGestureRecognizer) {
+        Alerts.showOkAlert()
+    }
+    
     private func onSubscribeCancelAccept() {
         let lastSelected = subscribeButton.selected
         subscribeButton.selected = false
