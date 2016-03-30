@@ -144,7 +144,7 @@ class EventController : UIViewController {
     }
 
     func showMembers(_:UIGestureRecognizer) {
-        Alerts.showOkAlert()
+        navigationController!.pushViewController(MembersListController(eventId: event.id), animated: true)
     }
     
     private func onSubscribeCancelAccept() {

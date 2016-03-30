@@ -237,17 +237,19 @@ class RequestManagerTemplate {
     }
     
     func getSubscribers(eventId eventId:Int) -> LazyList<VkUser, IOError> {
-        return getLazyListWithTransformer("http//azazai.com/api/getSubscribers", key: "Subscribers", factory: {
-            (userIdes:[NSNumber]) -> [VkUser] in
-            return []//userIdes.smap { Int($0.intValue) }
+        return getLazyListWithTransformer("http://azazai.com/api/getSubscribers", key: "Subscribers", factory: {
+            (userIdes:[NSNumber]) -> [Int] in
+                return userIdes.smap { Int($0.intValue) }
             },
             modifyPage: {
-            (userIdes:[VkUser], canceler:Canceler?, complete:([VkUser]?, IOError?) -> Void) in
-            //  getUsersByIdes(userIdes, success: {
-            //                complete($0, nil)
-            //                }, error: {
-            //                    complete(nil, $0)
-            //                }, canceler: canceler)
-        })
+            (userIdes:[Int], canceler:Canceler?, complete:([VkUser]?, IOError?) -> Void) in
+                self.getUsersByIdes(userIdes, success: {
+                    (users) in
+                    complete(users, nil)
+                }, error: {
+                    (err) in
+                    complete(nil, IOError.NetworkError(error: err))
+                })
+        }, args:["id":eventId as CustomStringConvertible])
     }
 }
