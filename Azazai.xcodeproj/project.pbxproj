@@ -106,6 +106,7 @@
 		2EECBF2D1CA8854A0087709A /* ic_tags.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EECBF2A1CA8854A0087709A /* ic_tags.png */; };
 		2EECBF2F1CA8A38C0087709A /* EventsSectionHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EECBF2E1CA8A38C0087709A /* EventsSectionHeaderCell.xib */; };
 		2EECBF311CA8AD3A0087709A /* EventsSeactionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EECBF301CA8AD3A0087709A /* EventsSeactionHeaderView.swift */; };
+		2EECBF331CA9FDD50087709A /* MembersListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EECBF321CA9FDD50087709A /* MembersListController.swift */; };
 		2EED38271C74098C00EC6E71 /* EventController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EED38261C74098C00EC6E71 /* EventController.xib */; };
 		2EED38291C740C8200EC6E71 /* EventsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EED38281C740C8200EC6E71 /* EventsView.xib */; };
 		2EED382A1C74E97800EC6E71 /* UserEventsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10628DA5D2131CF8A60F3D47 /* UserEventsController.swift */; };
@@ -281,6 +282,7 @@
 		2EECBF2A1CA8854A0087709A /* ic_tags.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_tags.png; sourceTree = "<group>"; };
 		2EECBF2E1CA8A38C0087709A /* EventsSectionHeaderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventsSectionHeaderCell.xib; sourceTree = "<group>"; };
 		2EECBF301CA8AD3A0087709A /* EventsSeactionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsSeactionHeaderView.swift; sourceTree = "<group>"; };
+		2EECBF321CA9FDD50087709A /* MembersListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MembersListController.swift; sourceTree = "<group>"; };
 		2EED38261C74098C00EC6E71 /* EventController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventController.xib; sourceTree = "<group>"; };
 		2EED38281C740C8200EC6E71 /* EventsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventsView.xib; sourceTree = "<group>"; };
 		2EED38311C77CCD800EC6E71 /* PageMenuFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PageMenuFramework.framework; path = Carthage/Build/iOS/PageMenuFramework.framework; sourceTree = "<group>"; };
@@ -459,6 +461,7 @@
 				1062896FED64B3026246CEDC /* SearchBarView.swift */,
 				2EECBF2E1CA8A38C0087709A /* EventsSectionHeaderCell.xib */,
 				2EECBF301CA8AD3A0087709A /* EventsSeactionHeaderView.swift */,
+				2EECBF321CA9FDD50087709A /* MembersListController.swift */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -848,6 +851,7 @@
 				2E87D5CA1C823B81002B1FF9 /* SubscribeStatus.swift in Sources */,
 				2E87D5D51C976806002B1FF9 /* TLTagsControl.m in Sources */,
 				106280CF68C33B4FBAC16CDF /* EventsView.swift in Sources */,
+				2EECBF331CA9FDD50087709A /* MembersListController.swift in Sources */,
 				10628AC70A0D37688FC2CE4D /* TagsController.swift in Sources */,
 				10628D2FA2AD624DEE2D28FE /* AzazaiListAdapter.swift in Sources */,
 				10628E7708E7B16E669B1483 /* TagsAdapter.swift in Sources */,

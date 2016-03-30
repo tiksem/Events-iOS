@@ -108,13 +108,23 @@ public class Network {
             }
         }
     }
-
-    public static func getJsonArrayFromUrl(url:String,
+    
+    public static func getJsonObjectsArrayFromUrl(url:String,
                                            key:String,
                                            runCallbackOnMainThread:Bool = true,
                                            canceler: Canceler? = nil,
                                            args: [String: CustomStringConvertible]? = nil,
-                                           complete:([[String : AnyObject]]?, IOError?) -> Void) {
+                                           complete:([[String:AnyObject]]?, IOError?) -> Void) {
+        getJsonArrayFromUrl(url, key: key, complete: complete)
+    }
+
+    
+    public static func getJsonArrayFromUrl<ObjectType>(url:String,
+                                           key:String,
+                                           runCallbackOnMainThread:Bool = true,
+                                           canceler: Canceler? = nil,
+                                           args: [String: CustomStringConvertible]? = nil,
+                                           complete:([ObjectType]?, IOError?) -> Void) {
         getJsonDictFromUrl(url, canceler: canceler, runCallbackOnMainThread: runCallbackOnMainThread, args: args) {
             (dict, error) in
             if let error = error {
@@ -129,8 +139,8 @@ public class Network {
 
             if let value = Json.getArray(dict!, key) {
                 if let value = try? value.map({
-                    (item:AnyObject) -> [String:AnyObject] in
-                    if let item = item as? [String:AnyObject] {
+                    (item:AnyObject) -> ObjectType in
+                    if let item = item as? ObjectType {
                         return item
                     }
 
@@ -145,7 +155,7 @@ public class Network {
             }
         }
     }
-
+    
     public static func toQueryString(dict:[String:CustomStringConvertible]) -> String {
         let parameterArray = try! dict.map { (key, value) -> String in
             let percentEscapedKey = key.stringByAddingPercentEncodingForURLQueryValue()!
@@ -168,11 +178,11 @@ public class Network {
         return base
     }
 
-    public static func getJsonLazyList<T>(url:String,
+    public static func getJsonLazyListWithTransformer<T, TransformType, FactoryType>(url:String,
                                           key:String,
                                           limit:Int = 10,
-                                          factory: ([[String:AnyObject]]) -> [T],
-                                          modifyPage: (([T], Canceler?, ([T])->Void) -> Void)? = nil,
+                                          factory: ([FactoryType]) -> [TransformType],
+                                          modifyPage: (([TransformType], Canceler?, ([T]?, IOError?)->Void) -> Void),
                                           var args: [String: CustomStringConvertible] = [:],
                                           offsetKey:String = "offset",
                                           limitKey:String = "limit",
@@ -207,21 +217,21 @@ public class Network {
             }
             let offset = pageNumber * limit + result.additionalOffset
             args[offsetKey] = offset
-            var finalUrl = getUrl(url, params: args)
-            var complete:(([[String:AnyObject]]?, IOError?) -> Void)!
+            let finalUrl = getUrl(url, params: args)
+            var complete:(([FactoryType]?, IOError?) -> Void)!
             complete = {
                 (array, error) in
                 if let array = array {
                     shouldMerge =  array.count < limit && !mergeApplied
 
                     let resultArray = factory(array)
-                    if let modify = modifyPage {
-                        modify(resultArray, canceler, {
-                            onSuccess($0)
-                        })
-                    } else {
-                        onSuccess(resultArray)
-                    }
+                    modifyPage(resultArray, canceler, {
+                        if let page = $0 {
+                            onSuccess(page)
+                        } else {
+                            onError($1!)
+                        }
+                    })
                 } else {
                     onError(error!)
                 }
@@ -230,6 +240,26 @@ public class Network {
         }
 
         return result
+    }
+    
+    public static func getJsonLazyList<T, FactoryType>(url:String,
+                                                    key:String,
+                                                    limit:Int = 10,
+                                                    factory: ([FactoryType]) -> [T],
+                                                    modifyPage: (([T], Canceler?, ([T]?, IOError?)->Void) -> Void)? = nil,
+                                                    var args: [String: CustomStringConvertible] = [:],
+                                                    offsetKey:String = "offset",
+                                                    limitKey:String = "limit",
+                                                    mergeArgs:[String: CustomStringConvertible] = [:],
+                                                    onArgsMerged:(()->Void)? = nil,
+                                                    canceler: Canceler? = nil) -> LazyList<T, IOError> {
+        return getJsonLazyListWithTransformer(url, key: key, factory: factory, modifyPage: {
+            if let modify = modifyPage {
+                modify($0, $1, $2)
+            } else {
+                $2($0, nil)
+            }
+        }, args: args, offsetKey: offsetKey, limitKey: limitKey, mergeArgs: mergeArgs, onArgsMerged: onArgsMerged, canceler: canceler)
     }
 
     public static func loadImageFromURL(uri:String) throws -> UIImage {

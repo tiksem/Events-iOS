@@ -33,24 +33,42 @@ class RequestManagerTemplate {
     }
 
     private func getLazyList<T>(url:String,
-                                key:String,
-                                limit:Int = 10,
-                                factory: ([[String:AnyObject]]) -> [T],
-                                modifyPage: (([T], Canceler?, ([T])->Void) -> Void)? = nil,
-                                onArgsMerged:(()->Void)? = nil,
-                                var args: [String: CustomStringConvertible] = [:],
-                                var mergeArgs: [String: CustomStringConvertible] = [:],
-                                offsetKey:String = "offset",
-                                limitKey:String = "limit") -> LazyList<T, IOError> {
+                             key:String,
+                             limit:Int = 10,
+                             factory: ([[String:AnyObject]]) -> [T],
+                             modifyPage: (([T], Canceler?, ([T]?, IOError?)->Void) -> Void)? = nil,
+                             onArgsMerged:(()->Void)? = nil,
+                             var args: [String: CustomStringConvertible] = [:],
+                             var mergeArgs: [String: CustomStringConvertible] = [:],
+                             offsetKey:String = "offset",
+                             limitKey:String = "limit") -> LazyList<T, IOError> {
         var canceler = Canceler()
         cancelers.add(canceler)
         return Network.getJsonLazyList(url, key: key,
-                limit: limit, factory: factory, modifyPage: modifyPage, args: args,
-                offsetKey: offsetKey, limitKey: limitKey,
-                mergeArgs: mergeArgs, onArgsMerged: onArgsMerged, canceler: canceler)
+                                       limit: limit, factory: factory, modifyPage: modifyPage, args: args,
+                                       offsetKey: offsetKey, limitKey: limitKey,
+                                       mergeArgs: mergeArgs, onArgsMerged: onArgsMerged, canceler: canceler)
+    }
+    
+    private func getLazyListWithTransformer<T, TransformType, FactoryType>(url:String,
+                                            key:String,
+                                            limit:Int = 10,
+                                            factory: ([FactoryType]) -> [TransformType],
+                                            modifyPage: (([TransformType], Canceler?, ([T]?, IOError?)->Void) -> Void),
+                                            onArgsMerged:(()->Void)? = nil,
+                                            var args: [String: CustomStringConvertible] = [:],
+                                            var mergeArgs: [String: CustomStringConvertible] = [:],
+                                            offsetKey:String = "offset",
+                                            limitKey:String = "limit") -> LazyList<T, IOError> {
+        var canceler = Canceler()
+        cancelers.add(canceler)
+        return Network.getJsonLazyListWithTransformer(url, key: key,
+                                                      limit: limit, factory: factory, modifyPage: modifyPage, args: args,
+                                                      offsetKey: offsetKey, limitKey: limitKey,
+                                                      mergeArgs: mergeArgs, onArgsMerged: onArgsMerged, canceler: canceler)
     }/*helpers*/
     /*lazyList*/
-    func __methodName__(__args__, modifyPage:(([__ParamName__], Canceler?, ([__ParamName__])->Void) -> Void)? = nil,
+    func __methodName__(__args__, modifyPage:(([__ParamName__], Canceler?, ([__ParamName__]?,IOError?)->Void) -> Void)? = nil,
                         onArgsMerged:(()->Void)? = nil)
                     -> LazyList<__ParamName__, IOError> {
         var requestArgs:[String:CustomStringConvertible] = [:]
@@ -188,14 +206,16 @@ class RequestManagerTemplate {
         }, error: error, canceler: canceler, cancelled: cancelled)
     }
 
-    func fillCommentsUsers(var comments:[Comment], canceler:Canceler? = nil, onFinish:([Comment]) -> Void) {
+    func fillCommentsUsers(var comments:[Comment], canceler:Canceler? = nil, onFinish:([Comment]?, IOError?) -> Void) {
         getUsersByIdes(try! comments.map {$0.userId}, success: {
             (users) in
             for (commentIndex, user) in zip(0..<comments.count, users) {
                 comments[commentIndex].user = user
             }
-            onFinish(comments)
-        }, canceler: canceler)
+            onFinish(comments, nil)
+            }, error: {
+                onFinish(nil, IOError.NetworkError(error: $0))
+            }, canceler: canceler)
     }
 
     func clearVkData() {
@@ -214,5 +234,20 @@ class RequestManagerTemplate {
                 storage.deleteCookie(cookie)
             }
         }
+    }
+    
+    func getSubscribers(eventId eventId:Int) -> LazyList<VkUser, IOError> {
+        return getLazyListWithTransformer("http//azazai.com/api/getSubscribers", key: "Subscribers", factory: {
+            (userIdes:[NSNumber]) -> [VkUser] in
+            return []//userIdes.smap { Int($0.intValue) }
+            },
+            modifyPage: {
+            (userIdes:[VkUser], canceler:Canceler?, complete:([VkUser]?, IOError?) -> Void) in
+            //  getUsersByIdes(userIdes, success: {
+            //                complete($0, nil)
+            //                }, error: {
+            //                    complete(nil, $0)
+            //                }, canceler: canceler)
+        })
     }
 }

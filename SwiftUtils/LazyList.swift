@@ -62,7 +62,7 @@ public class LazyList<T : Hashable, Error : ErrorType> : RandomAccessable {
             [unowned self]
             (page) in
             self.loadNextPageExecuted = false
-            self.pageNumber++
+            self.pageNumber += 1
             self.allDataLoaded = self.isLastPage(page)
             for item in page {
                 if !self.itemsSet.contains(item) {

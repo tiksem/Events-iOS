@@ -108,8 +108,12 @@ class EventController : UIViewController {
             } else {
                 self.requestManager.fillCommentsUsers(comments!, onFinish: {
                     [unowned self]
-                    (comments) in
-                    self.topCommentsAdapter = TopCommentsAdapter(array: comments, tableView: self.comments)
+                    (comments, error) in
+                    if let comments = comments {
+                        self.topCommentsAdapter = TopCommentsAdapter(array: comments, tableView: self.comments)
+                    } else {
+                        Alerts.showOkAlert(error!.description)
+                    }
                 })
             }
         })

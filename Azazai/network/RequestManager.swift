@@ -33,24 +33,42 @@ class RequestManager {
     }
 
     private func getLazyList<T>(url:String,
-                                key:String,
-                                limit:Int = 10,
-                                factory: ([[String:AnyObject]]) -> [T],
-                                modifyPage: (([T], Canceler?, ([T])->Void) -> Void)? = nil,
-                                onArgsMerged:(()->Void)? = nil,
-                                var args: [String: CustomStringConvertible] = [:],
-                                var mergeArgs: [String: CustomStringConvertible] = [:],
-                                offsetKey:String = "offset",
-                                limitKey:String = "limit") -> LazyList<T, IOError> {
+                             key:String,
+                             limit:Int = 10,
+                             factory: ([[String:AnyObject]]) -> [T],
+                             modifyPage: (([T], Canceler?, ([T]?, IOError?)->Void) -> Void)? = nil,
+                             onArgsMerged:(()->Void)? = nil,
+                             var args: [String: CustomStringConvertible] = [:],
+                             var mergeArgs: [String: CustomStringConvertible] = [:],
+                             offsetKey:String = "offset",
+                             limitKey:String = "limit") -> LazyList<T, IOError> {
         var canceler = Canceler()
         cancelers.add(canceler)
         return Network.getJsonLazyList(url, key: key,
-                limit: limit, factory: factory, modifyPage: modifyPage, args: args,
-                offsetKey: offsetKey, limitKey: limitKey,
-                mergeArgs: mergeArgs, onArgsMerged: onArgsMerged, canceler: canceler)
+                                       limit: limit, factory: factory, modifyPage: modifyPage, args: args,
+                                       offsetKey: offsetKey, limitKey: limitKey,
+                                       mergeArgs: mergeArgs, onArgsMerged: onArgsMerged, canceler: canceler)
     }
     
-    func getEventsList(query query:String? = nil, dateFilter:Int? = nil, modifyPage:(([Event], Canceler?, ([Event])->Void) -> Void)? = nil,
+    private func getLazyListWithTransformer<T, TransformType, FactoryType>(url:String,
+                                            key:String,
+                                            limit:Int = 10,
+                                            factory: ([FactoryType]) -> [TransformType],
+                                            modifyPage: (([TransformType], Canceler?, ([T]?, IOError?)->Void) -> Void),
+                                            onArgsMerged:(()->Void)? = nil,
+                                            var args: [String: CustomStringConvertible] = [:],
+                                            var mergeArgs: [String: CustomStringConvertible] = [:],
+                                            offsetKey:String = "offset",
+                                            limitKey:String = "limit") -> LazyList<T, IOError> {
+        var canceler = Canceler()
+        cancelers.add(canceler)
+        return Network.getJsonLazyListWithTransformer(url, key: key,
+                                                      limit: limit, factory: factory, modifyPage: modifyPage, args: args,
+                                                      offsetKey: offsetKey, limitKey: limitKey,
+                                                      mergeArgs: mergeArgs, onArgsMerged: onArgsMerged, canceler: canceler)
+    }
+    
+    func getEventsList(query query:String? = nil, dateFilter:Int? = nil, modifyPage:(([Event], Canceler?, ([Event]?,IOError?)->Void) -> Void)? = nil,
                         onArgsMerged:(()->Void)? = nil)
                     -> LazyList<Event, IOError> {
         var requestArgs:[String:CustomStringConvertible] = [:]
@@ -65,7 +83,7 @@ class RequestManager {
         }, modifyPage: modifyPage, onArgsMerged: onArgsMerged, args: requestArgs, mergeArgs: mergeArgs)
     }
     
-    func getUserEvents(mod:EventMode, userId:Int, modifyPage:(([Event], Canceler?, ([Event])->Void) -> Void)? = nil,
+    func getUserEvents(mod:EventMode, userId:Int, modifyPage:(([Event], Canceler?, ([Event]?,IOError?)->Void) -> Void)? = nil,
                         onArgsMerged:(()->Void)? = nil)
                     -> LazyList<Event, IOError> {
         var requestArgs:[String:CustomStringConvertible] = [:]
@@ -92,7 +110,7 @@ class RequestManager {
         }, onCancelled: onCancelled)
     }
     
-    func getCommentsList(eventId:Int, modifyPage:(([Comment], Canceler?, ([Comment])->Void) -> Void)? = nil,
+    func getCommentsList(eventId:Int, modifyPage:(([Comment], Canceler?, ([Comment]?,IOError?)->Void) -> Void)? = nil,
                         onArgsMerged:(()->Void)? = nil)
                     -> LazyList<Comment, IOError> {
         var requestArgs:[String:CustomStringConvertible] = [:]
@@ -105,7 +123,7 @@ class RequestManager {
         }, modifyPage: modifyPage, onArgsMerged: onArgsMerged, args: requestArgs, mergeArgs: mergeArgs)
     }
     
-    func getTags(modifyPage:(([Tag], Canceler?, ([Tag])->Void) -> Void)? = nil,
+    func getTags(modifyPage:(([Tag], Canceler?, ([Tag]?,IOError?)->Void) -> Void)? = nil,
                         onArgsMerged:(()->Void)? = nil)
                     -> LazyList<Tag, IOError> {
         var requestArgs:[String:CustomStringConvertible] = [:]
@@ -117,7 +135,7 @@ class RequestManager {
         }, modifyPage: modifyPage, onArgsMerged: onArgsMerged, args: requestArgs, mergeArgs: mergeArgs)
     }
     
-    func getEventsByTag(tag:String, modifyPage:(([Event], Canceler?, ([Event])->Void) -> Void)? = nil,
+    func getEventsByTag(tag:String, modifyPage:(([Event], Canceler?, ([Event]?,IOError?)->Void) -> Void)? = nil,
                         onArgsMerged:(()->Void)? = nil)
                     -> LazyList<Event, IOError> {
         var requestArgs:[String:CustomStringConvertible] = [:]
@@ -131,7 +149,7 @@ class RequestManager {
         }, modifyPage: modifyPage, onArgsMerged: onArgsMerged, args: requestArgs, mergeArgs: mergeArgs)
     }
     
-    func getIcons(modifyPage:(([IconInfo], Canceler?, ([IconInfo])->Void) -> Void)? = nil,
+    func getIcons(modifyPage:(([IconInfo], Canceler?, ([IconInfo]?,IOError?)->Void) -> Void)? = nil,
                         onArgsMerged:(()->Void)? = nil)
                     -> LazyList<IconInfo, IOError> {
         var requestArgs:[String:CustomStringConvertible] = [:]
@@ -303,14 +321,16 @@ class RequestManager {
         }, error: error, canceler: canceler, cancelled: cancelled)
     }
 
-    func fillCommentsUsers(var comments:[Comment], canceler:Canceler? = nil, onFinish:([Comment]) -> Void) {
+    func fillCommentsUsers(var comments:[Comment], canceler:Canceler? = nil, onFinish:([Comment]?, IOError?) -> Void) {
         getUsersByIdes(try! comments.map {$0.userId}, success: {
             (users) in
             for (commentIndex, user) in zip(0..<comments.count, users) {
                 comments[commentIndex].user = user
             }
-            onFinish(comments)
-        }, canceler: canceler)
+            onFinish(comments, nil)
+            }, error: {
+                onFinish(nil, IOError.NetworkError(error: $0))
+            }, canceler: canceler)
     }
 
     func clearVkData() {
@@ -329,5 +349,20 @@ class RequestManager {
                 storage.deleteCookie(cookie)
             }
         }
+    }
+    
+    func getSubscribers(eventId eventId:Int) -> LazyList<VkUser, IOError> {
+        return getLazyListWithTransformer("http//azazai.com/api/getSubscribers", key: "Subscribers", factory: {
+            (userIdes:[NSNumber]) -> [VkUser] in
+            return []//userIdes.smap { Int($0.intValue) }
+            },
+            modifyPage: {
+            (userIdes:[VkUser], canceler:Canceler?, complete:([VkUser]?, IOError?) -> Void) in
+            //  getUsersByIdes(userIdes, success: {
+            //                complete($0, nil)
+            //                }, error: {
+            //                    complete(nil, $0)
+            //                }, canceler: canceler)
+        })
     }
 }
