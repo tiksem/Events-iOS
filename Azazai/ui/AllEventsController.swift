@@ -38,11 +38,6 @@ class AllEventsController : EventsControllerWithSearchBar {
         topController.navigationItem.setLeftBarButtonItem(calendarButton, animated: animated)
     }
 
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        topController.navigationItem.setLeftBarButtonItem(nil, animated: animated)
-    }
-
     func onDateSelected(date:NSDate) {
         selectedDate = date
         searchBarView.dateFilter?.text = "Date filter: " + DateUtils.getAlternativeDisplayDate(date)

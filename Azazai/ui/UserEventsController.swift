@@ -24,7 +24,7 @@ class MyEventsController: EventsController {
     override func viewDidLoad() {
         super.viewDidLoad()
         header = UiUtils.viewFromNib("MyEventsHeaderView") as! MyEventsHeaderView
-        header.tabs.addTarget(self, action: "onTabChanged", forControlEvents: .ValueChanged)
+        header.tabs.addTarget(self, action: #selector(MyEventsController.onTabChanged), forControlEvents: .ValueChanged)
         eventsView.eventsListView.tableHeaderView = header
 
         let user = AppDelegate.get().user
@@ -34,7 +34,7 @@ class MyEventsController: EventsController {
             header.avatar.sd_setImageWithURL(url)
         }
 
-        let tap = UITapGestureRecognizer(target:self, action:"onLogout:")
+        let tap = UITapGestureRecognizer(target:self, action:#selector(MyEventsController.onLogout(_:)))
         header.logoutButton.userInteractionEnabled = true
         header.logoutButton.addGestureRecognizer(tap)
 
@@ -44,6 +44,7 @@ class MyEventsController: EventsController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         tabBarController?.navigationItem.title = "My Events"
+        UiUtils.removeLeftNavigationButton(self, animated: animated)
     }
 
 

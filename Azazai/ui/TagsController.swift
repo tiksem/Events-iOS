@@ -27,6 +27,7 @@ class TagsController : TableViewNibViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         tabBarController?.navigationItem.title = "Tags"
+        UiUtils.removeNavigationButtons(self, animated: animated)
     }
 
     override func getTableView() -> UITableView? {

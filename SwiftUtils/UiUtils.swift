@@ -54,6 +54,17 @@ public class UiUtils {
                 action: action, barButtonSystemItem: .Add)
     }
 
+    public static func removeNavigationButtons(viewController:UIViewController, animated:Bool) {
+        let navigationItem = viewController.navigationController!.topViewController!.navigationItem
+        navigationItem.setLeftBarButtonItem(nil, animated: animated)
+        navigationItem.setRightBarButtonItem(nil, animated: animated)
+    }
+    
+    public static func removeLeftNavigationButton(viewController:UIViewController, animated:Bool) {
+        let navigationItem = viewController.navigationController!.topViewController!.navigationItem
+        navigationItem.setLeftBarButtonItem(nil, animated: animated)
+    }
+    
     public static func setupCancelDoneButtonsOfNavigationBar(target:UIViewController, doneAction:String,
                                                              cancelAction:String) {
         let topController = addNavigationBarButtonOfTopController(target,
