@@ -7,6 +7,11 @@ import Foundation
 
 public struct Threading {
     public static func runOnMainThread(callback:() -> Void) {
+        if NSThread.isMainThread() {
+            callback()
+            return
+        }
+        
         dispatch_async(dispatch_get_main_queue(), callback)
     }
 

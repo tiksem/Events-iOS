@@ -92,6 +92,8 @@ public class LazyList<T : Hashable, Error : ErrorType> : RandomAccessable {
     }
 
     deinit {
-        canceler?.cancel()
+        Threading.runOnMainThread {
+            self.canceler?.cancel()
+        }
     }
 }

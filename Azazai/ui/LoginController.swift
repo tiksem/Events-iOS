@@ -28,29 +28,8 @@ class LoginController : UIViewController, VKSdkDelegate, VKSdkUIDelegate {
     }
 
     func logout() {
-        requestManager.clearVkData()
-//        requestManager.clearVkData()
-        //VkUtils.logout()
+        VKSdk.forceLogout()
         loginButton.hidden = false
-//        Network.getStringFromUrl("http://api.vkontakte.ru/oauth/logout", complete: {
-//            (string, error) in
-//            if let err = error {
-//                Alerts.showOkAlert(err.description)
-//            } else {
-//                Alerts.showOkAlert(string!)
-//                self.requestManager.clearVkData()
-//                self.loginButton.hidden = false
-//            }
-//        })
-//        requestManager.logoutFromVk {
-//            [unowned self]
-//            (error) in
-//            if let err = error {
-//                Alerts.showOkAlert(err.description)
-//            } else {
-//                self.loginButton.hidden = false
-//            }
-//        }
     }
 
     func onLoginSuccess() {
