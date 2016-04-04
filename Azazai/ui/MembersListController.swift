@@ -17,7 +17,7 @@ private class MembersAdapterDelegate : AdapterDelegateDefaultImpl<VkUser, Member
     }
     
     override func onItemSelected(element user: VkUser, position: Int) -> Void {
-        
+        SocialUtils.openVkProfile(String(user.id))
     }
     
 }
