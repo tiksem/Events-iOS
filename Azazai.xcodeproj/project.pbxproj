@@ -97,6 +97,7 @@
 		2E87D5D51C976806002B1FF9 /* TLTagsControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E87D5D31C976806002B1FF9 /* TLTagsControl.m */; };
 		2E8C16711CA36CED0027ED16 /* Eureka.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E8C16701CA36CED0027ED16 /* Eureka.framework */; };
 		2E8C16721CA36CED0027ED16 /* Eureka.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2E8C16701CA36CED0027ED16 /* Eureka.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2EAE20E81CB5B2CA00455640 /* clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EAE20E71CB5B2CA00455640 /* clock.png */; };
 		2EB1E3571CA3583600C0E60A /* PDTSimpleCalendar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EB1E3561CA3583600C0E60A /* PDTSimpleCalendar.framework */; };
 		2EB1E3581CA3583600C0E60A /* PDTSimpleCalendar.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2EB1E3561CA3583600C0E60A /* PDTSimpleCalendar.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2EB1E35A1CA35A6100C0E60A /* calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EB1E3591CA35A6100C0E60A /* calendar.png */; };
@@ -277,6 +278,7 @@
 		2E87D5D31C976806002B1FF9 /* TLTagsControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLTagsControl.m; sourceTree = "<group>"; };
 		2E87D5D41C976806002B1FF9 /* TLTagsControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLTagsControl.h; sourceTree = "<group>"; };
 		2E8C16701CA36CED0027ED16 /* Eureka.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Eureka.framework; path = Carthage/Build/iOS/Eureka.framework; sourceTree = "<group>"; };
+		2EAE20E71CB5B2CA00455640 /* clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clock.png; sourceTree = "<group>"; };
 		2EB1E3561CA3583600C0E60A /* PDTSimpleCalendar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PDTSimpleCalendar.framework; path = Carthage/Build/iOS/PDTSimpleCalendar.framework; sourceTree = "<group>"; };
 		2EB1E3591CA35A6100C0E60A /* calendar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendar.png; sourceTree = "<group>"; };
 		2ED5E4DD1C31F9DD002A1CFB /* ic_people_grey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_people_grey.png; sourceTree = "<group>"; };
@@ -478,6 +480,7 @@
 		1062899727F855D6E386689D /* images */ = {
 			isa = PBXGroup;
 			children = (
+				2EAE20E71CB5B2CA00455640 /* clock.png */,
 				2EECBF281CA8854A0087709A /* ic_events.png */,
 				2EECBF291CA8854A0087709A /* ic_my_events.png */,
 				2EECBF2A1CA8854A0087709A /* ic_tags.png */,
@@ -744,6 +747,7 @@
 				2E3D0E521C5A67960066890E /* logo.png in Resources */,
 				2EED38381C78025D00EC6E71 /* TagCell.xib in Resources */,
 				2EED383A1C7D0B0400EC6E71 /* MyEventsHeaderView.xib in Resources */,
+				2EAE20E81CB5B2CA00455640 /* clock.png in Resources */,
 				106283488577203AC306B794 /* Assets.xcassets in Resources */,
 				2EECBF2D1CA8854A0087709A /* ic_tags.png in Resources */,
 				106289FB42AA4D24D1BED3F3 /* LaunchScreen.storyboard in Resources */,
