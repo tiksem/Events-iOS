@@ -99,6 +99,7 @@
 		2E8C16721CA36CED0027ED16 /* Eureka.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2E8C16701CA36CED0027ED16 /* Eureka.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2EAE20E81CB5B2CA00455640 /* clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EAE20E71CB5B2CA00455640 /* clock.png */; };
 		2EAE20EA1CB5B9D800455640 /* location.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EAE20E91CB5B9D800455640 /* location.png */; };
+		2EAE20EC1CB5BD3D00455640 /* Maps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAE20EB1CB5BD3D00455640 /* Maps.swift */; };
 		2EB1E3571CA3583600C0E60A /* PDTSimpleCalendar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EB1E3561CA3583600C0E60A /* PDTSimpleCalendar.framework */; };
 		2EB1E3581CA3583600C0E60A /* PDTSimpleCalendar.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2EB1E3561CA3583600C0E60A /* PDTSimpleCalendar.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2EB1E35A1CA35A6100C0E60A /* calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EB1E3591CA35A6100C0E60A /* calendar.png */; };
@@ -281,6 +282,7 @@
 		2E8C16701CA36CED0027ED16 /* Eureka.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Eureka.framework; path = Carthage/Build/iOS/Eureka.framework; sourceTree = "<group>"; };
 		2EAE20E71CB5B2CA00455640 /* clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clock.png; sourceTree = "<group>"; };
 		2EAE20E91CB5B9D800455640 /* location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = location.png; sourceTree = "<group>"; };
+		2EAE20EB1CB5BD3D00455640 /* Maps.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Maps.swift; sourceTree = "<group>"; };
 		2EB1E3561CA3583600C0E60A /* PDTSimpleCalendar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PDTSimpleCalendar.framework; path = Carthage/Build/iOS/PDTSimpleCalendar.framework; sourceTree = "<group>"; };
 		2EB1E3591CA35A6100C0E60A /* calendar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendar.png; sourceTree = "<group>"; };
 		2ED5E4DD1C31F9DD002A1CFB /* ic_people_grey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_people_grey.png; sourceTree = "<group>"; };
@@ -424,6 +426,7 @@
 				106288C2895A62D8A94B17F1 /* AutoSearchBar.swift */,
 				10628A004D798A6067F8E97A /* SocialUtils.swift */,
 				106283A934858E020AD5BE83 /* DateUtils.swift */,
+				2EAE20EB1CB5BD3D00455640 /* Maps.swift */,
 			);
 			path = SwiftUtils;
 			sourceTree = "<group>";
@@ -820,6 +823,7 @@
 				106287FFD711EC0B3B7D0BE9 /* LazyList.swift in Sources */,
 				10628E744852CB9F4678E775 /* Canceler.swift in Sources */,
 				106287B84B68C9104471D780 /* CancelerSet.swift in Sources */,
+				2EAE20EC1CB5BD3D00455640 /* Maps.swift in Sources */,
 				10628EF39DB3527198F865AC /* Strings.swift in Sources */,
 				106280A3E159B5809FD37484 /* RandomAccessibleAdapter.swift in Sources */,
 				10628669E5AE660E3B8EB9E2 /* Dictionaries.swift in Sources */,

@@ -7,6 +7,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EventController" customModule="Azazai" customModuleProvider="target">
             <connections>
                 <outlet property="address" destination="4oD-UQ-BpJ" id="g91-WO-nVk"/>
+                <outlet property="addressIcon" destination="ivW-tn-pE1" id="LiH-8e-B1F"/>
                 <outlet property="avatar" destination="Fj4-Cm-ZBJ" id="A2a-CF-hV0"/>
                 <outlet property="comments" destination="EuE-HK-o84" id="viB-7l-jVO"/>
                 <outlet property="eventDate" destination="ta9-dj-TpR" id="ahB-n1-7OW"/>

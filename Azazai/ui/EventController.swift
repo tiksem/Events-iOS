@@ -36,6 +36,7 @@ class EventController : UIViewController {
     @IBOutlet weak var avatar: UIImageView!
     @IBOutlet weak var comments: UITableView!
     @IBOutlet weak var membersLabel: UILabel!
+    @IBOutlet weak var addressIcon: UIImageView!
     
     private var event:Event! = nil
     private var requestManager:RequestManager! = nil
@@ -141,10 +142,15 @@ class EventController : UIViewController {
         EventUtils.setupOpenProfile(self, avatar: avatar, name: organizerName)
         
         UiUtils.setTapListenerForViews([membersLabel, peopleNumber], target:self, action:"showMembers:")
+        UiUtils.setTapListenerForViews([addressIcon, address], target:self, action:"searchAddress:")
     }
 
     func showMembers(_:UIGestureRecognizer) {
         navigationController!.pushViewController(MembersListController(eventId: event.id), animated: true)
+    }
+    
+    func searchAddress(_:UIGestureRecognizer) {
+        Maps.startAppleMapsSearch(address.text!)
     }
     
     private func onSubscribeCancelAccept() {
