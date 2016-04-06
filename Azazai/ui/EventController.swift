@@ -130,7 +130,7 @@ class EventController : UIViewController {
         EventUtils.displayIcon(event.icon, imageView: icon)
         address.text = event.address
         let date = EventUtils.eventDateToString(event.date)
-        eventDate.text = "\(date)"
+        eventDate.text = date
         setupSubscribeButton()
         setupOrganizer()
         setupComments()
