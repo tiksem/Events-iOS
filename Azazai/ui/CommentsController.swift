@@ -12,6 +12,8 @@ class CommentsAdapterDelegate : AdapterDelegateDefaultImpl<Comment, CommentCell,
         UiUtils.setupMultiLineForLabel(cell.message, text: comment.text)
         cell.avatar.setImageFromURL(comment.user?.photo_200)
         EventUtils.displayUserNameInLabel(cell.name, user: comment.user)
+        let date = NSDate(timeIntervalSince1970: Double(comment.date))
+        cell.date.text = DateUtils.getOneHourAgoDisplayDateFormat(date)
     }
 }
 
