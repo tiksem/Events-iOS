@@ -42,6 +42,12 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20.12.2016" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aVC-U4-WCp" userLabel="EventDate">
+                        <rect key="frame" x="66" y="42" width="62" height="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" white="0.55673491379999995" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="leadingMargin" secondItem="EhQ-AX-Dlt" secondAttribute="leading" id="0S8-TF-NsS"/>
@@ -53,18 +59,22 @@
                     <constraint firstItem="lcd-fP-EGf" firstAttribute="top" secondItem="EhQ-AX-Dlt" secondAttribute="bottom" constant="3" id="fep-s2-9Mz"/>
                     <constraint firstItem="EhQ-AX-Dlt" firstAttribute="top" secondItem="Dfh-S6-R7r" secondAttribute="topMargin" id="k8L-1I-RPr"/>
                     <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="lcd-fP-EGf" secondAttribute="bottom" id="k9T-Sg-zQ0"/>
+                    <constraint firstItem="aVC-U4-WCp" firstAttribute="top" secondItem="OIm-hD-nqf" secondAttribute="bottom" id="mvD-aX-gf3"/>
                     <constraint firstItem="OIm-hD-nqf" firstAttribute="top" secondItem="q2R-KS-vGu" secondAttribute="bottom" id="naF-Ke-HeV"/>
                     <constraint firstItem="EhQ-AX-Dlt" firstAttribute="top" secondItem="q2R-KS-vGu" secondAttribute="top" id="pB8-7P-5JD"/>
+                    <constraint firstItem="aVC-U4-WCp" firstAttribute="leading" secondItem="EhQ-AX-Dlt" secondAttribute="trailing" constant="8" id="tB3-Cr-lmu"/>
+                    <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="aVC-U4-WCp" secondAttribute="bottom" constant="8" id="x4T-Km-KSa"/>
                 </constraints>
             </tableViewCellContentView>
             <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
             <connections>
+                <outlet property="eventDate" destination="aVC-U4-WCp" id="1W3-Kk-PB2"/>
                 <outlet property="eventDescription" destination="OIm-hD-nqf" id="Eyl-7S-Kf9"/>
                 <outlet property="eventName" destination="q2R-KS-vGu" id="BJq-Og-miy"/>
                 <outlet property="icon" destination="EhQ-AX-Dlt" id="c2G-ZY-dNT"/>
                 <outlet property="peopleNumber" destination="lcd-fP-EGf" id="wur-0O-LwH"/>
             </connections>
-            <point key="canvasLocation" x="-1" y="251"/>
+            <point key="canvasLocation" x="89" y="252"/>
         </tableViewCell>
     </objects>
     <resources>

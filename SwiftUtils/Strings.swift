@@ -39,6 +39,14 @@ public extension String {
             return self[Range(start: startIndex, end: endIndex)]
         }
     }
+    
+//    func searchUrl() -> String? {
+//        let pattern = "^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\\?([^#]*))?(#(.*))?"
+//        let regex = NSRegularExpression(pattern:pattern, options:[])
+//        if let result = regex.firstMatchInString(self, options: [], range: NSMakeRange(0, utf16.count)) {
+//            result.ra
+//        }
+//    }
 }
 
 public class StringWrapper : CustomStringConvertible {

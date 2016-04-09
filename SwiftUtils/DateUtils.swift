@@ -22,6 +22,11 @@ public class DateUtils {
         return NSCalendar.currentCalendar().components(unitFlags, fromDate: date)
     }
     
+    public static func getNowNSDateComponents(unitFlags: NSCalendarUnit = AllDisplayDateAndTimeCpmponents) -> NSDateComponents {
+        let now = NSDate()
+        return getNSDateComponents(now)
+    }
+    
     public static func getDisplay2DigitDateComponent(day:Int) -> String {
         var result = "\(day)"
         if day < 10 {
@@ -47,10 +52,42 @@ public class DateUtils {
         return "\(day) \(ShortMonthes[components.month]) \(components.year)"
     }
     
-    public static func getAlternativeDisplayDateAndTime(date:NSDate) -> String {
+    public static func getAlternativeDisplayDateWithoutYear(components:NSDateComponents) -> String {
+        let day = getDisplay2DigitDateComponent(components.day)
+        return "\(day) \(ShortMonthes[components.month])"
+    }
+    
+    public static func getAlternativeDisplayDateAndTime(date:NSDate, considerCurrentYear:Bool = true) -> String {
         let components = getNSDateComponents(date)
         let time = getDisplayTime(components)
-        let date = getAlternativeDisplayDate(components)
+        let date = considerCurrentYear ?
+            getAlternativeDisplayDateDependingOnCurrentYear(components, nowComp: getNowNSDateComponents()) :
+            getAlternativeDisplayDate(components)
         return "\(date) at \(time)"
+    }
+    
+    public static func getAlternativeDisplayDateDependingOnCurrentYear(dateComp:NSDateComponents, nowComp:NSDateComponents) -> String {
+        if (nowComp.year == dateComp.year) {
+            return getAlternativeDisplayDateWithoutYear(dateComp)
+        } else {
+            return getAlternativeDisplayDate(dateComp)
+        }
+    }
+    
+    public static func getOneHourAgoDisplayDateFormat(date:NSDate) -> String {
+        let dateComp = getNSDateComponents(date)
+        let now = NSDate()
+        let nowComp = getNSDateComponents(now)
+        let diff = now.timeIntervalSince1970 - date.timeIntervalSince1970
+        
+        if (diff < 2 * 24 * 3600) {
+            if (nowComp.day == dateComp.day) {
+                return "Today at " + getDisplayTime(dateComp)
+            } else if(nowComp.day - dateComp.day == -1) {
+                return "Yesterday at " + getDisplayTime(dateComp)
+            }
+        }
+        
+        return getAlternativeDisplayDateDependingOnCurrentYear(dateComp, nowComp: nowComp) + " at " + getDisplayTime(dateComp)
     }
 }

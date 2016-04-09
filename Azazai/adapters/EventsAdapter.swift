@@ -20,6 +20,7 @@ class EventsAdapterDelegate : AzazaiAdapterDelegate<Event, EventCell> {
         EventUtils.displayPeopleNumberInLabel(cell.peopleNumber, event: event)
         EventUtils.displayIcon(event.icon, imageView: cell.icon)
         UiUtils.setupMultiLineForLabel(cell.eventDescription, text: event.description)
+        cell.eventDate.text = EventUtils.eventDateToString(event.date)
     }
 }
 
