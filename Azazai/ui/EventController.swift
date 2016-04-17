@@ -60,6 +60,8 @@ class EventController : UIViewController {
         UiUtils.setBackgroundAndTitleColorOfButton(subscribeButton, forState: .Disabled,
                 titleColor: UIColor.whiteColor(), backgroundColor: UIColor.lightGrayColor())
 
+        subscribeButton.setTitle("Loading...", forState: .Disabled)
+        
         isMine = event.userId == Int(VKSdk.accessToken().userId)
 
         if !isMine {
@@ -77,12 +79,12 @@ class EventController : UIViewController {
                         selectedTitle = "Denied"
                     } else if status == .subscribed {
                         selectedTitle = "Subscribed"
-                    } else if status == .pending{
+                    } else if status == .pending  || status == .none {
                         selectedTitle = "Cancel request"
                     }
                     
                     self.subscribeButton.setTitle(normalTitle, forState: .Normal)
-                    self.subscribeButton.setTitle("Loading...", forState: .Disabled)
+                    self.subscribeButton.setTitle(selectedTitle, forState: .Selected)
                     
                     self.subscribeButton.enabled = true
                     self.subscribeButton.selected = status != .none
@@ -198,7 +200,7 @@ class EventController : UIViewController {
     }
 
     @IBAction func onSubscribeButtonClick(sender: AnyObject) {
-        if !isMine && subscribeStatus == .none {
+        if !isMine && subscribeStatus != .accepted {
             onSubscribeCancelAccept()
             return
         }
