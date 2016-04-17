@@ -12,7 +12,8 @@
         "peopleNumber":"Int",
         "subscribersCount":"Int",
         "date":"Int",
-        "icon":"Int"
+        "icon":"Int",
+        "isPrivate":"Bool"
       }
     },
     {
@@ -57,7 +58,7 @@
   "enums": [
     {
       "name": "SubscribeStatus",
-      "cases": ["none", "subscribed"]
+      "cases": ["none", "subscribed", "pending", "accepted", "denied"]
     }
   ]
 }

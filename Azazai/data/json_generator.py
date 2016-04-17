@@ -28,6 +28,8 @@ for struct in config["structs"]:
                 declarationType = typeName + " = " + defaultValue
             elif typeName == "String":
                 defaultValue = "\"\""
+            elif typeName == "Bool":
+                defaultValue = "false"
             init_parts.append(name + " = " + "Json.get" + typeName + "(map, \"" + name + "\") ?? " + str(defaultValue))
         declaration_parts.append(declarationName + ":" + declarationType)
 

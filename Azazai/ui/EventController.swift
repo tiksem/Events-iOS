@@ -56,16 +56,11 @@ class EventController : UIViewController {
 
     func setupSubscribeButton() {
         UiUtils.setBackgroundAndTitleColorOfButton(subscribeButton, forState: .Selected,
-                titleColor: UIColor.whiteColor(), backgroundColor: UIColor.brownColor())
-        UiUtils.setBackgroundAndTitleColorOfButton(subscribeButton, forState: .Selected,
                 titleColor: UIColor.whiteColor(), backgroundColor: self.view.tintColor)
         UiUtils.setBackgroundAndTitleColorOfButton(subscribeButton, forState: .Disabled,
                 titleColor: UIColor.whiteColor(), backgroundColor: UIColor.lightGrayColor())
 
         isMine = event.userId == Int(VKSdk.accessToken().userId)
-        let normalTitle = isMine ? "Cancel" : "I Will Go"
-        subscribeButton.setTitle(normalTitle, forState: .Normal)
-        subscribeButton.setTitle("Loading...", forState: .Disabled)
 
         if !isMine {
             subscribeButton.enabled = false
@@ -75,11 +70,27 @@ class EventController : UIViewController {
                 if let err = err {
                     Alerts.showOkAlert(err.description)
                 } else {
+                    let normalTitle = self.event.isPrivate ? "Send request" : "I will go"
+                    var selectedTitle = ""
+                    
+                    if status == .denied {
+                        selectedTitle = "Denied"
+                    } else if status == .subscribed {
+                        selectedTitle = "Subscribed"
+                    } else if status == .pending{
+                        selectedTitle = "Cancel request"
+                    }
+                    
+                    self.subscribeButton.setTitle(normalTitle, forState: .Normal)
+                    self.subscribeButton.setTitle("Loading...", forState: .Disabled)
+                    
                     self.subscribeButton.enabled = true
                     self.subscribeButton.selected = status != .none
                     self.subscribeStatus = status!
                 }
             }
+        } else {
+            subscribeButton.setTitle("Cancel", forState: .Normal)
         }
     }
 

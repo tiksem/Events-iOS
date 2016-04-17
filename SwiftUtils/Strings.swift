@@ -40,13 +40,15 @@ public extension String {
         }
     }
     
-//    func searchUrl() -> String? {
-//        let pattern = "^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\\?([^#]*))?(#(.*))?"
-//        let regex = NSRegularExpression(pattern:pattern, options:[])
-//        if let result = regex.firstMatchInString(self, options: [], range: NSMakeRange(0, utf16.count)) {
-//            result.ra
-//        }
-//    }
+    func searchUrl() -> String? {
+        let pattern = "^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\\?([^#]*))?(#(.*))?"
+        let regex = try! NSRegularExpression(pattern:pattern, options:[])
+        if let result = regex.firstMatchInString(self, options: [], range: NSMakeRange(0, utf16.count)) {
+            return (self as NSString).substringWithRange(result.range) as String
+        }
+        
+        return nil
+    }
 }
 
 public class StringWrapper : CustomStringConvertible {

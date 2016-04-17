@@ -20,6 +20,7 @@ struct Event : Hashable, Equatable {
     let subscribersCount:Int
     let date:Int
     let icon:Int
+    let isPrivate:Bool
 
     init(_ map:Dictionary<String, AnyObject>) {
         id = Json.getInt(map, "id") ?? 0
@@ -31,6 +32,7 @@ struct Event : Hashable, Equatable {
         subscribersCount = Json.getInt(map, "subscribersCount") ?? 0
         date = Json.getInt(map, "date") ?? 0
         icon = Json.getInt(map, "icon") ?? 0
+        isPrivate = Json.getBool(map, "isPrivate") ?? false
     }
 
     static func toEventsArray(array:[[String:AnyObject]]?) -> [Event]? {

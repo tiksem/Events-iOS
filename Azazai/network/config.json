@@ -5,7 +5,7 @@
       "method": "getEventsList",
       "limit": 10,
       "return": "LazyList<Event>",
-      "key": "events",
+      "key": "Events",
       "args": [
         {
           "name": "query",

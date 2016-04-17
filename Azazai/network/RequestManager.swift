@@ -78,7 +78,7 @@ class RequestManager {
         var mergeArgs:[String:CustomStringConvertible] = [:]
         mergeArgs["timeOut"] = true
 
-        return getLazyList("http://azazai.com/api/getEventsList", key: "events", limit: 10, factory: {
+        return getLazyList("http://azazai.com/api/getEventsList", key: "Events", limit: 10, factory: {
             return Event.toEventsArray($0)!
         }, modifyPage: modifyPage, onArgsMerged: onArgsMerged, args: requestArgs, mergeArgs: mergeArgs)
     }
