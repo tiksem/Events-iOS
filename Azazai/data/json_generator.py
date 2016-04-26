@@ -10,7 +10,10 @@ _4_spaces = "    "
 for struct in config["structs"]:
     structName = struct["name"]
     content = template.replace("__StructName__", structName)
-    content = content.replace("__key__", struct["key"])
+    key = struct["key"]
+    if " " in key:
+        key = "(" + key + ")"
+    content = content.replace("__key__", key)
     fields = struct["fields"]
     declaration_parts = []
     init_parts = []

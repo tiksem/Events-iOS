@@ -53,6 +53,22 @@
         "mediaId":"Int",
         "tag":"String"
       }
+    },
+    {
+      "name": "IconInfo",
+      "key": "mediaId",
+      "fields": {
+        "mediaId":"Int",
+        "tag":"String"
+      }
+    },
+    {
+      "name": "Request",
+      "key": "String(userId) + String(event.id)",
+      "fields": {
+        "userId":"Int",
+        "event":"Event"
+      }
     }
   ],
   "enums": [
