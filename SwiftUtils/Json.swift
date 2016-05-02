@@ -57,4 +57,8 @@ public class Json {
     public static func getArray(jsonDict:Dictionary<String, AnyObject>, _ key:String) -> [AnyObject]? {
         return jsonDict[key] as? Array<AnyObject>
     }
+    
+    public static func getDictionary(jsonDict:Dictionary<String, AnyObject>, _ key:String) -> Dictionary<String, AnyObject>? {
+        return jsonDict[key] as? Dictionary<String, AnyObject>
+    }
 }

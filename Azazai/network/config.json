@@ -71,6 +71,7 @@
       "limit": 10,
       "return": "LazyList<Comment>",
       "key": "Comments",
+      "modifyPage": "fillCommentsUsers",
       "args": [
         {
           "name": "id",
@@ -165,6 +166,17 @@
       "url": "http://api.vk.com/oauth/logout",
       "success": "self.clearVkData()",
       "return": "Void"
+    },
+    {
+      "method": "getAllRequests",
+      "return": "LazyList<Request>",
+      "modifyPage": "fillRequestsUsers",
+      "args": [
+        {
+          "name": "id",
+          "type": "Int"
+        }
+      ]
     }
   ]
 }

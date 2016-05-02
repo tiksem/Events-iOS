@@ -92,6 +92,9 @@
 		2E7C32D41C5FB45B00CE8F7C /* EventCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E7C32D31C5FB45B00CE8F7C /* EventCell.xib */; };
 		2E7C32D61C5FBD5600CE8F7C /* Loading.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E7C32D51C5FBD5600CE8F7C /* Loading.xib */; };
 		2E7C32D91C615D3300CE8F7C /* EventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1062806EB94A695BC39A227F /* EventController.swift */; };
+		2E7DB4581CD65F0D00D34BDC /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7DB4571CD65F0D00D34BDC /* Request.swift */; };
+		2E7DB45A1CD66F3A00D34BDC /* RequestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E7DB4591CD66F3A00D34BDC /* RequestCell.xib */; };
+		2E7DB45C1CD66FF400D34BDC /* RequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7DB45B1CD66FF400D34BDC /* RequestCell.swift */; };
 		2E87D5C71C80FA96002B1FF9 /* AddEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106282BB4A22233E917980E4 /* AddEventController.swift */; };
 		2E87D5CA1C823B81002B1FF9 /* SubscribeStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E87D5C91C823B81002B1FF9 /* SubscribeStatus.swift */; };
 		2E87D5D51C976806002B1FF9 /* TLTagsControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E87D5D31C976806002B1FF9 /* TLTagsControl.m */; };
@@ -104,6 +107,8 @@
 		2EB1E3581CA3583600C0E60A /* PDTSimpleCalendar.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2EB1E3561CA3583600C0E60A /* PDTSimpleCalendar.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2EB1E35A1CA35A6100C0E60A /* calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EB1E3591CA35A6100C0E60A /* calendar.png */; };
 		2ED5E4DE1C31F9DD002A1CFB /* ic_people_grey.png in Resources */ = {isa = PBXBuildFile; fileRef = 2ED5E4DD1C31F9DD002A1CFB /* ic_people_grey.png */; };
+		2EDA8D9C1CC444CC00B55D3E /* RequestsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EDA8D9B1CC444CC00B55D3E /* RequestsController.xib */; };
+		2EDA8D9E1CC4457A00B55D3E /* RequestsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDA8D9D1CC4457A00B55D3E /* RequestsController.swift */; };
 		2EECBF2B1CA8854A0087709A /* ic_events.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EECBF281CA8854A0087709A /* ic_events.png */; };
 		2EECBF2C1CA8854A0087709A /* ic_my_events.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EECBF291CA8854A0087709A /* ic_my_events.png */; };
 		2EECBF2D1CA8854A0087709A /* ic_tags.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EECBF2A1CA8854A0087709A /* ic_tags.png */; };
@@ -276,6 +281,9 @@
 		2E7C32541C5C0FAD00CE8F7C /* VKSdkFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VKSdkFramework.framework; path = Carthage/Build/iOS/VKSdkFramework.framework; sourceTree = "<group>"; };
 		2E7C32D31C5FB45B00CE8F7C /* EventCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventCell.xib; sourceTree = "<group>"; };
 		2E7C32D51C5FBD5600CE8F7C /* Loading.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Loading.xib; sourceTree = "<group>"; };
+		2E7DB4571CD65F0D00D34BDC /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		2E7DB4591CD66F3A00D34BDC /* RequestCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RequestCell.xib; sourceTree = "<group>"; };
+		2E7DB45B1CD66FF400D34BDC /* RequestCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestCell.swift; sourceTree = "<group>"; };
 		2E87D5C91C823B81002B1FF9 /* SubscribeStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscribeStatus.swift; sourceTree = "<group>"; };
 		2E87D5D31C976806002B1FF9 /* TLTagsControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLTagsControl.m; sourceTree = "<group>"; };
 		2E87D5D41C976806002B1FF9 /* TLTagsControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLTagsControl.h; sourceTree = "<group>"; };
@@ -286,6 +294,8 @@
 		2EB1E3561CA3583600C0E60A /* PDTSimpleCalendar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PDTSimpleCalendar.framework; path = Carthage/Build/iOS/PDTSimpleCalendar.framework; sourceTree = "<group>"; };
 		2EB1E3591CA35A6100C0E60A /* calendar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendar.png; sourceTree = "<group>"; };
 		2ED5E4DD1C31F9DD002A1CFB /* ic_people_grey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_people_grey.png; sourceTree = "<group>"; };
+		2EDA8D9B1CC444CC00B55D3E /* RequestsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RequestsController.xib; sourceTree = "<group>"; };
+		2EDA8D9D1CC4457A00B55D3E /* RequestsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestsController.swift; sourceTree = "<group>"; };
 		2EECBF281CA8854A0087709A /* ic_events.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_events.png; sourceTree = "<group>"; };
 		2EECBF291CA8854A0087709A /* ic_my_events.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_my_events.png; sourceTree = "<group>"; };
 		2EECBF2A1CA8854A0087709A /* ic_tags.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_tags.png; sourceTree = "<group>"; };
@@ -478,6 +488,10 @@
 				2EECBF341CAC78140087709A /* MembersListController.xib */,
 				2EECBF361CAC7A170087709A /* MemberCell.xib */,
 				2EECBF381CAC7E1C0087709A /* MemberCell.swift */,
+				2EDA8D9B1CC444CC00B55D3E /* RequestsController.xib */,
+				2EDA8D9D1CC4457A00B55D3E /* RequestsController.swift */,
+				2E7DB4591CD66F3A00D34BDC /* RequestCell.xib */,
+				2E7DB45B1CD66FF400D34BDC /* RequestCell.swift */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -542,6 +556,7 @@
 		10628E33CBA135E48BD9FE77 /* data */ = {
 			isa = PBXGroup;
 			children = (
+				2E7DB4571CD65F0D00D34BDC /* Request.swift */,
 				2E87D5C91C823B81002B1FF9 /* SubscribeStatus.swift */,
 				2E4BE25B1C7FA31B00ED57F5 /* IconInfo.swift */,
 				2EED383D1C7D467900EC6E71 /* VkUser.swift */,
@@ -758,6 +773,7 @@
 				2EECBF2D1CA8854A0087709A /* ic_tags.png in Resources */,
 				106289FB42AA4D24D1BED3F3 /* LaunchScreen.storyboard in Resources */,
 				2EED384B1C7F93E700EC6E71 /* IconPicker.xib in Resources */,
+				2EDA8D9C1CC444CC00B55D3E /* RequestsController.xib in Resources */,
 				2E5DBA4B1C9DBEB2004CF220 /* CommentsController.xib in Resources */,
 				10628A02ACEC0E12DADB0004 /* Main.storyboard in Resources */,
 				2EECBF2B1CA8854A0087709A /* ic_events.png in Resources */,
@@ -773,6 +789,7 @@
 				2E5DBA511CA07BA0004CF220 /* SearchBar.xib in Resources */,
 				2EECBF351CAC78140087709A /* MembersListController.xib in Resources */,
 				2EED38271C74098C00EC6E71 /* EventController.xib in Resources */,
+				2E7DB45A1CD66F3A00D34BDC /* RequestCell.xib in Resources */,
 				2E5DBA491C9B6F36004CF220 /* CommentCell.xib in Resources */,
 				2E7C32D41C5FB45B00CE8F7C /* EventCell.xib in Resources */,
 				2EED38451C7E55AC00EC6E71 /* event_icon.png in Resources */,
@@ -891,7 +908,10 @@
 				106283513073CFB4CE72026C /* CommentCell.swift in Sources */,
 				106283AE854DCABFA9D28DE6 /* CommentsController.swift in Sources */,
 				106286DBA207F3BB724A5944 /* TopCommentCell.swift in Sources */,
+				2E7DB45C1CD66FF400D34BDC /* RequestCell.swift in Sources */,
+				2E7DB4581CD65F0D00D34BDC /* Request.swift in Sources */,
 				106285639BD62123840E6946 /* VkUtils.swift in Sources */,
+				2EDA8D9E1CC4457A00B55D3E /* RequestsController.swift in Sources */,
 				106283EDBB5C8D8095E03981 /* EventsControllerWithSearchBar.swift in Sources */,
 				10628B89782BAFC04E5B7B45 /* AllEventsController.swift in Sources */,
 				1062806117B1ED21790CB1F1 /* CalendarPickerController.swift in Sources */,

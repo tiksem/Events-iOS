@@ -31,6 +31,7 @@
     {
       "name": "Tag",
       "key": "tagName",
+      "keyType": "String",
       "fields": {
         "tagName":"String",
         "eventsCount":"Int"
@@ -64,10 +65,12 @@
     },
     {
       "name": "Request",
+      "keyType": "String",
       "key": "String(userId) + String(event.id)",
       "fields": {
         "userId":"Int",
-        "event":"Event"
+        "event":"Event",
+        "var user":"VkUser?"
       }
     }
   ],

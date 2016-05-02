@@ -7,7 +7,7 @@ import Foundation
 import SwiftUtils
 
 func == (lhs: Comment, rhs: Comment) -> Bool {
-    return lhs.date == rhs.date
+    return lhs.key() == rhs.key()
 }
 
 struct Comment : Hashable, Equatable {
@@ -31,7 +31,11 @@ struct Comment : Hashable, Equatable {
             return Comment($0)
         }
     }
-
+    
+    func key() -> Int {
+        return date
+    }
+    
     var hashValue: Int {
         return date.hashValue
     }

@@ -67,6 +67,7 @@ def generate_base(request, type_name, first_quote, second_quote):
     url = quote(url)
     template = template.replace("__url__", url)
     template = template.replace("__key__", quote(request.get("key", "")))
+    template = template.replace("__modifyPage__", request.get("modifyPage", "nil"))
     func_args = OrderedDict()
 
     def generate_request_args(args, dictName):

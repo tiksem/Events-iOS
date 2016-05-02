@@ -7,7 +7,7 @@ import Foundation
 import SwiftUtils
 
 func == (lhs: VkUser, rhs: VkUser) -> Bool {
-    return lhs.id == rhs.id
+    return lhs.key() == rhs.key()
 }
 
 struct VkUser : Hashable, Equatable {
@@ -28,7 +28,11 @@ struct VkUser : Hashable, Equatable {
             return VkUser($0)
         }
     }
-
+    
+    func key() -> Int {
+        return id
+    }
+    
     var hashValue: Int {
         return id.hashValue
     }

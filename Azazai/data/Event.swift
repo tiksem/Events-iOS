@@ -7,7 +7,7 @@ import Foundation
 import SwiftUtils
 
 func == (lhs: Event, rhs: Event) -> Bool {
-    return lhs.id == rhs.id
+    return lhs.key() == rhs.key()
 }
 
 struct Event : Hashable, Equatable {
@@ -40,7 +40,11 @@ struct Event : Hashable, Equatable {
             return Event($0)
         }
     }
-
+    
+    func key() -> Int {
+        return id
+    }
+    
     var hashValue: Int {
         return id.hashValue
     }

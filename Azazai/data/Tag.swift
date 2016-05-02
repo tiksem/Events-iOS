@@ -7,7 +7,7 @@ import Foundation
 import SwiftUtils
 
 func == (lhs: Tag, rhs: Tag) -> Bool {
-    return lhs.tagName == rhs.tagName
+    return lhs.key() == rhs.key()
 }
 
 struct Tag : Hashable, Equatable {
@@ -24,7 +24,11 @@ struct Tag : Hashable, Equatable {
             return Tag($0)
         }
     }
-
+    
+    func key() -> String {
+        return tagName
+    }
+    
     var hashValue: Int {
         return tagName.hashValue
     }

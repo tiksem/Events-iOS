@@ -51,13 +51,7 @@ class CommentsController : UIViewController {
         self.edgesForExtendedLayout = .None
 
         requestManager = RequestManager()
-        let comments = requestManager.getCommentsList(eventId, modifyPage: {
-            [weak self]
-            (var comments, canceler, onFinish) in
-            if let rm = self?.requestManager {
-                rm.fillCommentsUsers(comments, canceler: canceler, onFinish: onFinish)
-            }
-        })
+        let comments = requestManager.getCommentsList(eventId)
         comments.addAdditionalItemsToStart(topComments)
         adapter = CommentsAdapter(controller: self, commentsListView: tableView, comments: comments)
         navigationItem.title = "Comments"

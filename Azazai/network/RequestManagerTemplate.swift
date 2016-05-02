@@ -68,8 +68,7 @@ class RequestManagerTemplate {
                                                       mergeArgs: mergeArgs, onArgsMerged: onArgsMerged, canceler: canceler)
     }/*helpers*/
     /*lazyList*/
-    func __methodName__(__args__, modifyPage:(([__ParamName__], Canceler?, ([__ParamName__]?,IOError?)->Void) -> Void)? = nil,
-                        onArgsMerged:(()->Void)? = nil)
+    func __methodName__(__args__, onArgsMerged:(()->Void)? = nil)
                     -> LazyList<__ParamName__, IOError> {
         var requestArgs:[String:CustomStringConvertible] = [:]
         __request_args__
@@ -77,7 +76,7 @@ class RequestManagerTemplate {
         __merge_args__
         return getLazyList(__url__, key: __key__, limit: __limit__, factory: {
             return __ParamName__.to__ParamName__sArray($0)!
-        }, modifyPage: modifyPage, onArgsMerged: onArgsMerged, args: requestArgs, mergeArgs: mergeArgs)
+        }, modifyPage: __modifyPage__, onArgsMerged: onArgsMerged, args: requestArgs, mergeArgs: mergeArgs)
     }
     /*}*/
 
@@ -218,6 +217,18 @@ class RequestManagerTemplate {
             }, canceler: canceler)
     }
 
+    func fillRequestsUsers(var requests:[Request], canceler:Canceler? = nil, onFinish:([Request]?, IOError?) -> Void) {
+        getUsersByIdes(try! requests.map {$0.userId}, success: {
+            (users) in
+            for (requestIndex, user) in zip(0..<requests.count, users) {
+                requests[requestIndex].user = user
+            }
+            onFinish(requests, nil)
+            }, error: {
+                onFinish(nil, IOError.NetworkError(error: $0))
+            }, canceler: canceler)
+    }
+    
     func clearVkData() {
         let defaults = NSUserDefaults.standardUserDefaults()
         defaults.removeObjectForKey("VKAccessUserId")
@@ -237,7 +248,17 @@ class RequestManagerTemplate {
     }
     
     func getSubscribers(eventId eventId:Int) -> LazyList<VkUser, IOError> {
-        return getLazyListWithTransformer("http://azazai.com/api/getSubscribers", key: "Subscribers", factory: {
+        return getUsersUsingRequest("http://azazai.com/api/getSubscribers", key: "Subscribers",
+                                    args: ["id":eventId as CustomStringConvertible])
+    }
+    
+    func getRequests(eventId eventId:Int) -> LazyList<VkUser, IOError> {
+        return getUsersUsingRequest("http://azazai.com/api/getRequests", key: "Requests",
+                                    args: ["id":eventId as CustomStringConvertible])
+    }
+    
+    func getUsersUsingRequest(url:String, key:String, args:[String:CustomStringConvertible]) -> LazyList<VkUser, IOError> {
+        return getLazyListWithTransformer(url, key: key, factory: {
             (userIdes:[NSNumber]) -> [Int] in
                 return userIdes.smap { Int($0.intValue) }
             },
@@ -250,6 +271,6 @@ class RequestManagerTemplate {
                     (err) in
                     complete(nil, IOError.NetworkError(error: err))
                 })
-        }, args:["id":eventId as CustomStringConvertible])
+        }, args:args)
     }
 }

@@ -7,7 +7,7 @@ import Foundation
 import SwiftUtils
 
 func == (lhs: __StructName__, rhs: __StructName__) -> Bool {
-    return lhs.__key__ == rhs.__key__
+    return lhs.key() == rhs.key()
 }
 
 struct __StructName__ : Hashable, Equatable {
@@ -22,7 +22,11 @@ struct __StructName__ : Hashable, Equatable {
             return __StructName__($0)
         }
     }
-
+    
+    func key() -> __KeyType__ {
+        return __key__
+    }
+    
     var hashValue: Int {
         return __key__.hashValue
     }

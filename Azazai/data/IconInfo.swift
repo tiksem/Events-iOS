@@ -7,7 +7,7 @@ import Foundation
 import SwiftUtils
 
 func == (lhs: IconInfo, rhs: IconInfo) -> Bool {
-    return lhs.mediaId == rhs.mediaId
+    return lhs.key() == rhs.key()
 }
 
 struct IconInfo : Hashable, Equatable {
@@ -24,7 +24,11 @@ struct IconInfo : Hashable, Equatable {
             return IconInfo($0)
         }
     }
-
+    
+    func key() -> Int {
+        return mediaId
+    }
+    
     var hashValue: Int {
         return mediaId.hashValue
     }

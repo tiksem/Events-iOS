@@ -10,6 +10,7 @@ _4_spaces = "    "
 for struct in config["structs"]:
     structName = struct["name"]
     content = template.replace("__StructName__", structName)
+    content = content.replace("__KeyType__", struct.get("keyType", "Int"))
     key = struct["key"]
     if " " in key:
         key = "(" + key + ")"
@@ -21,6 +22,7 @@ for struct in config["structs"]:
         defaultValue = 0
         declarationName = name
         declarationType = typeName
+        isObject = False
         if not name.startswith("var "):
             declarationName = "let " + name
             if type(typeName) is list:
@@ -33,7 +35,13 @@ for struct in config["structs"]:
                 defaultValue = "\"\""
             elif typeName == "Bool":
                 defaultValue = "false"
-            init_parts.append(name + " = " + "Json.get" + typeName + "(map, \"" + name + "\") ?? " + str(defaultValue))
+            elif typeName != "Int":
+                isObject = True
+            if isObject:
+                init_parts.append(name + " = " + typeName + "(Json.getDictionary(map, \"" + name + "\")!)")
+            else:
+                init_parts.append(name + " = " + "Json.get" + typeName + "(map, \"" + name + "\") ?? " +
+                                  str(defaultValue))
         declaration_parts.append(declarationName + ":" + declarationType)
 
     init = ("\n" + _8_spaces).join(init_parts)

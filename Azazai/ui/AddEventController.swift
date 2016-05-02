@@ -34,7 +34,6 @@ private class IconPickerAdapter : AzazaiListAdapter<IconPickerAdapterDelegate> {
                 cellIdentifier: "IconPickerCell",
                 delegate: IconPickerAdapterDelegate(onItemSelected: onItemSelected))
     }
-
 }
 
 private struct Icon : Equatable {
