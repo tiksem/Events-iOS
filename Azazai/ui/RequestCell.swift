@@ -12,5 +12,8 @@ import UIKit
 class RequestCell : UITableViewCell {
     @IBOutlet weak var avatar: UIImageView!
     
-    @IBOutlet weak var subscriberName: UILabel!
+    @IBOutlet weak var decline: UIButton!
+
+    @IBOutlet weak var message: UILabel!
+    @IBOutlet weak var accept: UIButton!
 }

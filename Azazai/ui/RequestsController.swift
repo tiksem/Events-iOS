@@ -12,9 +12,11 @@ import SwiftUtils
 
 private class RequestsAdapterDelegate : AdapterDelegateDefaultImpl<Request, RequestCell, LoadingView> {
     override func displayItem(element request: Request, cell: RequestCell) -> Void {
-        let user = request.user
-        cell.avatar.setImageFromURL(user?.photo_200)
-        EventUtils.displayUserNameInLabel(cell.subscriberName, user: user)
+        if let user = request.user {
+            cell.avatar.setImageFromURL(user.photo_200)
+            let message = user.first_name + " " + user.last_name + " wants to participate in " + request.event.name
+            UiUtils.setupMultiLineForLabel(cell.message, text: message)
+        }
     }
     
     override func onItemSelected(element element: Request, position: Int) -> Void {
@@ -41,5 +43,11 @@ class RequestsController : UIViewController {
         requestManager = RequestManager()
         let requests = requestManager.getAllRequests(Int(VKSdk.accessToken().userId)!)
         adapter = RequestsAdapter(list: requests, tableView: tableView)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        tabBarController?.navigationItem.title = "Requests"
+        UiUtils.removeNavigationButtons(self, animated: animated)
     }
 }
