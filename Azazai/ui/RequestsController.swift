@@ -10,6 +10,8 @@ import Foundation
 import UIKit
 import SwiftUtils
 
+private let fontSize:CGFloat = 13
+
 private class RequestsAdapterDelegate : AdapterDelegateDefaultImpl<Request, RequestCell, LoadingView> {
     private let list:LazyList<Request, IOError>
     private let requestManager = RequestManager()
@@ -22,8 +24,22 @@ private class RequestsAdapterDelegate : AdapterDelegateDefaultImpl<Request, Requ
     override func displayItem(element request: Request, cell: RequestCell, position:Int) -> Void {
         if let user = request.user {
             cell.avatar.setImageFromURL(user.photo_200)
-            let message = user.first_name + " " + user.last_name + " wants to participate in " + request.event.name
-            UiUtils.setupMultiLineForLabel(cell.message, text: message)
+            
+            let message:NSMutableAttributedString = NSMutableAttributedString()
+            let nameAttrs = [
+                NSFontAttributeName:UIFont.boldSystemFontOfSize(fontSize),
+                NSForegroundColorAttributeName: cell.tintColor,
+            ]
+            message.appendAttributedString(NSAttributedString(string: user.first_name + " " + user.last_name, attributes: nameAttrs))
+            let textAttrs = [NSForegroundColorAttributeName: UIColor.darkGrayColor()]
+            message.appendAttributedString(NSAttributedString(string: " wants to participate in ", attributes: textAttrs))
+            let eventAttrs = [
+                NSFontAttributeName:UIFont.boldSystemFontOfSize(fontSize),
+                NSForegroundColorAttributeName: UIColor.darkGrayColor(),
+            ]
+            message.appendAttributedString(NSAttributedString(string: request.event.name, attributes: eventAttrs))
+            
+            UiUtils.setupMultiLineForLabel(cell.message, attributedText: message)
             cell.decline.tag = position
             cell.accept.tag = position
             cell.decline.addTarget(self, action: #selector(RequestsAdapterDelegate.onDecline(_:)),

@@ -152,6 +152,13 @@ public class UiUtils {
         label.sizeToFit()
     }
 
+    public static func setupMultiLineForLabel(label:UILabel, attributedText:NSAttributedString) {
+        label.lineBreakMode = .ByWordWrapping
+        label.numberOfLines = 0
+        label.attributedText = attributedText
+        label.sizeToFit()
+    }
+    
     public static func setBackgroundAndTitleColorOfButton(button: UIButton,
                                                          forState: UIControlState,
                                                          titleColor: UIColor,
