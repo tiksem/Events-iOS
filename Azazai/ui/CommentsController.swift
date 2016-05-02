@@ -40,6 +40,7 @@ class CommentsController : UIViewController, UITextViewDelegate {
     private var adapter:CommentsAdapter!
     private var eventId:Int = 0
     private var topComments:[Comment] = []
+    private var initialAddCommentViewHeight:CGFloat = 0
 
     @IBOutlet weak var addCommentView: SAMTextView!
     required init?(coder aDecoder: NSCoder) {
@@ -55,12 +56,26 @@ class CommentsController : UIViewController, UITextViewDelegate {
 
     func textViewDidChange(textView: UITextView) {
         let height = textView.frame.size.height
-        let contentHeight = textView.contentSize.height
+        var contentHeight = textView.contentSize.height
         
-        if contentHeight > height {
-            addCommentViewHeight.constant = contentHeight
-            addCommentView.updateConstraintsIfNeeded()
+        if contentHeight == height {
+            return
         }
+        
+        var topCorrect:CGFloat = (height - contentHeight * textView.zoomScale) / 2.0
+        topCorrect = topCorrect < 0.0 ? 0.0 : topCorrect
+        textView.contentInset = UIEdgeInsetsMake(topCorrect,0,0,0)
+        
+        if contentHeight < initialAddCommentViewHeight {
+            contentHeight = initialAddCommentViewHeight
+            
+            if contentHeight == height {
+                return
+            }
+        }
+        
+        addCommentViewHeight.constant = contentHeight
+        addCommentView.updateConstraintsIfNeeded()
     }
     
     override func viewDidLoad() {
@@ -76,5 +91,7 @@ class CommentsController : UIViewController, UITextViewDelegate {
         addCommentView.scrollEnabled = true
         addCommentView.delegate = self
         addCommentView.placeholder = "Add comment..."
+        initialAddCommentViewHeight = addCommentViewHeight.constant
+        textViewDidChange(addCommentView)
     }
 }

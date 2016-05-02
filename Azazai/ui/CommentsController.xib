@@ -18,8 +18,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="pI7-5d-yK9" customClass="SAMTextView">
-                    <rect key="frame" x="0.0" y="560" width="600" height="40"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <rect key="frame" x="8" y="560" width="540" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="b6c-0h-Se0"/>
                     </constraints>
@@ -30,18 +29,24 @@
                     <rect key="frame" x="0.0" y="0.0" width="600" height="560"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RgT-gA-1Jh">
+                    <rect key="frame" x="552" y="565" width="40" height="30"/>
+                    <state key="normal" title="POST"/>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="RgT-gA-1Jh" firstAttribute="leading" secondItem="pI7-5d-yK9" secondAttribute="trailing" constant="4" id="CHR-Ny-rAC"/>
                 <constraint firstAttribute="bottom" secondItem="pI7-5d-yK9" secondAttribute="bottom" id="ObE-qJ-V8O"/>
                 <constraint firstAttribute="trailing" secondItem="7P9-T1-Gce" secondAttribute="trailing" id="SyJ-By-Lap"/>
                 <constraint firstItem="7P9-T1-Gce" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="U5X-M8-UUi"/>
                 <constraint firstItem="7P9-T1-Gce" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="XI6-LN-vI8"/>
+                <constraint firstAttribute="trailing" secondItem="RgT-gA-1Jh" secondAttribute="trailing" constant="8" id="azB-9r-Uny"/>
                 <constraint firstItem="pI7-5d-yK9" firstAttribute="top" secondItem="7P9-T1-Gce" secondAttribute="bottom" id="c4j-gY-Zcz"/>
-                <constraint firstAttribute="trailing" secondItem="pI7-5d-yK9" secondAttribute="trailing" id="dIl-WT-cag"/>
-                <constraint firstItem="pI7-5d-yK9" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="dsl-pt-RBD"/>
+                <constraint firstItem="pI7-5d-yK9" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="dsl-pt-RBD"/>
+                <constraint firstItem="RgT-gA-1Jh" firstAttribute="centerY" secondItem="pI7-5d-yK9" secondAttribute="centerY" id="xLv-O8-oJL"/>
             </constraints>
-            <point key="canvasLocation" x="-28" y="70"/>
+            <point key="canvasLocation" x="-180" y="93"/>
         </view>
     </objects>
 </document>
