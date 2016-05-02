@@ -11,7 +11,7 @@ import SwiftUtils
 
 private class MembersAdapterDelegate : AdapterDelegateDefaultImpl<VkUser, MemberCell, LoadingView> {
     
-    override func displayItem(element user: VkUser, cell: MemberCell) -> Void {
+    override func displayItem(element user: VkUser, cell: MemberCell, position:Int) -> Void {
         EventUtils.displayUserNameInLabel(cell.name, user: user)
         cell.avatar.setImageFromURL(user.photo_200)
     }

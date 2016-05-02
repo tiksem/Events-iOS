@@ -16,7 +16,7 @@ class TagsAdapterDelegate : AzazaiAdapterDelegate<Tag, UITableViewCell> {
         })
     }
 
-    override func displayItem(element tag: Tag, cell: CellType) -> Void {
+    override func displayItem(element tag: Tag, cell: CellType, position:Int) -> Void {
         cell.layoutMargins = UIEdgeInsetsZero
         cell.textLabel?.text = tag.tagName
     }

@@ -8,7 +8,7 @@ import SwiftUtils
 import UIKit
 
 private class TopCommentsAdapterDelegate : AdapterDelegateDefaultImpl<Comment, TopCommentCell, LoadingView> {
-    override func displayItem(element comment: Comment, cell: TopCommentCell) -> Void {
+    override func displayItem(element comment: Comment, cell: TopCommentCell, position:Int) -> Void {
         EventUtils.displayUserNameInLabel(cell.name, user: comment.user)
         cell.message.text = comment.text
         UiUtils.removeSeparator(cell)

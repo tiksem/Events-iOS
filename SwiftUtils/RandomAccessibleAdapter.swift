@@ -7,19 +7,19 @@ import Foundation
 import UIKit
 
 public protocol AdapterDelegate {
-    typealias T
-    typealias CellType
-    typealias NullCellType
-    func displayItem(element element:T, cell:CellType) -> Void
+    associatedtype T
+    associatedtype CellType
+    associatedtype NullCellType
+    func displayItem(element element:T, cell:CellType, position:Int) -> Void
     func displayNullItem(cell cell:NullCellType) -> Void
     func onItemSelected(element element:T, position:Int) -> Void
 }
 
-public class AdapterDelegateDefaultImpl<T, CellType, NullCellType : UITableViewCell> : AdapterDelegate {
-    public init() {
-
+public class AdapterDelegateDefaultImpl<T, CellType, NullCellType : UITableViewCell> : NSObject, AdapterDelegate {
+    public override init() {
+        super.init()
     }
-
+    
     public func displayNullItem(cell cell:NullCellType) -> Void {
         UiUtils.removeSeparator(cell)
     }
@@ -28,7 +28,7 @@ public class AdapterDelegateDefaultImpl<T, CellType, NullCellType : UITableViewC
 
     }
 
-    public func displayItem(element element: T, cell: CellType) -> Void {
+    public func displayItem(element element: T, cell: CellType, position:Int) -> Void {
 
     }
 }
@@ -122,9 +122,10 @@ public class RandomAccessibleAdapter<Container:RandomAccessable,
     }
     
     public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if let item = getItemFromIndexPath(indexPath) {
+        let position = getItemPositionForIndexPath(indexPath)
+        if let item = list[position] {
             let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! CellType
-            delegate.displayItem(element: item, cell: cell)
+            delegate.displayItem(element: item, cell: cell, position: position)
             return cell
         } else {
             let cell = tableView.dequeueReusableCellWithIdentifier(nullCellIdentifier!) as! Delegate.NullCellType

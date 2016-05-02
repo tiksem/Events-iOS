@@ -14,7 +14,7 @@ class EventsAdapterDelegate : AzazaiAdapterDelegate<Event, EventCell> {
         })
     }
 
-    override func displayItem(element event: Event, cell: CellType) -> Void {
+    override func displayItem(element event: Event, cell: CellType, position:Int) -> Void {
         cell.eventName?.text = event.name
         cell.layoutMargins = UIEdgeInsetsZero
         EventUtils.displayPeopleNumberInLabel(cell.peopleNumber, event: event)

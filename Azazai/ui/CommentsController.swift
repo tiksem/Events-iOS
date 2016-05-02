@@ -8,7 +8,7 @@ import SwiftUtils
 import UIKit
 
 class CommentsAdapterDelegate : AdapterDelegateDefaultImpl<Comment, CommentCell, LoadingView> {
-    override func displayItem(element comment: Comment, cell: CommentCell) -> Void {
+    override func displayItem(element comment: Comment, cell: CommentCell, position:Int) -> Void {
         UiUtils.setupMultiLineForLabel(cell.message, text: comment.text)
         cell.avatar.setImageFromURL(comment.user?.photo_200)
         EventUtils.displayUserNameInLabel(cell.name, user: comment.user)

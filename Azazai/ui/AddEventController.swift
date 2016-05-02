@@ -13,9 +13,10 @@ private class IconPickerAdapterDelegate : AdapterDelegateDefaultImpl<IconInfo, I
 
     init(onItemSelected:(Int, IconInfo) -> Void) {
         self.onItemSelected = onItemSelected
+        super.init()
     }
 
-    override func displayItem(element icon: IconInfo, cell: IconCell) -> Void {
+    override func displayItem(element icon: IconInfo, cell: IconCell, position:Int) -> Void {
         EventUtils.displayIcon(icon.mediaId, imageView: cell.icon)
         cell.label.text = icon.tag
     }

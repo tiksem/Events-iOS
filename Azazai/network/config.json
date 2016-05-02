@@ -178,6 +178,34 @@
           "type": "Int"
         }
       ]
+    },
+    {
+      "method": "acceptRequest",
+      "return": "Void",
+      "args": [
+        {
+          "name": "id",
+          "type": "Int"
+        },
+        {
+          "name": "token",
+          "type": "String"
+        }
+      ]
+    },
+    {
+      "method": "denieRequest",
+      "return": "Void",
+      "args": [
+        {
+          "name": "id",
+          "type": "Int"
+        },
+        {
+          "name": "token",
+          "type": "String"
+        }
+      ]
     }
   ]
 }
