@@ -233,3 +233,13 @@ public extension UIView {
         UiUtils.getHeightConstraintOfView(self)!.constant = h
     }
 }
+
+//public extension UITextView {
+//    func getContentSize() -> CGSize {
+//        let attributes = [NSFontAttributeName: font!]
+//        (text as NSString).sizeWithAttributes(attributes)
+//        CGSize textViewSize = [text sizeWithFont:[UIFont fontWithName:@"Marker Felt" size:20]
+//            constrainedToSize:CGSizeMake(WIDHT_OF_VIEW, FLT_MAX)
+//            lineBreakMode:UILineBreakModeTailTruncation];
+//    }
+//}

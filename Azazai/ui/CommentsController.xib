@@ -6,6 +6,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CommentsController" customModule="Azazai" customModuleProvider="target">
             <connections>
+                <outlet property="addCommentView" destination="pI7-5d-yK9" id="a0c-uC-MyK"/>
+                <outlet property="addCommentViewHeight" destination="b6c-0h-Se0" id="pzp-rT-hN3"/>
                 <outlet property="tableView" destination="7P9-T1-Gce" id="ZyA-hK-mvF"/>
                 <outlet property="view" destination="iN0-l3-epB" id="uW6-cx-cGD"/>
             </connections>
@@ -15,18 +17,31 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="pI7-5d-yK9" customClass="SAMTextView">
+                    <rect key="frame" x="0.0" y="560" width="600" height="40"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="b6c-0h-Se0"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7P9-T1-Gce">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="560"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="7P9-T1-Gce" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="7Br-5J-zqF"/>
-                <constraint firstItem="7P9-T1-Gce" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="e7n-6E-7gG"/>
-                <constraint firstItem="7P9-T1-Gce" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" id="qII-U4-iLO"/>
-                <constraint firstItem="7P9-T1-Gce" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="r4P-MB-cou"/>
+                <constraint firstAttribute="bottom" secondItem="pI7-5d-yK9" secondAttribute="bottom" id="ObE-qJ-V8O"/>
+                <constraint firstAttribute="trailing" secondItem="7P9-T1-Gce" secondAttribute="trailing" id="SyJ-By-Lap"/>
+                <constraint firstItem="7P9-T1-Gce" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="U5X-M8-UUi"/>
+                <constraint firstItem="7P9-T1-Gce" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="XI6-LN-vI8"/>
+                <constraint firstItem="pI7-5d-yK9" firstAttribute="top" secondItem="7P9-T1-Gce" secondAttribute="bottom" id="c4j-gY-Zcz"/>
+                <constraint firstAttribute="trailing" secondItem="pI7-5d-yK9" secondAttribute="trailing" id="dIl-WT-cag"/>
+                <constraint firstItem="pI7-5d-yK9" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="dsl-pt-RBD"/>
             </constraints>
+            <point key="canvasLocation" x="-28" y="70"/>
         </view>
     </objects>
 </document>

@@ -13,6 +13,7 @@
 #import <PageMenuFramework/PageMenuFramework-Swift.h>
 #import <WebImage/UIImageView+WebCache.h>
 #import "ui/TLTagsControl.h"
+#import "ui/SAMTextView.h"
 #import <PDTSimpleCalendar/PDTSimpleCalendar.h>
 
 #endif /* Azazai_Bridging_Header_h */

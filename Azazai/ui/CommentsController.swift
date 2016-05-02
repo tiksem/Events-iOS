@@ -33,14 +33,15 @@ class CommentsAdapter : AzazaiListAdapter<CommentsAdapterDelegate> {
     }
 }
 
-class CommentsController : UIViewController {
+class CommentsController : UIViewController, UITextViewDelegate {
     @IBOutlet weak var tableView: UITableView!
-
+    @IBOutlet weak var addCommentViewHeight: NSLayoutConstraint!
     private var requestManager:RequestManager!
     private var adapter:CommentsAdapter!
     private var eventId:Int = 0
     private var topComments:[Comment] = []
 
+    @IBOutlet weak var addCommentView: SAMTextView!
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         assertionFailure("Should not be called")
@@ -52,6 +53,16 @@ class CommentsController : UIViewController {
         self.topComments = topComments
     }
 
+    func textViewDidChange(textView: UITextView) {
+        let height = textView.frame.size.height
+        let contentHeight = textView.contentSize.height
+        
+        if contentHeight > height {
+            addCommentViewHeight.constant = contentHeight
+            addCommentView.updateConstraintsIfNeeded()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.edgesForExtendedLayout = .None
@@ -61,5 +72,9 @@ class CommentsController : UIViewController {
         comments.addAdditionalItemsToStart(topComments)
         adapter = CommentsAdapter(controller: self, commentsListView: tableView, comments: comments)
         navigationItem.title = "Comments"
+        
+        addCommentView.scrollEnabled = true
+        addCommentView.delegate = self
+        addCommentView.placeholder = "Add comment..."
     }
 }
