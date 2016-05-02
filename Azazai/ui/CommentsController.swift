@@ -15,6 +15,12 @@ class CommentsAdapterDelegate : AdapterDelegateDefaultImpl<Comment, CommentCell,
         let date = NSDate(timeIntervalSince1970: Double(comment.date))
         cell.date.text = DateUtils.getOneHourAgoDisplayDateFormat(date)
     }
+    
+    override func onItemSelected(element comment: Comment, position: Int) {
+        if let user = comment.user {
+            SocialUtils.openVkProfile(String(user.id))
+        }
+    }
 }
 
 class CommentsAdapter : AzazaiListAdapter<CommentsAdapterDelegate> {
