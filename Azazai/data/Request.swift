@@ -19,6 +19,11 @@ struct Request : Hashable, Equatable {
         userId = Json.getInt(map, "userId") ?? 0
         event = Event(Json.getDictionary(map, "event")!)
     }
+    
+    init(userId:Int, event:Event) {
+        self.userId = userId
+        self.event = event
+    }
 
     static func toRequestsArray(array:[[String:AnyObject]]?) -> [Request]? {
         return try! array?.map {
@@ -31,6 +36,6 @@ struct Request : Hashable, Equatable {
     }
     
     var hashValue: Int {
-        return (String(userId) + String(event.id)).hashValue
+        return key().hashValue
     }
 }

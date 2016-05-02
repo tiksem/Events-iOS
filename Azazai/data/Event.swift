@@ -34,6 +34,19 @@ struct Event : Hashable, Equatable {
         icon = Json.getInt(map, "icon") ?? 0
         isPrivate = Json.getBool(map, "isPrivate") ?? false
     }
+    
+    init(id:Int, name:String, description:String, userId:Int, address:String, peopleNumber:Int, subscribersCount:Int, date:Int, icon:Int, isPrivate:Bool) {
+        self.id = id
+        self.name = name
+        self.description = description
+        self.userId = userId
+        self.address = address
+        self.peopleNumber = peopleNumber
+        self.subscribersCount = subscribersCount
+        self.date = date
+        self.icon = icon
+        self.isPrivate = isPrivate
+    }
 
     static func toEventsArray(array:[[String:AnyObject]]?) -> [Event]? {
         return try! array?.map {
@@ -46,6 +59,6 @@ struct Event : Hashable, Equatable {
     }
     
     var hashValue: Int {
-        return id.hashValue
+        return key().hashValue
     }
 }

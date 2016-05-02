@@ -18,6 +18,11 @@ struct IconInfo : Hashable, Equatable {
         mediaId = Json.getInt(map, "mediaId") ?? 0
         tag = Json.getString(map, "tag") ?? ""
     }
+    
+    init(mediaId:Int, tag:String) {
+        self.mediaId = mediaId
+        self.tag = tag
+    }
 
     static func toIconInfosArray(array:[[String:AnyObject]]?) -> [IconInfo]? {
         return try! array?.map {
@@ -30,6 +35,6 @@ struct IconInfo : Hashable, Equatable {
     }
     
     var hashValue: Int {
-        return mediaId.hashValue
+        return key().hashValue
     }
 }

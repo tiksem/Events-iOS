@@ -25,6 +25,14 @@ struct Comment : Hashable, Equatable {
         eventId = Json.getInt(map, "eventId") ?? 0
         date = Json.getInt(map, "date") ?? 0
     }
+    
+    init(id:Int, userId:Int, text:String, eventId:Int, date:Int) {
+        self.id = id
+        self.userId = userId
+        self.text = text
+        self.eventId = eventId
+        self.date = date
+    }
 
     static func toCommentsArray(array:[[String:AnyObject]]?) -> [Comment]? {
         return try! array?.map {
@@ -37,6 +45,6 @@ struct Comment : Hashable, Equatable {
     }
     
     var hashValue: Int {
-        return date.hashValue
+        return key().hashValue
     }
 }

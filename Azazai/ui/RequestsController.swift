@@ -13,11 +13,11 @@ import SwiftUtils
 private let fontSize:CGFloat = 13
 
 private class RequestsAdapterDelegate : AdapterDelegateDefaultImpl<Request, RequestCell, LoadingView> {
-    private let list:LazyList<Request, IOError>
+    private let itemProvider:(Int) -> Request
     private let requestManager = RequestManager()
     
-    init(list:LazyList<Request, IOError>) {
-        self.list = list
+    init(itemProvider:(Int) -> Request) {
+        self.itemProvider = itemProvider
         super.init()
     }
     
@@ -62,12 +62,42 @@ private class RequestsAdapterDelegate : AdapterDelegateDefaultImpl<Request, Requ
     }
     
     @objc func onDecline(sender:UIButton) {
-        let request = list[sender.tag]!
+        let request = itemProvider(sender.tag)
         requestManager.denieRequest(request.event.id, token: VKSdk.accessToken().accessToken, complete: complete)
     }
     
     @objc func onAccept(sender:UIButton) {
         
+    }
+}
+
+private class EventRequestsAdapterDelegate : AdapterDelegateDefaultImpl<VkUser, RequestCell, LoadingView> {
+    private let event:Event
+    private var delegate:RequestsAdapterDelegate! = nil;
+    private let list:LazyList<VkUser,IOError>
+    
+    func requestFromUser(user:VkUser) -> Request {
+        var request = Request(userId: user.id, event: event)
+        request.user = user
+        return request
+    }
+    
+    init(event:Event, list:LazyList<VkUser,IOError>) {
+        self.event = event
+        self.list = list
+        
+        super.init()
+        
+        delegate = RequestsAdapterDelegate {
+            [unowned self]
+            (position) in
+            let user = list[position]!
+            return self.requestFromUser(user)
+        }
+    }
+    
+    private override func displayItem(element user: VkUser, cell: RequestCell, position: Int) {
+        delegate.displayItem(element: requestFromUser(user), cell: cell, position: position)
     }
 }
 
@@ -77,11 +107,31 @@ private class RequestsAdapter : AzazaiListAdapter<RequestsAdapterDelegate> {
         super.init(tableView: tableView,
                    list: list,
                    cellIdentifier: "RequestCell",
-                   delegate: RequestsAdapterDelegate(list: list))
+                   delegate: RequestsAdapterDelegate(itemProvider: {list[$0]!}))
     }
 }
 
-class RequestsController : UIViewController {
+private class EventRequestsAdapter : AzazaiListAdapter<EventRequestsAdapterDelegate> {
+    init(list: LazyList<VkUser, IOError>,
+         event: Event,
+         tableView: UITableView) {
+        super.init(tableView: tableView,
+                   list: list,
+                   cellIdentifier: "RequestCell",
+                   delegate: EventRequestsAdapterDelegate(event: event, list: list))
+    }
+}
+
+class AbstractRequestsController : UIViewController {
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        tabBarController?.navigationItem.title = "Requests"
+        UiUtils.removeNavigationButtons(self, animated: animated)
+    }
+}
+
+
+class RequestsController : AbstractRequestsController {
     @IBOutlet weak var tableView: UITableView!
     private var requestManager:RequestManager! = nil
     private var adapter:RequestsAdapter! = nil
@@ -91,10 +141,27 @@ class RequestsController : UIViewController {
         let requests = requestManager.getAllRequests(Int(VKSdk.accessToken().userId)!)
         adapter = RequestsAdapter(list: requests, tableView: tableView)
     }
+}
+
+class EventRequestsController : AbstractRequestsController {
+    private var requestManager:RequestManager! = nil
+    private var adapter:EventRequestsAdapter! = nil
+    private let event:Event
+    @IBOutlet weak var tableView: UITableView!
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        tabBarController?.navigationItem.title = "Requests"
-        UiUtils.removeNavigationButtons(self, animated: animated)
+    init(event:Event) {
+        self.event = event
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewDidLoad() {
+        requestManager = RequestManager()
+        let requests = requestManager.getRequests(eventId: event.id)
+        adapter = EventRequestsAdapter(list: requests, event: event, tableView: tableView)
     }
 }
+

@@ -95,6 +95,7 @@
 		2E7DB4581CD65F0D00D34BDC /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7DB4571CD65F0D00D34BDC /* Request.swift */; };
 		2E7DB45A1CD66F3A00D34BDC /* RequestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E7DB4591CD66F3A00D34BDC /* RequestCell.xib */; };
 		2E7DB45C1CD66FF400D34BDC /* RequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7DB45B1CD66FF400D34BDC /* RequestCell.swift */; };
+		2E7DB45E1CD7896D00D34BDC /* EventRequestsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E7DB45D1CD7896D00D34BDC /* EventRequestsController.xib */; };
 		2E87D5C71C80FA96002B1FF9 /* AddEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106282BB4A22233E917980E4 /* AddEventController.swift */; };
 		2E87D5CA1C823B81002B1FF9 /* SubscribeStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E87D5C91C823B81002B1FF9 /* SubscribeStatus.swift */; };
 		2E87D5D51C976806002B1FF9 /* TLTagsControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E87D5D31C976806002B1FF9 /* TLTagsControl.m */; };
@@ -284,6 +285,7 @@
 		2E7DB4571CD65F0D00D34BDC /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		2E7DB4591CD66F3A00D34BDC /* RequestCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RequestCell.xib; sourceTree = "<group>"; };
 		2E7DB45B1CD66FF400D34BDC /* RequestCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestCell.swift; sourceTree = "<group>"; };
+		2E7DB45D1CD7896D00D34BDC /* EventRequestsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventRequestsController.xib; sourceTree = "<group>"; };
 		2E87D5C91C823B81002B1FF9 /* SubscribeStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscribeStatus.swift; sourceTree = "<group>"; };
 		2E87D5D31C976806002B1FF9 /* TLTagsControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLTagsControl.m; sourceTree = "<group>"; };
 		2E87D5D41C976806002B1FF9 /* TLTagsControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLTagsControl.h; sourceTree = "<group>"; };
@@ -492,6 +494,7 @@
 				2EDA8D9D1CC4457A00B55D3E /* RequestsController.swift */,
 				2E7DB4591CD66F3A00D34BDC /* RequestCell.xib */,
 				2E7DB45B1CD66FF400D34BDC /* RequestCell.swift */,
+				2E7DB45D1CD7896D00D34BDC /* EventRequestsController.xib */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -782,6 +785,7 @@
 				2EECBF2C1CA8854A0087709A /* ic_my_events.png in Resources */,
 				2EAE20EA1CB5B9D800455640 /* location.png in Resources */,
 				2EED38401C7DE4AD00EC6E71 /* empty-avatar.jpg in Resources */,
+				2E7DB45E1CD7896D00D34BDC /* EventRequestsController.xib in Resources */,
 				2EED38291C740C8200EC6E71 /* EventsView.xib in Resources */,
 				2E4BE25A1C7F9CF200ED57F5 /* IconPickerCell.xib in Resources */,
 				2EB1E35A1CA35A6100C0E60A /* calendar.png in Resources */,

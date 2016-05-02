@@ -18,6 +18,11 @@ struct Tag : Hashable, Equatable {
         tagName = Json.getString(map, "tagName") ?? ""
         eventsCount = Json.getInt(map, "eventsCount") ?? 0
     }
+    
+    init(tagName:String, eventsCount:Int) {
+        self.tagName = tagName
+        self.eventsCount = eventsCount
+    }
 
     static func toTagsArray(array:[[String:AnyObject]]?) -> [Tag]? {
         return try! array?.map {
@@ -30,6 +35,6 @@ struct Tag : Hashable, Equatable {
     }
     
     var hashValue: Int {
-        return tagName.hashValue
+        return key().hashValue
     }
 }

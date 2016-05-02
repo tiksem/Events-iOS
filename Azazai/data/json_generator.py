@@ -18,6 +18,8 @@ for struct in config["structs"]:
     fields = struct["fields"]
     declaration_parts = []
     init_parts = []
+    manual_init_parts = []
+    manual_init_args = []
     for name, typeName in fields.items():
         defaultValue = 0
         declarationName = name
@@ -42,12 +44,17 @@ for struct in config["structs"]:
             else:
                 init_parts.append(name + " = " + "Json.get" + typeName + "(map, \"" + name + "\") ?? " +
                                   str(defaultValue))
+
+            manual_init_parts.append("self." + name + " = " + name)
+            manual_init_args.append(name + ":" + declarationType)
         declaration_parts.append(declarationName + ":" + declarationType)
 
     init = ("\n" + _8_spaces).join(init_parts)
     declaration = ("\n" + _4_spaces).join(declaration_parts)
     content = content.replace("/*init*/", init)
     content = content.replace("/*fields*/", declaration)
+    content = content.replace("/*manual_init*/", ("\n" + _8_spaces).join(manual_init_parts))
+    content = content.replace("__manual_init_args__", (", ").join(manual_init_args))
     open(structName + ".swift", 'w').write(content)
 
 template = open("EnumTemplate.swift", "r").read()

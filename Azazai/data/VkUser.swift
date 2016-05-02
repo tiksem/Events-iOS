@@ -22,6 +22,13 @@ struct VkUser : Hashable, Equatable {
         last_name = Json.getString(map, "last_name") ?? ""
         photo_200 = Json.getString(map, "photo_200") ?? ""
     }
+    
+    init(id:Int, first_name:String, last_name:String, photo_200:String) {
+        self.id = id
+        self.first_name = first_name
+        self.last_name = last_name
+        self.photo_200 = photo_200
+    }
 
     static func toVkUsersArray(array:[[String:AnyObject]]?) -> [VkUser]? {
         return try! array?.map {
@@ -34,6 +41,6 @@ struct VkUser : Hashable, Equatable {
     }
     
     var hashValue: Int {
-        return id.hashValue
+        return key().hashValue
     }
 }

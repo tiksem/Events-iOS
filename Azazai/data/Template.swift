@@ -16,6 +16,10 @@ struct __StructName__ : Hashable, Equatable {
     init(_ map:Dictionary<String, AnyObject>) {
         /*init*/
     }
+    
+    init(__manual_init_args__) {
+        /*manual_init*/
+    }
 
     static func to__StructName__sArray(array:[[String:AnyObject]]?) -> [__StructName__]? {
         return try! array?.map {
