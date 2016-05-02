@@ -171,9 +171,10 @@
       "method": "getAllRequests",
       "return": "LazyList<Request>",
       "modifyPage": "fillRequestsUsers",
+      "key": "Requests",
       "args": [
         {
-          "name": "id",
+          "name": "userId",
           "type": "Int"
         }
       ]

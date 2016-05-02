@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="7jM-Tw-B79">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Events-->
@@ -39,11 +40,46 @@
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="ii6-k4-Z30"/>
                         <segue destination="9eU-b8-7bQ" kind="relationship" relationship="viewControllers" id="6k0-yC-mwF"/>
                         <segue destination="tiG-tC-EDN" kind="relationship" relationship="viewControllers" id="gR0-tu-Asg"/>
+                        <segue destination="yQD-Bb-YJJ" kind="relationship" relationship="viewControllers" id="yJ1-jY-F1g"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xey-70-5Ly" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="239" y="709"/>
+        </scene>
+        <!--Requests-->
+        <scene sceneID="GMo-sn-qnF">
+            <objects>
+                <viewController id="yQD-Bb-YJJ" customClass="RequestsController" customModule="Azazai" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="iZd-8q-Fpm"/>
+                        <viewControllerLayoutGuide type="bottom" id="HWD-SZ-nCM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dso-FY-Iiw">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nJb-zw-bHC">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="nJb-zw-bHC" firstAttribute="leading" secondItem="dso-FY-Iiw" secondAttribute="leadingMargin" constant="-20" id="dLJ-KI-1fB"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="nJb-zw-bHC" secondAttribute="trailing" constant="-20" id="dXL-iB-uPQ"/>
+                            <constraint firstItem="HWD-SZ-nCM" firstAttribute="top" secondItem="nJb-zw-bHC" secondAttribute="bottom" id="hfA-bF-nj4"/>
+                            <constraint firstItem="nJb-zw-bHC" firstAttribute="top" secondItem="dso-FY-Iiw" secondAttribute="topMargin" id="owF-PL-NdL"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Requests" id="xPE-Ac-atH"/>
+                    <connections>
+                        <outlet property="tableView" destination="nJb-zw-bHC" id="soz-hF-5u3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GKP-fD-FrP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="239" y="1442"/>
         </scene>
         <!--My Events-->
         <scene sceneID="w2Q-ti-CrW">

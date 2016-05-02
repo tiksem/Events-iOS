@@ -242,14 +242,14 @@ class RequestManager {
         cancelers.add(canceler, onCancelled: onCancelled)
     }
     
-    func getAllRequests(id:Int, onArgsMerged:(()->Void)? = nil)
+    func getAllRequests(userId:Int, onArgsMerged:(()->Void)? = nil)
                     -> LazyList<Request, IOError> {
         var requestArgs:[String:CustomStringConvertible] = [:]
-        requestArgs["id"] = id
+        requestArgs["userId"] = userId
 
         var mergeArgs:[String:CustomStringConvertible] = [:]
         
-        return getLazyList("http://azazai.com/api/getAllRequests", key: "", limit: 10, factory: {
+        return getLazyList("http://azazai.com/api/getAllRequests", key: "Requests", limit: 10, factory: {
             return Request.toRequestsArray($0)!
         }, modifyPage: fillRequestsUsers, onArgsMerged: onArgsMerged, args: requestArgs, mergeArgs: mergeArgs)
     }

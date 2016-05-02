@@ -28,6 +28,6 @@ struct __StructName__ : Hashable, Equatable {
     }
     
     var hashValue: Int {
-        return __key__.hashValue
+        return key().hashValue
     }
 }
