@@ -42,6 +42,7 @@ class CommentsController : UIViewController, UITextViewDelegate {
     private var topComments:[Comment] = []
     private var initialAddCommentViewHeight:CGFloat = 0
 
+    @IBOutlet weak var postButton: UIButton!
     @IBOutlet weak var addCommentView: SAMTextView!
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -58,24 +59,29 @@ class CommentsController : UIViewController, UITextViewDelegate {
         let height = textView.frame.size.height
         var contentHeight = textView.contentSize.height
         
-        if contentHeight == height {
-            return
+        if contentHeight + 10 < initialAddCommentViewHeight {
+            contentHeight = initialAddCommentViewHeight - 10
         }
         
-        var topCorrect:CGFloat = (height - contentHeight * textView.zoomScale) / 2.0
-        topCorrect = topCorrect < 0.0 ? 0.0 : topCorrect
-        textView.contentInset = UIEdgeInsetsMake(topCorrect,0,0,0)
-        
-        if contentHeight < initialAddCommentViewHeight {
-            contentHeight = initialAddCommentViewHeight
-            
-            if contentHeight == height {
-                return
-            }
-        }
-        
-        addCommentViewHeight.constant = contentHeight
+        addCommentViewHeight.constant = contentHeight + 10
         addCommentView.updateConstraintsIfNeeded()
+    }
+    
+    @IBAction func onPostClick(sender: UIButton) {
+//        sender.enabled = false
+//        let list = adapter.list
+//        list.prepend(nil)
+//        requestManager.addComment(eventId, token: VKSdk.accessToken().accessToken, text: addCommentView.text) {
+//            (error) in
+//            if error != nil {
+//                Alerts.showOkAlert(error!.description)
+//                list.removeFirst()
+//            } else {
+//                let comment = Comment(
+//                list[0] =
+//            }
+//            sender.enabled = true
+//        }
     }
     
     override func viewDidLoad() {
@@ -93,5 +99,6 @@ class CommentsController : UIViewController, UITextViewDelegate {
         addCommentView.placeholder = "Add comment..."
         initialAddCommentViewHeight = addCommentViewHeight.constant
         textViewDidChange(addCommentView)
+        addCommentView.contentInset = UIEdgeInsetsMake(5, 0, 0, 0)
     }
 }

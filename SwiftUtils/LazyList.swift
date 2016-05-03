@@ -7,13 +7,13 @@ import Foundation
 
 public class LazyList<T : Hashable, Error : ErrorType> : RandomAccessable {
     public typealias ItemType = T
-    private var items:[T] = []
+    private var items:[T?] = []
     private var itemsSet:Set<T> = []
     private(set) var allDataLoaded = false
     private var loadNextPageExecuted = false
     var pageNumber = 0
     public var canceler:Canceler? = nil
-    private(set) var additionalOffset = 0
+    public var additionalOffset = 0
     public var isLastPage:([T])->Bool = {$0.isEmpty}
     public var onReload:(()->Void)? = nil
 
@@ -30,19 +30,35 @@ public class LazyList<T : Hashable, Error : ErrorType> : RandomAccessable {
     public var getNextPageData:((([T]) -> Void, (Error) -> Void, Int) -> Void)?
 
     public subscript(index:Int) -> ItemType? {
-        if allDataLoaded {
+        get {
+            if allDataLoaded {
+                return items[index]
+            }
+            
+            assert(index <= items.count)
+            if index == items.count {
+                loadNextPage()
+                return nil
+            }
+            
             return items[index]
         }
-
-        assert(index <= items.count)
-        if index == items.count {
-            loadNextPage()
-            return nil
+        
+        set (newValue) {
+            items[index] = newValue
         }
-
-        return items[index]
     }
 
+    public func prepend(value:T?) {
+        items.insert(value, atIndex: 0)
+        additionalOffset+=1
+    }
+    
+    public func removeFirst() {
+        items.removeFirst()
+        additionalOffset-=1
+    }
+    
     public var count: Int {
         if allDataLoaded {
             return items.count
@@ -86,11 +102,15 @@ public class LazyList<T : Hashable, Error : ErrorType> : RandomAccessable {
         onReload?()
     }
 
-    public func addAdditionalItemsToStart(items:[T]) {
+    public func addAdditionalItemsToStart(items:[T?]) {
         self.items += items
         additionalOffset += items.count
     }
-
+    
+    public func addAdditionalItemsToStart(items:[T]) {
+        addAdditionalItemsToStart(items.map {(value:T) -> T? in return value})
+    }
+    
     deinit {
         Threading.runOnMainThread {
             self.canceler?.cancel()

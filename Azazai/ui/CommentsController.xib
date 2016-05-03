@@ -8,6 +8,7 @@
             <connections>
                 <outlet property="addCommentView" destination="pI7-5d-yK9" id="a0c-uC-MyK"/>
                 <outlet property="addCommentViewHeight" destination="b6c-0h-Se0" id="pzp-rT-hN3"/>
+                <outlet property="postButton" destination="RgT-gA-1Jh" id="8AT-Cp-yXz"/>
                 <outlet property="tableView" destination="7P9-T1-Gce" id="ZyA-hK-mvF"/>
                 <outlet property="view" destination="iN0-l3-epB" id="uW6-cx-cGD"/>
             </connections>
@@ -19,6 +20,7 @@
             <subviews>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="pI7-5d-yK9" customClass="SAMTextView">
                     <rect key="frame" x="8" y="560" width="540" height="40"/>
+                    <color key="backgroundColor" red="0.82652707390000002" green="0.91931826360000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="b6c-0h-Se0"/>
                     </constraints>
@@ -32,6 +34,9 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RgT-gA-1Jh">
                     <rect key="frame" x="552" y="565" width="40" height="30"/>
                     <state key="normal" title="POST"/>
+                    <connections>
+                        <action selector="onPostClick:" destination="-1" eventType="touchUpInside" id="geM-pB-qz4"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>

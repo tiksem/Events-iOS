@@ -206,6 +206,24 @@
           "type": "String"
         }
       ]
+    },
+    {
+      "method": "addComment",
+      "return": "Void",
+      "args": [
+        {
+          "name": "id",
+          "type": "Int"
+        },
+        {
+          "name": "token",
+          "type": "String"
+        },
+        {
+          "name": "text",
+          "type": "String"
+        }
+      ]
     }
   ]
 }
