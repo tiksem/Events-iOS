@@ -51,12 +51,10 @@ public class LazyList<T : Hashable, Error : ErrorType> : RandomAccessable {
 
     public func prepend(value:T?) {
         items.insert(value, atIndex: 0)
-        additionalOffset+=1
     }
     
     public func removeFirst() {
         items.removeFirst()
-        additionalOffset-=1
     }
     
     public var count: Int {

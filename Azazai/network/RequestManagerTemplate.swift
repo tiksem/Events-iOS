@@ -114,6 +114,25 @@ class RequestManagerTemplate {
     }
     /*}*/
 
+    /*object*/
+    func __methodName__(__args__,
+                        onCancelled:(() -> Void)? = nil,
+                        complete:(__ParamName__?, IOError?) -> Void) {
+        var canceler = Canceler()
+        var requestArgs:[String:CustomStringConvertible] = [:]
+        __request_args__
+        Network.getJsonDictFromUrl(__url__, canceler: canceler, args: requestArgs, complete: {
+            if let error = $1 {
+                complete(nil, error)
+            } else {
+                let result = __ParamName__($0!)
+                complete(__result__, nil)
+            }
+        })
+        cancelers.add(canceler, onCancelled: onCancelled)
+    }
+    /*}*/
+
     /*void*/
     func __methodName__(__args__,
                         onCancelled:(() -> Void)? = nil,

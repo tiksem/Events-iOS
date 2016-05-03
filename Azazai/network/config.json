@@ -209,7 +209,7 @@
     },
     {
       "method": "addComment",
-      "return": "Void",
+      "return": "Comment",
       "args": [
         {
           "name": "id",

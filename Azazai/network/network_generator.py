@@ -131,6 +131,10 @@ def generate_primitive_method(request, typeName):
     template = generate_base(request, typeName, "/*int*/", "/*}*/")
     return template
 
+def generate_object_method(request, typeName):
+    template = generate_base(request, typeName, "/*object*/", "/*}*/")
+    return template
+
 def generate_void_method(request, typeName):
     template = generate_base(request, typeName, "/*void*/", "/*}*/")
     return template
@@ -149,8 +153,11 @@ for request in requests:
     if returnType == "Void":
         body += generate_void_method(request, returnType)
         continue
-    else:
+    elif returnType == "Int" or returnType == "Bool" or returnType.startswith("enum "):
         body += generate_primitive_method(request, returnType)
+        continue
+    else:
+        body += generate_object_method(request, returnType)
         continue
 
 

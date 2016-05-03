@@ -68,20 +68,25 @@ class CommentsController : UIViewController, UITextViewDelegate {
     }
     
     @IBAction func onPostClick(sender: UIButton) {
-//        sender.enabled = false
-//        let list = adapter.list
-//        list.prepend(nil)
-//        requestManager.addComment(eventId, token: VKSdk.accessToken().accessToken, text: addCommentView.text) {
-//            (error) in
-//            if error != nil {
-//                Alerts.showOkAlert(error!.description)
-//                list.removeFirst()
-//            } else {
-//                let comment = Comment(
-//                list[0] =
-//            }
-//            sender.enabled = true
-//        }
+        sender.enabled = false
+        let list = adapter.list
+        list.prepend(nil)
+        tableView.reloadData()
+        requestManager.addComment(eventId, token: VKSdk.accessToken().accessToken, text: addCommentView.text) {
+            [unowned self]
+            (var comment, error) in
+            if error != nil {
+                Alerts.showOkAlert(error!.description)
+                list.removeFirst()
+                self.tableView.reloadData()
+            } else {
+                comment!.user = AppDelegate.get().user
+                list[0] = comment
+                list.additionalOffset+=1
+                self.tableView.reloadData()
+            }
+            sender.enabled = true
+        }
     }
     
     override func viewDidLoad() {

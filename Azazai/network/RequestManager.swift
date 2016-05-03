@@ -288,7 +288,7 @@ class RequestManager {
     
     func addComment(id:Int, token:String, text:String,
                         onCancelled:(() -> Void)? = nil,
-                        complete:(IOError?) -> Void) {
+                        complete:(Comment?, IOError?) -> Void) {
         var canceler = Canceler()
         var requestArgs:[String:CustomStringConvertible] = [:]
         requestArgs["id"] = id
@@ -296,9 +296,12 @@ class RequestManager {
         requestArgs["text"] = StringWrapper(text)
 
         Network.getJsonDictFromUrl("http://azazai.com/api/addComment", canceler: canceler, args: requestArgs, complete: {
-            (dict, error) in
-            
-            complete(error)
+            if let error = $1 {
+                complete(nil, error)
+            } else {
+                let result = Comment($0!)
+                complete(result, nil)
+            }
         })
         cancelers.add(canceler, onCancelled: onCancelled)
     }
