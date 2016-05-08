@@ -97,6 +97,8 @@
 		2E7DB45C1CD66FF400D34BDC /* RequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7DB45B1CD66FF400D34BDC /* RequestCell.swift */; };
 		2E7DB45E1CD7896D00D34BDC /* EventRequestsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E7DB45D1CD7896D00D34BDC /* EventRequestsController.xib */; };
 		2E7DB4611CD7DDDF00D34BDC /* SAMTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E7DB4601CD7DDDF00D34BDC /* SAMTextView.m */; };
+		2E8178521CDFDF8D0070991A /* MBProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E8178511CDFDF8D0070991A /* MBProgressHUD.framework */; };
+		2E8178531CDFDF8D0070991A /* MBProgressHUD.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2E8178511CDFDF8D0070991A /* MBProgressHUD.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2E87D5C71C80FA96002B1FF9 /* AddEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106282BB4A22233E917980E4 /* AddEventController.swift */; };
 		2E87D5CA1C823B81002B1FF9 /* SubscribeStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E87D5C91C823B81002B1FF9 /* SubscribeStatus.swift */; };
 		2E87D5D51C976806002B1FF9 /* TLTagsControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E87D5D31C976806002B1FF9 /* TLTagsControl.m */; };
@@ -177,6 +179,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				2E5D01DC1C5AAC6C0013735F /* SwiftUtils.framework in Embed Frameworks */,
+				2E8178531CDFDF8D0070991A /* MBProgressHUD.framework in Embed Frameworks */,
 				2EED38331C77CCD800EC6E71 /* PageMenuFramework.framework in Embed Frameworks */,
 				2E7C32561C5C0FAD00CE8F7C /* VKSdkFramework.framework in Embed Frameworks */,
 				2E8C16721CA36CED0027ED16 /* Eureka.framework in Embed Frameworks */,
@@ -289,6 +292,7 @@
 		2E7DB45D1CD7896D00D34BDC /* EventRequestsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventRequestsController.xib; sourceTree = "<group>"; };
 		2E7DB45F1CD7DDDF00D34BDC /* SAMTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAMTextView.h; sourceTree = "<group>"; };
 		2E7DB4601CD7DDDF00D34BDC /* SAMTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAMTextView.m; sourceTree = "<group>"; };
+		2E8178511CDFDF8D0070991A /* MBProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MBProgressHUD.framework; path = Carthage/Build/iOS/MBProgressHUD.framework; sourceTree = "<group>"; };
 		2E87D5C91C823B81002B1FF9 /* SubscribeStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscribeStatus.swift; sourceTree = "<group>"; };
 		2E87D5D31C976806002B1FF9 /* TLTagsControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLTagsControl.m; sourceTree = "<group>"; };
 		2E87D5D41C976806002B1FF9 /* TLTagsControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLTagsControl.h; sourceTree = "<group>"; };
@@ -337,6 +341,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2E5D01DB1C5AAC6C0013735F /* SwiftUtils.framework in Frameworks */,
+				2E8178521CDFDF8D0070991A /* MBProgressHUD.framework in Frameworks */,
 				2EED38321C77CCD800EC6E71 /* PageMenuFramework.framework in Frameworks */,
 				2E7C32551C5C0FAD00CE8F7C /* VKSdkFramework.framework in Frameworks */,
 				2E8C16711CA36CED0027ED16 /* Eureka.framework in Frameworks */,
@@ -386,6 +391,7 @@
 		106283FB35D5C11BF3D0CEC3 = {
 			isa = PBXGroup;
 			children = (
+				2E8178511CDFDF8D0070991A /* MBProgressHUD.framework */,
 				2E8C16701CA36CED0027ED16 /* Eureka.framework */,
 				2EB1E3561CA3583600C0E60A /* PDTSimpleCalendar.framework */,
 				2E4BE2591C7F9CF200ED57F5 /* IconPickerCell.xib */,

@@ -219,6 +219,49 @@ public class UiUtils {
             view.addGestureRecognizer(tapFactory())
         }
     }
+    
+    public static func showLoadingInCenterOfView(view:UIView) {
+        let activityView = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+        activityView.center = view.center
+        activityView.startAnimating()
+        view.addSubview(activityView)
+    }
+    
+    public static func getCurrentView() -> UIView? {
+        return getCurrentViewController()?.view
+    }
+    
+    public static  func getCurrentViewController() -> UIViewController? {
+        
+        // If the root view is a navigation controller, we can just return the visible ViewController
+        if let navigationController = getNavigationController() {
+            
+            return navigationController.visibleViewController
+        }
+        
+        // Otherwise, we must get the root UIViewController and iterate through presented views
+        if let rootController = UIApplication.sharedApplication().keyWindow?.rootViewController {
+            
+            var currentController: UIViewController! = rootController
+            
+            // Each ViewController keeps track of the view it has presented, so we
+            // can move from the head to the tail, which will always be the current view
+            while( currentController.presentedViewController != nil ) {
+                
+                currentController = currentController.presentedViewController
+            }
+            return currentController
+        }
+        
+        return nil
+    }
+    
+    public static func getNavigationController() -> UINavigationController? {
+        if let navigationController = UIApplication.sharedApplication().keyWindow?.rootViewController  {
+            return navigationController as? UINavigationController
+        }
+        return nil
+    }
 }
 
 public extension UIView {

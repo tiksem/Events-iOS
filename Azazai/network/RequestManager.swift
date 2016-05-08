@@ -270,7 +270,7 @@ class RequestManager {
         cancelers.add(canceler, onCancelled: onCancelled)
     }
     
-    func denieRequest(id:Int, token:String,
+    func denyRequest(id:Int, token:String,
                         onCancelled:(() -> Void)? = nil,
                         complete:(IOError?) -> Void) {
         var canceler = Canceler()
@@ -278,7 +278,7 @@ class RequestManager {
         requestArgs["id"] = id
         requestArgs["token"] = StringWrapper(token)
 
-        Network.getJsonDictFromUrl("http://azazai.com/api/denieRequest", canceler: canceler, args: requestArgs, complete: {
+        Network.getJsonDictFromUrl("http://azazai.com/api/denyRequest", canceler: canceler, args: requestArgs, complete: {
             (dict, error) in
             
             complete(error)
@@ -302,6 +302,38 @@ class RequestManager {
                 let result = Comment($0!)
                 complete(result, nil)
             }
+        })
+        cancelers.add(canceler, onCancelled: onCancelled)
+    }
+    
+    func deleteComment(id:Int, token:String,
+                        onCancelled:(() -> Void)? = nil,
+                        complete:(IOError?) -> Void) {
+        var canceler = Canceler()
+        var requestArgs:[String:CustomStringConvertible] = [:]
+        requestArgs["id"] = id
+        requestArgs["token"] = StringWrapper(token)
+
+        Network.getJsonDictFromUrl("http://azazai.com/api/deleteComment", canceler: canceler, args: requestArgs, complete: {
+            (dict, error) in
+            
+            complete(error)
+        })
+        cancelers.add(canceler, onCancelled: onCancelled)
+    }
+    
+    func updateComment(id:Int, token:String,
+                        onCancelled:(() -> Void)? = nil,
+                        complete:(IOError?) -> Void) {
+        var canceler = Canceler()
+        var requestArgs:[String:CustomStringConvertible] = [:]
+        requestArgs["id"] = id
+        requestArgs["token"] = StringWrapper(token)
+
+        Network.getJsonDictFromUrl("http://azazai.com/api/updateComment", canceler: canceler, args: requestArgs, complete: {
+            (dict, error) in
+            
+            complete(error)
         })
         cancelers.add(canceler, onCancelled: onCancelled)
     }

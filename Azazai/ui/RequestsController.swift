@@ -63,7 +63,7 @@ private class RequestsAdapterDelegate : AdapterDelegateDefaultImpl<Request, Requ
     
     @objc func onDecline(sender:UIButton) {
         let request = itemProvider(sender.tag)
-        requestManager.denieRequest(request.event.id, token: VKSdk.accessToken().accessToken, complete: complete)
+        requestManager.denyRequest(request.event.id, token: VKSdk.accessToken().accessToken, complete: complete)
     }
     
     @objc func onAccept(sender:UIButton) {

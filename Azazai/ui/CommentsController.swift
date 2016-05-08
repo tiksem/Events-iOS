@@ -8,6 +8,15 @@ import SwiftUtils
 import UIKit
 
 class CommentsAdapterDelegate : AdapterDelegateDefaultImpl<Comment, CommentCell, LoadingView> {
+    private let requestManager = RequestManager()
+    private let list:LazyList<Comment, IOError>
+    private let tableView:UITableView
+    
+    init(list:LazyList<Comment, IOError>, tableView:UITableView) {
+        self.list = list
+        self.tableView = tableView
+    }
+    
     override func displayItem(element comment: Comment, cell: CommentCell, position:Int) -> Void {
         UiUtils.setupMultiLineForLabel(cell.message, text: comment.text)
         cell.avatar.setImageFromURL(comment.user?.photo_200)
@@ -17,9 +26,48 @@ class CommentsAdapterDelegate : AdapterDelegateDefaultImpl<Comment, CommentCell,
     }
     
     override func onItemSelected(element comment: Comment, position: Int) {
-        if let user = comment.user {
-            SocialUtils.openVkProfile(String(user.id))
+        let alert = UIAlertController(title: nil,
+                                      message: nil,
+                                      preferredStyle:.ActionSheet)
+        let view = UiUtils.getCurrentView()!
+        func addAction(title:String, style: UIAlertActionStyle = .Default, handler: (() -> Void)? = nil) {
+            let action = UIAlertAction(title: title, style: style, handler: {
+                (action) in
+                if let handler = handler {
+                    MBProgressHUD.showHUDAddedTo(view, animated: true)
+                    handler()
+                }
+            });
+            alert.addAction(action)
         }
+        
+        let user = comment.user!
+        if (user.id == AppDelegate.get().user!.id) {
+            addAction("Delete comment", style: .Destructive) {
+                self.requestManager.deleteComment(comment.id, token: VKSdk.accessToken().accessToken, complete: {
+                    (error) in
+                    if error != nil {
+                        Alerts.showOkAlert(error!.description)
+                    } else {
+                        self.list.removeItemAt(position)
+                        self.tableView.reloadData()
+                    }
+                    MBProgressHUD.hideHUDForView(view, animated: true)
+                })
+            }
+            
+            addAction("Edit comment") {
+                
+            }
+        }
+        
+        addAction(user.first_name + " " + user.last_name) {
+            
+        }
+        
+        addAction("Cancel", style: .Cancel)
+        
+        UiUtils.getCurrentViewController()!.presentViewController(alert, animated:true, completion:nil)
     }
 }
 
@@ -29,7 +77,7 @@ class CommentsAdapter : AzazaiListAdapter<CommentsAdapterDelegate> {
         super.init(tableView: commentsListView,
                 list: comments,
                 cellIdentifier: "CommentCell",
-                delegate: CommentsAdapterDelegate())
+                delegate: CommentsAdapterDelegate(list: comments, tableView: commentsListView))
     }
 }
 

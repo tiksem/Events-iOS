@@ -57,6 +57,10 @@ public class LazyList<T : Hashable, Error : ErrorType> : RandomAccessable {
         items.removeFirst()
     }
     
+    public func removeItemAt(index:Int) {
+        items.removeAtIndex(index)
+    }
+    
     public var count: Int {
         if allDataLoaded {
             return items.count

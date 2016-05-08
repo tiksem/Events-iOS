@@ -15,5 +15,6 @@
 #import "ui/TLTagsControl.h"
 #import "ui/SAMTextView.h"
 #import <PDTSimpleCalendar/PDTSimpleCalendar.h>
+#import <MBProgressHUD/MBProgressHUD.h>
 
 #endif /* Azazai_Bridging_Header_h */

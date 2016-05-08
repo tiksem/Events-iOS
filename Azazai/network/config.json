@@ -194,7 +194,7 @@
       ]
     },
     {
-      "method": "denieRequest",
+      "method": "denyRequest",
       "return": "Void",
       "args": [
         {
@@ -221,6 +221,34 @@
         },
         {
           "name": "text",
+          "type": "String"
+        }
+      ]
+    },
+    {
+      "method": "deleteComment",
+      "return": "Void",
+      "args": [
+        {
+          "name": "id",
+          "type": "Int"
+        },
+        {
+          "name": "token",
+          "type": "String"
+        }
+      ]
+    },
+    {
+      "method": "updateComment",
+      "return": "Void",
+      "args": [
+        {
+          "name": "id",
+          "type": "Int"
+        },
+        {
+          "name": "token",
           "type": "String"
         }
       ]
