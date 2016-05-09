@@ -60,7 +60,7 @@ class CommentsAdapterDelegate : AdapterDelegateDefaultImpl<Comment, CommentCell,
         }
         
         addAction(user.first_name + " " + user.last_name) {
-            
+            SocialUtils.openVkProfile(String(user.id))
         }
         
         addAction("Cancel", style: .Cancel)
