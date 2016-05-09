@@ -33,10 +33,7 @@ class CommentsAdapterDelegate : AdapterDelegateDefaultImpl<Comment, CommentCell,
         func addAction(title:String, style: UIAlertActionStyle = .Default, handler: (() -> Void)? = nil) {
             let action = UIAlertAction(title: title, style: style, handler: {
                 (action) in
-                if let handler = handler {
-                    MBProgressHUD.showHUDAddedTo(view, animated: true)
-                    handler()
-                }
+                handler?()
             });
             alert.addAction(action)
         }
@@ -44,6 +41,7 @@ class CommentsAdapterDelegate : AdapterDelegateDefaultImpl<Comment, CommentCell,
         let user = comment.user!
         if (user.id == AppDelegate.get().user!.id) {
             addAction("Delete comment", style: .Destructive) {
+                MBProgressHUD.showHUDAddedTo(view, animated: true)
                 self.requestManager.deleteComment(comment.id, token: VKSdk.accessToken().accessToken, complete: {
                     (error) in
                     if error != nil {
