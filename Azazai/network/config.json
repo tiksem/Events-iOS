@@ -230,7 +230,7 @@
       "return": "Void",
       "args": [
         {
-          "name": "id",
+          "name": "commentId",
           "type": "Int"
         },
         {

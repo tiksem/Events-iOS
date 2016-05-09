@@ -306,12 +306,12 @@ class RequestManager {
         cancelers.add(canceler, onCancelled: onCancelled)
     }
     
-    func deleteComment(id:Int, token:String,
+    func deleteComment(commentId:Int, token:String,
                         onCancelled:(() -> Void)? = nil,
                         complete:(IOError?) -> Void) {
         var canceler = Canceler()
         var requestArgs:[String:CustomStringConvertible] = [:]
-        requestArgs["id"] = id
+        requestArgs["commentId"] = commentId
         requestArgs["token"] = StringWrapper(token)
 
         Network.getJsonDictFromUrl("http://azazai.com/api/deleteComment", canceler: canceler, args: requestArgs, complete: {
