@@ -123,6 +123,10 @@ private class EventRequestsAdapterDelegate : AdapterDelegateDefaultImpl<VkUser, 
     private override func displayItem(element user: VkUser, cell: RequestCell, position: Int) {
         delegate.displayItem(element: requestFromUser(user), cell: cell, position: position)
     }
+    
+    override func onItemSelected(element user: VkUser, position: Int) {
+        delegate.onItemSelected(element: requestFromUser(user), position: position)
+    }
 }
 
 private class RequestsAdapter : AzazaiListAdapter<RequestsAdapterDelegate> {
