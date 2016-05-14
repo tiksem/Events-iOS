@@ -339,6 +339,27 @@ class RequestManager {
         cancelers.add(canceler, onCancelled: onCancelled)
     }
     
+    func getRequestsCount(id:Int,
+                        onCancelled:(() -> Void)? = nil,
+                        complete:(Int?, IOError?) -> Void) {
+        var canceler = Canceler()
+        var requestArgs:[String:CustomStringConvertible] = [:]
+        requestArgs["id"] = id
+
+        Network.getJsonDictFromUrl("http://azazai.com/api/getRequestsCount", canceler: canceler, args: requestArgs, complete: {
+            let key = "result"
+            if let error = $1 {
+                complete(nil, error)
+            } else if let result = $0![key] as? Int {
+                complete(result, nil)
+            } else {
+                complete(nil, IOError.ResponseError(error: "BackEndError", message: "\(key) " +
+                        "key not found or invalid"))
+            }
+        })
+        cancelers.add(canceler, onCancelled: onCancelled)
+    }
+    
 
     private func getUsersById(users:String? = nil,
                      success: ([VkUser])->Void,

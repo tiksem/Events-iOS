@@ -256,6 +256,17 @@
           "type": "String"
         }
       ]
+    },
+    {
+      "method": "getRequestsCount",
+      "return": "Int",
+      "key": "result",
+      "args": [
+        {
+          "name": "id",
+          "type": "Int"
+        }
+      ]
     }
   ]
 }

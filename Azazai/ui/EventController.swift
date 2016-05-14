@@ -37,6 +37,8 @@ class EventController : UIViewController {
     @IBOutlet weak var comments: UITableView!
     @IBOutlet weak var membersLabel: UILabel!
     @IBOutlet weak var addressIcon: UIImageView!
+    @IBOutlet weak var requestsLabel: UILabel!
+    @IBOutlet weak var requestsCount: UILabel!
     
     private var event:Event! = nil
     private var requestManager:RequestManager! = nil
@@ -61,8 +63,6 @@ class EventController : UIViewController {
                 titleColor: UIColor.whiteColor(), backgroundColor: UIColor.lightGrayColor())
 
         subscribeButton.setTitle("Loading...", forState: .Disabled)
-        
-        isMine = event.userId == Int(VKSdk.accessToken().userId)
 
         if !isMine {
             subscribeButton.enabled = false
@@ -136,6 +136,17 @@ class EventController : UIViewController {
         comments.addGestureRecognizer(tap)
     }
 
+    func setupRequestsCount() {
+        requestManager.getRequestsCount(event.id, complete: {
+            (result,error) in
+            if let err = error {
+                Alerts.showOkAlert(err.description)
+            } else {
+                self.requestsCount.text = String(result!)
+            }
+        })
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         UiUtils.setupMultiLineForLabel(eventDescription, text: event.description)
@@ -145,6 +156,8 @@ class EventController : UIViewController {
         address.text = event.address
         let date = EventUtils.eventDateToString(event.date)
         eventDate.text = date
+        isMine = event.userId == Int(VKSdk.accessToken().userId)
+        setRequestsVisibility(isMine && event.isPrivate)
         setupSubscribeButton()
         setupOrganizer()
         setupComments()
@@ -156,10 +169,20 @@ class EventController : UIViewController {
         
         UiUtils.setTapListenerForViews([membersLabel, peopleNumber], target:self, action:"showMembers:")
         UiUtils.setTapListenerForViews([addressIcon, address], target:self, action:"searchAddress:")
+        UiUtils.setTapListenerForViews([requestsLabel, requestsCount], target:self, action:"searchAddress:")
+        
+        if !requestsCount.hidden {
+            setupRequestsCount()
+        }
     }
 
     func showMembers(_:UIGestureRecognizer) {
         navigationController!.pushViewController(MembersListController(eventId: event.id), animated: true)
+    }
+    
+    func setRequestsVisibility(visible:Bool) {
+        requestsLabel.hidden = !visible
+        requestsCount.hidden = !visible
     }
     
     func searchAddress(_:UIGestureRecognizer) {

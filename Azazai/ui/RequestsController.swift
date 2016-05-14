@@ -69,7 +69,8 @@ private class RequestsAdapterDelegate : AdapterDelegateDefaultImpl<Request, Requ
     }
     
     @objc func onAccept(sender:UIButton) {
-        
+        let request = itemProvider(sender.tag)
+        requestManager.acceptRequest(request.event.id, token: VKSdk.accessToken().accessToken, complete: complete)
     }
 }
 
