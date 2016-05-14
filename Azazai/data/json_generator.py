@@ -27,6 +27,8 @@ for struct in config["structs"]:
         isObject = False
         if not name.startswith("var "):
             declarationName = "let " + name
+        if not name.startswith("var ") or not declarationType.endswith("?"):
+            name = name.replace("var ", "")
             if type(typeName) is list:
                 defaultValue = typeName[1]
                 if isinstance(defaultValue, str):

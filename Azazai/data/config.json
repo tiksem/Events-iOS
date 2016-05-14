@@ -22,7 +22,7 @@
       "fields": {
         "id":"Int",
         "userId":"Int",
-        "text":"String",
+        "var text":"String",
         "eventId":"Int",
         "date":"Int",
         "var user":"VkUser?"

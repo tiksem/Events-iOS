@@ -13,7 +13,7 @@ func == (lhs: Comment, rhs: Comment) -> Bool {
 struct Comment : Hashable, Equatable {
     let id:Int
     let userId:Int
-    let text:String
+    var text:String
     let eventId:Int
     let date:Int
     var user:VkUser?

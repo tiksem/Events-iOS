@@ -244,11 +244,15 @@
       "return": "Void",
       "args": [
         {
-          "name": "id",
+          "name": "commentId",
           "type": "Int"
         },
         {
           "name": "token",
+          "type": "String"
+        },
+        {
+          "name": "text",
           "type": "String"
         }
       ]

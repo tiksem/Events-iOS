@@ -11,10 +11,12 @@ class CommentsAdapterDelegate : AdapterDelegateDefaultImpl<Comment, CommentCell,
     private let requestManager = RequestManager()
     private let list:LazyList<Comment, IOError>
     private let tableView:UITableView
+    private let onEditComment:(Int, Comment) -> Void
     
-    init(list:LazyList<Comment, IOError>, tableView:UITableView) {
+    init(list:LazyList<Comment, IOError>, tableView:UITableView, onEditComment:(Int, Comment) -> Void) {
         self.list = list
         self.tableView = tableView
+        self.onEditComment = onEditComment
     }
     
     override func displayItem(element comment: Comment, cell: CommentCell, position:Int) -> Void {
@@ -55,7 +57,7 @@ class CommentsAdapterDelegate : AdapterDelegateDefaultImpl<Comment, CommentCell,
             }
             
             addAction("Edit comment") {
-                
+                self.onEditComment(position, comment)
             }
         }
         
@@ -71,12 +73,12 @@ class CommentsAdapterDelegate : AdapterDelegateDefaultImpl<Comment, CommentCell,
 
 class CommentsAdapter : LoadMoreLazyListAdapter<CommentsAdapterDelegate, IOError> {
     init(controller viewController:UIViewController, commentsListView:UITableView,
-         comments: LazyList<Comment, IOError>) {
+         comments: LazyList<Comment, IOError>, onEditComment:(Int, Comment)->Void) {
         super.init(cellIdentifier: "CommentCell",
                    nullCellIdentifier: "Loading",
                    list: comments,
                    tableView: commentsListView,
-                   delegate: CommentsAdapterDelegate(list: comments, tableView: commentsListView),
+                   delegate: CommentsAdapterDelegate(list: comments, tableView: commentsListView, onEditComment: onEditComment),
                    loadMoreCellNibFileName: "LoadMoreCommentsCell",
                    reverse: true)
     }
@@ -90,6 +92,8 @@ class CommentsController : UIViewController, UITextViewDelegate {
     private var eventId:Int = 0
     private var topComments:[Comment] = []
     private var initialAddCommentViewHeight:CGFloat = 0
+    private var editingComment:Comment? = nil
+    private var editingCommentPosition = -1
 
     @IBOutlet weak var postButton: UIButton!
     @IBOutlet weak var addCommentView: SAMTextView!
@@ -105,7 +109,6 @@ class CommentsController : UIViewController, UITextViewDelegate {
     }
 
     func textViewDidChange(textView: UITextView) {
-        let height = textView.frame.size.height
         var contentHeight = textView.contentSize.height
         
         if contentHeight + 10 < initialAddCommentViewHeight {
@@ -116,6 +119,16 @@ class CommentsController : UIViewController, UITextViewDelegate {
         addCommentView.updateConstraintsIfNeeded()
     }
     
+    func onEditComment(position:Int, comment:Comment) {
+        let indexPath = NSIndexPath(forRow: adapter.getCount() - position - 1, inSection: 0)
+        tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Top, animated: true)
+        addCommentView.text = comment.text
+        postButton.setTitle("SAVE", forState: .Normal)
+        editingComment = comment
+        editingCommentPosition = position
+        addCommentView.becomeFirstResponder()
+    }
+    
     private func scrollBottom() {
         tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: adapter.getCount() - 1, inSection: 0),
                                          atScrollPosition: .Top, animated: true)
@@ -123,26 +136,43 @@ class CommentsController : UIViewController, UITextViewDelegate {
     
     @IBAction func onPostClick(sender: UIButton) {
         sender.enabled = false
-        let list = adapter.list
-        list.prepend(nil)
-        tableView.reloadData()
-        scrollBottom()
-        requestManager.addComment(eventId, token: VKSdk.accessToken().accessToken, text: addCommentView.text) {
-            [unowned self]
-            (var comment, error) in
-            if error != nil {
-                Alerts.showOkAlert(error!.description)
-                list.removeFirst()
-                self.tableView.reloadData()
-            } else {
-                comment!.user = AppDelegate.get().user
-                list[0] = comment
-                list.additionalOffset+=1
-                self.addCommentView.text = ""
-                self.tableView.reloadData()
+        if var comment = editingComment {
+            requestManager.updateComment(comment.id, token: VKSdk.accessToken().accessToken, text: addCommentView.text, complete: {
+                (error) in
+                if error != nil {
+                    Alerts.showOkAlert(error!.description)
+                } else {
+                    comment.text = self.addCommentView.text
+                    self.adapter.list[self.editingCommentPosition] = comment
+                    self.adapter.reloadData()
+                    self.addCommentView.text = ""
+                    self.postButton.setTitle("POST", forState: .Normal)
+                    self.editingComment = nil
+                }
+                sender.enabled = true
+            })
+        } else {
+            let list = adapter.list
+            list.prepend(nil)
+            tableView.reloadData()
+            scrollBottom()
+            requestManager.addComment(eventId, token: VKSdk.accessToken().accessToken, text: addCommentView.text) {
+                [unowned self]
+                (var comment, error) in
+                if error != nil {
+                    Alerts.showOkAlert(error!.description)
+                    list.removeFirst()
+                    self.tableView.reloadData()
+                } else {
+                    comment!.user = AppDelegate.get().user
+                    list[0] = comment
+                    list.additionalOffset+=1
+                    self.addCommentView.text = ""
+                    self.tableView.reloadData()
+                }
+                sender.enabled = true
+                self.scrollBottom()
             }
-            sender.enabled = true
-            self.scrollBottom()
         }
     }
     
@@ -153,7 +183,10 @@ class CommentsController : UIViewController, UITextViewDelegate {
         requestManager = RequestManager()
         let comments = requestManager.getCommentsList(eventId)
         comments.addAdditionalItemsToStart(topComments)
-        adapter = CommentsAdapter(controller: self, commentsListView: tableView, comments: comments)
+        adapter = CommentsAdapter(controller: self,
+                                  commentsListView: tableView,
+                                  comments: comments,
+                                  onEditComment: onEditComment)
         navigationItem.title = "Comments"
         
         addCommentView.scrollEnabled = true

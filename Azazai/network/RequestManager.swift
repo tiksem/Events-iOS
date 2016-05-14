@@ -322,13 +322,14 @@ class RequestManager {
         cancelers.add(canceler, onCancelled: onCancelled)
     }
     
-    func updateComment(id:Int, token:String,
+    func updateComment(commentId:Int, token:String, text:String,
                         onCancelled:(() -> Void)? = nil,
                         complete:(IOError?) -> Void) {
         var canceler = Canceler()
         var requestArgs:[String:CustomStringConvertible] = [:]
-        requestArgs["id"] = id
+        requestArgs["commentId"] = commentId
         requestArgs["token"] = StringWrapper(token)
+        requestArgs["text"] = StringWrapper(text)
 
         Network.getJsonDictFromUrl("http://azazai.com/api/updateComment", canceler: canceler, args: requestArgs, complete: {
             (dict, error) in
