@@ -12,7 +12,7 @@ public struct Alerts {
         alert.show()
     }
 
-    public static func showSlidingFromBottomOneActionAlert(controller:UIViewController, title:String,
+    public static func showSlidingFromBottomOneActionAlert(controller:UIViewController, title:String? = nil,
                                                   message:String? = nil, actionName:String,
                                                            actionStyle:UIAlertActionStyle = .Destructive,
                                                            cancelActionName:String = "Cancel",

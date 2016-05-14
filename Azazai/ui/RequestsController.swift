@@ -74,7 +74,7 @@ private class RequestsAdapterDelegate : AdapterDelegateDefaultImpl<Request, Requ
     }
     
     @objc func onDecline(sender:UIButton) {
-        Alerts.showSlidingFromBottomOneActionAlert(controller, title: "", actionName: "Decline", cancelActionName: "Cancel", onAccept: {
+        Alerts.showSlidingFromBottomOneActionAlert(controller, actionName: "Decline", cancelActionName: "Cancel", onAccept: {
             let position = sender.tag
             let request = self.itemProvider(position)
             self.decline(request, position: position)
