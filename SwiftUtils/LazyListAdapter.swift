@@ -114,7 +114,7 @@ public class LoadMoreLazyListAdapter<Delegate:AdapterDelegate,
     }
     
     private func getCount() -> Int {
-        if list.loadNextPageExecuted {
+        if list.loadNextPageExecuted || list.allDataLoaded {
             print("tableView count = \(list.count)")
             return list.count
         } else {
@@ -137,7 +137,7 @@ public class LoadMoreLazyListAdapter<Delegate:AdapterDelegate,
     }
     
     private func isLoadMoreItem(position:Int) -> Bool {
-        return !list.loadNextPageExecuted && position == list.count
+        return !list.allDataLoaded && !list.loadNextPageExecuted && position == list.count
     }
     
     public override func createItemForPosition(position:Int) -> UITableViewCell {
