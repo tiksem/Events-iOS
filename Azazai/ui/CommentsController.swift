@@ -31,6 +31,13 @@ class CommentsAdapterDelegate : AdapterDelegateDefaultImpl<Comment, CommentCell,
         let alert = UIAlertController(title: nil,
                                       message: nil,
                                       preferredStyle:.ActionSheet)
+        let user = comment.user!
+        
+        if (user.id != AppDelegate.get().user!.id) {
+            SocialUtils.openVkProfile(String(user.id))
+            return
+        }
+        
         let view = UiUtils.getCurrentView()!
         func addAction(title:String, style: UIAlertActionStyle = .Default, handler: (() -> Void)? = nil) {
             let action = UIAlertAction(title: title, style: style, handler: {
@@ -40,25 +47,22 @@ class CommentsAdapterDelegate : AdapterDelegateDefaultImpl<Comment, CommentCell,
             alert.addAction(action)
         }
         
-        let user = comment.user!
-        if (user.id == AppDelegate.get().user!.id) {
-            addAction("Delete comment", style: .Destructive) {
-                MBProgressHUD.showHUDAddedTo(view, animated: true)
-                self.requestManager.deleteComment(comment.id, token: VKSdk.accessToken().accessToken, complete: {
-                    (error) in
-                    if error != nil {
-                        Alerts.showOkAlert(error!.description)
-                    } else {
-                        self.list.removeItemAt(position)
-                        self.tableView.reloadData()
-                    }
-                    MBProgressHUD.hideHUDForView(view, animated: true)
-                })
-            }
-            
-            addAction("Edit comment") {
-                self.onEditComment(position, comment)
-            }
+        addAction("Delete comment", style: .Destructive) {
+            MBProgressHUD.showHUDAddedTo(view, animated: true)
+            self.requestManager.deleteComment(comment.id, token: VKSdk.accessToken().accessToken, complete: {
+                (error) in
+                if error != nil {
+                    Alerts.showOkAlert(error!.description)
+                } else {
+                    self.list.removeItemAt(position)
+                    self.tableView.reloadData()
+                }
+                MBProgressHUD.hideHUDForView(view, animated: true)
+            })
+        }
+        
+        addAction("Edit comment") {
+            self.onEditComment(position, comment)
         }
         
         addAction(user.first_name + " " + user.last_name) {
