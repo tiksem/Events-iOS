@@ -116,11 +116,17 @@ class CommentsController : UIViewController, UITextViewDelegate {
         addCommentView.updateConstraintsIfNeeded()
     }
     
+    private func scrollBottom() {
+        tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: adapter.getCount() - 1, inSection: 0),
+                                         atScrollPosition: .Top, animated: true)
+    }
+    
     @IBAction func onPostClick(sender: UIButton) {
         sender.enabled = false
         let list = adapter.list
         list.prepend(nil)
         tableView.reloadData()
+        scrollBottom()
         requestManager.addComment(eventId, token: VKSdk.accessToken().accessToken, text: addCommentView.text) {
             [unowned self]
             (var comment, error) in
@@ -135,6 +141,7 @@ class CommentsController : UIViewController, UITextViewDelegate {
                 self.tableView.reloadData()
             }
             sender.enabled = true
+            self.scrollBottom()
         }
     }
     
