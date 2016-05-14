@@ -105,10 +105,8 @@ public class LoadMoreLazyListAdapter<Delegate:AdapterDelegate,
     
     public func getCount() -> Int {
         if list.loadNextPageExecuted || list.allDataLoaded {
-            print("tableView count = \(list.count)")
             return list.count
         } else {
-            print("tableView count = \(list.count + 1)")
             return list.count + 1
         }
     }
