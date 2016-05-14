@@ -14,10 +14,14 @@ private let fontSize:CGFloat = 13
 
 private class RequestsAdapterDelegate : AdapterDelegateDefaultImpl<Request, RequestCell, LoadingView> {
     private let itemProvider:(Int) -> Request
+    private let removeItem:(Int)->Void
     private let requestManager = RequestManager()
+    private let controller:UIViewController
     
-    init(itemProvider:(Int) -> Request) {
+    init(controller:UIViewController, itemProvider:(Int) -> Request, removeItem:(Int) -> Void) {
         self.itemProvider = itemProvider
+        self.removeItem = removeItem
+        self.controller = controller
         super.init()
     }
     
@@ -55,22 +59,34 @@ private class RequestsAdapterDelegate : AdapterDelegateDefaultImpl<Request, Requ
         }
     }
     
-    func complete(error:IOError?) {
+    func complete(error:IOError?, position:Int) {
         if error != nil {
-            Alerts.showOkAlert(error?.description)
+            Alerts.showOkAlert(error!.description)
         } else {
-            
+            removeItem(position)
         }
     }
     
+    func decline(request:Request, position:Int) {
+        requestManager.denyRequest(request.event.id, userId: request.user!.id, token: VKSdk.accessToken().accessToken, complete: {
+            self.complete($0, position: position)
+        })
+    }
+    
     @objc func onDecline(sender:UIButton) {
-        let request = itemProvider(sender.tag)
-        requestManager.denyRequest(request.event.id, token: VKSdk.accessToken().accessToken, complete: complete)
+        Alerts.showSlidingFromBottomOneActionAlert(controller, title: "", actionName: "Decline", cancelActionName: "Cancel", onAccept: {
+            let position = sender.tag
+            let request = self.itemProvider(position)
+            self.decline(request, position: position)
+        })
     }
     
     @objc func onAccept(sender:UIButton) {
-        let request = itemProvider(sender.tag)
-        requestManager.acceptRequest(request.event.id, token: VKSdk.accessToken().accessToken, complete: complete)
+        let position = sender.tag
+        let request = itemProvider(position)
+        requestManager.acceptRequest(request.event.id, userId: request.user!.id, token: VKSdk.accessToken().accessToken, complete: {
+            self.complete($0, position: position)
+        })
     }
 }
 
@@ -85,18 +101,23 @@ private class EventRequestsAdapterDelegate : AdapterDelegateDefaultImpl<VkUser, 
         return request
     }
     
-    init(event:Event, list:LazyList<VkUser,IOError>) {
+    init(event:Event, list:LazyList<VkUser,IOError>, controller:UIViewController, tableView:UITableView) {
         self.event = event
         self.list = list
         
         super.init()
         
-        delegate = RequestsAdapterDelegate {
+        delegate = RequestsAdapterDelegate(controller: controller, itemProvider: {
             [unowned self]
             (position) in
-            let user = list[position]!
+            let user = self.list[position]!
             return self.requestFromUser(user)
-        }
+        }, removeItem: {
+            [unowned tableView]
+            (position) in
+            list.removeItemAt(position)
+            tableView.reloadData()
+        })
     }
     
     private override func displayItem(element user: VkUser, cell: RequestCell, position: Int) {
@@ -105,23 +126,30 @@ private class EventRequestsAdapterDelegate : AdapterDelegateDefaultImpl<VkUser, 
 }
 
 private class RequestsAdapter : AzazaiListAdapter<RequestsAdapterDelegate> {
-    init(list: LazyList<Request, IOError>,
+    init(controller:UIViewController,
+         list: LazyList<Request, IOError>,
          tableView: UITableView) {
         super.init(tableView: tableView,
                    list: list,
                    cellIdentifier: "RequestCell",
-                   delegate: RequestsAdapterDelegate(itemProvider: {list[$0]!}))
+                   delegate: RequestsAdapterDelegate(controller: controller, itemProvider: {list[$0]!}, removeItem: {
+                        [unowned tableView]
+                        (position) in
+                        list.removeItemAt(position)
+                        tableView.reloadData()
+                   }))
     }
 }
 
 private class EventRequestsAdapter : AzazaiListAdapter<EventRequestsAdapterDelegate> {
-    init(list: LazyList<VkUser, IOError>,
+    init(controller:UIViewController,
+         list: LazyList<VkUser, IOError>,
          event: Event,
          tableView: UITableView) {
         super.init(tableView: tableView,
                    list: list,
                    cellIdentifier: "RequestCell",
-                   delegate: EventRequestsAdapterDelegate(event: event, list: list))
+                   delegate: EventRequestsAdapterDelegate(event: event, list: list, controller: controller, tableView: tableView))
     }
 }
 
@@ -142,7 +170,7 @@ class RequestsController : AbstractRequestsController {
     override func viewDidLoad() {
         requestManager = RequestManager()
         let requests = requestManager.getAllRequests(Int(VKSdk.accessToken().userId)!)
-        adapter = RequestsAdapter(list: requests, tableView: tableView)
+        adapter = RequestsAdapter(controller: self, list: requests, tableView: tableView)
     }
 }
 
@@ -164,7 +192,7 @@ class EventRequestsController : AbstractRequestsController {
     override func viewDidLoad() {
         requestManager = RequestManager()
         let requests = requestManager.getRequests(eventId: event.id)
-        adapter = EventRequestsAdapter(list: requests, event: event, tableView: tableView)
+        adapter = EventRequestsAdapter(controller: self, list: requests, event: event, tableView: tableView)
     }
 }
 

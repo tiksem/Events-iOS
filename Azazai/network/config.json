@@ -188,6 +188,10 @@
           "type": "Int"
         },
         {
+          "name": "userId",
+          "type": "Int"
+        },
+        {
           "name": "token",
           "type": "String"
         }
@@ -199,6 +203,10 @@
       "args": [
         {
           "name": "id",
+          "type": "Int"
+        },
+        {
+          "name": "userId",
           "type": "Int"
         },
         {

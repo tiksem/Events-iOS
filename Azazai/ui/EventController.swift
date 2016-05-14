@@ -169,7 +169,7 @@ class EventController : UIViewController {
         
         UiUtils.setTapListenerForViews([membersLabel, peopleNumber], target:self, action:"showMembers:")
         UiUtils.setTapListenerForViews([addressIcon, address], target:self, action:"searchAddress:")
-        UiUtils.setTapListenerForViews([requestsLabel, requestsCount], target:self, action:"searchAddress:")
+        UiUtils.setTapListenerForViews([requestsLabel, requestsCount], target:self, action:"showRequests:")
         
         if !requestsCount.hidden {
             setupRequestsCount()
@@ -178,6 +178,10 @@ class EventController : UIViewController {
 
     func showMembers(_:UIGestureRecognizer) {
         navigationController!.pushViewController(MembersListController(eventId: event.id), animated: true)
+    }
+    
+    func showRequests(_:UIGestureRecognizer) {
+        navigationController!.pushViewController(EventRequestsController(event: event), animated: true)
     }
     
     func setRequestsVisibility(visible:Bool) {

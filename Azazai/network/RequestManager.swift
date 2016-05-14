@@ -254,12 +254,13 @@ class RequestManager {
         }, modifyPage: fillRequestsUsers, onArgsMerged: onArgsMerged, args: requestArgs, mergeArgs: mergeArgs)
     }
     
-    func acceptRequest(id:Int, token:String,
+    func acceptRequest(id:Int, userId:Int, token:String,
                         onCancelled:(() -> Void)? = nil,
                         complete:(IOError?) -> Void) {
         var canceler = Canceler()
         var requestArgs:[String:CustomStringConvertible] = [:]
         requestArgs["id"] = id
+        requestArgs["userId"] = userId
         requestArgs["token"] = StringWrapper(token)
 
         Network.getJsonDictFromUrl("http://azazai.com/api/acceptRequest", canceler: canceler, args: requestArgs, complete: {
@@ -270,12 +271,13 @@ class RequestManager {
         cancelers.add(canceler, onCancelled: onCancelled)
     }
     
-    func denyRequest(id:Int, token:String,
+    func denyRequest(id:Int, userId:Int, token:String,
                         onCancelled:(() -> Void)? = nil,
                         complete:(IOError?) -> Void) {
         var canceler = Canceler()
         var requestArgs:[String:CustomStringConvertible] = [:]
         requestArgs["id"] = id
+        requestArgs["userId"] = userId
         requestArgs["token"] = StringWrapper(token)
 
         Network.getJsonDictFromUrl("http://azazai.com/api/denyRequest", canceler: canceler, args: requestArgs, complete: {
