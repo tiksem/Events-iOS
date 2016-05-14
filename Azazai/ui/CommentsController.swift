@@ -138,6 +138,7 @@ class CommentsController : UIViewController, UITextViewDelegate {
                 comment!.user = AppDelegate.get().user
                 list[0] = comment
                 list.additionalOffset+=1
+                self.addCommentView.text = ""
                 self.tableView.reloadData()
             }
             sender.enabled = true
