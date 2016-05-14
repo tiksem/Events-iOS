@@ -50,7 +50,9 @@ private class RequestsAdapterDelegate : AdapterDelegateDefaultImpl<Request, Requ
     }
     
     override func onItemSelected(element element: Request, position: Int) -> Void {
-        
+        if let user = element.user {
+            SocialUtils.openVkProfile(String(user.id))
+        }
     }
     
     func complete(error:IOError?) {
