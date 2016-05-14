@@ -104,6 +104,7 @@
 		2E87D5D51C976806002B1FF9 /* TLTagsControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E87D5D31C976806002B1FF9 /* TLTagsControl.m */; };
 		2E8C16711CA36CED0027ED16 /* Eureka.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E8C16701CA36CED0027ED16 /* Eureka.framework */; };
 		2E8C16721CA36CED0027ED16 /* Eureka.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2E8C16701CA36CED0027ED16 /* Eureka.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2E93B2491CE761F8006D8776 /* LoadMoreCommentsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E93B2481CE761F8006D8776 /* LoadMoreCommentsCell.xib */; };
 		2EAE20E81CB5B2CA00455640 /* clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EAE20E71CB5B2CA00455640 /* clock.png */; };
 		2EAE20EA1CB5B9D800455640 /* location.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EAE20E91CB5B9D800455640 /* location.png */; };
 		2EAE20EC1CB5BD3D00455640 /* Maps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAE20EB1CB5BD3D00455640 /* Maps.swift */; };
@@ -297,6 +298,7 @@
 		2E87D5D31C976806002B1FF9 /* TLTagsControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLTagsControl.m; sourceTree = "<group>"; };
 		2E87D5D41C976806002B1FF9 /* TLTagsControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLTagsControl.h; sourceTree = "<group>"; };
 		2E8C16701CA36CED0027ED16 /* Eureka.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Eureka.framework; path = Carthage/Build/iOS/Eureka.framework; sourceTree = "<group>"; };
+		2E93B2481CE761F8006D8776 /* LoadMoreCommentsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadMoreCommentsCell.xib; sourceTree = "<group>"; };
 		2EAE20E71CB5B2CA00455640 /* clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clock.png; sourceTree = "<group>"; };
 		2EAE20E91CB5B9D800455640 /* location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = location.png; sourceTree = "<group>"; };
 		2EAE20EB1CB5BD3D00455640 /* Maps.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Maps.swift; sourceTree = "<group>"; };
@@ -506,6 +508,7 @@
 				2E7DB4591CD66F3A00D34BDC /* RequestCell.xib */,
 				2E7DB45B1CD66FF400D34BDC /* RequestCell.swift */,
 				2E7DB45D1CD7896D00D34BDC /* EventRequestsController.xib */,
+				2E93B2481CE761F8006D8776 /* LoadMoreCommentsCell.xib */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -800,6 +803,7 @@
 				2EED38291C740C8200EC6E71 /* EventsView.xib in Resources */,
 				2E4BE25A1C7F9CF200ED57F5 /* IconPickerCell.xib in Resources */,
 				2EB1E35A1CA35A6100C0E60A /* calendar.png in Resources */,
+				2E93B2491CE761F8006D8776 /* LoadMoreCommentsCell.xib in Resources */,
 				2EECBF371CAC7A170087709A /* MemberCell.xib in Resources */,
 				2E5DBA511CA07BA0004CF220 /* SearchBar.xib in Resources */,
 				2EECBF351CAC78140087709A /* MembersListController.xib in Resources */,

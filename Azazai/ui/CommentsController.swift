@@ -69,13 +69,16 @@ class CommentsAdapterDelegate : AdapterDelegateDefaultImpl<Comment, CommentCell,
     }
 }
 
-class CommentsAdapter : AzazaiListAdapter<CommentsAdapterDelegate> {
+class CommentsAdapter : LoadMoreLazyListAdapter<CommentsAdapterDelegate, IOError> {
     init(controller viewController:UIViewController, commentsListView:UITableView,
          comments: LazyList<Comment, IOError>) {
-        super.init(tableView: commentsListView,
-                list: comments,
-                cellIdentifier: "CommentCell",
-                delegate: CommentsAdapterDelegate(list: comments, tableView: commentsListView))
+        super.init(cellIdentifier: "CommentCell",
+                   nullCellIdentifier: "Loading",
+                   list: comments,
+                   tableView: commentsListView,
+                   delegate: CommentsAdapterDelegate(list: comments, tableView: commentsListView),
+                   loadMoreCellNibFileName: "LoadMoreCommentsCell",
+                   reverse: true)
     }
 }
 

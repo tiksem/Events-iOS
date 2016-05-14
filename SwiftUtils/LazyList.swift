@@ -10,12 +10,13 @@ public class LazyList<T : Hashable, Error : ErrorType> : RandomAccessable {
     private var items:[T?] = []
     private var itemsSet:Set<T> = []
     private(set) var allDataLoaded = false
-    private var loadNextPageExecuted = false
+    private(set) var loadNextPageExecuted = false
     var pageNumber = 0
     public var canceler:Canceler? = nil
     public var additionalOffset = 0
     public var isLastPage:([T])->Bool = {$0.isEmpty}
     public var onReload:(()->Void)? = nil
+    public var manualLoadingEnabled = false
 
     public init(getNextPageData:(([T]) -> Void, (Error) -> Void, Int) -> Void) {
         self.getNextPageData = getNextPageData
@@ -66,10 +67,14 @@ public class LazyList<T : Hashable, Error : ErrorType> : RandomAccessable {
             return items.count
         }
 
-        return items.count + 1
+        if !manualLoadingEnabled || items.isEmpty || loadNextPageExecuted {
+            return items.count + 1
+        }
+        
+        return items.count
     }
 
-    private func loadNextPage() {
+    public func loadNextPage() {
         if loadNextPageExecuted {
             return
         }

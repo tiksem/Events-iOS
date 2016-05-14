@@ -63,8 +63,9 @@ public class RandomAccessibleAdapter<Container:RandomAccessable,
     private let cellNibFileName:String
     private let nullCellIdentifier:String?
     private let nullCellNibFileName:String?
+    public let reverse:Bool
     public var list:Container
-    private unowned let tableView:UITableView
+    public unowned let tableView:UITableView
     public var delegate:Delegate
 
     public init(cellIdentifier:String,
@@ -73,7 +74,7 @@ public class RandomAccessibleAdapter<Container:RandomAccessable,
                 nullCellNibFileName:String? = nil,
                 list:Container,
                 tableView:UITableView,
-                delegate:Delegate, dynamicHeight:Bool = true) {
+                delegate:Delegate, dynamicHeight:Bool = true, reverse:Bool = false) {
         self.cellIdentifier = cellIdentifier
         self.cellNibFileName = cellNibFileName ?? cellIdentifier
         self.nullCellIdentifier = nullCellIdentifier
@@ -81,6 +82,7 @@ public class RandomAccessibleAdapter<Container:RandomAccessable,
         self.list = list
         self.tableView = tableView
         self.delegate = delegate
+        self.reverse = reverse
 
         UiUtils.registerNib(tableView: tableView, nibName: self.cellNibFileName, cellIdentifier: cellIdentifier)
 
@@ -113,16 +115,21 @@ public class RandomAccessibleAdapter<Container:RandomAccessable,
         return list[getItemPositionForIndexPath(indexPath)]
     }
 
-    private func getItemPositionForIndexPath(indexPath:NSIndexPath) -> Int {
+    public func getItemPositionForIndexPath(indexPath:NSIndexPath) -> Int {
         var row = 0
         for section in 0..<indexPath.section {
             row += tableView(tableView, numberOfRowsInSection:section)
         }
-        return row + indexPath.row
+        
+        let index = row + indexPath.row
+        if reverse {
+            return list.count - index - 1
+        }
+        
+        return index
     }
     
-    public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let position = getItemPositionForIndexPath(indexPath)
+    public func createItemForPosition(position:Int) -> UITableViewCell {
         if let item = list[position] {
             let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! CellType
             delegate.displayItem(element: item, cell: cell, position: position)
@@ -133,24 +140,22 @@ public class RandomAccessibleAdapter<Container:RandomAccessable,
             return cell
         }
     }
-
-    public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    
+    public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let position = getItemPositionForIndexPath(indexPath)
+        return createItemForPosition(position)
+    }
+
+    public func onItemSelectedWithPosition(position:Int) {
         if let item = list[position] {
             delegate.onItemSelected(element: item, position: position)
         }
     }
-
-//    public func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-//        if let item = list[indexPath.row] {
-//            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! CellType
-//            return UiUtils.calculateCellHeight(cell)
-//        }
-//
-//        return tableView.rowHeight
-//    }
-
-
+    
+    public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let position = getItemPositionForIndexPath(indexPath)
+        onItemSelectedWithPosition(position)
+    }
 }
 
 public class ArrayRandomAccessible<ItemType> : RandomAccessable {
