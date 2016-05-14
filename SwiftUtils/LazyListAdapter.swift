@@ -36,24 +36,14 @@ public class LazyListAdapter<Delegate:AdapterDelegate,
             (data) in
             if let this = self {
                 this.reloadData()
+                if this.reverse {
+                    this.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: data.count, inSection: 0), atScrollPosition: .Top, animated: false)
+                }
             } else {
                 fatalError("LazyListAdapter reference is gone, after data loaded, please keep reference of it")
             }
         }
         reloadData()
-    }
-
-    func updateTableContentInset() {
-        let numRows = tableView.numberOfRowsInSection(0)
-        var contentInsetTop = self.tableView.bounds.size.height;
-        for i in 0 ..< numRows {
-            contentInsetTop -= tableView.cellForRowAtIndexPath(NSIndexPath(forItem: i, inSection:0))?.frame.height ?? 0
-            if contentInsetTop <= 0 {
-                contentInsetTop = 0
-                break
-            }
-        }
-        self.tableView.contentInset = UIEdgeInsetsMake(contentInsetTop, 0, 0, 0);
     }
     
     public override func reloadData() {
