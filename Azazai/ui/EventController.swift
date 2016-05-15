@@ -137,6 +137,7 @@ class EventController : UIViewController {
     }
 
     func setupRequestsCount() {
+        self.requestsCount.text = "--"
         requestManager.getRequestsCount(event.id, complete: {
             (result,error) in
             if let err = error {
