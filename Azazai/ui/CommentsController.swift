@@ -12,11 +12,22 @@ class CommentsAdapterDelegate : AdapterDelegateDefaultImpl<Comment, CommentCell,
     private let list:LazyList<Comment, IOError>
     private let tableView:UITableView
     private let onEditComment:(Int, Comment) -> Void
+    private var dateViews:[UILabel:NSDate] = [:]
+    private var updateDateLoop:Loop! = nil
     
     init(list:LazyList<Comment, IOError>, tableView:UITableView, onEditComment:(Int, Comment) -> Void) {
         self.list = list
         self.tableView = tableView
         self.onEditComment = onEditComment
+        super.init()
+        updateDateLoop = Loop(delay: 10, action: updateDates)
+        updateDateLoop.start()
+    }
+    
+    func updateDates() {
+        for (label, date) in dateViews {
+            label.text = DateUtils.getOneHourAgoDisplayDateFormat(date)
+        }
     }
     
     override func displayItem(element comment: Comment, cell: CommentCell, position:Int) -> Void {
@@ -24,7 +35,12 @@ class CommentsAdapterDelegate : AdapterDelegateDefaultImpl<Comment, CommentCell,
         cell.avatar.setImageFromURL(comment.user?.photo_200)
         EventUtils.displayUserNameInLabel(cell.name, user: comment.user)
         let date = NSDate(timeIntervalSince1970: Double(comment.date))
-        cell.date.text = DateUtils.getOneHourAgoDisplayDateFormat(date)
+        var isAgo:Bool = false
+        let dateView = cell.date
+        dateView.text = DateUtils.getOneHourAgoDisplayDateFormat(date, isAgo: &isAgo)
+        if isAgo {
+            dateViews[dateView] = date
+        }
     }
     
     override func onItemSelected(element comment: Comment, position: Int) {

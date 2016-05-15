@@ -105,6 +105,7 @@
 		2E8C16711CA36CED0027ED16 /* Eureka.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E8C16701CA36CED0027ED16 /* Eureka.framework */; };
 		2E8C16721CA36CED0027ED16 /* Eureka.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2E8C16701CA36CED0027ED16 /* Eureka.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2E93B2491CE761F8006D8776 /* LoadMoreCommentsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E93B2481CE761F8006D8776 /* LoadMoreCommentsCell.xib */; };
+		2E93B24B1CE8D004006D8776 /* Timers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E93B24A1CE8D004006D8776 /* Timers.swift */; };
 		2EAE20E81CB5B2CA00455640 /* clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EAE20E71CB5B2CA00455640 /* clock.png */; };
 		2EAE20EA1CB5B9D800455640 /* location.png in Resources */ = {isa = PBXBuildFile; fileRef = 2EAE20E91CB5B9D800455640 /* location.png */; };
 		2EAE20EC1CB5BD3D00455640 /* Maps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAE20EB1CB5BD3D00455640 /* Maps.swift */; };
@@ -299,6 +300,7 @@
 		2E87D5D41C976806002B1FF9 /* TLTagsControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLTagsControl.h; sourceTree = "<group>"; };
 		2E8C16701CA36CED0027ED16 /* Eureka.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Eureka.framework; path = Carthage/Build/iOS/Eureka.framework; sourceTree = "<group>"; };
 		2E93B2481CE761F8006D8776 /* LoadMoreCommentsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadMoreCommentsCell.xib; sourceTree = "<group>"; };
+		2E93B24A1CE8D004006D8776 /* Timers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timers.swift; sourceTree = "<group>"; };
 		2EAE20E71CB5B2CA00455640 /* clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clock.png; sourceTree = "<group>"; };
 		2EAE20E91CB5B9D800455640 /* location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = location.png; sourceTree = "<group>"; };
 		2EAE20EB1CB5BD3D00455640 /* Maps.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Maps.swift; sourceTree = "<group>"; };
@@ -450,6 +452,7 @@
 				10628A004D798A6067F8E97A /* SocialUtils.swift */,
 				106283A934858E020AD5BE83 /* DateUtils.swift */,
 				2EAE20EB1CB5BD3D00455640 /* Maps.swift */,
+				2E93B24A1CE8D004006D8776 /* Timers.swift */,
 			);
 			path = SwiftUtils;
 			sourceTree = "<group>";
@@ -851,6 +854,7 @@
 				2E6E65431C2DA7A7004B2860 /* IOError.swift in Sources */,
 				2E4BE25E1C80B26C00ED57F5 /* MaxLengthFormatter.swift in Sources */,
 				2E6E65461C2DA7A7004B2860 /* Json.swift in Sources */,
+				2E93B24B1CE8D004006D8776 /* Timers.swift in Sources */,
 				2E6E65441C2DA7A7004B2860 /* Threading.swift in Sources */,
 				2E6E65451C2DA7A7004B2860 /* Alerts.swift in Sources */,
 				2E6E65421C2DA7A7004B2860 /* Network.swift in Sources */,

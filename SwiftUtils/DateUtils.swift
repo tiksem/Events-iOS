@@ -75,17 +75,28 @@ public class DateUtils {
     }
     
     public static func getOneHourAgoDisplayDateFormat(date:NSDate) -> String {
+        var ignore:Bool = false
+        return getOneHourAgoDisplayDateFormat(date, isAgo: &ignore)
+    }
+    
+    public static func getOneHourAgoDisplayDateFormat(date:NSDate, inout isAgo:Bool) -> String {
         let dateComp = getNSDateComponents(date)
         let now = NSDate()
         let nowComp = getNSDateComponents(now)
         let diff = now.timeIntervalSince1970 - date.timeIntervalSince1970
         if (diff < 60) {
+            isAgo = true
             return "Just now"
         }
         
         if (diff < 3600) {
-            return "\(Int(round(diff / 60))) minutes ago"
+            isAgo = true
+            let minutes = Int(round(diff / 60))
+            let minutesText = minutes == 1 ? "minute" : "minutes"
+            return "\(minutes) \(minutesText) ago"
         }
+        
+        isAgo = false
         
         if (diff < 2 * 24 * 3600) {
             if (nowComp.day == dateComp.day) {
