@@ -132,7 +132,6 @@ public class LoadMoreLazyListAdapter<Delegate:AdapterDelegate,
     }
     
     public override func createItemForPosition(position:Int) -> UITableViewCell {
-        print("createItemForPosition position = \(position)")
         if isLoadMoreItem(position) {
             return tableView.dequeueReusableCellWithIdentifier(loadMoreCellNibFileName)!
         } else {

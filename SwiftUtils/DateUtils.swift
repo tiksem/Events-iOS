@@ -79,6 +79,13 @@ public class DateUtils {
         let now = NSDate()
         let nowComp = getNSDateComponents(now)
         let diff = now.timeIntervalSince1970 - date.timeIntervalSince1970
+        if (diff < 60) {
+            return "Just now"
+        }
+        
+        if (diff < 3600) {
+            return "\(Int(round(diff / 60))) minutes ago"
+        }
         
         if (diff < 2 * 24 * 3600) {
             if (nowComp.day == dateComp.day) {
