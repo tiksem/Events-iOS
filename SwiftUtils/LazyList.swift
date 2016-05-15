@@ -50,6 +50,10 @@ public class LazyList<T : Hashable, Error : ErrorType> : RandomAccessable {
         }
     }
 
+    public var itemsCount:Int {
+        return items.count
+    }
+    
     public func prepend(value:T?) {
         items.insert(value, atIndex: 0)
     }

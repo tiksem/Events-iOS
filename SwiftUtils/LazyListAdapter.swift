@@ -37,7 +37,10 @@ public class LazyListAdapter<Delegate:AdapterDelegate,
             if let this = self {
                 this.reloadData()
                 if this.reverse {
-                    this.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: data.count, inSection: 0), atScrollPosition: .Top, animated: false)
+                    let count = data.count
+                    if count > 0 {
+                        this.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: data.count, inSection: 0), atScrollPosition: .Top, animated: false)
+                    }
                 }
             } else {
                 fatalError("LazyListAdapter reference is gone, after data loaded, please keep reference of it")
@@ -104,7 +107,7 @@ public class LoadMoreLazyListAdapter<Delegate:AdapterDelegate,
     }
     
     public func getCount() -> Int {
-        if list.loadNextPageExecuted || list.allDataLoaded {
+        if list.loadNextPageExecuted || list.allDataLoaded || list.itemsCount == 0 {
             return list.count
         } else {
             return list.count + 1
