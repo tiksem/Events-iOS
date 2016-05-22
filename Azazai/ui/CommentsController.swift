@@ -22,7 +22,7 @@ class CommentsAdapterDelegate : AdapterDelegateDefaultImpl<Comment, CommentCell,
         self.tableView = tableView
         self.onEditComment = onEditComment
         super.init()
-        updateDateLoop = Loop(delay: 10, action: updateDates)
+        updateDateLoop = Loop(delay: 10, action: {[unowned self] in self.updateDates()})
         updateDateLoop.start()
     }
     
