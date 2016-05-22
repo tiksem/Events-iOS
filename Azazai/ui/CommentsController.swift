@@ -7,10 +7,12 @@ import Foundation
 import SwiftUtils
 import UIKit
 
+private var controllersCount = 0;
+
 class CommentsAdapterDelegate : AdapterDelegateDefaultImpl<Comment, CommentCell, LoadingView> {
     private let requestManager = RequestManager()
-    private let list:LazyList<Comment, IOError>
-    private let tableView:UITableView
+    private unowned let list:LazyList<Comment, IOError>
+    private unowned let tableView:UITableView
     private let onEditComment:(Int, Comment) -> Void
     private var dateViews:[UILabel:NSDate] = [:]
     private var updateDateLoop:Loop! = nil
@@ -66,6 +68,7 @@ class CommentsAdapterDelegate : AdapterDelegateDefaultImpl<Comment, CommentCell,
         addAction("Delete comment", style: .Destructive) {
             MBProgressHUD.showHUDAddedTo(view, animated: true)
             self.requestManager.deleteComment(comment.id, token: VKSdk.accessToken().accessToken, complete: {
+                [unowned self]
                 (error) in
                 if error != nil {
                     Alerts.showOkAlert(error!.description)
@@ -92,7 +95,7 @@ class CommentsAdapterDelegate : AdapterDelegateDefaultImpl<Comment, CommentCell,
 }
 
 class CommentsAdapter : LoadMoreLazyListAdapter<CommentsAdapterDelegate, IOError> {
-    init(controller viewController:UIViewController, commentsListView:UITableView,
+    init(commentsListView:UITableView,
          comments: LazyList<Comment, IOError>, onEditComment:(Int, Comment)->Void) {
         super.init(cellIdentifier: "CommentCell",
                    nullCellIdentifier: "Loading",
@@ -123,9 +126,11 @@ class CommentsController : UIViewController, UITextViewDelegate {
     }
 
     init(eventId:Int, topComments:[Comment]) {
+        assert(controllersCount == 0)
         super.init(nibName: "CommentsController", bundle: nil)
         self.eventId = eventId
         self.topComments = topComments
+        controllersCount+=1
     }
 
     func textViewDidChange(textView: UITextView) {
@@ -158,6 +163,7 @@ class CommentsController : UIViewController, UITextViewDelegate {
         sender.enabled = false
         if var comment = editingComment {
             requestManager.updateComment(comment.id, token: VKSdk.accessToken().accessToken, text: addCommentView.text, complete: {
+                [unowned self]
                 (error) in
                 if error != nil {
                     Alerts.showOkAlert(error!.description)
@@ -177,7 +183,7 @@ class CommentsController : UIViewController, UITextViewDelegate {
             tableView.reloadData()
             scrollBottom()
             requestManager.addComment(eventId, token: VKSdk.accessToken().accessToken, text: addCommentView.text) {
-                [unowned self]
+                [unowned self, list]
                 (var comment, error) in
                 if error != nil {
                     Alerts.showOkAlert(error!.description)
@@ -203,10 +209,9 @@ class CommentsController : UIViewController, UITextViewDelegate {
         requestManager = RequestManager()
         let comments = requestManager.getCommentsList(eventId)
         comments.addAdditionalItemsToStart(topComments)
-        adapter = CommentsAdapter(controller: self,
-                                  commentsListView: tableView,
+        adapter = CommentsAdapter(commentsListView: tableView,
                                   comments: comments,
-                                  onEditComment: onEditComment)
+                                  onEditComment: {[unowned self](position,comment)in self.onEditComment(position, comment: comment)})
         navigationItem.title = "Comments"
         
         addCommentView.scrollEnabled = true
@@ -215,5 +220,9 @@ class CommentsController : UIViewController, UITextViewDelegate {
         initialAddCommentViewHeight = addCommentViewHeight.constant
         textViewDidChange(addCommentView)
         addCommentView.contentInset = UIEdgeInsetsMake(5, 0, 0, 0)
+    }
+    
+    deinit {
+        controllersCount-=1
     }
 }
