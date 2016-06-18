@@ -32,13 +32,13 @@ public class Loop {
     private func onTimer() {
         if !stopped {
             action()
-            Timers.executeAfterDelay(delay, closure: onTimer)
+            Timers.executeAfterDelay(delay, closure: {[weak self] in self?.onTimer()})
         }
     }
     
     public func start() {
         assert(!stopped)
-        Timers.executeAfterDelay(delay, closure: onTimer)
+        Timers.executeAfterDelay(delay, closure: {[weak self] in self?.onTimer()})
     }
     
     public func stop() {

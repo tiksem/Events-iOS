@@ -5,8 +5,8 @@
 
 import Foundation
 
-private let ShortMonthes = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-private let AllDisplayDateAndTimeCpmponents:NSCalendarUnit = [.Year, .Month, .Day, .Hour, .Minute]
+private let ShortMonths = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+private let AllDisplayDateAndTimeComponents:NSCalendarUnit = [.Year, .Month, .Day, .Hour, .Minute]
 
 public class DateUtils {
     public static func createNSDate(year year:Int, month:Int, day:Int) -> NSDate {
@@ -18,11 +18,11 @@ public class DateUtils {
         return calendar.dateFromComponents(components)!
     }
 
-    public static func getNSDateComponents(date:NSDate, unitFlags: NSCalendarUnit = AllDisplayDateAndTimeCpmponents) -> NSDateComponents {
+    public static func getNSDateComponents(date:NSDate, unitFlags: NSCalendarUnit = AllDisplayDateAndTimeComponents) -> NSDateComponents {
         return NSCalendar.currentCalendar().components(unitFlags, fromDate: date)
     }
     
-    public static func getNowNSDateComponents(unitFlags: NSCalendarUnit = AllDisplayDateAndTimeCpmponents) -> NSDateComponents {
+    public static func getNowNSDateComponents(unitFlags: NSCalendarUnit = AllDisplayDateAndTimeComponents) -> NSDateComponents {
         let now = NSDate()
         return getNSDateComponents(now)
     }
@@ -49,12 +49,12 @@ public class DateUtils {
     
     public static func getAlternativeDisplayDate(components:NSDateComponents) -> String {
         let day = getDisplay2DigitDateComponent(components.day)
-        return "\(day) \(ShortMonthes[components.month]) \(components.year)"
+        return "\(day) \(ShortMonths[components.month]) \(components.year)"
     }
     
     public static func getAlternativeDisplayDateWithoutYear(components:NSDateComponents) -> String {
         let day = getDisplay2DigitDateComponent(components.day)
-        return "\(day) \(ShortMonthes[components.month])"
+        return "\(day) \(ShortMonths[components.month])"
     }
     
     public static func getAlternativeDisplayDateAndTime(date:NSDate, considerCurrentYear:Bool = true) -> String {
