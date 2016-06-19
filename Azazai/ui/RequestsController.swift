@@ -68,13 +68,18 @@ private class RequestsAdapterDelegate : AdapterDelegateDefaultImpl<Request, Requ
     }
     
     func decline(request:Request, position:Int) {
+        let view = UiUtils.getCurrentView()!
+        MBProgressHUD.showHUDAddedTo(view, animated: true)
         requestManager.denyRequest(request.event.id, userId: request.user!.id, token: VKSdk.accessToken().accessToken, complete: {
+            [unowned self] in
+            MBProgressHUD.hideHUDForView(view, animated: true)
             self.complete($0, position: position)
         })
     }
     
     @objc func onDecline(sender:UIButton) {
         Alerts.showSlidingFromBottomOneActionAlert(controller, actionName: "Decline", cancelActionName: "Cancel", onAccept: {
+            [unowned self] in
             let position = sender.tag
             let request = self.itemProvider(position)
             self.decline(request, position: position)
@@ -84,8 +89,12 @@ private class RequestsAdapterDelegate : AdapterDelegateDefaultImpl<Request, Requ
     @objc func onAccept(sender:UIButton) {
         let position = sender.tag
         let request = itemProvider(position)
+        let view = UiUtils.getCurrentView()!
+        MBProgressHUD.showHUDAddedTo(view, animated: true)
         requestManager.acceptRequest(request.event.id, userId: request.user!.id, token: VKSdk.accessToken().accessToken, complete: {
-            self.complete($0, position: position)
+            [weak self] in
+            MBProgressHUD.hideHUDForView(view, animated: true)
+            self?.complete($0, position: position)
         })
     }
 }
