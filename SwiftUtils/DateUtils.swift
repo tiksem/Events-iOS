@@ -49,12 +49,12 @@ public class DateUtils {
     
     public static func getAlternativeDisplayDate(components:NSDateComponents) -> String {
         let day = getDisplay2DigitDateComponent(components.day)
-        return "\(day) \(ShortMonths[components.month]) \(components.year)"
+        return "\(day) \(ShortMonths[components.month - 1]) \(components.year)"
     }
     
     public static func getAlternativeDisplayDateWithoutYear(components:NSDateComponents) -> String {
         let day = getDisplay2DigitDateComponent(components.day)
-        return "\(day) \(ShortMonths[components.month])"
+        return "\(day) \(ShortMonths[components.month - 1])"
     }
     
     public static func getAlternativeDisplayDateAndTime(date:NSDate, considerCurrentYear:Bool = true) -> String {
