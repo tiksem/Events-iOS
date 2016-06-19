@@ -145,7 +145,7 @@ class CommentsController : UIViewController, UITextViewDelegate {
 
         postButton.enabled = textView.hasText()
     }
-    
+
     func onEditComment(position:Int, comment:Comment) {
         let indexPath = NSIndexPath(forRow: adapter.getCount() - position - 1, inSection: 0)
         tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Top, animated: true)
@@ -157,8 +157,7 @@ class CommentsController : UIViewController, UITextViewDelegate {
     }
     
     private func scrollBottom() {
-        tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: adapter.getCount() - 1, inSection: 0),
-                                         atScrollPosition: .Top, animated: true)
+        tableView.scrollToBottom()
     }
     
     @IBAction func onPostClick(sender: UIButton) {
