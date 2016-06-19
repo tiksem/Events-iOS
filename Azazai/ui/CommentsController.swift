@@ -142,6 +142,8 @@ class CommentsController : UIViewController, UITextViewDelegate {
         
         addCommentViewHeight.constant = contentHeight + 10
         addCommentView.updateConstraintsIfNeeded()
+
+        postButton.enabled = textView.hasText()
     }
     
     func onEditComment(position:Int, comment:Comment) {
