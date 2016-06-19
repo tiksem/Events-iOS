@@ -107,6 +107,8 @@ class CommentsAdapter : LoadMoreLazyListAdapter<CommentsAdapterDelegate, IOError
     }
 }
 
+private let MaxCommentLength = 200
+
 class CommentsController : UIViewController, UITextViewDelegate {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var addCommentViewHeight: NSLayoutConstraint!
@@ -145,6 +147,14 @@ class CommentsController : UIViewController, UITextViewDelegate {
 
         postButton.enabled = textView.hasText()
     }
+
+    func textView(textView: UITextView!, shouldChangeTextInRange range: NSRange,
+                  replacementText text: String!) -> Bool {
+        return UiUtils.limitLengthHelper(text: textView.text, maxLength: MaxCommentLength,
+                shouldChangeCharactersInRange: range,
+                replacementString: text)
+    }
+
 
     func onEditComment(position:Int, comment:Comment) {
         let indexPath = NSIndexPath(forRow: adapter.getCount() - position - 1, inSection: 0)
