@@ -231,6 +231,11 @@ class CommentsController : UIViewController, UITextViewDelegate {
         initialAddCommentViewHeight = addCommentViewHeight.constant
         textViewDidChange(addCommentView)
         addCommentView.contentInset = UIEdgeInsetsMake(5, 0, 0, 0)
+
+        if topComments.count < MaxPreLoadedTopComments {
+            adapter.list.allDataLoaded = true
+            adapter.reloadData()
+        }
     }
 
     override func viewDidLayoutSubviews() {

@@ -23,7 +23,7 @@ private class TopCommentsAdapter : ArrayAdapter<TopCommentsAdapterDelegate> {
 }
 
 private let MaxTopComments = 3
-private let MaxPreLoadedTopComments = 15
+let MaxPreLoadedTopComments = 15
 
 class EventController : UIViewController {
     @IBOutlet weak var icon: UIImageView!

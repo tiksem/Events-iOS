@@ -9,7 +9,7 @@ public class LazyList<T : Hashable, Error : ErrorType> : RandomAccessable {
     public typealias ItemType = T
     private var items:[T?] = []
     private var itemsSet:Set<T> = []
-    private(set) var allDataLoaded = false
+    public var allDataLoaded = false
     private(set) var loadNextPageExecuted = false
     var pageNumber = 0
     public var canceler:Canceler? = nil
@@ -80,6 +80,10 @@ public class LazyList<T : Hashable, Error : ErrorType> : RandomAccessable {
 
     public func loadNextPage() {
         if loadNextPageExecuted {
+            return
+        }
+
+        if allDataLoaded {
             return
         }
 
