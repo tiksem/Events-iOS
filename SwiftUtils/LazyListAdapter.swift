@@ -39,7 +39,8 @@ public class LazyListAdapter<Delegate:AdapterDelegate,
                 if this.reverse {
                     let count = data.count
                     if count > 0 {
-                        this.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: data.count, inSection: 0), atScrollPosition: .Top, animated: false)
+                        this.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: data.count, inSection: 0),
+                                atScrollPosition: .Top, animated: false)
                     }
                 }
             } else {
@@ -141,10 +142,14 @@ public class LoadMoreLazyListAdapter<Delegate:AdapterDelegate,
     
     public override func onItemSelectedWithPosition(position:Int) {
         if isLoadMoreItem(position) {
-            list.loadNextPage()
-            reloadData()
+            loadMore()
         } else {
             super.onItemSelectedWithPosition(position)
         }
+    }
+
+    public func loadMore() {
+        list.loadNextPage()
+        reloadData()
     }
 }

@@ -221,7 +221,13 @@ class CommentsController : UIViewController, UITextViewDelegate {
         textViewDidChange(addCommentView)
         addCommentView.contentInset = UIEdgeInsetsMake(5, 0, 0, 0)
     }
-    
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        tableView.scrollToBottom()
+    }
+
+
     deinit {
         controllersCount-=1
     }

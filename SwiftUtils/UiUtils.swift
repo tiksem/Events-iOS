@@ -277,6 +277,18 @@ public extension UIView {
     }
 }
 
+public extension UITableView {
+    func scrollToBottom() {
+        var yOffset:CGFloat = 0
+
+        if self.contentSize.height > self.bounds.size.height {
+            yOffset = self.contentSize.height - self.bounds.size.height
+        }
+
+        self.setContentOffset(CGPointMake(0, yOffset), animated:false)
+    }
+}
+
 //public extension UITextView {
 //    func getContentSize() -> CGSize {
 //        let attributes = [NSFontAttributeName: font!]

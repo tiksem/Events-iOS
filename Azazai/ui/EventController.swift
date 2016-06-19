@@ -23,6 +23,7 @@ private class TopCommentsAdapter : ArrayAdapter<TopCommentsAdapterDelegate> {
 }
 
 private let MaxTopComments = 3
+private let MaxPreLoadedTopComments = 15
 
 class EventController : UIViewController {
     @IBOutlet weak var icon: UIImageView!
@@ -34,7 +35,7 @@ class EventController : UIViewController {
     @IBOutlet weak var address: UILabel!
     @IBOutlet weak var organizerName: UILabel!
     @IBOutlet weak var avatar: UIImageView!
-    @IBOutlet weak var comments: UITableView!
+    @IBOutlet weak var commentsView: UITableView!
     @IBOutlet weak var membersLabel: UILabel!
     @IBOutlet weak var addressIcon: UIImageView!
     @IBOutlet weak var requestsLabel: UILabel!
@@ -45,6 +46,7 @@ class EventController : UIViewController {
     private var topCommentsAdapter:TopCommentsAdapter!
     private var isMine = false
     private var subscribeStatus:SubscribeStatus = .none
+    private var commentsList:[Comment] = []
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -111,10 +113,10 @@ class EventController : UIViewController {
     }
 
     func setupComments() {
-        comments.scrollEnabled = false
-        comments.allowsSelection = false
-        comments.tableFooterView = UIView()
-        requestManager.getTopComments(event.id, maxCount: MaxTopComments, complete: {
+        commentsView.scrollEnabled = false
+        commentsView.allowsSelection = false
+        commentsView.tableFooterView = UIView()
+        requestManager.getTopComments(event.id, maxCount: MaxPreLoadedTopComments, complete: {
             [unowned self]
             (comments, error) in
             if let err = error {
@@ -124,7 +126,10 @@ class EventController : UIViewController {
                     [unowned self]
                     (comments, error) in
                     if let comments = comments {
-                        self.topCommentsAdapter = TopCommentsAdapter(array: comments, tableView: self.comments)
+                        self.commentsList = comments
+                        self.topCommentsAdapter = TopCommentsAdapter(
+                                array: comments.getSubArrayOrArrayItself(MaxTopComments),
+                                tableView: self.commentsView)
                     } else {
                         Alerts.showOkAlert(error!.description)
                     }
@@ -133,7 +138,7 @@ class EventController : UIViewController {
         })
 
         let tap = UITapGestureRecognizer(target:self, action:#selector(EventController.onCommentsTap(_:)))
-        comments.addGestureRecognizer(tap)
+        commentsView.addGestureRecognizer(tap)
     }
 
     func setupRequestsCount() {
@@ -242,7 +247,7 @@ class EventController : UIViewController {
 
     func onCommentsTap(recognizer:UIGestureRecognizer) {
         navigationController!.pushViewController(CommentsController(eventId: event.id,
-                topComments: topCommentsAdapter.list.array), animated: true)
+                topComments: commentsList), animated: true)
     }
 
     func openVkProfile(recognizer:UIGestureRecognizer) {

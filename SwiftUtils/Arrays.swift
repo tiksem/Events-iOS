@@ -22,4 +22,12 @@ public extension Array {
     public func smap<T>(@noescape transform: (Element) -> T) -> [T] {
         return try! map(transform)
     }
+
+    public func getSubArrayOrArrayItself(maxElements:Int) -> Array<Element> {
+        if maxElements >= self.count {
+            return self
+        } else {
+            return Array<Element>(self[0..<maxElements])
+        }
+    }
 }
