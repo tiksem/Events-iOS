@@ -95,6 +95,8 @@ class CommentsAdapterDelegate : AdapterDelegateDefaultImpl<Comment, CommentCell,
 }
 
 class CommentsAdapter : LoadMoreLazyListAdapter<CommentsAdapterDelegate, IOError> {
+    var onDataReloaded:() -> Void = {}
+
     init(commentsListView:UITableView,
          comments: LazyList<Comment, IOError>, onEditComment:(Int, Comment)->Void) {
         super.init(cellIdentifier: "CommentCell",
@@ -104,6 +106,11 @@ class CommentsAdapter : LoadMoreLazyListAdapter<CommentsAdapterDelegate, IOError
                    delegate: CommentsAdapterDelegate(list: comments, tableView: commentsListView, onEditComment: onEditComment),
                    loadMoreCellNibFileName: "LoadMoreCommentsCell",
                    reverse: true)
+    }
+
+    override func reloadData() {
+        super.reloadData()
+        onDataReloaded()
     }
 }
 
@@ -120,6 +127,7 @@ class CommentsController : UIViewController, UITextViewDelegate {
     private var editingComment:Comment? = nil
     private var editingCommentPosition = -1
 
+    @IBOutlet weak var noCommentsView: UILabel!
     @IBOutlet weak var postButton: UIButton!
     @IBOutlet weak var addCommentView: SAMTextView!
     required init?(coder aDecoder: NSCoder) {
@@ -165,7 +173,13 @@ class CommentsController : UIViewController, UITextViewDelegate {
         editingCommentPosition = position
         addCommentView.becomeFirstResponder()
     }
-    
+
+    private func checkForNoComments() {
+        let showComments = adapter.list.count > 0
+        noCommentsView.hidden = showComments
+        tableView.hidden = !showComments
+    }
+
     private func scrollBottom() {
         tableView.scrollToBottom()
     }
@@ -232,10 +246,15 @@ class CommentsController : UIViewController, UITextViewDelegate {
         textViewDidChange(addCommentView)
         addCommentView.contentInset = UIEdgeInsetsMake(5, 0, 0, 0)
 
+        adapter.onDataReloaded = {
+            [unowned self] in self.checkForNoComments()
+        }
+
         if topComments.count < MaxPreLoadedTopComments {
             adapter.list.allDataLoaded = true
             adapter.reloadData()
         }
+        checkForNoComments()
     }
 
     override func viewDidLayoutSubviews() {
