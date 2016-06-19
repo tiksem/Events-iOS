@@ -240,7 +240,7 @@ class EventController : UIViewController {
 
         let cancelActionName = isMine ? "No" : "Cancel"
         let actionName = isMine ? "Yes, cancel it" : "Unsubscribe"
-        let title = isMine ? "Cancel event \(event.name)?" : "Unsubscrive from \(event.name)?"
+        let title = isMine ? "Cancel event \(event.name)?" : "Unsubscribe from \(event.name)?"
         Alerts.showSlidingFromBottomOneActionAlert(self, title: title,
                 actionName: actionName, cancelActionName: cancelActionName, onAccept: onSubscribeCancelAccept)
     }
