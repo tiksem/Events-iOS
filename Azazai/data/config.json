@@ -78,6 +78,29 @@
     {
       "name": "SubscribeStatus",
       "cases": ["none", "subscribed", "pending", "accepted", "denied"]
+    },
+    {
+      "name": "bla",
+      "arr": ["dog", "cat", "tiger"],
+      "obj": {
+        "arrInObj": ["one", "two"],
+        "emptyArray": [],
+        "objInObj": {
+          "key": "value"
+        },
+        "emptyObj": {
+        }
+      },
+      "emptyArray": [],
+      "emptyObj": {},
+      "nullItem": null,
+      "arrayInArray": ["some", [1, 2, 3, "yo"]],
+      "beginWithNull": [null, 1, 2, 3],
+      "nullInTheMiddle": [1, 2, null, 3, 5],
+      "nullInTheEnd": [1, 2, null],
+      "nullInObj": {
+        "item": null
+      }
     }
   ]
 }

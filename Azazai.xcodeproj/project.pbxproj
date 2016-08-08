@@ -71,6 +71,7 @@
 		10628EA943570F45C8A8B229 /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106282611AD0F4FC6419ADDC /* RequestManager.swift */; };
 		10628EF39DB3527198F865AC /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10628585B1C467D4A5F09BA9 /* Strings.swift */; };
 		10628F8F00D41576A3F88DB2 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 106285443E83EC6BEB9625E2 /* Info.plist */; };
+		18C305CE285AC92744AA92AD /* libPods-Azazai.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C0C69148E2756F0E69022814 /* libPods-Azazai.a */; };
 		2E3D0E521C5A67960066890E /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 2E3D0E511C5A67960066890E /* logo.png */; };
 		2E4BE25A1C7F9CF200ED57F5 /* IconPickerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E4BE2591C7F9CF200ED57F5 /* IconPickerCell.xib */; };
 		2E4BE25C1C7FA31B00ED57F5 /* IconInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4BE25B1C7FA31B00ED57F5 /* IconInfo.swift */; };
@@ -330,6 +331,9 @@
 		2EED38411C7DE9D900EC6E71 /* WebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebImage.framework; path = Carthage/Build/iOS/WebImage.framework; sourceTree = "<group>"; };
 		2EED38441C7E55AC00EC6E71 /* event_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = event_icon.png; sourceTree = "<group>"; };
 		2EED384A1C7F93E700EC6E71 /* IconPicker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IconPicker.xib; sourceTree = "<group>"; };
+		59F79F7423E8BAEC5352A9B8 /* Pods-Azazai.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Azazai.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Azazai/Pods-Azazai.debug.xcconfig"; sourceTree = "<group>"; };
+		721A50C8D41343C62E96B97B /* Pods-Azazai.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Azazai.release.xcconfig"; path = "Pods/Target Support Files/Pods-Azazai/Pods-Azazai.release.xcconfig"; sourceTree = "<group>"; };
+		C0C69148E2756F0E69022814 /* libPods-Azazai.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Azazai.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -351,6 +355,7 @@
 				2E8C16711CA36CED0027ED16 /* Eureka.framework in Frameworks */,
 				2EED38421C7DE9D900EC6E71 /* WebImage.framework in Frameworks */,
 				2EB1E3571CA3583600C0E60A /* PDTSimpleCalendar.framework in Frameworks */,
+				18C305CE285AC92744AA92AD /* libPods-Azazai.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -410,6 +415,8 @@
 				106287826422789662C1223B /* SwiftUtils */,
 				106285C216DF57F2F0816EEC /* SwiftUtilsTests */,
 				106281A6B6D96EA3BF96F80A /* CommentCell.swift */,
+				24161BBCC86C51CC09FB27EC /* Pods */,
+				30DC3585EF200C5222C1ED2A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -609,6 +616,23 @@
 			path = adapters;
 			sourceTree = "<group>";
 		};
+		24161BBCC86C51CC09FB27EC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				59F79F7423E8BAEC5352A9B8 /* Pods-Azazai.debug.xcconfig */,
+				721A50C8D41343C62E96B97B /* Pods-Azazai.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		30DC3585EF200C5222C1ED2A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C0C69148E2756F0E69022814 /* libPods-Azazai.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -662,10 +686,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1062838277A0CDFD6C11BE5E /* Build configuration list for PBXNativeTarget "Azazai" */;
 			buildPhases = (
+				30BF95F39027AC1505FED9E3 /* Check Pods Manifest.lock */,
 				10628CDFE49C55DB39C2652A /* Sources */,
 				106283D4E135E8DB1476F608 /* Frameworks */,
 				106289A9AEDC8E6B155860A3 /* Resources */,
 				2E5D01DD1C5AAC6C0013735F /* Embed Frameworks */,
+				A84E09B72CF38C0EAA1FE91C /* Embed Pods Frameworks */,
+				D5A4EB5823D491AE7BE662AD /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -740,6 +767,8 @@
 			mainGroup = 106283FB35D5C11BF3D0CEC3;
 			productRefGroup = 106289D93CA776EE1A346922 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+			);
 			projectRoot = "";
 			targets = (
 				106284B5999AD9BB85BBE84B /* Azazai */,
@@ -829,6 +858,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		30BF95F39027AC1505FED9E3 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		A84E09B72CF38C0EAA1FE91C /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Azazai/Pods-Azazai-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D5A4EB5823D491AE7BE662AD /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Azazai/Pods-Azazai-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		10628063B289E844325F08ED /* Sources */ = {
@@ -990,6 +1067,7 @@
 /* Begin XCBuildConfiguration section */
 		1062823D8761FAA24317CA3C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 59F79F7423E8BAEC5352A9B8 /* Pods-Azazai.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1285,6 +1363,7 @@
 		};
 		10628C52A0956D112965A538 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 721A50C8D41343C62E96B97B /* Pods-Azazai.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
